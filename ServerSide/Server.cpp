@@ -3,6 +3,7 @@
 #include <windows.system.threading.h>
 
 Server::Server()
+	:	router(0)
 {
 }
 

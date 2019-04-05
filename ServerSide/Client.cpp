@@ -2,11 +2,10 @@
 #include "Client.h"
 
 
-Client::Client(unsigned int index)
-	:	socket()
-		//index(index),
-		//requestsNumber(0),
-		//responsesNumber(0)
+Client::Client()
+	:	socket(),
+		requestsNumber(0),
+		responsesNumber(0)
 {
 
 }
@@ -14,16 +13,16 @@ Client::Client(unsigned int index)
 
 Client::~Client()
 {
-	//for (int i = 0; i < requests.size(); i++)
-	//{
-	//	delete requests[i];
-	//	requests[i] = nullptr;
-	//}
-	//for (int i = 0; i < responses.size(); i++)
-	//{
-	//	delete responses[i];
-	//	responses[i] = nullptr;
-	//}
+	for (int i = 0; i < requests.size(); i++)
+	{
+		delete requests[i];
+		requests[i] = nullptr;
+	}
+	for (int i = 0; i < responses.size(); i++)
+	{
+		delete responses[i];
+		responses[i] = nullptr;
+	}
 }
 
 // methods

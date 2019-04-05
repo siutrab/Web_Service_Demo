@@ -1,7 +1,7 @@
 #pragma once
 #include "SFML/Network.hpp"
 #include "Client.h"
-
+class Client;
 class Request
 {
 	std::string content;

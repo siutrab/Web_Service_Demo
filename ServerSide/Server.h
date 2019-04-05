@@ -2,7 +2,8 @@
 #include "Router.h"
 #include "RequestHandler.h"
 #include "ResponseHandler.h"
-
+class RequestHandler;
+class ResponseHandler;
 class Server
 {
 	Router router;		// Receives and sednds prepared data from users

@@ -39,9 +39,6 @@
     <ClInclude Include="Router.h">
       <Filter>Router headers</Filter>
     </ClInclude>
-    <ClInclude Include="ConnectedClientsList.h">
-      <Filter>Router headers</Filter>
-    </ClInclude>
     <ClInclude Include="Client.h">
       <Filter>Router headers</Filter>
     </ClInclude>
@@ -52,6 +49,9 @@
       <Filter>Router headers</Filter>
     </ClInclude>
     <ClInclude Include="Request.h">
+      <Filter>Router headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectedClientsList.h">
       <Filter>Router headers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,9 +74,6 @@
     <ClCompile Include="Client.cpp">
       <Filter>Router resources</Filter>
     </ClCompile>
-    <ClCompile Include="ConnectedClientsList.cpp">
-      <Filter>Router resources</Filter>
-    </ClCompile>
     <ClCompile Include="Listener.cpp">
       <Filter>Router resources</Filter>
     </ClCompile>
@@ -87,6 +84,9 @@
       <Filter>Router resources</Filter>
     </ClCompile>
     <ClCompile Include="Request.cpp">
+      <Filter>Router resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectedClientsList.cpp">
       <Filter>Router resources</Filter>
     </ClCompile>
   </ItemGroup>

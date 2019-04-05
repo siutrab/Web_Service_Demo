@@ -1,5 +1,6 @@
 #pragma once
 #include "Request.h"
+class Request;
 class Response
 {
 	Request* request;
