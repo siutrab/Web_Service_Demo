@@ -37,6 +37,6 @@ void Listener::listen()
 			selector->add(*socket);
 		}
 		// if connection is invalid the client is automaticall removed
-		else clientsList->deleteClient(*client);	
+		else clientsList->deleteClient(client->getIndex());	
 	}
 }

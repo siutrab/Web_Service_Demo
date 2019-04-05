@@ -10,15 +10,17 @@ class Router;
 
 class ConnectedClientsList
 {
-	//std::map<Client*, unsigned int>clientsMap;
-	std::vector<Client*> clientsList;
+	unsigned int numberOfClients;
+	unsigned int clientUniqueNumber;
+	std::map <unsigned int, Client*> clientsMap;	// owner
 	sf::SocketSelector* selector;
 public:
-	//ConnectedClientsList(sf::SocketSelector& selector);
+
 	ConnectedClientsList(Router& router);
 	~ConnectedClientsList();
+	
 	Client* addClient();	// Creates a client and returns reference to it 
-	void deleteClient(Client& client);
+	void deleteClient(unsigned int index);
 	void listen();
 };
 

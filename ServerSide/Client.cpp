@@ -2,10 +2,12 @@
 #include "Client.h"
 
 
-Client::Client()
+Client::Client(unsigned int index)
 	:	socket(),
 		requestsNumber(0),
-		responsesNumber(0)
+		responsesNumber(0),
+		index(index)
+		
 {
 
 }

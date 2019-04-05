@@ -25,7 +25,7 @@ class Client
 		int getRealRequestIndex(unsigned int index);	// returns actual index of Request in vector
 
 public:
-		Client();
+		Client(unsigned int index);
 		~Client();
 
 		// Methods
