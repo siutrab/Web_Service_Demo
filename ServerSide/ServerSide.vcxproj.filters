@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Pliki źródłowe">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Pliki zasobów">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Router headers">
+      <UniqueIdentifier>{bb5ca26f-0393-4aa7-8977-3d51a8641440}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Router resources">
+      <UniqueIdentifier>{c43647ab-5a6e-43fc-8b91-f27ca911108e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Server.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestHandler.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponseHandler.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Router.h">
+      <Filter>Router headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectedClientsList.h">
+      <Filter>Router headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>Router headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Listener.h">
+      <Filter>Router headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Response.h">
+      <Filter>Router headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Request.h">
+      <Filter>Router headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerSide.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Server.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestHandler.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="ResponseHandler.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>Router resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectedClientsList.cpp">
+      <Filter>Router resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Listener.cpp">
+      <Filter>Router resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Router.cpp">
+      <Filter>Router resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Response.cpp">
+      <Filter>Router resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Request.cpp">
+      <Filter>Router resources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ServerSide.rc">
+      <Filter>Pliki zasobów</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

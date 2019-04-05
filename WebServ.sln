@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WebServ", "WebServ\WebServ.vcxproj", "{39962B99-7FF1-4513-9377-857A7826CBAE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientSide", "WebServ\WebServ.vcxproj", "{39962B99-7FF1-4513-9377-857A7826CBAE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerSide", "ServerSide\ServerSide.vcxproj", "{441F9686-4BF6-4962-BB32-46DE34877A8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{39962B99-7FF1-4513-9377-857A7826CBAE}.Release|x64.Build.0 = Release|x64
 		{39962B99-7FF1-4513-9377-857A7826CBAE}.Release|x86.ActiveCfg = Release|Win32
 		{39962B99-7FF1-4513-9377-857A7826CBAE}.Release|x86.Build.0 = Release|Win32
+		{441F9686-4BF6-4962-BB32-46DE34877A8B}.Debug|x64.ActiveCfg = Debug|x64
+		{441F9686-4BF6-4962-BB32-46DE34877A8B}.Debug|x64.Build.0 = Debug|x64
+		{441F9686-4BF6-4962-BB32-46DE34877A8B}.Debug|x86.ActiveCfg = Debug|Win32
+		{441F9686-4BF6-4962-BB32-46DE34877A8B}.Debug|x86.Build.0 = Debug|Win32
+		{441F9686-4BF6-4962-BB32-46DE34877A8B}.Release|x64.ActiveCfg = Release|x64
+		{441F9686-4BF6-4962-BB32-46DE34877A8B}.Release|x64.Build.0 = Release|x64
+		{441F9686-4BF6-4962-BB32-46DE34877A8B}.Release|x86.ActiveCfg = Release|Win32
+		{441F9686-4BF6-4962-BB32-46DE34877A8B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
