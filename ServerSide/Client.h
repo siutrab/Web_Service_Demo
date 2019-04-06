@@ -2,41 +2,31 @@
 #include <vector>
 #include <unordered_map>
 #include "SFML/Network.hpp"
-#include "Request.h"
-#include "Response.h"
-class Request;
+#include "Conversation.h"
+
+class Conversation;
 class Response;
-class Client
-{
-	unsigned int index;
-	unsigned int requestsNumber;
-	unsigned int responsesNumber;
-	unsigned int conversationUniqueNumber;
-	unsigned int offset;	// starts from 0 and increases each time when the first element of request vector is solved(removed from vector)
 
-	sf::TcpSocket socket;
-	
-	std::vector<Request*>requests;
-	std::vector<Response*>responses;
+	class Client
+	{
+		unsigned int index;
+
+		sf::TcpSocket socket;
 
 		// Methods
-		void addRequest(Request* message);
-		void sendResponse();		/// CHANGE ME!!!
-		int getRealRequestIndex(unsigned int index);	// returns actual index of Request in vector
+			void addRequest(Conversation* message);
+			void sendResponse();		/// CHANGE ME!!!
 
-public:
-		Client(unsigned int index);
-		~Client();
+	public:
+			Client(unsigned int index);
+			~Client();
 
 		// Methods
-		void receivePacket();
-
+			void			receivePacket();
 		// Getters
-		sf::TcpSocket* getSocket();
-		unsigned int getIndex() const;
-		//unsigned int getRequestNumber() const;
-		//unsigned int getResponseNumber() const;
+			sf::TcpSocket*	getSocket();
+			unsigned int	getIndex() const;
 		// Setters
-		void setIndex(unsigned int index);
-};
+			void			setIndex(unsigned int index);
+	};
 

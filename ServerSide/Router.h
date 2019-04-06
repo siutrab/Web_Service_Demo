@@ -5,22 +5,23 @@
 
 class ConnectedClientsList;
 class Listener;
+class Server;
 
-class Router
-{
-	bool running = false;
-	unsigned int port;
-	sf::SocketSelector selector;
+	class Router
+	{
+		bool running = false;
+		unsigned int port;
+		sf::SocketSelector selector;
 
-	ConnectedClientsList* clientsList;	// owner
-	Listener* listener;		// owner
-public:
-	Router(unsigned int port);
-	~Router();
-	void start();
-	void stop();
-	unsigned int getPort();
-	sf::SocketSelector* getSelector();
-	ConnectedClientsList* getClientsList();
-};
-
+		ConnectedClientsList* clientsList;	// owner
+		Listener* listener;					// owner
+		Server* server;						// parent element pointer
+	public:
+			Router(unsigned int port);
+			~Router();
+			void start();
+			void stop();
+			unsigned int getPort();
+			sf::SocketSelector* getSelector();
+			ConnectedClientsList* getClientsList();
+	};

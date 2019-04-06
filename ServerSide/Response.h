@@ -1,9 +1,10 @@
 #pragma once
-#include "Request.h"
-class Request;
+#include "Conversation.h"
+
+class Conversation;
 class Response
 {
-	Request* request;
+	Conversation* request;
 public:
 	Response();
 	~Response();

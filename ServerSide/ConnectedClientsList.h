@@ -14,6 +14,7 @@ class ConnectedClientsList
 	unsigned int clientUniqueNumber;
 	std::map <unsigned int, Client*> clientsMap;	// owner
 	sf::SocketSelector* selector;
+
 public:
 
 	ConnectedClientsList(Router& router);

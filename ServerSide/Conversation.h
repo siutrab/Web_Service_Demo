@@ -1,19 +1,21 @@
 #pragma once
 #include "SFML/Network.hpp"
 #include "Client.h"
+#include <iostream>
 class Client;
-class Request
+
+class Conversation
 {
 	std::string content;
 	Client* client;
 	unsigned int conversationIndex;
 	bool correct = false;
 
-	Request();
+	Conversation();
 public:
-	~Request();
+	~Conversation();
 	bool isCorrect();
 	void setConversationIndex(unsigned int index);
-	static Request* unpackPacket(sf::Packet& packet);
+	static Conversation* unpackPacket(sf::Packet* packet);
 };
 

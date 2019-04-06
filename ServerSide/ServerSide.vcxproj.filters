@@ -19,18 +19,18 @@
     <Filter Include="Router resources">
       <UniqueIdentifier>{c43647ab-5a6e-43fc-8b91-f27ca911108e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Logic Layer headers">
+      <UniqueIdentifier>{a7849504-513d-4b09-9760-ec379b02d800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic Layer resources">
+      <UniqueIdentifier>{d135a1a9-857d-4735-8f07-ea34b90a33e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="Server.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="RequestHandler.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="ResponseHandler.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -48,11 +48,17 @@
     <ClInclude Include="Response.h">
       <Filter>Router headers</Filter>
     </ClInclude>
-    <ClInclude Include="Request.h">
-      <Filter>Router headers</Filter>
-    </ClInclude>
     <ClInclude Include="ConnectedClientsList.h">
       <Filter>Router headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Conversation.h">
+      <Filter>Router headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponseHandler.h">
+      <Filter>Logic Layer headers</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestHandler.h">
+      <Filter>Logic Layer headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -63,12 +69,6 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Server.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="RequestHandler.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="ResponseHandler.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Client.cpp">
@@ -83,11 +83,17 @@
     <ClCompile Include="Response.cpp">
       <Filter>Router resources</Filter>
     </ClCompile>
-    <ClCompile Include="Request.cpp">
-      <Filter>Router resources</Filter>
-    </ClCompile>
     <ClCompile Include="ConnectedClientsList.cpp">
       <Filter>Router resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Conversation.cpp">
+      <Filter>Router resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestHandler.cpp">
+      <Filter>Logic Layer resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ResponseHandler.cpp">
+      <Filter>Logic Layer resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,6 @@ Router::Router(unsigned int port)
 	start();
 }
 
-
 Router::~Router()
 {
 	stop();

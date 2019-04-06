@@ -5,5 +5,5 @@
 int main()
 {
 	Server server;
-    std::cout << "Hello World!\n"; 
+
 }
