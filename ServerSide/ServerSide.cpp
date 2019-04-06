@@ -4,6 +4,6 @@
 
 int main()
 {
-	Server server;
+	Server server(54000);
 
 }

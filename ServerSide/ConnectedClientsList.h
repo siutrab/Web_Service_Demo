@@ -4,24 +4,26 @@
 #include <map>
 #include "Client.h"
 #include "Router.h"
+#include "RequestsQueue.h"
 
 class Client;
 class Router;
 
-class ConnectedClientsList
-{
-	unsigned int numberOfClients;
-	unsigned int clientUniqueNumber;
-	std::map <unsigned int, Client*> clientsMap;	// owner
-	sf::SocketSelector* selector;
 
-public:
+	class ConnectedClientsList
+	{
+		unsigned int numberOfClients;
+		unsigned int clientUniqueNumber;
+		std::map <unsigned int, Client*> clientsMap;	// owner
+		sf::SocketSelector* selector;
 
-	ConnectedClientsList(Router& router);
-	~ConnectedClientsList();
+	public:
+
+		ConnectedClientsList(Router& router);
+		~ConnectedClientsList();
 	
-	Client* addClient();	// Creates a client and returns reference to it 
-	void deleteClient(unsigned int index);
-	void listen();
-};
+		Client* addClient();	// Creates a client and returns reference to it 
+		void deleteClient(unsigned int index);
+		void listen();
+	};
 

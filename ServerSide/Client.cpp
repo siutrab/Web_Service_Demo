@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Client.h"
 
+	RequestsQueue* Client::requestsQueue;
 
 	Client::Client(unsigned int index)
 		:	socket(),
@@ -17,7 +18,7 @@
 // methods
 	void Client::addRequest(Conversation* message)
 	{
-
+		Client::requestsQueue->addConversation(message);
 	}
 
 	void Client::sendResponse()
@@ -46,3 +47,4 @@
 
 // setters
 	void Client::setIndex(unsigned int index) { this->index = index; }
+	void Client::setRequestQueuePointer(RequestsQueue* requestQueue) { requestsQueue = requestQueue; }

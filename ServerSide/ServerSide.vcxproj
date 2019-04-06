@@ -110,6 +110,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>C:\CPP Libraries\SFML 2.3\SFML-2.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,6 +153,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>C:\CPP Libraries\SFML 2.3\SFML-2.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="ConnectedClientsList.h" />
+    <ClInclude Include="RequestsQueue.h" />
     <ClInclude Include="Response.h" />
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Conversation.h" />
@@ -178,6 +181,7 @@
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ConnectedClientsList.cpp" />
+    <ClCompile Include="RequestsQueue.cpp" />
     <ClCompile Include="Response.cpp" />
     <ClCompile Include="Listener.cpp" />
     <ClCompile Include="Conversation.cpp" />

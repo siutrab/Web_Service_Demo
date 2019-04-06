@@ -25,5 +25,6 @@ Conversation* Conversation::unpackPacket(sf::Packet* packet)
 
 bool Conversation::isCorrect() { return correct; }
 
+std::string* Conversation::getRequest() { return &content; }
 // Setters
 void Conversation::setConversationIndex(unsigned int index) { this->conversationIndex = index; }

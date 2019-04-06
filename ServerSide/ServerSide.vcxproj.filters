@@ -60,6 +60,9 @@
     <ClInclude Include="RequestHandler.h">
       <Filter>Logic Layer headers</Filter>
     </ClInclude>
+    <ClInclude Include="RequestsQueue.h">
+      <Filter>Router headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -94,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="ResponseHandler.cpp">
       <Filter>Logic Layer resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestsQueue.cpp">
+      <Filter>Router resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
