@@ -170,23 +170,22 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="ConnectedClientsList.h" />
     <ClInclude Include="RequestsQueue.h" />
-    <ClInclude Include="Response.h" />
     <ClInclude Include="Listener.h" />
-    <ClInclude Include="Conversation.h" />
+    <ClInclude Include="RequestResponseObject.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RequestHandler.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResponseHandler.h" />
     <ClInclude Include="Router.h" />
     <ClInclude Include="Server.h" />
+    <ClInclude Include="TranslatorXML.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ConnectedClientsList.cpp" />
     <ClCompile Include="RequestsQueue.cpp" />
-    <ClCompile Include="Response.cpp" />
     <ClCompile Include="Listener.cpp" />
-    <ClCompile Include="Conversation.cpp" />
+    <ClCompile Include="RequestResponseObject.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -198,6 +197,7 @@
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerSide.cpp" />
+    <ClCompile Include="TranslatorXML.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ServerSide.rc" />
@@ -211,6 +211,7 @@
     <Import Project="..\packages\sfml-system.redist.2.4.2.0\build\native\sfml-system.redist.targets" Condition="Exists('..\packages\sfml-system.redist.2.4.2.0\build\native\sfml-system.redist.targets')" />
     <Import Project="..\packages\sfml-system.2.4.2.0\build\native\sfml-system.targets" Condition="Exists('..\packages\sfml-system.2.4.2.0\build\native\sfml-system.targets')" />
     <Import Project="..\packages\sfml-network.2.4.2.0\build\native\sfml-network.targets" Condition="Exists('..\packages\sfml-network.2.4.2.0\build\native\sfml-network.targets')" />
+    <Import Project="..\packages\pugixml.1.9.0\build\native\pugixml.targets" Condition="Exists('..\packages\pugixml.1.9.0\build\native\pugixml.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -220,5 +221,6 @@
     <Error Condition="!Exists('..\packages\sfml-system.redist.2.4.2.0\build\native\sfml-system.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-system.redist.2.4.2.0\build\native\sfml-system.redist.targets'))" />
     <Error Condition="!Exists('..\packages\sfml-system.2.4.2.0\build\native\sfml-system.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-system.2.4.2.0\build\native\sfml-system.targets'))" />
     <Error Condition="!Exists('..\packages\sfml-network.2.4.2.0\build\native\sfml-network.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-network.2.4.2.0\build\native\sfml-network.targets'))" />
+    <Error Condition="!Exists('..\packages\pugixml.1.9.0\build\native\pugixml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\pugixml.1.9.0\build\native\pugixml.targets'))" />
   </Target>
 </Project>

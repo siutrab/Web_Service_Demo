@@ -6,15 +6,17 @@
 class Router;
 class ConnectedClientsList;
 
-class Listener
-{
-	sf::TcpListener listener;
-	sf::SocketSelector* selector;
-	ConnectedClientsList* clientsList;
-public:
-	//Listener(unsigned int port, sf::SocketSelector& selector, ConnectedClientsList& clientsList);
-	Listener(Router& router);
-	~Listener();
-	void listen();
-};
+	class Listener
+	{
+			static Listener* listenerPointer;
+			sf::TcpListener tcpListener;
+			sf::SocketSelector* selector;
+			ConnectedClientsList* clientsList;
+		static void setListenerPointer(Listener* pointer);
+	public:
+		Listener(Router& router);
+		~Listener();
+		void listen();
+		static Listener* getListenrPointer();
+	};
 

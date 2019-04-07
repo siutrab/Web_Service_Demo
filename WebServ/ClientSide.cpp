@@ -23,7 +23,5 @@ void send()
 
 int main()
 {
-	
-		send();
-	
+	send();
 }

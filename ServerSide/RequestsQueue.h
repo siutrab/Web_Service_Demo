@@ -1,15 +1,21 @@
 #pragma once
 #include <queue>
-#include "Conversation.h"
+#include <iterator>
+#include "RequestResponseObject.h"
 
-class Conversation;
+class RequestResponseObject;
 
 	class RequestsQueue
 	{
-		std::queue<Conversation*> queuOfRequests;
+			static RequestsQueue* requestsQueuePointer;
+			std::queue<RequestResponseObject*> requestsQueue;
+
+		// Methods
+		static void setRequestsQueuePtr(RequestsQueue* pointer);
 	public:
 		RequestsQueue();
 		~RequestsQueue();
-		void addConversation(Conversation* conversation);
-		Conversation* getConversation();
+		void addConversation(RequestResponseObject* conversation);
+		RequestResponseObject* getConversation();
+		static RequestsQueue* getRequestsQueuePtr();
 	};

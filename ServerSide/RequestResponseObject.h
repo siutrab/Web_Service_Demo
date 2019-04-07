@@ -2,21 +2,22 @@
 #include "SFML/Network.hpp"
 #include "Client.h"
 #include <iostream>
+
 class Client;
 
-class Conversation
+class RequestResponseObject
 {
 	std::string content;
 	Client* client;
 	unsigned int conversationIndex;
 	bool correct = false;
 
-	Conversation();
+	RequestResponseObject();
 public:
-	~Conversation();
+	~RequestResponseObject();
 	bool isCorrect();
 	void setConversationIndex(unsigned int index);
-	static Conversation* unpackPacket(sf::Packet& packet);
+	static RequestResponseObject* unpackPacket(sf::Packet& packet);
 	std::string* getRequest();
 };
 

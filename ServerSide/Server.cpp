@@ -1,11 +1,14 @@
 #include "pch.h"
 #include "Server.h"
 
+Server* Server::serverPointer;
+
 	Server::Server(unsigned int port)
 		:	requestsQueue(new RequestsQueue()),
-			router(new Router(port))	
+			router(new Router(port)),
+			requestHandler()
 	{
-		Client::setRequestQueuePointer(requestsQueue);
+		Server::setServerPointer(this);
 		router->start();
 	}
 
@@ -22,3 +25,6 @@
 	{
 
 	}
+
+	void Server::setServerPointer(Server* pointer) { Server::serverPointer = pointer; }
+	Server* Server::getServerPointer() { return Server::serverPointer; }

@@ -1,14 +1,16 @@
 #include "pch.h"
 #include "Listener.h"
 
+Listener* Listener::listenerPointer = nullptr;
 
 Listener::Listener(Router& router)
 	:	selector(router.getSelector())
 {
-	listener.setBlocking(false);
+	Listener::setListenerPointer(this);
+	tcpListener.setBlocking(false);
 	clientsList = router.getClientsList();
-	listener.listen(router.getPort());
-	selector->add(listener);
+	tcpListener.listen(router.getPort());
+	selector->add(tcpListener);
 }
 
 
@@ -19,12 +21,12 @@ Listener::~Listener()
 void Listener::listen()
 {
 	// If there is new client on listeners socket
-	if (selector->isReady(listener))
+	if (selector->isReady(tcpListener))
 	{
 		//sf::TcpSocket* socket = new sf::TcpSocket();
 		Client* client = clientsList->addClient();
 		sf::TcpSocket* socket = client->getSocket();
-		if (listener.accept(*(socket)) == sf::TcpSocket::Done)
+		if (tcpListener.accept(*(socket)) == sf::TcpSocket::Done)
 		{
 			selector->add(*socket);
 		}
@@ -32,3 +34,6 @@ void Listener::listen()
 		else clientsList->deleteClient(client->getIndex());	
 	}
 }
+
+void Listener::setListenerPointer(Listener* pointer) { Listener::listenerPointer = pointer; }
+Listener* Listener::getListenrPointer() { return Listener::listenerPointer; }

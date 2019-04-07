@@ -1,10 +1,12 @@
 #include "pch.h"
 #include "RequestsQueue.h"
 
+RequestsQueue* RequestsQueue::requestsQueuePointer = nullptr;
 
 RequestsQueue::RequestsQueue()
-	: queuOfRequests()
+	:	requestsQueue()
 {
+	RequestsQueue::setRequestsQueuePtr(this);
 }
 
 
@@ -12,16 +14,19 @@ RequestsQueue::~RequestsQueue()
 {
 }
 
-void RequestsQueue::addConversation(Conversation* conversation)
+void RequestsQueue::addConversation(RequestResponseObject* conversation)
 {
-	queuOfRequests.push(conversation);
+	requestsQueue.push(conversation);
 	getConversation();
 }
 
-Conversation* RequestsQueue::getConversation()
+RequestResponseObject* RequestsQueue::getConversation()
 {
-	Conversation* conversation = queuOfRequests.front();
+	RequestResponseObject* conversation = requestsQueue.front();
 	std::cout << *(conversation->getRequest()) << std::endl;
-	queuOfRequests.pop();
+	requestsQueue.pop();
 	return conversation;
 }
+
+RequestsQueue* RequestsQueue::getRequestsQueuePtr() { return RequestsQueue::requestsQueuePointer; }
+void RequestsQueue::setRequestsQueuePtr(RequestsQueue* requestsQueue) { RequestsQueue::requestsQueuePointer = requestsQueue; }

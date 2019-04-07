@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Client.h"
 
-	RequestsQueue* Client::requestsQueue;
 
 	Client::Client(unsigned int index)
 		:	socket(),
@@ -16,11 +15,6 @@
 	}
 
 // methods
-	void Client::addRequest(Conversation* message)
-	{
-		Client::requestsQueue->addConversation(message);
-	}
-
 	void Client::sendResponse()
 	{
 
@@ -31,10 +25,10 @@
 		sf::Packet packet;
 		if (socket.receive(packet) == sf::Socket::Done)
 		{
-			Conversation* conversation = Conversation::unpackPacket(packet);	// constructor called!!! need to be deleted
+			RequestResponseObject* conversation = RequestResponseObject::unpackPacket(packet);
 			if (conversation->isCorrect())
 			{
-				addRequest(conversation);
+				RequestsQueue::getRequestsQueuePtr()->addConversation(conversation);
 			}
 			else delete conversation;
 		}
@@ -48,5 +42,4 @@
 	{ 
 		this->index = index;
 	}
-// setters
-	void Client::setRequestQueuePointer(RequestsQueue* requestQueue) { requestsQueue = requestQueue; }
+
