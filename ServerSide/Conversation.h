@@ -16,7 +16,7 @@ public:
 	~Conversation();
 	bool isCorrect();
 	void setConversationIndex(unsigned int index);
-	static Conversation* unpackPacket(sf::Packet* packet);
+	static Conversation* unpackPacket(sf::Packet& packet);
 	std::string* getRequest();
 };
 

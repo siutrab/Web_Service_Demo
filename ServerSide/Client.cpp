@@ -28,8 +28,8 @@
 
 	void Client::receivePacket()
 	{
-		sf::Packet* packet = new sf::Packet();
-		if (socket.receive(*packet) == sf::Socket::Done)
+		sf::Packet packet;
+		if (socket.receive(packet) == sf::Socket::Done)
 		{
 			Conversation* conversation = Conversation::unpackPacket(packet);	// constructor called!!! need to be deleted
 			if (conversation->isCorrect())
@@ -38,17 +38,15 @@
 			}
 			else delete conversation;
 		}
-		// delete packet; !!!!
 	}
 
 // getters
 	sf::TcpSocket* Client::getSocket() { return &socket; }
 	unsigned int Client::getIndex() const { return index; }
 
-	unsigned int Client::setIndex() 
+	void Client::setIndex(unsigned int index) 
 	{ 
-		Client* clientPtr = this;
-		return (int)(clientPtr); 
+		this->index = index;
 	}
 // setters
 	void Client::setRequestQueuePointer(RequestsQueue* requestQueue) { requestsQueue = requestQueue; }

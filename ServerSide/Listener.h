@@ -2,6 +2,7 @@
 #include "SFML/Network.hpp"
 #include "ConnectedClientsList.h"
 #include "Router.h"
+
 class Router;
 class ConnectedClientsList;
 

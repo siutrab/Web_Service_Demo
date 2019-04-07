@@ -16,7 +16,7 @@ class RequestsQueue;
 		// Methods
 			void addRequest(Conversation* message);
 			void sendResponse();		/// CHANGE ME!!!
-			unsigned int setIndex();
+			void setIndex(unsigned int index);
 
 	public:
 			Client(unsigned int index);

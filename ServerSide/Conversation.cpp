@@ -11,16 +11,13 @@ Conversation::~Conversation()
 {
 }
 
-Conversation* Conversation::unpackPacket(sf::Packet* packet)
+Conversation* Conversation::unpackPacket(sf::Packet& packet)
 {
 	Conversation* conversation = new Conversation();
-	
-	if ((*packet) >> conversation->content)
+	if (packet >> conversation->content)
 	{
 		conversation->correct = true;
 	}
-	/*delete packet;
-	packet = nullptr;*/
 	return conversation;
 }
 

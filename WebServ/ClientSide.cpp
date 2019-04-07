@@ -8,19 +8,17 @@ void send()
 	sf::TcpSocket socket;
 	sf::IpAddress ip = sf::IpAddress::getLocalAddress();
 	unsigned int port = 54000;
-	sf::Packet* packet = new sf::Packet();
+	sf::Packet packet;
 
 	for (int i = 0; i < 30; i++)
 	{
-		if (*packet << "aohgeoshsigjogiejsg")
+		if (packet << "aohgeoshsigjogiejsg")
 		{
 
 				if (socket.connect(ip, port) == sf::Socket::Done)
-					socket.send(*packet);
+					socket.send(packet);
 		}
 	}
-
-	delete packet;
 }
 
 int main()
