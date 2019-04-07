@@ -7,7 +7,7 @@
 		:	socket(),
 			index(index)
 	{
-
+		socket.setBlocking(false);
 	}
 
 	Client::~Client()
@@ -28,7 +28,7 @@
 
 	void Client::receivePacket()
 	{
-		sf::Packet* packet  = new sf::Packet();
+		sf::Packet* packet = new sf::Packet();
 		if (socket.receive(*packet) == sf::Socket::Done)
 		{
 			Conversation* conversation = Conversation::unpackPacket(packet);	// constructor called!!! need to be deleted
@@ -38,13 +38,17 @@
 			}
 			else delete conversation;
 		}
-		delete packet;
+		// delete packet; !!!!
 	}
 
 // getters
 	sf::TcpSocket* Client::getSocket() { return &socket; }
 	unsigned int Client::getIndex() const { return index; }
 
+	unsigned int Client::setIndex() 
+	{ 
+		Client* clientPtr = this;
+		return (int)(clientPtr); 
+	}
 // setters
-	void Client::setIndex(unsigned int index) { this->index = index; }
 	void Client::setRequestQueuePointer(RequestsQueue* requestQueue) { requestsQueue = requestQueue; }

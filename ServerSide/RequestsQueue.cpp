@@ -3,6 +3,7 @@
 
 
 RequestsQueue::RequestsQueue()
+	: queuOfRequests()
 {
 }
 
@@ -13,14 +14,14 @@ RequestsQueue::~RequestsQueue()
 
 void RequestsQueue::addConversation(Conversation* conversation)
 {
-	requestQueue.push(conversation);
+	queuOfRequests.push(conversation);
 	getConversation();
 }
 
 Conversation* RequestsQueue::getConversation()
 {
-	Conversation* conversation = requestQueue.front();
-	requestQueue.pop();
-	std::cout << conversation->getRequest() << std::endl;
+	Conversation* conversation = queuOfRequests.front();
+	std::cout << *(conversation->getRequest()) << std::endl;
+	queuOfRequests.pop();
 	return conversation;
 }

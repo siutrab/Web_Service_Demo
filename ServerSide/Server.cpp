@@ -2,10 +2,11 @@
 #include "Server.h"
 
 	Server::Server(unsigned int port)
-		:	router(&(Router(port))),
-			requestsQueue(&(RequestsQueue()))
+		:	requestsQueue(new RequestsQueue()),
+			router(new Router(port))	
 	{
 		Client::setRequestQueuePointer(requestsQueue);
+		router->start();
 	}
 
 	Server::~Server()

@@ -9,11 +9,10 @@
 class Client;
 class Router;
 
-
 	class ConnectedClientsList
 	{
 		unsigned int numberOfClients;
-		unsigned int clientUniqueNumber;
+		unsigned int clientUniqueNumber = 0;
 		std::map <unsigned int, Client*> clientsMap;	// owner
 		sf::SocketSelector* selector;
 

@@ -6,7 +6,7 @@ class Conversation;
 
 	class RequestsQueue
 	{
-		std::queue<Conversation*> requestQueue;
+		std::queue<Conversation*> queuOfRequests;
 	public:
 		RequestsQueue();
 		~RequestsQueue();

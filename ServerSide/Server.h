@@ -24,4 +24,3 @@ class Client;
 		void start();	// main loop!!!
 		void stop();
 	};
-

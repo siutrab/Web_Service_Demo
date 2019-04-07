@@ -2,18 +2,10 @@
 #include "Listener.h"
 
 
-//Listener::Listener(unsigned int port, sf::SocketSelector& selector, ConnectedClientsList& clientsList)
-//	:	selector(selector),
-//		clientsList(clientsList)
-//{
-//	listener.listen(port);
-//	selector.add(listener);
-//}
-
 Listener::Listener(Router& router)
 	:	selector(router.getSelector())
-		//clientsList(router.getClientsList())
 {
+	listener.setBlocking(false);
 	clientsList = router.getClientsList();
 	listener.listen(router.getPort());
 	selector->add(listener);
