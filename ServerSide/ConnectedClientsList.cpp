@@ -43,8 +43,6 @@
 			sf::TcpSocket* socket = client->getSocket();
 
 			if (selector->isReady(*socket))
-			{
 				client->receivePacket();
-			}
 		}
 	}

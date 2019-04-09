@@ -9,8 +9,8 @@ class ConnectedClientsList;
 	class Listener
 	{
 			sf::TcpListener tcpListener;
-			sf::SocketSelector* selector;
-			ConnectedClientsList* clientsList;
+			sf::SocketSelector* const selector;
+			ConnectedClientsList* const clientsList;
 	public:
 		Listener(Router& router);
 		~Listener();

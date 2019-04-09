@@ -3,10 +3,10 @@
 
 
 Listener::Listener(Router& router)
-	:	selector(router.getSelector())
+	:	selector(router.getSelector()),
+		clientsList(router.getClientsList())
 {
 	tcpListener.setBlocking(false);
-	clientsList = router.getClientsList();
 	tcpListener.listen(router.getPort());
 	selector->add(tcpListener);
 }

@@ -13,10 +13,13 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Router resources">
+    <Filter Include="Server resources">
+      <UniqueIdentifier>{49fcc8c8-f865-4e09-a05a-dc30e335ca4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Router resources">
       <UniqueIdentifier>{c43647ab-5a6e-43fc-8b91-f27ca911108e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Logic Layer resources">
+    <Filter Include="Server resources\Logic Layer resources">
       <UniqueIdentifier>{d135a1a9-857d-4735-8f07-ea34b90a33e1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -31,31 +34,31 @@
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="Router.h">
-      <Filter>Router resources</Filter>
+      <Filter>Server resources\Router resources</Filter>
     </ClInclude>
     <ClInclude Include="Client.h">
-      <Filter>Router resources</Filter>
+      <Filter>Server resources\Router resources</Filter>
     </ClInclude>
     <ClInclude Include="ConnectedClientsList.h">
-      <Filter>Router resources</Filter>
+      <Filter>Server resources\Router resources</Filter>
     </ClInclude>
     <ClInclude Include="Listener.h">
-      <Filter>Router resources</Filter>
+      <Filter>Server resources\Router resources</Filter>
     </ClInclude>
     <ClInclude Include="RequestResponseObject.h">
-      <Filter>Router resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RequestsQueue.h">
-      <Filter>Router resources</Filter>
+      <Filter>Server resources\Router resources</Filter>
     </ClInclude>
     <ClInclude Include="RequestHandler.h">
-      <Filter>Logic Layer resources</Filter>
+      <Filter>Server resources\Logic Layer resources</Filter>
     </ClInclude>
     <ClInclude Include="ResponseHandler.h">
-      <Filter>Logic Layer resources</Filter>
+      <Filter>Server resources\Logic Layer resources</Filter>
     </ClInclude>
     <ClInclude Include="TranslatorXML.h">
-      <Filter>Logic Layer resources</Filter>
+      <Filter>Server resources\Logic Layer resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestsQueue.h">
+      <Filter>Server resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -69,31 +72,31 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Client.cpp">
-      <Filter>Router resources</Filter>
+      <Filter>Server resources\Router resources</Filter>
     </ClCompile>
     <ClCompile Include="Listener.cpp">
-      <Filter>Router resources</Filter>
+      <Filter>Server resources\Router resources</Filter>
     </ClCompile>
     <ClCompile Include="Router.cpp">
-      <Filter>Router resources</Filter>
+      <Filter>Server resources\Router resources</Filter>
     </ClCompile>
     <ClCompile Include="ConnectedClientsList.cpp">
-      <Filter>Router resources</Filter>
+      <Filter>Server resources\Router resources</Filter>
     </ClCompile>
     <ClCompile Include="RequestHandler.cpp">
-      <Filter>Logic Layer resources</Filter>
+      <Filter>Server resources\Logic Layer resources</Filter>
     </ClCompile>
     <ClCompile Include="ResponseHandler.cpp">
-      <Filter>Logic Layer resources</Filter>
-    </ClCompile>
-    <ClCompile Include="RequestsQueue.cpp">
-      <Filter>Router resources</Filter>
+      <Filter>Server resources\Logic Layer resources</Filter>
     </ClCompile>
     <ClCompile Include="RequestResponseObject.cpp">
-      <Filter>Router resources</Filter>
+      <Filter>Server resources\Router resources</Filter>
     </ClCompile>
     <ClCompile Include="TranslatorXML.cpp">
-      <Filter>Logic Layer resources</Filter>
+      <Filter>Server resources\Logic Layer resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestsQueue.cpp">
+      <Filter>Server resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

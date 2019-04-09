@@ -10,9 +10,9 @@ class RequestHandler
 {
 	bool running = false;
 	TranslatorXML* translator;
-	Server* server;
+	Server* const server;
 public:
-	RequestHandler(Server* server);
+	RequestHandler(Server* const server);
 	~RequestHandler();
 	void start();
 	void stop();

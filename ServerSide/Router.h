@@ -10,14 +10,13 @@ class Server;
 	class Router
 	{
 		bool running = false;
-		unsigned int port;
+		const unsigned int port;
 		sf::SocketSelector selector;
 
-		ConnectedClientsList* clientsList;	// owner
-		Listener* listener;					// owner
-		Server* server;						// parent element pointer
+		ConnectedClientsList* const clientsList;	// owner
+		Listener* const listener;					// owner
 	public:
-			Router(unsigned int port);
+			Router(const unsigned int port);
 			~Router();
 			void start();
 			void stop();

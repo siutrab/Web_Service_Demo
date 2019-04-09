@@ -2,23 +2,24 @@
 #include "RequestResponseObject.h"
 
 
-	RequestResponseObject::RequestResponseObject()
+	RequestResponseObject::RequestResponseObject(Client& client)
+		: clientIndex(client.getIndex())
 	{	}
 
 	RequestResponseObject::~RequestResponseObject()
 	{	}
 
-	RequestResponseObject* RequestResponseObject::unpackPacket(sf::Packet& packet)
+	RequestResponseObject* RequestResponseObject::unpackPacket(sf::Packet& packet, Client& client)
 	{
-		RequestResponseObject* conversation = new RequestResponseObject();
+		RequestResponseObject* requestResponse = new RequestResponseObject(client);
 
-		if (packet >> conversation->content)
-			conversation->correct = true;
+		if (packet >> requestResponse->content)
+			requestResponse->correct = true;
 
-		return conversation;
+		return requestResponse;
 	}
 
 	bool RequestResponseObject::isCorrect() { return correct; }
 	std::string* RequestResponseObject::getRequest() { return &content; }
 // Setters
-	void RequestResponseObject::setConversationIndex(unsigned int index) { this->conversationIndex = index; }
+	//void RequestResponseObject::setConversationIndex(unsigned int index) { this->conversationIndex = index; }

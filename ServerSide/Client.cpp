@@ -11,9 +11,7 @@
 	}
 
 	Client::~Client()
-	{
-
-	}
+	{	}
 
 // methods
 	void Client::sendResponse()
@@ -26,11 +24,10 @@
 		sf::Packet packet;
 		if (socket.receive(packet) == sf::Socket::Done)
 		{
-			RequestResponseObject* conversation = RequestResponseObject::unpackPacket(packet);
+			RequestResponseObject* conversation = RequestResponseObject::unpackPacket(packet, *this);
+			
 			if (conversation->isCorrect())
-			{
 				Client::requestQueuePtr->addRequest(conversation);
-			}
 			else delete conversation;
 		}
 	}
@@ -39,9 +36,8 @@
 	sf::TcpSocket* Client::getSocket() { return &socket; }
 	unsigned int Client::getIndex() const { return index; }
 
-	void Client::setIndex(unsigned int index) 
+	void Client::setRequestQueuePtr(RequestsQueue* pointer) 
 	{ 
-		this->index = index;
+		Client::requestQueuePtr = pointer; // Settet in RequestsQueue object
+		const_cast<const RequestsQueue*>(Client::requestQueuePtr);
 	}
-
-	void Client::setRequestQueuePtr(RequestsQueue* pointer) { Client::requestQueuePtr = pointer; }

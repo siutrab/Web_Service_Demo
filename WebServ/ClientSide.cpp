@@ -3,7 +3,7 @@
 #include "SFML/Network.hpp"
 #include <thread>
 
-void send()
+void send(std::string comunicate)
 {
 	sf::TcpSocket socket;
 	sf::IpAddress ip = sf::IpAddress::getLocalAddress();
@@ -12,7 +12,7 @@ void send()
 
 	for (int i = 0; i < 30; i++)
 	{
-		if (packet << "aohgeoshsigjogiejsg")
+		if (packet << comunicate)
 		{
 
 				if (socket.connect(ip, port) == sf::Socket::Done)
@@ -23,5 +23,12 @@ void send()
 
 int main()
 {
-	send();
+	std::thread thread1(send,"thread1");
+	std::thread thread2(send, "THREAD2");
+	std::thread thread3(send, "th3");
+
+	thread1.join();
+	thread2.join();
+	thread3.join();
+
 }

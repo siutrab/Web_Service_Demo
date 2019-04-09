@@ -8,16 +8,15 @@ class Client;
 class RequestResponseObject
 {
 	std::string content;
-	Client* client;
-	unsigned int conversationIndex;
+	const unsigned int clientIndex;
 	bool correct = false;
 
-	RequestResponseObject();
+	RequestResponseObject(Client& client);
 public:
 	~RequestResponseObject();
 	bool isCorrect();
-	void setConversationIndex(unsigned int index);
-	static RequestResponseObject* unpackPacket(sf::Packet& packet);
+	//void setConversationIndex(const unsigned int index);
+	static RequestResponseObject* unpackPacket(sf::Packet& packet, Client& client);
 	std::string* getRequest();
 };
 

@@ -14,10 +14,7 @@ Router::~Router()
 	stop();
 
 	delete clientsList;
-	clientsList = nullptr;
-
 	delete listener;
-	listener = nullptr;
 }
 
 void Router::start() 
