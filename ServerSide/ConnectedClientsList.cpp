@@ -3,9 +3,7 @@
 
 	ConnectedClientsList::ConnectedClientsList(Router& router)
 		:	selector(router.getSelector())
-	{
-
-	}
+	{	}
 
 	ConnectedClientsList::~ConnectedClientsList()
 	{
@@ -28,13 +26,12 @@
 		return client;
 	}
 
-	void ConnectedClientsList::deleteClient(unsigned int index)
+	void ConnectedClientsList::deleteClient(const unsigned int index)
 	{
 		Client* client = clientsMap[index];
 		delete client;
 		client = nullptr;
 		clientsMap.erase(index);
-
 	}
 
 	void ConnectedClientsList::listen()

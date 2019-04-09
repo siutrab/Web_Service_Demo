@@ -15,7 +15,7 @@ class RequestResponseObject;
 	public:
 		RequestsQueue();
 		~RequestsQueue();
-		void addConversation(RequestResponseObject* conversation);
-		RequestResponseObject* getConversation();
+		void addRequest(RequestResponseObject* conversation);
+		RequestResponseObject* getRequest();
 		static RequestsQueue* getRequestsQueuePtr();
 	};

@@ -11,6 +11,7 @@ class RequestsQueue;
 	{
 			unsigned int index;
 			sf::TcpSocket socket;
+			static RequestsQueue* requestQueuePtr;
 
 		// Methods
 		void sendResponse();		/// CHANGE ME!!!
@@ -22,5 +23,6 @@ class RequestsQueue;
 		// Getters
 		sf::TcpSocket* getSocket();
 		unsigned int getIndex() const;
+		static void setRequestQueuePtr(RequestsQueue* pointer);
 	};
 

@@ -2,9 +2,11 @@
 #include "RequestHandler.h"
 
 
-RequestHandler::RequestHandler()
-	:	translator(&TranslatorXML())
+RequestHandler::RequestHandler(Server* server)
+	:	server(server),
+		translator(new TranslatorXML(server->getRequestsQueuePtr()))
 {
+
 	start();
 }
 

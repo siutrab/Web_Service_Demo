@@ -7,9 +7,9 @@ class RequestsQueue;
 
 class TranslatorXML
 {
-	const RequestsQueue* requestsQueue;
+	RequestsQueue* requestsQueue;
 public:
-	TranslatorXML();
+	TranslatorXML(RequestsQueue* pointer);
 	~TranslatorXML();
 	void translateRequest();
 	void translateResponse();
