@@ -1,9 +1,5 @@
 ﻿#include "pch.h"
-#include <iostream>
 #include "Server.h"
-
-#define __FD_SETSIZE    1024
-
 
 int main()
 {

@@ -1,6 +1,5 @@
 #pragma once
 #include "SFML/Network.hpp"
-#include <vector>
 #include <map>
 #include "Client.h"
 #include "Router.h"
