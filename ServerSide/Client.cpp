@@ -24,10 +24,11 @@
 		sf::Packet packet;
 		if (socket.receive(packet) == sf::Socket::Done)
 		{
-			RequestResponseObject* conversation = RequestResponseObject::unpackPacket(packet, *this);
+			Request* conversation = Request::unpackPacket(packet, *this);
 			
 			if (conversation->isCorrect())
 				Client::requestQueuePtr->addRequest(conversation);
+
 			else delete conversation;
 		}
 	}

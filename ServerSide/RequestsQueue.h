@@ -1,16 +1,17 @@
 #pragma once
+#include <iostream>
 #include <queue>
 #include <iterator>
-#include "RequestResponseObject.h"
+#include "Request.h"
 
-class RequestResponseObject;
+class Request;
 
 	class RequestsQueue
 	{
-			std::queue<RequestResponseObject*> requestsQueue;
+			std::queue<Request*> requestsQueue;
 	public:
 		RequestsQueue();
 		~RequestsQueue();
-		void addRequest(RequestResponseObject* conversation);
-		RequestResponseObject* getRequest();
+		void addRequest(Request* conversation);
+		Request* getRequest();		// returns the first element of queue or nullptr if the queue is empty
 	};

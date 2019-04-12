@@ -6,10 +6,11 @@
 		:	port(port),
 			requestsQueue(new RequestsQueue()),
 			router(new Router(port)),
-			requestHandler()
-	{
-		router->start();
-	}
+			requestHandler(new RequestHandler(this)),
+		// threads
+			routerThread(std::thread(&(Router::start), router)),
+			requestQueueThread(std::thread(&(RequestHandler::start), requestHandler))
+	{	}
 
 	Server::~Server()
 	{	}

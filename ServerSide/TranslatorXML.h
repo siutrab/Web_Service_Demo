@@ -1,13 +1,20 @@
 #pragma once
 #include "pugixml.hpp"
-#include "RequestResponseObject.h"
+#include "Request.h"
 #include "RequestsQueue.h"
 
 class RequestsQueue;
+struct LoadedDocument
+{
+	bool loadedSuccesfully;
+	pugi::xml_document document;
+};
 
 class TranslatorXML
 {
-	RequestsQueue* requestsQueue;
+		RequestsQueue* requestsQueue;
+		
+	LoadedDocument* loadDocument();
 public:
 	TranslatorXML(RequestsQueue* pointer);
 	~TranslatorXML();

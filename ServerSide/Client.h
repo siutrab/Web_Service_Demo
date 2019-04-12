@@ -1,9 +1,10 @@
 #pragma once
 #include "SFML/Network.hpp"
-#include "RequestResponseObject.h"
+#include "Request.h"
 #include "RequestsQueue.h"
 
-class RequestResponseObject;
+
+class Request;
 class Response;
 class RequestsQueue;
 

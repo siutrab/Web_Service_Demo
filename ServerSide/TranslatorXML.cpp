@@ -14,12 +14,23 @@ TranslatorXML::~TranslatorXML()
 
 void TranslatorXML::translateRequest()
 {
-	RequestResponseObject* reqResObj = requestsQueue->getRequest();
-	std::string* requestString = reqResObj->getRequest();
-	pugi::xml_document xmlDocument;
-	xmlDocument.load_buffer_inplace_own(requestString, requestString->size());
+	loadDocument();
 }
 void TranslatorXML::translateResponse()
 {
 
+}
+
+LoadedDocument* TranslatorXML::loadDocument()
+{
+
+		Request* request = requestsQueue->getRequest();
+		if (request != nullptr)
+		{
+			std::string* requestString = request->getRequest();
+			LoadedDocument* loadedDocument = new LoadedDocument();
+			loadedDocument->document.load_buffer_inplace_own(requestString, requestString->size());
+			return loadedDocument;	
+		}
+		else return nullptr;
 }

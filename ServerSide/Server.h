@@ -1,4 +1,5 @@
 #pragma once
+#include <thread>
 #include "Router.h"
 #include "RequestHandler.h"
 #include "ResponseHandler.h"
@@ -18,6 +19,10 @@ class Client;
 			RequestsQueue* requestsQueue;
 			RequestHandler* requestHandler;		// Handles users requests, encryption etc.
 			ResponseHandler* responseHandler;	// Handles the responses, database querys etc.
+			
+		// server threads
+			std::thread routerThread;
+			std::thread requestQueueThread;
 	public:
 		Server(const unsigned int port);
 		~Server();

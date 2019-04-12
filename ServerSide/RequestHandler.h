@@ -9,7 +9,7 @@ class TranslatorXML;
 class RequestHandler
 {
 	bool running = false;
-	TranslatorXML* translator;
+	TranslatorXML* const translator;
 	Server* const server;
 public:
 	RequestHandler(Server* const server);

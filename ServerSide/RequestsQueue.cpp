@@ -8,19 +8,22 @@ RequestsQueue::RequestsQueue()
 }
 
 RequestsQueue::~RequestsQueue()
+{	}
+
+void RequestsQueue::addRequest(Request* request)
 {
+	requestsQueue.push(request);
+	//std::cout << *(request->getRequest()) << std::endl;
 }
 
-void RequestsQueue::addRequest(RequestResponseObject* conversation)
+// returns the first element of queue or nullptr if the queue is empty
+Request* RequestsQueue::getRequest()
 {
-	requestsQueue.push(conversation);
-	std::cout << *(conversation->getRequest()) << std::endl;
-}
-
-RequestResponseObject* RequestsQueue::getRequest()
-{
-	RequestResponseObject* conversation = requestsQueue.front();
-	
-	requestsQueue.pop();
-	return conversation;
+	if (requestsQueue.size() > 0)
+	{
+		Request* request = requestsQueue.front();
+		requestsQueue.pop();
+		return request;
+	}
+	else return nullptr;
 }

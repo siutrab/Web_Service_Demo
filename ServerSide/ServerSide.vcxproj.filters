@@ -45,9 +45,6 @@
     <ClInclude Include="Listener.h">
       <Filter>Server resources\Router resources</Filter>
     </ClInclude>
-    <ClInclude Include="RequestResponseObject.h">
-      <Filter>Server resources\Router resources</Filter>
-    </ClInclude>
     <ClInclude Include="RequestHandler.h">
       <Filter>Server resources\Logic Layer resources</Filter>
     </ClInclude>
@@ -59,6 +56,9 @@
     </ClInclude>
     <ClInclude Include="RequestsQueue.h">
       <Filter>Server resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Request.h">
+      <Filter>Server resources\Router resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -89,14 +89,14 @@
     <ClCompile Include="ResponseHandler.cpp">
       <Filter>Server resources\Logic Layer resources</Filter>
     </ClCompile>
-    <ClCompile Include="RequestResponseObject.cpp">
-      <Filter>Server resources\Router resources</Filter>
-    </ClCompile>
     <ClCompile Include="TranslatorXML.cpp">
       <Filter>Server resources\Logic Layer resources</Filter>
     </ClCompile>
     <ClCompile Include="RequestsQueue.cpp">
       <Filter>Server resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Request.cpp">
+      <Filter>Server resources\Router resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

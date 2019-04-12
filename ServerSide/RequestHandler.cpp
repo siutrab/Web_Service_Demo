@@ -5,14 +5,10 @@
 RequestHandler::RequestHandler(Server* const server)
 	:	server(server),
 		translator(new TranslatorXML(server->getRequestsQueuePtr()))
-{
-
-	start();
-}
+{	}
 
 RequestHandler::~RequestHandler()
-{
-}
+{	}
 
 void RequestHandler::start()
 {
@@ -26,5 +22,5 @@ void RequestHandler::start()
 
 void RequestHandler::stop()
 {
-
+	running = false;
 }
