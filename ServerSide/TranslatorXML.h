@@ -2,6 +2,7 @@
 #include "pugixml.hpp"
 #include "Request.h"
 #include "RequestsQueue.h"
+#include <string.h>
 
 class RequestsQueue;
 struct LoadedDocument

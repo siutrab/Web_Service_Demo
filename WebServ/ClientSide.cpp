@@ -30,5 +30,5 @@ int main()
 	//thread1.join();
 	//thread2.join();
 	//thread3.join();
-	send("<blah> oiafoesg </blah>");
+	send("<?xml version=\"1.0\" encoding=\"UTF - 8\"?><note><blah> oiafoesg </blah></note>");
 }

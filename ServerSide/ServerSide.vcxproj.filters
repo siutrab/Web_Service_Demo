@@ -22,6 +22,9 @@
     <Filter Include="Server resources\Logic Layer resources">
       <UniqueIdentifier>{d135a1a9-857d-4735-8f07-ea34b90a33e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Server resources\Logic Layer resources\Database Handler">
+      <UniqueIdentifier>{e888dd19-4dd3-455a-886a-8083ccf33c6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -60,6 +63,15 @@
     <ClInclude Include="Request.h">
       <Filter>Server resources\Router resources</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\CPP Libraries\Boost\boost_1_70_0\boost\smart_ptr\scoped_ptr.hpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseHandler.h">
+      <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -97,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="Request.cpp">
       <Filter>Server resources\Router resources</Filter>
+    </ClCompile>
+    <ClCompile Include="DatabaseHandler.cpp">
+      <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
