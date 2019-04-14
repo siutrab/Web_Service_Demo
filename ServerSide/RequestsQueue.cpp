@@ -16,14 +16,15 @@ void RequestsQueue::addRequest(Request* request)
 	//std::cout << *(request->getRequest()) << std::endl;
 }
 
-// returns the first element of queue or nullptr if the queue is empty
 Request* RequestsQueue::getRequest()
 {
-	if (requestsQueue.size() > 0)
-	{
-		Request* request = requestsQueue.front();
-		requestsQueue.pop();
-		return request;
-	}
-	else return nullptr;
+	Request* request = requestsQueue.front();
+	requestsQueue.pop();
+	return request;
+}
+
+bool RequestsQueue::isEmpty()
+{
+	if (requestsQueue.size() == 0) return true;
+	else return false;
 }

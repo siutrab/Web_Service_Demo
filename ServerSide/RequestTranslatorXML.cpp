@@ -1,18 +1,18 @@
 #include "pch.h"
-#include "TranslatorXML.h"
+#include "RequestTranslatorXML.h"
 
 
-TranslatorXML::TranslatorXML(RequestsQueue* pointer)
+RequestTranslatorXML::RequestTranslatorXML(RequestsQueue* pointer)
 	:	requestsQueue(pointer)
 {
 }
 
 
-TranslatorXML::~TranslatorXML()
+RequestTranslatorXML::~RequestTranslatorXML()
 {
 }
 
-void TranslatorXML::translateRequest()
+void RequestTranslatorXML::translateRequest()
 {
 	LoadedDocument* document= loadDocument();
 	if (document->loadedSuccesfully)
@@ -24,25 +24,27 @@ void TranslatorXML::translateRequest()
 	}
 	else delete document;
 }
-void TranslatorXML::translateResponse()
+void RequestTranslatorXML::translateResponse()
 {
 
 }
 
-LoadedDocument* TranslatorXML::loadDocument()
+
+//	I REALLY NEED REFACTOR!!!!
+LoadedDocument* RequestTranslatorXML::loadDocument()
 {
 
-	Request* request = requestsQueue->getRequest();
 	LoadedDocument* loadedDocument = new LoadedDocument();
 	
-	if (request != nullptr)
+	if (requestsQueue->isEmpty())
+		loadedDocument->loadedSuccesfully = false;
+	else 
 	{
+		Request* request = requestsQueue->getRequest();
 		std::string* requestString = request->getRequest();
 		const char* charString = requestString->c_str();
 		loadedDocument->document.load_string(charString);
-		//loadedDocument->document.load_buffer_inplace_own(requestString, requestString->size() / sizeof(std::string));
 		loadedDocument->loadedSuccesfully = true;
 	}
-	else loadedDocument->loadedSuccesfully = false;
 	return loadedDocument;	
 }

@@ -4,7 +4,7 @@
 
 RequestHandler::RequestHandler(Server* const server)
 	:	server(server),
-		translator(new TranslatorXML(server->getRequestsQueuePtr()))
+		translator(new RequestTranslatorXML(server->getRequestsQueuePtr()))
 {	}
 
 RequestHandler::~RequestHandler()

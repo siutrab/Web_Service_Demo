@@ -9,18 +9,18 @@ class Server;
 
 	class Router
 	{
-		bool running = false;
-		const unsigned int port;
-		sf::SocketSelector selector;
+			bool running = false;
+			const unsigned int port;
+			sf::SocketSelector selector;
 
-		ConnectedClientsList* const clientsList;	// owner
-		Listener* const listener;					// owner
+			ConnectedClientsList* const clientsList;	// owner
+			Listener* const listener;					// owner
 	public:
-			Router(const unsigned int port);
-			~Router();
-			void start();
-			void stop();
-			unsigned int getPort();
-			sf::SocketSelector* getSelector();
-			ConnectedClientsList* getClientsList();
+		Router(const unsigned int port);
+		~Router();
+		void start();
+		void stop();
+		unsigned int getPort();
+		sf::SocketSelector* getSelector();
+		ConnectedClientsList* getClientsList();
 	};

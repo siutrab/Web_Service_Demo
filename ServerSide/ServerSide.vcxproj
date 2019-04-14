@@ -169,7 +169,9 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="ConnectedClientsList.h" />
     <ClInclude Include="DatabaseHandler.h" />
-    <ClInclude Include="Material.h" />
+    <ClInclude Include="ExceptionsSystem.h" />
+    <ClInclude Include="MaterialEntity.h" />
+    <ClInclude Include="QueryGenerator.h" />
     <ClInclude Include="RequestsQueue.h" />
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Request.h" />
@@ -179,13 +181,17 @@
     <ClInclude Include="ResponseHandler.h" />
     <ClInclude Include="Router.h" />
     <ClInclude Include="Server.h" />
-    <ClInclude Include="TranslatorXML.h" />
+    <ClInclude Include="RequestTranslatorXML.h" />
+    <ClInclude Include="EntityAbstract.h" />
+    <ClInclude Include="MaterialTable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ConnectedClientsList.cpp" />
     <ClCompile Include="DatabaseHandler.cpp" />
-    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="ExceptionsSystem.cpp" />
+    <ClCompile Include="MaterialEntity.cpp" />
+    <ClCompile Include="QueryGenerator.cpp" />
     <ClCompile Include="RequestsQueue.cpp" />
     <ClCompile Include="Listener.cpp" />
     <ClCompile Include="Request.cpp" />
@@ -200,7 +206,8 @@
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerSide.cpp" />
-    <ClCompile Include="TranslatorXML.cpp" />
+    <ClCompile Include="RequestTranslatorXML.cpp" />
+    <ClCompile Include="MaterialTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ServerSide.rc" />

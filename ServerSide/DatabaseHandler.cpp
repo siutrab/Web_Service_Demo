@@ -3,43 +3,58 @@
 
 
 DatabaseHandler::DatabaseHandler()
-	:	connected(false)
-{
-	
-}
+	:	connectedToDatabase(false)
+{	}
 
 
 DatabaseHandler::~DatabaseHandler()
+{	}
+
+bool DatabaseHandler::executeQuery(sql::SQLString query)
 {
+	connectDatabase();
+	if (connectionIsValid())
+	{
+		
+		try
+		{
+			connection->setSchema(db::schema);	// setting database to connection
+			preparedStatement = connection->prepareStatement("INSERT INTO `materials`(`id`, `name`, `lambda`, `price`, `type_of_material`, `price_to_lambda`, `producer`, `link`) VALUES (NULL,\"ROCKTON\",0.037, 100, \"wool\", 2700, \"ROCKWOOL\", \"http\")");
+			preparedStatement->execute();
+			delete connection;
+			return true;
+		}
+		catch (sql::SQLException e)
+		{
+			delete connection;
+			delete preparedStatement;
+			std::cout << "error: " << e.getErrorCode();
+			return false;
+		}
+	}
+	else return false;
 }
 
-bool DatabaseHandler::connectDatabase()
+void DatabaseHandler::connectDatabase()
 {
 	//sql::mysql::MySQL_Driver* driver;
 	//sql::Connection* connection;
-	driver = sql::mysql::get_mysql_driver_instance();
 	try
 	{
-		connection = driver->connect("localhost", "user_for_materials", "haslo");
+		driver = sql::mysql::get_mysql_driver_instance();
+		connection = driver->connect(db::hostName, db::userName, db::password);
+		connectedToDatabase = true;
 	}
 	catch (sql::SQLException e)
 	{
-
+		connectedToDatabase = false;
 	}
-	try
-	{
-		connection->setSchema("building_materials");
-		sql::PreparedStatement* prepStatement;
-		prepStatement = connection->prepareStatement("INSERT INTO `materials`(`id`, `name`, `lambda`, `price`, `type_of_material`, `price_to_lambda`, `producer`, `link`) VALUES (NULL,\"ROCKTON\",0.037, 100, \"wool\", 2700, \"ROCKWOOL\", \"http\")");
-		prepStatement->execute();
-		delete connection;
-
-	}
-	catch (sql::SQLException e)
-	{
-		std::cout << e.getErrorCode();
-	}
-
-	// delete driver; shouldn't be used, connection frees it.
-	return false;
 }
+
+bool DatabaseHandler::connectionIsValid() { return connectedToDatabase; }
+
+
+const sql::SQLString DatabaseHandler::DatabaseInfo::hostName = "localhost";
+const sql::SQLString DatabaseHandler::DatabaseInfo::userName = "user_for_materials";
+const sql::SQLString DatabaseHandler::DatabaseInfo::password = "haslo";
+const sql::SQLString DatabaseHandler::DatabaseInfo::schema = "building_materials";

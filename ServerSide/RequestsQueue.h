@@ -12,6 +12,7 @@ class Request;
 	public:
 		RequestsQueue();
 		~RequestsQueue();
+		bool isEmpty();
 		void addRequest(Request* conversation);
 		Request* getRequest();		// returns the first element of queue or nullptr if the queue is empty
 	};

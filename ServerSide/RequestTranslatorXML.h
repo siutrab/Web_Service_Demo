@@ -11,14 +11,14 @@ struct LoadedDocument
 	pugi::xml_document document;
 };
 
-class TranslatorXML
+class RequestTranslatorXML
 {
 		RequestsQueue* requestsQueue;
 		
 	LoadedDocument* loadDocument();
 public:
-	TranslatorXML(RequestsQueue* pointer);
-	~TranslatorXML();
+	RequestTranslatorXML(RequestsQueue* pointer);
+	~RequestTranslatorXML();
 	void translateRequest();
 	void translateResponse();
 };

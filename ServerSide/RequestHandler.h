@@ -1,15 +1,15 @@
 #pragma once
 #include "pugixml.hpp"
-#include "TranslatorXML.h"
+#include "RequestTranslatorXML.h"
 #include "Server.h"
 
 class Server;
-class TranslatorXML;
+class RequestTranslatorXML;
 
 class RequestHandler
 {
 	bool running = false;
-	TranslatorXML* const translator;
+	RequestTranslatorXML* const translator;
 	Server* const server;
 public:
 	RequestHandler(Server* const server);

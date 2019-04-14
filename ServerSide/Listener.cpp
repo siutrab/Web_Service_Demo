@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "Listener.h"
-
+//#include "Listener.h"
+#include "Router.h"
 
 Listener::Listener(Router& router)
 	:	selector(router.getSelector()),
@@ -13,8 +13,7 @@ Listener::Listener(Router& router)
 
 
 Listener::~Listener()
-{
-}
+{	}
 
 void Listener::listen()
 {

@@ -25,12 +25,18 @@
     <Filter Include="Server resources\Logic Layer resources\Database Handler">
       <UniqueIdentifier>{e888dd19-4dd3-455a-886a-8083ccf33c6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Server resources\Queues resources">
+      <UniqueIdentifier>{55800cf9-3a35-4a07-88b1-85f53cee38c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables">
+      <UniqueIdentifier>{56ed1742-560a-403e-a7a3-01881623c40c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table">
+      <UniqueIdentifier>{cbe14493-5478-4f0d-98b7-b7bb684bc964}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Server.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -54,12 +60,6 @@
     <ClInclude Include="ResponseHandler.h">
       <Filter>Server resources\Logic Layer resources</Filter>
     </ClInclude>
-    <ClInclude Include="TranslatorXML.h">
-      <Filter>Server resources\Logic Layer resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RequestsQueue.h">
-      <Filter>Server resources</Filter>
-    </ClInclude>
     <ClInclude Include="Request.h">
       <Filter>Server resources\Router resources</Filter>
     </ClInclude>
@@ -69,8 +69,29 @@
     <ClInclude Include="DatabaseHandler.h">
       <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
     </ClInclude>
-    <ClInclude Include="Material.h">
+    <ClInclude Include="RequestTranslatorXML.h">
+      <Filter>Server resources\Logic Layer resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Server.h">
+      <Filter>Server resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestsQueue.h">
+      <Filter>Server resources\Queues resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ExceptionsSystem.h">
+      <Filter>Server resources</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryGenerator.h">
       <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialTable.h">
+      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialEntity.h">
+      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityAbstract.h">
+      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -78,9 +99,6 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="ServerSide.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Server.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Client.cpp">
@@ -101,20 +119,32 @@
     <ClCompile Include="ResponseHandler.cpp">
       <Filter>Server resources\Logic Layer resources</Filter>
     </ClCompile>
-    <ClCompile Include="TranslatorXML.cpp">
-      <Filter>Server resources\Logic Layer resources</Filter>
-    </ClCompile>
-    <ClCompile Include="RequestsQueue.cpp">
-      <Filter>Server resources</Filter>
-    </ClCompile>
     <ClCompile Include="Request.cpp">
       <Filter>Server resources\Router resources</Filter>
     </ClCompile>
     <ClCompile Include="DatabaseHandler.cpp">
       <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
     </ClCompile>
-    <ClCompile Include="Material.cpp">
+    <ClCompile Include="RequestTranslatorXML.cpp">
+      <Filter>Server resources\Logic Layer resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Server.cpp">
+      <Filter>Server resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestsQueue.cpp">
+      <Filter>Server resources\Queues resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ExceptionsSystem.cpp">
+      <Filter>Server resources</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryGenerator.cpp">
       <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialTable.cpp">
+      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialEntity.cpp">
+      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
