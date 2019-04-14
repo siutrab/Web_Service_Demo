@@ -14,33 +14,27 @@ QueryGenerator::~QueryGenerator()
 
 sql::SQLString* QueryGenerator::create(EntityAbstract &entity)
 {
+	std::vector<ColumnAbstract*>* Fields = entity.getVectorFields();
 	std::string columnsNames;
-	std::string values;
-	std::string singleValue;
-	std::vector<ColumnAbstract*>* fieldVector = entity.getVectorFields();
-	unsigned int vectorLastIndex = fieldVector->size() - 1;
-	
-	columnsNames += "`NULL`,";
+	std::string columnsValues = "NULL,";
 
-	singleValue = boost::any_cast<std::string>((*fieldVector)[0]->value);
-	values += ("\"" + singleValue + "\",");
+	unsigned short lastIndex = entity.getFieldsNumber() - 1;
 
-	for (int i = 1; i < vectorLastIndex - 1; ++i)		// last iteration is omitted because of , (comma sign) at the end of each string
+	for (int i = 1; i < lastIndex - 1; i++)
 	{
-		columnsNames += ("`" + (*fieldVector)[i]->getName() + "`,");
+		columnsValues += "\"" + (*Fields)[i]->getValueAsString() + "\",";
 
-		singleValue = boost::any_cast<std::string>((*fieldVector)[i]->value);
-		values += ("\"" + singleValue + "\",");
 	}
-	columnsNames += ("`" + (*fieldVector)[vectorLastIndex]->getName() + "`");
+	columnsValues += "\"" + (*Fields)[lastIndex]->getValueAsString() + "\"";
+	for (int i = 0; i < lastIndex - 1; i++)
+	{
+		columnsNames += "`" + (*Fields)[i]->getName() + "`,";
+	}
+	columnsNames += "`" + (*Fields)[lastIndex]->getName() + "`";
 
-	singleValue = boost::any_cast<std::string>((*fieldVector)[vectorLastIndex]->value);
-	values += ("\"" + singleValue + "\"");
-
-	std::string result;
-	result += "INSERT INTO `" + columnsNames + ") VALUES (" + singleValue + ")";
-	std::cout << result << std::endl;
-	return new sql::SQLString(result);
+	std::string Query = "INSERT INTO `" + entity.getTableName() + "`(" + columnsValues + ")VALUES(" + columnsValues + ")";
+	std::cout << Query << std::endl;
+	return new sql::SQLString(Query);
 }
 
 //"INSERT INTO `materials`(`id`, `name`, `lambda`, `price`, `type_of_material`, `price_to_lambda`, `producer`, `link`) 

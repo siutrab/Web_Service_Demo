@@ -3,52 +3,84 @@
 #include "boost/any.hpp"
 #include "EntityAbstract.h"
 
-	struct IdColumn
-		: ColumnAbstract
+	class IdColumn
+		: public ColumnAbstract
 	{
+		unsigned int value;
+	public:
+		virtual std::string getValueAsString();
 		std::string getName();
+		unsigned int getValue();
 	};
 
-	struct NameColumn
-		: ColumnAbstract
+	class NameColumn
+		: public ColumnAbstract
 	{
+		std::string value;
+	public:
+		virtual std::string getValueAsString();
 		std::string getName();
+		std::string getValue();
 	};
 
-	struct LambdaColumn
-		: ColumnAbstract
+	class LambdaColumn
+		: public ColumnAbstract
 	{
+		float value;
+	public:
+		virtual std::string getValueAsString();
 		std::string getName();
+		float getValue();
 	};
 
-	struct PriceColumn
-		: ColumnAbstract
+	class PriceColumn
+		: public ColumnAbstract
 	{
+		float value;
+	public:
+		virtual std::string getValueAsString();
 		std::string getName();
+		float getValue();
 	};
 
-	struct TypeOfMaterialColumn
-		: ColumnAbstract
+	class TypeOfMaterialColumn
+		: public ColumnAbstract
 	{
+		std::string value;
+	public:
+		virtual std::string getValueAsString();
 		std::string getName();
+		std::string getValue();
 	};
 
-	struct PriceToLambdaColumn
-		: ColumnAbstract
+	class PriceToLambdaColumn
+		: public ColumnAbstract
 	{
+		float value;
+	public:
+		virtual std::string getValueAsString();
 		std::string getName();
+		float getValue();
 	};
 
-	struct ProducerColumn
-		: ColumnAbstract
+	class ProducerColumn
+		: public ColumnAbstract
 	{
+		std::string value;
+	public:
+		virtual std::string getValueAsString();
 		std::string getName();
+		std::string getValue();
 	};
 
-	struct LinkColumn
-		: ColumnAbstract
+	class LinkColumn
+		: public ColumnAbstract
 	{
+		std::string value;
+	public:
+		virtual std::string getValueAsString();
 		std::string getName();
+		std::string getValue();
 	};
 	
 
@@ -64,9 +96,9 @@ protected:
 		ProducerColumn producerColumn;
 		LinkColumn linkColumn;
 
-public:
 	std::vector<ColumnAbstract*> Fields;
-	
+public:
+	std::vector<ColumnAbstract*>* getFields();
 	MaterialTable();
 	~MaterialTable();
 };
