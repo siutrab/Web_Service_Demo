@@ -12,7 +12,7 @@ QueryGenerator::~QueryGenerator()
 }
 
 
-sql::SQLString* QueryGenerator::create(EntityAbstract &entity)
+sql::SQLString* QueryGenerator::insert(EntityAbstract &entity)
 {
 	std::vector<ColumnAbstract*>* Fields = entity.getVectorFields();
 	std::string columnsNames;
@@ -32,9 +32,8 @@ sql::SQLString* QueryGenerator::create(EntityAbstract &entity)
 	}
 	columnsNames += "`" + (*Fields)[lastIndex]->getName() + "`";
 
-	std::string Query = "INSERT INTO `" + entity.getTableName() + "`(" + columnsValues + ")VALUES(" + columnsValues + ")";
-	std::cout << Query << std::endl;
-	return new sql::SQLString(Query);
+	std::string Query = "INSERT INTO `" + entity.getTableName() + "`(" + columnsNames + ")VALUES(" + columnsValues + ")";
+	return new sql::SQLString(Query.c_str());
 }
 
 //"INSERT INTO `materials`(`id`, `name`, `lambda`, `price`, `type_of_material`, `price_to_lambda`, `producer`, `link`) 

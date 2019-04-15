@@ -13,7 +13,7 @@ class MaterialEntity
 	std::vector<ColumnAbstract*>* Fields;
 public:
 	
-	MaterialEntity(unsigned int id, float lambda, float price, std::string& name, std::string& link, std::string& materialType, std::string& producer);
+	MaterialEntity(unsigned int id, float lambda, float price, float priceLambda, std::string& name, std::string& link, std::string& materialType, std::string& producer);
 	~MaterialEntity();
 	
 	// Getters dependent on Fields vector

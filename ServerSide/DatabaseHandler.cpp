@@ -10,7 +10,7 @@ DatabaseHandler::DatabaseHandler()
 DatabaseHandler::~DatabaseHandler()
 {	}
 
-bool DatabaseHandler::executeQuery(sql::SQLString query)
+bool DatabaseHandler::executeQuery(sql::SQLString* query)
 {
 	connectDatabase();
 	if (connectionIsValid())
@@ -19,14 +19,17 @@ bool DatabaseHandler::executeQuery(sql::SQLString query)
 		try
 		{
 			connection->setSchema(db::schema);	// setting database to connection
-			preparedStatement = connection->prepareStatement("INSERT INTO `materials`(`id`, `name`, `lambda`, `price`, `type_of_material`, `price_to_lambda`, `producer`, `link`) VALUES (NULL,\"ROCKTON\",0.037, 100, \"wool\", 2700, \"ROCKWOOL\", \"http\")");
+			//preparedStatement = connection->prepareStatement("INSERT INTO `materials`(`id`, `name`, `lambda`, `price`, `type_of_material`, `price_to_lambda`, `producer`, `link`) VALUES (NULL,\"ROCKTON\",0.037, 100, \"wool\", 2700, \"ROCKWOOL\", \"http\")");
+			preparedStatement = connection->prepareStatement(*query);
 			preparedStatement->execute();
 			delete connection;
+			delete query;
 			return true;
 		}
 		catch (sql::SQLException e)
 		{
 			delete connection;
+			delete query;
 			delete preparedStatement;
 			std::cout << "error: " << e.getErrorCode();
 			return false;

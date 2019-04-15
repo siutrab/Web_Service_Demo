@@ -8,9 +8,10 @@
 	{
 		unsigned int value;
 	public:
-		virtual std::string getValueAsString();
-		std::string getName();
+		virtual std::string getValueAsString() override;
+		std::string getName() override;
 		unsigned int getValue();
+		void setValue(void*) override;
 	};
 
 	class NameColumn
@@ -18,9 +19,10 @@
 	{
 		std::string value;
 	public:
-		virtual std::string getValueAsString();
-		std::string getName();
+		virtual std::string getValueAsString() override;
+		std::string getName() override;
 		std::string getValue();
+		void setValue(void*) override;
 	};
 
 	class LambdaColumn
@@ -28,9 +30,10 @@
 	{
 		float value;
 	public:
-		virtual std::string getValueAsString();
-		std::string getName();
+		virtual std::string getValueAsString() override;
+		std::string getName() override;
 		float getValue();
+		void setValue(void*) override;
 	};
 
 	class PriceColumn
@@ -38,9 +41,10 @@
 	{
 		float value;
 	public:
-		virtual std::string getValueAsString();
-		std::string getName();
+		virtual std::string getValueAsString() override;
+		std::string getName() override;
 		float getValue();
+		void setValue(void*) override;
 	};
 
 	class TypeOfMaterialColumn
@@ -51,6 +55,7 @@
 		virtual std::string getValueAsString();
 		std::string getName();
 		std::string getValue();
+		void setValue(void*) override;
 	};
 
 	class PriceToLambdaColumn
@@ -58,9 +63,10 @@
 	{
 		float value;
 	public:
-		virtual std::string getValueAsString();
-		std::string getName();
+		virtual std::string getValueAsString() override;
+		std::string getName() override;
 		float getValue();
+		void setValue(void*) override;
 	};
 
 	class ProducerColumn
@@ -68,9 +74,10 @@
 	{
 		std::string value;
 	public:
-		virtual std::string getValueAsString();
-		std::string getName();
+		virtual std::string getValueAsString() override;
+		std::string getName() override;
 		std::string getValue();
+		void setValue(void*) override;
 	};
 
 	class LinkColumn
@@ -78,9 +85,10 @@
 	{
 		std::string value;
 	public:
-		virtual std::string getValueAsString();
-		std::string getName();
+		virtual std::string getValueAsString() override;
+		std::string getName() override;
 		std::string getValue();
+		void setValue(void*) override;
 	};
 	
 

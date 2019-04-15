@@ -93,6 +93,9 @@
     <ClInclude Include="EntityAbstract.h">
       <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables</Filter>
     </ClInclude>
+    <ClInclude Include="Query.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -145,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="MaterialEntity.cpp">
       <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Query.cpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

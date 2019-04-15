@@ -11,5 +11,5 @@
 		QueryGenerator();
 		~QueryGenerator();
 
-		sql::SQLString* create(EntityAbstract &entity);
+		sql::SQLString* insert(EntityAbstract &entity);
 	};

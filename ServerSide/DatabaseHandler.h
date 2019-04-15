@@ -30,15 +30,15 @@ class DatabaseHandler
 		sql::PreparedStatement* preparedStatement;
 	
 	void connectDatabase();
-	bool deconnectDatabase();
+	bool disconnectDatabase();
 public:
 	DatabaseHandler();
 	~DatabaseHandler();
-	bool executeQuery(sql::SQLString query);
+	bool executeQuery(sql::SQLString* query);
 	
 	bool connectionIsValid();
-	void addMaterial();
-	void removeMaterial();
+	void addEntity();
+	void removeEntity();
 	void getMaterial();
 };
 

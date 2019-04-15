@@ -1,18 +1,18 @@
 #include "pch.h"
 #include "MaterialEntity.h"
 
-MaterialEntity::MaterialEntity(unsigned int id, float lambda, float price, std::string& name, std::string& link, std::string& materialType, std::string& producer)
+MaterialEntity::MaterialEntity(unsigned int id, float lambda, float price, float priceLambda, std::string& name, std::string& link, std::string& materialType, std::string& producer)
 	:	materialTable(new MaterialTable),
 		Fields(materialTable->getFields())
 {
-	(*Fields)[0]->value = id;				// 0	"id"
-	(*Fields)[1]->value = name;				// 1	"name",
-	(*Fields)[2]->value = lambda;			// 2	"lambda",
-	(*Fields)[3]->value = price;			// 3	"price",
-	(*Fields)[4]->value = materialType;		// 4	"type_of_material",
-	(*Fields)[5]->value = price / lambda;	// 5	"price_to_lambda",
-	(*Fields)[6]->value = producer;			// 6	"producer",
-	(*Fields)[7]->value = link;				// 7	"link"
+	(*Fields)[0]->setValue(&id);				// 0	"id"
+	(*Fields)[1]->setValue(&name);				// 1	"name",
+	(*Fields)[2]->setValue(&lambda);			// 2	"lambda",
+	(*Fields)[3]->setValue(&price);				// 3	"price",
+	(*Fields)[4]->setValue(&materialType);		// 4	"type_of_material",
+	(*Fields)[5]->setValue(&(priceLambda));		// 5	"price_to_lambda",
+	(*Fields)[6]->setValue(&producer);			// 6	"producer",
+	(*Fields)[7]->setValue(&link);				// 7	"link"
 
 	/*std::cout << materialTable->Fields[0]->getName() << std::endl;
 	std::cout << materialTable->Fields[1]->getName() << std::endl;

@@ -171,6 +171,7 @@
     <ClInclude Include="DatabaseHandler.h" />
     <ClInclude Include="ExceptionsSystem.h" />
     <ClInclude Include="MaterialEntity.h" />
+    <ClInclude Include="Query.h" />
     <ClInclude Include="QueryGenerator.h" />
     <ClInclude Include="RequestsQueue.h" />
     <ClInclude Include="Listener.h" />
@@ -191,6 +192,7 @@
     <ClCompile Include="DatabaseHandler.cpp" />
     <ClCompile Include="ExceptionsSystem.cpp" />
     <ClCompile Include="MaterialEntity.cpp" />
+    <ClCompile Include="Query.cpp" />
     <ClCompile Include="QueryGenerator.cpp" />
     <ClCompile Include="RequestsQueue.cpp" />
     <ClCompile Include="Listener.cpp" />

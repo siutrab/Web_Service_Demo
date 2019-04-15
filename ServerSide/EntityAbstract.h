@@ -6,6 +6,7 @@
 struct ColumnAbstract
 {
 	boost::any value;
+	virtual void setValue(void*) = 0;
 	virtual std::string getValueAsString() = 0;
 	virtual std::string getName() = 0;
 };
