@@ -25,11 +25,9 @@ public:
 	std::string getMaterialType();
 	float getPriceToLambda();
 	std::string getProducer();
-	
 
 	float getU(unsigned char width);
 
-	//virtual std::pair<std::string, std::string>* getPair(unsigned int index);
 	virtual std::vector<ColumnAbstract*>* getVectorFields();
 	virtual unsigned short getFieldsNumber();
 	virtual std::string getTableName();

@@ -12,4 +12,7 @@
 		~QueryGenerator();
 
 		sql::SQLString* insert(EntityAbstract &entity);
+		sql::SQLString* selectByIndex(EntityAbstract &entity, unsigned int index);
+		sql::SQLString* selectAll(EntityAbstract &entity);
+		sql::SQLString* selectOrderBy(EntityAbstract &entity, unsigned short columnIndex);
 	};

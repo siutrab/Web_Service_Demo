@@ -16,20 +16,16 @@ sql::SQLString* QueryGenerator::insert(EntityAbstract &entity)
 {
 	std::vector<ColumnAbstract*>* Fields = entity.getVectorFields();
 	std::string columnsNames;
-	std::string columnsValues = "NULL,";
+	std::string columnsValues;
 
 	unsigned short lastIndex = entity.getFieldsNumber() - 1;
 
-	for (int i = 1; i < lastIndex - 1; i++)
+	for (int i = 1; i < lastIndex - 1; i++)		// starts from index 1 because index 0 ("id") is autoincremented primary key in db
 	{
 		columnsValues += "\"" + (*Fields)[i]->getValueAsString() + "\",";
-
-	}
-	columnsValues += "\"" + (*Fields)[lastIndex]->getValueAsString() + "\"";
-	for (int i = 0; i < lastIndex - 1; i++)
-	{
 		columnsNames += "`" + (*Fields)[i]->getName() + "`,";
 	}
+	columnsValues += "\"" + (*Fields)[lastIndex]->getValueAsString() + "\"";
 	columnsNames += "`" + (*Fields)[lastIndex]->getName() + "`";
 
 	std::string Query = "INSERT INTO `" + entity.getTableName() + "`(" + columnsNames + ")VALUES(" + columnsValues + ")";

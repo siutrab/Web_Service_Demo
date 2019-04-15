@@ -13,11 +13,6 @@ MaterialEntity::MaterialEntity(unsigned int id, float lambda, float price, float
 	(*Fields)[5]->setValue(&(priceLambda));		// 5	"price_to_lambda",
 	(*Fields)[6]->setValue(&producer);			// 6	"producer",
 	(*Fields)[7]->setValue(&link);				// 7	"link"
-
-	/*std::cout << materialTable->Fields[0]->getName() << std::endl;
-	std::cout << materialTable->Fields[1]->getName() << std::endl;
-	std::cout << materialTable->Fields[2]->getName() << std::endl;
-	std::cout << materialTable->Fields[3]->getName() << std::endl;*/
 }
 
 
