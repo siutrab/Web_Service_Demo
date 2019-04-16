@@ -3,13 +3,18 @@
 #include "ConnectedClientsList.h"
 #include "Router.h"
 
+using sf::TcpListener;
+using sf::TcpSocket;
+using sf::SocketSelector;
+
+
 class Router;
 class ConnectedClientsList;
 
 	class Listener
 	{
-			sf::TcpListener tcpListener;
-			sf::SocketSelector* const selector;
+			TcpListener tcpListener;
+			SocketSelector* const selector;
 			ConnectedClientsList* const clientsList;
 	public:
 		Listener(Router& router);

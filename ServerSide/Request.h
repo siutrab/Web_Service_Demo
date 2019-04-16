@@ -2,11 +2,14 @@
 #include "SFML/Network.hpp"
 #include "Client.h"
 
+using std::string;
+using sf::Packet;
+
 class Client;
 
 class Request
 {
-		std::string content;
+		string content;
 		Client* const clientPointer;
 		bool correct = false;
 	
@@ -14,6 +17,6 @@ class Request
 public:
 	~Request();
 	bool isCorrect();
-	static Request* unpackPacket(sf::Packet& packet, Client& client);
-	std::string* getRequest();
+	static Request* unpackPacket(Packet& packet, Client& client);
+	string* getRequest();
 };

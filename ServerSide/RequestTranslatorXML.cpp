@@ -41,7 +41,7 @@ LoadedDocument* RequestTranslatorXML::loadDocument()
 	else 
 	{
 		Request* request = requestsQueue->getRequest();
-		std::string* requestString = request->getRequest();
+		string* requestString = request->getRequest();
 		const char* charString = requestString->c_str();
 		loadedDocument->document.load_string(charString);
 		loadedDocument->loadedSuccesfully = true;

@@ -12,6 +12,8 @@ class RequestsQueue;
 class Router;
 class Client;
 
+using std::thread;
+
 	class Server
 	{
 			const unsigned int port;
@@ -21,8 +23,8 @@ class Client;
 			ResponseHandler* responseHandler;	// Handles the responses, database querys etc.
 			
 		// server threads
-			std::thread routerThread;
-			std::thread requestQueueThread;
+			thread routerThread;
+			thread requestQueueThread;
 	public:
 		Server(const unsigned int port);
 		~Server();

@@ -12,11 +12,11 @@ QueryGenerator::~QueryGenerator()
 }
 
 
-sql::SQLString* QueryGenerator::insert(EntityAbstract &entity)
+SQLString* QueryGenerator::insert(EntityAbstract &entity)
 {
-	std::vector<ColumnAbstract*>* Fields = entity.getVectorFields();
-	std::string columnsNames;
-	std::string columnsValues;
+	vector<ColumnAbstract*>* Fields = entity.getVectorFields();
+	string columnsNames;
+	string columnsValues;
 
 	unsigned short lastIndex = entity.getFieldsNumber() - 1;
 
@@ -28,7 +28,7 @@ sql::SQLString* QueryGenerator::insert(EntityAbstract &entity)
 	columnsValues += "\"" + (*Fields)[lastIndex]->getValueAsString() + "\"";
 	columnsNames += "`" + (*Fields)[lastIndex]->getName() + "`";
 
-	std::string Query = "INSERT INTO `" + entity.getTableName() + "`(" + columnsNames + ")VALUES(" + columnsValues + ")";
+	string Query = "INSERT INTO `" + entity.getTableName() + "`(" + columnsNames + ")VALUES(" + columnsValues + ")";
 	return new sql::SQLString(Query.c_str());
 }
 

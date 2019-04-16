@@ -7,9 +7,9 @@
 
 	ConnectedClientsList::~ConnectedClientsList()
 	{
-		for (std::map<unsigned int, Client*>::iterator i = clientsMap.begin(); i != clientsMap.end(); ++i)
+		for (auto i = clientsMap.begin(); i != clientsMap.end(); ++i)
 		{
-			std::pair<unsigned int, Client*> pair = *i;
+			mapPair pair = *i;
 			Client* client = pair.second;
 			delete client;
 			client = nullptr;
@@ -21,7 +21,7 @@
 	{
 		Client* client = new Client(clientUniqueNumber);
 		unsigned int clientIndex = client->getIndex();
-		clientsMap.insert(std::pair<unsigned int, Client*> (clientIndex, client));
+		clientsMap.insert(mapPair (clientIndex, client));
 		clientUniqueNumber++;
 		return client;
 	}
@@ -36,11 +36,11 @@
 
 	void ConnectedClientsList::listen()
 	{
-		for (std::map<unsigned int, Client*>::iterator i = clientsMap.begin(); i != clientsMap.end(); ++i)
+		for (auto i = clientsMap.begin(); i != clientsMap.end(); ++i)
 		{
-			std::pair<unsigned int, Client*> pair = *i;
+			mapPair pair = *i;
 			Client* client = pair.second;
-			sf::TcpSocket* socket = client->getSocket();
+			TcpSocket* socket = client->getSocket();
 
 			if (selector->isReady(*socket))
 				client->receivePacket();

@@ -20,10 +20,9 @@ void Listener::listen()
 	// If there is new client on listeners socket
 	if (selector->isReady(tcpListener))
 	{
-		//sf::TcpSocket* socket = new sf::TcpSocket();
 		Client* client = clientsList->addClient();
-		sf::TcpSocket* socket = client->getSocket();
-		if (tcpListener.accept(*(socket)) == sf::TcpSocket::Done)
+		TcpSocket* socket = client->getSocket();
+		if (tcpListener.accept(*(socket)) == TcpSocket::Done)
 		{
 			selector->add(*socket);
 		}

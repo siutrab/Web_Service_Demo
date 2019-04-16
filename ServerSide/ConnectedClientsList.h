@@ -5,15 +5,20 @@
 #include "Router.h"
 #include "RequestsQueue.h"
 
+using std::map;
+using sf::SocketSelector;
+
 class Client;
 class Router;
 
 	class ConnectedClientsList
 	{
+		typedef std::pair<unsigned int, Client*> mapPair;
+
 			unsigned int numberOfClients;
 			unsigned int clientUniqueNumber = 0;
-			std::map <unsigned int, Client*> clientsMap;	// owner
-			sf::SocketSelector* const selector;
+			map <unsigned int, Client*> clientsMap;	// owner
+			SocketSelector* const selector;
 	public:
 		ConnectedClientsList(Router& router);
 		~ConnectedClientsList();

@@ -21,8 +21,8 @@
 
 	void Client::receivePacket()
 	{
-		sf::Packet packet;
-		if (socket.receive(packet) == sf::Socket::Done)
+		Packet packet;
+		if (socket.receive(packet) == TcpSocket::Done)
 		{
 			Request* conversation = Request::unpackPacket(packet, *this);
 			
@@ -34,7 +34,7 @@
 	}
 
 // getters
-	sf::TcpSocket* Client::getSocket() { return &socket; }
+	TcpSocket* Client::getSocket() { return &socket; }
 	unsigned int Client::getIndex() const { return index; }
 
 	void Client::setRequestQueuePtr(RequestsQueue* pointer) 

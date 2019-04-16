@@ -4,11 +4,13 @@
 #include <iterator>
 #include "Request.h"
 
+using std::queue;
+
 class Request;
 
 	class RequestsQueue
 	{
-			std::queue<Request*> requestsQueue;
+			queue<Request*> requestsQueue;
 	public:
 		RequestsQueue();
 		~RequestsQueue();

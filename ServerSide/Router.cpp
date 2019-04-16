@@ -33,5 +33,5 @@ void Router::start()
 void Router::stop() { running = false; }
 
 unsigned int Router::getPort() { return port; }
-sf::SocketSelector* Router::getSelector() { return &selector; }
+SocketSelector* Router::getSelector() { return &selector; }
 ConnectedClientsList* Router::getClientsList() { return clientsList; }

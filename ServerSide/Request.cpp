@@ -9,7 +9,7 @@
 	Request::~Request()
 	{	}
 
-	Request* Request::unpackPacket(sf::Packet& packet, Client& client)
+	Request* Request::unpackPacket(Packet& packet, Client& client)
 	{
 		Request* request = new Request(client);
 
@@ -20,4 +20,4 @@
 	}
 
 	bool Request::isCorrect() { return correct; }
-	std::string* Request::getRequest() { return &content; }
+	string* Request::getRequest() { return &content; }

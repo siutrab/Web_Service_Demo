@@ -8,8 +8,8 @@
 			router(new Router(port)),
 			requestHandler(new RequestHandler(this)),
 		// threads
-			routerThread(std::thread(&(Router::start), router)),
-			requestQueueThread(std::thread(&(RequestHandler::start), requestHandler))
+			routerThread(thread(&(Router::start), router)),
+			requestQueueThread(thread(&(RequestHandler::start), requestHandler))
 	{	}
 
 	Server::~Server()

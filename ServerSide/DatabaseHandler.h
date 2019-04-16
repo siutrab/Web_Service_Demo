@@ -8,37 +8,43 @@
 
 #include "MaterialEntity.h"
 
+using std::string;
+using sql::SQLString;
+using sql::mysql::MySQL_Driver;
+using sql::Connection;
+using sql::PreparedStatement;
+using sql::SQLException;
+
 class MaterialEntity;
 
-
-class DatabaseHandler
-{
-	struct DatabaseInfo
+	class DatabaseHandler
 	{
-		static const sql::SQLString hostName;
-		static const sql::SQLString userName;
-		static const sql::SQLString password;
-		static const sql::SQLString schema;		// name of database
+		struct DatabaseInfo
+		{
+			static const SQLString hostName;
+			static const SQLString userName;
+			static const SQLString password;
+			static const SQLString schema;		// name of database
+		};
+		typedef DatabaseHandler::DatabaseInfo db;
+
+			bool connectedToDatabase;
+
+			// needed for connecting and executing querys;
+			MySQL_Driver* driver;
+			Connection* sqlConnection;
+			PreparedStatement* SqlPreparedStatement;
+	
+		void connectDatabase();
+		bool disconnectDatabase();
+	public:
+		DatabaseHandler();
+		~DatabaseHandler();
+		bool executeQuery(SQLString* query);
+	
+		bool connectionIsValid();
+		void addEntity();
+		void removeEntity();
+		void getMaterial();
 	};
-	typedef DatabaseHandler::DatabaseInfo db;
-
-		bool connectedToDatabase;
-
-		// needed for connecting and executing querys;
-		sql::mysql::MySQL_Driver* driver;
-		sql::Connection* connection;
-		sql::PreparedStatement* preparedStatement;
-	
-	void connectDatabase();
-	bool disconnectDatabase();
-public:
-	DatabaseHandler();
-	~DatabaseHandler();
-	bool executeQuery(sql::SQLString* query);
-	
-	bool connectionIsValid();
-	void addEntity();
-	void removeEntity();
-	void getMaterial();
-};
 

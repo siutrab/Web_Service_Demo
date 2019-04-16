@@ -13,7 +13,6 @@ RequestsQueue::~RequestsQueue()
 void RequestsQueue::addRequest(Request* request)
 {
 	requestsQueue.push(request);
-	//std::cout << *(request->getRequest()) << std::endl;
 }
 
 Request* RequestsQueue::getRequest()

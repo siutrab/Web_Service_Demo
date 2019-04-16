@@ -3,6 +3,8 @@
 #include "Request.h"
 #include "RequestsQueue.h"
 
+using sf::TcpSocket;
+using sf::Packet;
 
 class Request;
 class Response;
@@ -11,7 +13,7 @@ class RequestsQueue;
 	class Client
 	{
 			const unsigned int index;
-			sf::TcpSocket socket;
+			TcpSocket socket;
 			static RequestsQueue* requestQueuePtr;
 
 		// Methods
@@ -21,7 +23,7 @@ class RequestsQueue;
 		~Client();
 		void receivePacket();
 		// Getters
-		sf::TcpSocket* getSocket();
+		TcpSocket* getSocket();
 		unsigned int getIndex() const;
 		static void setRequestQueuePtr(RequestsQueue* const pointer);
 	};

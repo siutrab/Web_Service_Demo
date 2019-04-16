@@ -7,11 +7,13 @@ class ConnectedClientsList;
 class Listener;
 class Server;
 
+using sf::SocketSelector;
+
 	class Router
 	{
 			bool running = false;
 			const unsigned int port;
-			sf::SocketSelector selector;
+			SocketSelector selector;
 
 			ConnectedClientsList* const clientsList;	// owner
 			Listener* const listener;					// owner
@@ -21,6 +23,6 @@ class Server;
 		void start();
 		void stop();
 		unsigned int getPort();
-		sf::SocketSelector* getSelector();
+		SocketSelector* getSelector();
 		ConnectedClientsList* getClientsList();
 	};

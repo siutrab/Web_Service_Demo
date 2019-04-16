@@ -5,14 +5,18 @@
 #include <vector>
 #include "boost/any.hpp"
 
+using sql::SQLString;
+using std::vector;
+using std::string;
+
 	class QueryGenerator
 	{
 	public:
 		QueryGenerator();
 		~QueryGenerator();
 
-		sql::SQLString* insert(EntityAbstract &entity);
-		sql::SQLString* selectByIndex(EntityAbstract &entity, unsigned int index);
-		sql::SQLString* selectAll(EntityAbstract &entity);
-		sql::SQLString* selectOrderBy(EntityAbstract &entity, unsigned short columnIndex);
+		SQLString* insert(EntityAbstract &entity);
+		SQLString* selectByIndex(EntityAbstract &entity, unsigned int index);
+		SQLString* selectAll(EntityAbstract &entity);
+		SQLString* selectOrderBy(EntityAbstract &entity, unsigned short columnIndex);
 	};
