@@ -10,7 +10,7 @@ class MaterialEntity
 	:	public	EntityAbstract
 {
 	MaterialTable* materialTable;
-	std::vector<ColumnAbstract*>* Fields;
+	vector<ColumnAbstract<void>*>* Fields;
 public:
 	
 	MaterialEntity(unsigned int id, float lambda, float price, float priceLambda, std::string& name, std::string& link, std::string& materialType, std::string& producer);
@@ -28,7 +28,7 @@ public:
 
 	float getU(unsigned char width);
 
-	virtual std::vector<ColumnAbstract*>* getVectorFields();
+	vector<ColumnAbstract<void>*>* getVectorFields();
 	virtual unsigned short getFieldsNumber();
 	virtual std::string getTableName();
 
