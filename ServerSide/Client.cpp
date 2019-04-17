@@ -15,9 +15,7 @@
 
 // methods
 	void Client::sendResponse()
-	{
-
-	}
+	{	}
 
 	void Client::receivePacket()
 	{

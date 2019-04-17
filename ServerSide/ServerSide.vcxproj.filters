@@ -34,6 +34,12 @@
     <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table">
       <UniqueIdentifier>{cbe14493-5478-4f0d-98b7-b7bb684bc964}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables 2">
+      <UniqueIdentifier>{8fd25911-8349-481b-91d4-71f955827bb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables 2\Entities">
+      <UniqueIdentifier>{15ed491e-55fc-4735-9fd5-96d1b310b645}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -96,6 +102,12 @@
     <ClInclude Include="Query.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="TableAbstract.h">
+      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables 2</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialEnt.h">
+      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables 2\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -151,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="Query.cpp">
       <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialEnt.cpp">
+      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables 2\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
