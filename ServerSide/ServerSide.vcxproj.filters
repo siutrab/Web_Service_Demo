@@ -29,15 +29,9 @@
       <UniqueIdentifier>{55800cf9-3a35-4a07-88b1-85f53cee38c8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables">
-      <UniqueIdentifier>{56ed1742-560a-403e-a7a3-01881623c40c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table">
-      <UniqueIdentifier>{cbe14493-5478-4f0d-98b7-b7bb684bc964}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables 2">
       <UniqueIdentifier>{8fd25911-8349-481b-91d4-71f955827bb5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables 2\Entities">
+    <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables\Entities">
       <UniqueIdentifier>{15ed491e-55fc-4735-9fd5-96d1b310b645}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -90,23 +84,14 @@
     <ClInclude Include="QueryGenerator.h">
       <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
     </ClInclude>
-    <ClInclude Include="MaterialTable.h">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
-    </ClInclude>
-    <ClInclude Include="MaterialEntity.h">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityAbstract.h">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables</Filter>
-    </ClInclude>
     <ClInclude Include="Query.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="TableAbstract.h">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables 2</Filter>
+    <ClInclude Include="MaterialEntity.h">
+      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="MaterialEnt.h">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables 2\Entities</Filter>
+    <ClInclude Include="MappingInterface.h">
+      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -155,17 +140,11 @@
     <ClCompile Include="QueryGenerator.cpp">
       <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
     </ClCompile>
-    <ClCompile Include="MaterialTable.cpp">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
-    </ClCompile>
-    <ClCompile Include="MaterialEntity.cpp">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
-    </ClCompile>
     <ClCompile Include="Query.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="MaterialEnt.cpp">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables 2\Entities</Filter>
+    <ClCompile Include="MaterialEntity.cpp">
+      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

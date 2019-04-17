@@ -16,7 +16,7 @@ struct ColumnAbstract
 
 };
 
-class EntityAbstract
+class EntityInterface
 {
 public:
 	virtual vector<ColumnAbstract*>* getVectorFields() = 0;

@@ -1,3 +1,4 @@
+#pragma once
 #include "pch.h"
 #include <string>
 #include <sstream>
@@ -26,6 +27,8 @@ template <typename T>
 		: public FieldInterface
 	{
 	public:
+		~FieldTemplate() { delete value; }
+		void	setValue(void* value) override { this->value = value; }
 		void*	getValue() override
 		{
 			return static_cast<T*>(value);
@@ -35,10 +38,8 @@ template <typename T>
 			std::stringstream StringStream;
 			T* TypedValue = static_cast<T*>(value);
 			StringStream << *TypedValue;
-			return &StringStream.str();
+			return new string(StringStream.str());
 		}
-		void	setValue(void* value) override { this->value = value; }
-		~FieldTemplate() { delete value; }
 
 	};
 
@@ -60,7 +61,7 @@ template <typename T>
 	};
 
 template <typename T>
-	string FieldInstance<T>::name;
+string FieldInstance<T>::name;
 
 	class EntityInterface
 	{
@@ -68,7 +69,18 @@ template <typename T>
 		vector<FieldInterface*> fieldsVector;
 	public:
 		vector<FieldInterface*>* getFieldsVector() { return &fieldsVector; }
-		
+
 		template<typename T>
-		T* getValue(unsigned short index)	{ return static_cast<T*>(fieldsVector[index]->getValue()) }
+		T* getValue(unsigned short index)	
+		{ 
+			if (index < fieldsVector.size())
+			{
+				return static_cast<T*>(fieldsVector[index]->getValue());
+			}
+			else
+			{
+				return nullptr;
+			}
+		}
+		virtual string getTableName() = 0;
 	};

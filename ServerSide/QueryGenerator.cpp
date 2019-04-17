@@ -12,23 +12,24 @@ QueryGenerator::~QueryGenerator()
 }
 
 
-SQLString* QueryGenerator::insert(EntityAbstract &entity)
+SQLString* QueryGenerator::insert(EntityInterface &entity)
 {
-	vector<ColumnAbstract*>* Fields = entity.getVectorFields();
+	vector<FieldInterface*>* Fields = entity.getFieldsVector();
 	string columnsNames;
 	string columnsValues;
 
-	unsigned short lastIndex = entity.getFieldsNumber() - 1;
+	unsigned short lastIndex = Fields->size() - 1;
 
 	for (int i = 1; i < lastIndex - 1; i++)		// starts from index 1 because index 0 ("id") is autoincremented primary key in db
 	{
-		columnsValues += "\"" + (*Fields)[i]->getValueAsString() + "\",";
-		columnsNames += "`" + (*Fields)[i]->getName() + "`,";
+		columnsValues += "\"" + *((*Fields)[i]->getValueAsString()) + "\",";
+		columnsNames += "`" + *((*Fields)[i]->getColumnName()) + "`,";
 	}
-	columnsValues += "\"" + (*Fields)[lastIndex]->getValueAsString() + "\"";
-	columnsNames += "`" + (*Fields)[lastIndex]->getName() + "`";
+	columnsValues += "\"" + *((*Fields)[lastIndex]->getValueAsString()) + "\"";
+	columnsNames += "`" + *((*Fields)[lastIndex]->getColumnName()) + "`";
 
 	string Query = "INSERT INTO `" + entity.getTableName() + "`(" + columnsNames + ")VALUES(" + columnsValues + ")";
+	std::cout << Query;
 	return new sql::SQLString(Query.c_str());
 }
 
