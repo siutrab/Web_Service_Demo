@@ -18,9 +18,9 @@ SQLString* QueryGenerator::insert(EntityInterface &entity)
 	string columnsNames;
 	string columnsValues;
 
-	unsigned short lastIndex = Fields->size() - 1;
+	size_t lastIndex = Fields->size() - 1;
 
-	for (int i = 1; i < lastIndex - 1; i++)		// starts from index 1 because index 0 ("id") is autoincremented primary key in db
+	for (size_t i = 1; i < lastIndex - 1; i++)		// starts from index 1 because index 0 ("id") is autoincremented primary key in db
 	{
 		columnsValues += "\"" + *((*Fields)[i]->getValueAsString()) + "\",";
 		columnsNames += "`" + *((*Fields)[i]->getColumnName()) + "`,";
@@ -29,7 +29,6 @@ SQLString* QueryGenerator::insert(EntityInterface &entity)
 	columnsNames += "`" + *((*Fields)[lastIndex]->getColumnName()) + "`";
 
 	string Query = "INSERT INTO `" + entity.getTableName() + "`(" + columnsNames + ")VALUES(" + columnsValues + ")";
-	std::cout << Query;
 	return new sql::SQLString(Query.c_str());
 }
 

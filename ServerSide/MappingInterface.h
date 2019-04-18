@@ -1,22 +1,21 @@
 #pragma once
 #include "pch.h"
 #include <string>
-#include <sstream>
 #include <vector>
+#include <sstream>
 #include <iostream>
 
 using std::vector;
 using std::string;
-using std::shared_ptr;
+using std::stringstream;
+using std::unique_ptr;
 
 class FieldInterface
 	{
-	protected:
-		void* value;
 	public:
 		virtual			~FieldInterface() {};
 		virtual string*	getValueAsString() = 0;
-		virtual void*	getValue() = 0;
+		virtual void*	getValuePtr() = 0;
 		virtual void	setValue(void*) = 0;
 		virtual string*	getColumnName() = 0;
 	};
@@ -26,19 +25,32 @@ template <typename T>
 	class FieldTemplate
 		: public FieldInterface
 	{
+	protected:
+		T storedValue;
 	public:
-		~FieldTemplate() { delete value; }
-		void	setValue(void* value) override { this->value = value; }
-		void*	getValue() override
+		~FieldTemplate() { }
+		void	setValue(void* value) override 
+		{ 
+			storedValue = *(static_cast<T*>(value));
+		}
+		void*	getValuePtr() override
 		{
-			return static_cast<T*>(value);
+			return &storedValue;
+		}
+		T getValue()
+		{ 
+			return storedValue; 
 		}
 		string* getValueAsString() override
 		{
-			std::stringstream StringStream;
-			T* TypedValue = static_cast<T*>(value);
-			StringStream << *TypedValue;
-			return new string(StringStream.str());
+			string* str = new string();
+			stringstream StringStream;
+
+			StringStream << std::fixed << storedValue;
+
+			*str = StringStream.str();
+			
+			return str;
 		}
 
 	};
@@ -50,10 +62,10 @@ template <typename T>
 	{
 		static string name;
 	public:
-		FieldInstance(string name, T& value)
+		FieldInstance(string name, T* value)
 		{
 			FieldInstance::name = name;
-			this->setValue(&value);
+			this->setValue(value);
 		}
 
 		string* getColumnName() { return &FieldInstance::name; }
