@@ -14,7 +14,7 @@ class FieldInterface
 	{
 	public:
 		virtual			~FieldInterface() {};
-		virtual string*	getValueAsString() = 0;
+		virtual unique_ptr<string>	getValueAsString() = 0;
 		virtual void*	getValuePtr() = 0;
 		virtual void	setValue(void*) = 0;
 		virtual string*	getColumnName() = 0;
@@ -41,9 +41,9 @@ template <typename T>
 		{ 
 			return storedValue; 
 		}
-		string* getValueAsString() override
+		unique_ptr<string> getValueAsString() override
 		{
-			string* str = new string();
+			unique_ptr<string> str(new string());
 			stringstream StringStream;
 
 			StringStream << std::fixed << storedValue;

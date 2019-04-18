@@ -10,7 +10,7 @@ DatabaseHandler::DatabaseHandler()
 DatabaseHandler::~DatabaseHandler()
 {	}
 
-bool DatabaseHandler::executeQuery(SQLString* query)
+bool DatabaseHandler::executeQuery(SQLString& query)
 {
 	connectDatabase();
 	if (connectionIsValid())
@@ -19,17 +19,13 @@ bool DatabaseHandler::executeQuery(SQLString* query)
 		try
 		{
 			sqlConnection->setSchema(db::schema);	// setting database to connection
-			SqlPreparedStatement = sqlConnection->prepareStatement(*query);
+			SqlPreparedStatement = sqlConnection->prepareStatement(query);
 			SqlPreparedStatement->execute();
-			delete sqlConnection;
-			delete query;
 			return true;
 		}
 		catch (SQLException e)
 		{
-			delete sqlConnection;
-			delete query;
-			delete SqlPreparedStatement;
+
 			std::cout << "error: " << e.getErrorCode();
 			return false;
 		}

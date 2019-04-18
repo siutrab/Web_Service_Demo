@@ -14,6 +14,7 @@ using sql::mysql::MySQL_Driver;
 using sql::Connection;
 using sql::PreparedStatement;
 using sql::SQLException;
+using std::unique_ptr;
 
 class MaterialEntity;
 
@@ -40,7 +41,7 @@ class MaterialEntity;
 	public:
 		DatabaseHandler();
 		~DatabaseHandler();
-		bool executeQuery(SQLString* query);
+		bool executeQuery(SQLString& query);
 	
 		bool connectionIsValid();
 		void addEntity();
