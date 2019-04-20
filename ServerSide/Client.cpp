@@ -22,12 +22,12 @@
 		Packet packet;
 		if (socket.receive(packet) == TcpSocket::Done)
 		{
-			Request* conversation = Request::unpackPacket(packet, *this);
+			Request* request = Request::unpackPacket(packet, *this);
 			
-			if (conversation->isCorrect())
-				Client::requestQueuePtr->addRequest(conversation);
+			if (request->isCorrect())
+				Client::requestQueuePtr->addItem(request);
 
-			else delete conversation;
+			else delete request;
 		}
 	}
 

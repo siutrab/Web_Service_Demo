@@ -1,20 +1,23 @@
 #pragma once
-#include <iostream>
+#include "Client.h"
+#include "QueueTemplate.h"
 #include <queue>
-#include <iterator>
 #include "Request.h"
+#include "memory"
 
 using std::queue;
+using std::unique_ptr;
 
+class Client;
 class Request;
 
+
 	class RequestsQueue
+		: public Queue<Request>
 	{
-			queue<Request*> requestsQueue;
 	public:
 		RequestsQueue();
+
 		~RequestsQueue();
-		bool isEmpty();
-		void addRequest(Request* conversation);
-		Request* getRequest();
+
 	};

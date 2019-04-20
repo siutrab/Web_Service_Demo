@@ -40,7 +40,7 @@ LoadedDocument* RequestTranslatorXML::loadDocument()
 		loadedDocument->loadedSuccesfully = false;
 	else 
 	{
-		Request* request = requestsQueue->getRequest();
+		Request* request = requestsQueue->getItem();
 		string* requestString = request->getRequest();
 		const char* charString = requestString->c_str();
 		loadedDocument->document.load_string(charString);

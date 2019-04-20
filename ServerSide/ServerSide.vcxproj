@@ -173,6 +173,7 @@
     <ClInclude Include="MaterialEntity.h" />
     <ClInclude Include="Query.h" />
     <ClInclude Include="QueryGenerator.h" />
+    <ClInclude Include="QueryQueue.h" />
     <ClInclude Include="QueueTemplate.h" />
     <ClInclude Include="RequestsQueue.h" />
     <ClInclude Include="Listener.h" />
@@ -194,7 +195,7 @@
     <ClCompile Include="MaterialEntity.cpp" />
     <ClCompile Include="Query.cpp" />
     <ClCompile Include="QueryGenerator.cpp" />
-    <ClCompile Include="QueueTemplate.cpp" />
+    <ClCompile Include="QueryQueue.cpp" />
     <ClCompile Include="RequestsQueue.cpp" />
     <ClCompile Include="Listener.cpp" />
     <ClCompile Include="Request.cpp" />

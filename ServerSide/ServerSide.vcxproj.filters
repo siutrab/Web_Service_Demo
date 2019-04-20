@@ -93,6 +93,9 @@
     <ClInclude Include="MappingInterface.h">
       <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables</Filter>
     </ClInclude>
+    <ClInclude Include="QueryQueue.h">
+      <Filter>Server resources\Queues resources</Filter>
+    </ClInclude>
     <ClInclude Include="QueueTemplate.h">
       <Filter>Server resources\Queues resources</Filter>
     </ClInclude>
@@ -149,7 +152,7 @@
     <ClCompile Include="MaterialEntity.cpp">
       <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="QueueTemplate.cpp">
+    <ClCompile Include="QueryQueue.cpp">
       <Filter>Server resources\Queues resources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -13,12 +13,6 @@
 	{	}
 
 
-
-	//void Server::setQueuePointer(RequestsQueue* queue)
-	//{
-	//	Client::setRequestQueuePtr(queue);
-	//}
-
 	Server::~Server()
 	{	}
 

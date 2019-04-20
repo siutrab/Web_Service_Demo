@@ -33,6 +33,4 @@ using std::thread;
 		void stop();
 		RequestsQueue* getRequestsQueuePtr() const;
 		
-
-		//static void setQueuePointer(RequestsQueue* queue);
 	};
