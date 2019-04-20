@@ -33,12 +33,6 @@ using std::thread;
 		void stop();
 		RequestsQueue* getRequestsQueuePtr() const;
 		
-		// Initialization of static pointers
-		/*template<typename T>
-		static void initializePointer(T*);
-		
-		template<>
-		static void initializePointer<RequestsQueue>(RequestsQueue*);*/
 
-		static void setQueuePointer(RequestsQueue* queue);
+		//static void setQueuePointer(RequestsQueue* queue);
 	};
