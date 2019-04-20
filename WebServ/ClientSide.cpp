@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include <iostream>
 #include "SFML/Network.hpp"
-#include <thread>
+//#include <thread>
 
 void send(std::string comunicate)
 {
