@@ -28,23 +28,25 @@ template <typename T>
 	protected:
 		T storedValue;
 	public:
-		FieldTemplate(T &value)
-		{
-			storedValue = value;
-		}
+		FieldTemplate(T &value)	{ storedValue = value; }
+
 		~FieldTemplate() { }
-		void	setValue(void* value) override 
+
+		void setValue(void* value) override	
 		{ 
-			storedValue = *(static_cast<T*>(value));
+			storedValue = *(static_cast<T*>(value)); 
 		}
-		void*	getValuePtr() override
-		{
-			return &storedValue;
+
+		void* getValuePtr() override
+		{ 
+			return &storedValue; 
 		}
-		T getValue()
+
+		T getValue()	
 		{ 
 			return storedValue; 
 		}
+
 		unique_ptr<string> getValueAsString() override
 		{
 			unique_ptr<string> str(new string());
@@ -52,42 +54,18 @@ template <typename T>
 
 			StringStream << std::fixed << storedValue;
 
-			*str = StringStream.str();
-			
+			*str = StringStream.str();	
 			return str;
 		}
-
 	};
 
 
-template <typename T>
-	class FieldInstance
-		: public FieldTemplate<T>
+class EntityInterface
 	{
 	protected:
-		static string name;
+		vector<unique_ptr<FieldInterface>> fieldsVector;
 	public:
-		FieldInstance(string name, T* value)
-			:	FieldTemplate<T>(value)
-		{
-			FieldInstance::name = name;
-		}
-
-		virtual string* getColumnName() override { return &FieldInstance::name; }
-
-	};
-
-template <typename T>
-string FieldInstance<T>::name;
-
-
-
-	class EntityInterface
-	{
-	protected:
-		vector<FieldInterface*> fieldsVector;
-	public:
-		vector<FieldInterface*>* getFieldsVector() { return &fieldsVector; }
+		vector<unique_ptr<FieldInterface>>* getFieldsVector() { return &fieldsVector; }
 
 		template<typename T>
 		T* getValue(unsigned short index)	
@@ -101,5 +79,6 @@ string FieldInstance<T>::name;
 				return nullptr;
 			}
 		}
+		
 		virtual string getTableName() = 0;
 	};

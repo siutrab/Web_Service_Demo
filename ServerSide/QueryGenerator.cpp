@@ -12,9 +12,9 @@ QueryGenerator::~QueryGenerator()
 }
 
 
-SQLString* QueryGenerator::insert(EntityInterface &entity)
+unique_ptr<SQLString> QueryGenerator::insert(EntityInterface &entity)
 {
-	vector<FieldInterface*>* Fields = entity.getFieldsVector();
+	vector<unique_ptr<FieldInterface>>* Fields = entity.getFieldsVector();
 	string columnsNames;
 	string columnsValues;
 
@@ -30,7 +30,7 @@ SQLString* QueryGenerator::insert(EntityInterface &entity)
 
 	string Query = "INSERT INTO `" + entity.getTableName() + "`(" + columnsNames + ")VALUES(" + columnsValues + ")";
 	std::cout << Query << std::endl;
-	return (new sql::SQLString(Query.c_str()));
+	return unique_ptr<SQLString>(new sql::SQLString(Query.c_str()));
 }
 
 //"INSERT INTO `materials`(`id`, `name`, `lambda`, `price`, `type_of_material`, `price_to_lambda`, `producer`, `link`) 

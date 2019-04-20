@@ -14,7 +14,7 @@ using std::unique_ptr;
 		QueryGenerator();
 		~QueryGenerator();
 
-		SQLString* insert(EntityInterface &entity);
+		unique_ptr<SQLString> insert(EntityInterface &entity);
 		unique_ptr<SQLString> selectByIndex(EntityInterface &entity, unsigned int index);
 		unique_ptr<SQLString> selectAll(EntityInterface &entity);
 		unique_ptr<SQLString> selectOrderBy(EntityInterface &entity, unsigned short columnIndex);

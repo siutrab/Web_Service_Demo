@@ -25,10 +25,20 @@ using std::thread;
 		// server threads
 			thread routerThread;
 			thread requestQueueThread;
+
 	public:
 		Server(const unsigned int port);
 		~Server();
 		void start();	// main loop!!!
 		void stop();
 		RequestsQueue* getRequestsQueuePtr() const;
+		
+		// Initialization of static pointers
+		/*template<typename T>
+		static void initializePointer(T*);
+		
+		template<>
+		static void initializePointer<RequestsQueue>(RequestsQueue*);*/
+
+		static void setQueuePointer(RequestsQueue* queue);
 	};

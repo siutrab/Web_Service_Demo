@@ -12,6 +12,23 @@
 			requestQueueThread(thread(&(RequestHandler::start), requestHandler))
 	{	}
 
+	/*template<typename T>
+	void Server::initializePointer<T>(T*)
+	{
+
+	}
+
+	template<>
+	void Server::initializePointer<RequestsQueue>(RequestsQueue* requestQueuePointer)
+	{
+		Client::setRequestQueuePtr(requestQueuePointer);
+	}*/
+
+	void Server::setQueuePointer(RequestsQueue* queue)
+	{
+		Client::setRequestQueuePtr(queue);
+	}
+
 	Server::~Server()
 	{	}
 
