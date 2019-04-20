@@ -15,9 +15,9 @@ class FieldInterface
 	public:
 		virtual			~FieldInterface() {};
 		virtual unique_ptr<string>	getValueAsString() = 0;
+		virtual unique_ptr<string>	getColumnName() = 0;
 		virtual void*	getValuePtr() = 0;
 		virtual void	setValue(void*) = 0;
-		virtual string*	getColumnName() = 0;
 	};
 
 
@@ -28,6 +28,10 @@ template <typename T>
 	protected:
 		T storedValue;
 	public:
+		FieldTemplate(T &value)
+		{
+			storedValue = value;
+		}
 		~FieldTemplate() { }
 		void	setValue(void* value) override 
 		{ 
@@ -60,20 +64,23 @@ template <typename T>
 	class FieldInstance
 		: public FieldTemplate<T>
 	{
+	protected:
 		static string name;
 	public:
 		FieldInstance(string name, T* value)
+			:	FieldTemplate<T>(value)
 		{
 			FieldInstance::name = name;
-			this->setValue(value);
 		}
 
-		string* getColumnName() { return &FieldInstance::name; }
+		virtual string* getColumnName() override { return &FieldInstance::name; }
 
 	};
 
 template <typename T>
 string FieldInstance<T>::name;
+
+
 
 	class EntityInterface
 	{
