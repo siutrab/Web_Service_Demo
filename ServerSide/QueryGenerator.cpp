@@ -12,7 +12,7 @@ QueryGenerator::~QueryGenerator()
 }
 
 
-unique_ptr<SQLString> QueryGenerator::insert(EntityInterface &entity)
+void QueryGenerator::insert(EntityInterface &entity)
 {
 	vector<unique_ptr<FieldInterface>>* Fields = entity.getFieldsVector();
 	string columnsNames;
@@ -30,5 +30,7 @@ unique_ptr<SQLString> QueryGenerator::insert(EntityInterface &entity)
 
 	string Query = "INSERT INTO `" + entity.getTableName() + "`(" + columnsNames + ")VALUES(" + columnsValues + ")";
 	std::cout << Query << std::endl;
+	SQLString SqlQuery(Query.c_str());
+	databaseHandler->executeQuery(SqlQuery);
 	return unique_ptr<SQLString>(new sql::SQLString(Query.c_str()));
 }

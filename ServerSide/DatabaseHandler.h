@@ -49,7 +49,7 @@ class QueryQueue;
 		void connectDatabase();
 		bool disconnectDatabase();
 	public:
-		DatabaseHandler(Server* server);
+		DatabaseHandler();
 		~DatabaseHandler();
 		void start();		// main loop
 		bool executeQuery(SQLString& query);

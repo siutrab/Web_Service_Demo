@@ -2,10 +2,9 @@
 #include "DatabaseHandler.h"
 
 
-DatabaseHandler::DatabaseHandler(Server* server)
+DatabaseHandler::DatabaseHandler()
 	:	connectedToDatabase(false),
 		running(false)
-		//server(server)
 {	
 	DATABASE_HANDLER_THREAD = thread(&DatabaseHandler::start, this);
 
@@ -29,15 +28,13 @@ void DatabaseHandler::start()
 	{
 		if (queryQueue->isEmpty())
 		{
-
+			
 		}
 		else
 		{
-			queryQueue->getItem();
-			//unique_ptr queryQueue->getItem();
+			SQLString* query = queryQueue->getItem();
+			executeQuery(*query);
 		}
-		
-		
 	}
 }
 
@@ -46,7 +43,6 @@ bool DatabaseHandler::executeQuery(SQLString& query)
 	connectDatabase();
 	if (connectionIsValid())
 	{
-		
 		try
 		{
 			sqlConnection->setSchema(db::schema);	// setting database to connection

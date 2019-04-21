@@ -1,9 +1,14 @@
 #include "pch.h"
 #include "RequestTranslatorXML.h"
 
+RequestsQueue* RequestTranslatorXML::requestsQueue;
+void RequestTranslatorXML::setRequestQueuePointer(RequestsQueue* pointer)
+{
+	requestsQueue = pointer;
+	const_cast<RequestsQueue* const>(requestsQueue);
+}
 
-RequestTranslatorXML::RequestTranslatorXML(RequestsQueue* pointer)
-	:	requestsQueue(pointer)
+RequestTranslatorXML::RequestTranslatorXML()
 {
 }
 

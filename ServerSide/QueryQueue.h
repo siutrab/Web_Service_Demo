@@ -15,12 +15,8 @@ class Request;
 class QueryQueue
 	: public Queue<SQLString>
 {
-
-
 public:
 	QueryQueue();
 	~QueryQueue();
-
-
 };
 

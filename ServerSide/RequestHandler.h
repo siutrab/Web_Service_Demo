@@ -1,20 +1,21 @@
 #pragma once
 #include "pugixml.hpp"
 #include "RequestTranslatorXML.h"
-#include "Server.h"
 #include <thread>
 
-class Server;
+using std::thread;
+using std::unique_ptr;
+
 class RequestTranslatorXML;
 
 class RequestHandler
 {
 	thread REQUEST_HANDLER_THREAD;
 	bool running = false;
-	RequestTranslatorXML* const translator;
-	Server* const server;
+	const unique_ptr<RequestTranslatorXML> translator;
+
 public:
-	RequestHandler(Server* const server);
+	RequestHandler();
 	~RequestHandler();
 	void start();
 	void stop();

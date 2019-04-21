@@ -14,8 +14,8 @@ int main()
 	int c = 12;
 	std::string st = "eegrh";
 	MaterialEntity material(c, a, b, b, st, st, st, st);
-	QueryGenerator generator;
-	unique_ptr<SQLString> query = generator.insert(material);
+	//QueryGenerator generator;
+	//unique_ptr<SQLString> query = generator.insert(material);
 	//dbHandler.executeQuery(*query);
 
 	std::cin.get();

@@ -17,12 +17,13 @@ class RequestsQueue;
 
 	class RequestTranslatorXML
 	{
-			RequestsQueue* requestsQueue;
+			static RequestsQueue* requestsQueue;
 			LoadedDocument* loadDocument();
 	public:
-		RequestTranslatorXML(RequestsQueue* pointer);
+		RequestTranslatorXML();
 		~RequestTranslatorXML();
 		void translateRequest();
 		void translateResponse();
+		static void setRequestQueuePointer(RequestsQueue* pointer);
 	};
 

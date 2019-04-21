@@ -2,6 +2,7 @@
 #include"jdbc/cppconn/sqlstring.h"
 #include "MappingInterface.h"
 #include <vector>
+#include "DatabaseHandler.h"
 
 using sql::SQLString;
 using std::vector;
@@ -13,8 +14,8 @@ using std::unique_ptr;
 	public:
 		QueryGenerator();
 		~QueryGenerator();
-
-		unique_ptr<SQLString> insert(EntityInterface &entity);
+		DatabaseHandler* databaseHandler;
+		void insert(EntityInterface &entity);
 		unique_ptr<SQLString> selectByIndex(EntityInterface &entity, unsigned int index);
 		unique_ptr<SQLString> selectAll(EntityInterface &entity);
 		unique_ptr<SQLString> selectOrderBy(EntityInterface &entity, unsigned short columnIndex);

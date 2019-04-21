@@ -1,5 +1,4 @@
 #pragma once
-#include <thread>
 #include "Router.h"
 #include "RequestHandler.h"
 #include "ResponseHandler.h"
@@ -17,23 +16,20 @@ class Router;
 class Client;
 
 
-using std::thread;
 
 	class Server
 	{
 			const unsigned int port;
+
+			// Each of the below classes runs on separated thread
 			Router* router;						// Receives and sednds prepared data from users
 			RequestHandler* requestHandler;		// Handles users requests, encryption etc.
+			DatabaseHandler* databaseHandler;	// Connection to database
 			ResponseHandler* responseHandler;	// Handles the responses, database querys etc.
-			DatabaseHandler* databaseHandler;
 
 		// Queues
 			RequestsQueue* requestsQueue;
 			QueryQueue* queryQueue;
-
-		// server threads
-			//thread routerThread;
-			//thread requestQueueThread;
 
 	public:
 		Server(const unsigned int port);
