@@ -2,11 +2,11 @@
 #include <iostream>
 #include <queue>
 #include <iterator>
-#include "Server.h"
+//#include "Server.h"
 
 using std::queue;
 
-class Server;
+//class Server;
 
 template<typename T>
 class Queue
@@ -21,10 +21,12 @@ public:
 		if (itemQueue.size() == 0) return true;
 		else return false;
 	}
+
 	void addItem(T* item)
 	{
 		itemQueue.push(item);
 	}
+
 	T* getItem() 
 	{
 		T* item = itemQueue.front();

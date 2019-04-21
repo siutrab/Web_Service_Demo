@@ -2,13 +2,44 @@
 #include "DatabaseHandler.h"
 
 
-DatabaseHandler::DatabaseHandler()
-	:	connectedToDatabase(false)
-{	}
+DatabaseHandler::DatabaseHandler(Server* server)
+	:	connectedToDatabase(false),
+		running(false)
+		//server(server)
+{	
+	DATABASE_HANDLER_THREAD = thread(&DatabaseHandler::start, this);
 
+}
+
+QueryQueue* DatabaseHandler::queryQueue;
+void DatabaseHandler::setQueryQueuePointer(QueryQueue* pointer)
+{
+	queryQueue = pointer;
+	const_cast<QueryQueue* const>(queryQueue);
+}
 
 DatabaseHandler::~DatabaseHandler()
 {	}
+
+void DatabaseHandler::start()
+{
+	
+	running = true;
+	while (running)
+	{
+		if (queryQueue->isEmpty())
+		{
+
+		}
+		else
+		{
+			queryQueue->getItem();
+			//unique_ptr queryQueue->getItem();
+		}
+		
+		
+	}
+}
 
 bool DatabaseHandler::executeQuery(SQLString& query)
 {
@@ -19,7 +50,7 @@ bool DatabaseHandler::executeQuery(SQLString& query)
 		try
 		{
 			sqlConnection->setSchema(db::schema);	// setting database to connection
-			SqlPreparedStatement = sqlConnection->prepareStatement(query);
+			SqlPreparedStatement = unique_ptr<PreparedStatement>(sqlConnection->prepareStatement(query));
 			SqlPreparedStatement->execute();
 			return true;
 		}
@@ -37,8 +68,8 @@ void DatabaseHandler::connectDatabase()
 {
 	try
 	{
-		driver = sql::mysql::get_mysql_driver_instance();
-		sqlConnection = driver->connect(db::hostName, db::userName, db::password);
+		driver = unique_ptr<MySQL_Driver>(sql::mysql::get_mysql_driver_instance());
+		sqlConnection = unique_ptr<Connection>( driver->connect(db::hostName, db::userName, db::password));
 		connectedToDatabase = true;
 	}
 	catch (SQLException e)

@@ -1,14 +1,14 @@
-//#include "QueryQueue.h"
+#include "QueryQueue.h"
 
 
 
-//QueryQueue::QueryQueue()
-//{
-//
-//}
-//
-//
-//QueryQueue::~QueryQueue()
-//{
-//}
+QueryQueue::QueryQueue()
+{
+	DatabaseHandler::setQueryQueuePointer(this);
+}
+
+
+QueryQueue::~QueryQueue()
+{
+}
 

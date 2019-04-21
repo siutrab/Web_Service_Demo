@@ -12,14 +12,15 @@ class MaterialEntity
 	: public EntityInterface
 {
 public:
-	MaterialEntity(unsigned int	id,
+	MaterialEntity(
+		unsigned int	id,
 		float			lambda,
 		float			price,
 		float			priceLambda,
-		std::string&	name,
-		std::string&	link,
-		std::string&	materialType,
-		std::string&	producer);
+		string&			name,
+		string&			link,
+		string&			materialType,
+		string&			producer);
 
 	~MaterialEntity();
 
@@ -27,9 +28,9 @@ public:
 
 private:
 
-	// WARNING these classes are the same, but there is no way to use polymorphism or templates
+	// WARNING!!! these classes are the same, but there is no way to use polymorphism or templates
 	// so theere is a need for keep changing each of them during change.
-	// WARNING all these classes inherit from MappingInterface
+	// WARNING!!! all these classes inherit from MappingInterface
 	class IdColumn
 		: public FieldTemplate<unsigned int>
 		{
@@ -97,4 +98,3 @@ private:
 	// End of WARNING
 
 };
-

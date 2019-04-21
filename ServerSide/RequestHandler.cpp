@@ -5,7 +5,9 @@
 RequestHandler::RequestHandler(Server* const server)
 	:	server(server),
 		translator(new RequestTranslatorXML(server->getRequestsQueuePtr()))
-{	}
+{	
+	REQUEST_HANDLER_THREAD = thread(&RequestHandler::start, this);
+}
 
 RequestHandler::~RequestHandler()
 {	}
