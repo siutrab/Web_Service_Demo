@@ -13,6 +13,7 @@ class RequestHandler
 	thread REQUEST_HANDLER_THREAD;
 	bool running = false;
 	const unique_ptr<RequestTranslatorXML> translator;
+	unique_ptr<DatabaseHandler> databaseHandler;
 
 public:
 	RequestHandler();

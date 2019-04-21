@@ -4,17 +4,11 @@
 
 DatabaseHandler::DatabaseHandler()
 	:	connectedToDatabase(false),
-		running(false)
+		running(false),
+		queryGenerator(new QueryGenerator(this))
 {	
 	DATABASE_HANDLER_THREAD = thread(&DatabaseHandler::start, this);
 
-}
-
-QueryQueue* DatabaseHandler::queryQueue;
-void DatabaseHandler::setQueryQueuePointer(QueryQueue* pointer)
-{
-	queryQueue = pointer;
-	const_cast<QueryQueue* const>(queryQueue);
 }
 
 DatabaseHandler::~DatabaseHandler()
@@ -26,15 +20,8 @@ void DatabaseHandler::start()
 	running = true;
 	while (running)
 	{
-		if (queryQueue->isEmpty())
-		{
-			
-		}
-		else
-		{
-			SQLString* query = queryQueue->getItem();
-			executeQuery(*query);
-		}
+		/*unique_ptr<SQLString> query = queryGenerator->insert();
+		executeQuery(*query);*/
 	}
 }
 

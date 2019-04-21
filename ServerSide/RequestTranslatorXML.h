@@ -3,10 +3,13 @@
 #include "Request.h"
 #include "RequestsQueue.h"
 #include <string.h>
+#include "DatabaseHandler.h"
 
 using std::string;
 using pugi::xml_document;
 
+
+class DatabaseHandler;
 class RequestsQueue;
 
 	struct LoadedDocument
@@ -19,6 +22,7 @@ class RequestsQueue;
 	{
 			static RequestsQueue* requestsQueue;
 			LoadedDocument* loadDocument();
+			
 	public:
 		RequestTranslatorXML();
 		~RequestTranslatorXML();

@@ -9,6 +9,7 @@ void RequestTranslatorXML::setRequestQueuePointer(RequestsQueue* pointer)
 }
 
 RequestTranslatorXML::RequestTranslatorXML()
+
 {
 }
 

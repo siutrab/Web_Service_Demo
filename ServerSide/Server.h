@@ -4,14 +4,12 @@
 #include "ResponseHandler.h"
 #include "Client.h"
 #include "RequestsQueue.h"
-#include "QueryQueue.h"
 #include "DatabaseHandler.h"
 
 class DatabaseHandler;
 class RequestHandler;
 class ResponseHandler;
 class RequestsQueue;
-class QueryQueue;
 class Router;
 class Client;
 
@@ -29,7 +27,6 @@ class Client;
 
 		// Queues
 			RequestsQueue* requestsQueue;
-			QueryQueue* queryQueue;
 
 	public:
 		Server(const unsigned int port);

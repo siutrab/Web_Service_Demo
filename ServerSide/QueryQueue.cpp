@@ -4,7 +4,7 @@
 
 QueryQueue::QueryQueue()
 {
-	DatabaseHandler::setQueryQueuePointer(this);
+	//DatabaseHandler::setQueryQueuePointer(this);
 }
 
 

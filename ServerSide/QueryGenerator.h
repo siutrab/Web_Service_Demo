@@ -9,13 +9,16 @@ using std::vector;
 using std::string;
 using std::unique_ptr;
 
+class DatabaseHandler;
+
 	class QueryGenerator
 	{
-	public:
-		QueryGenerator();
-		~QueryGenerator();
+	private:
 		DatabaseHandler* databaseHandler;
-		void insert(EntityInterface &entity);
+	public:
+		QueryGenerator(DatabaseHandler* pointer);
+		~QueryGenerator();
+		unique_ptr<SQLString> insert(EntityInterface &entity);
 		unique_ptr<SQLString> selectByIndex(EntityInterface &entity, unsigned int index);
 		unique_ptr<SQLString> selectAll(EntityInterface &entity);
 		unique_ptr<SQLString> selectOrderBy(EntityInterface &entity, unsigned short columnIndex);

@@ -7,7 +7,7 @@
 #include "jdbc/cppconn/prepared_statement.h"
 
 #include "MaterialEntity.h"
-#include "QueryQueue.h"
+#include "QueryGenerator.h"
 //#include "Server.h"
 #include <thread>
 
@@ -22,7 +22,7 @@ using::std::thread;
 
 class MaterialEntity;
 class Server;
-class QueryQueue;
+class QueryGenerator;
 
 	class DatabaseHandler
 	{
@@ -38,14 +38,16 @@ class QueryQueue;
 			bool connectedToDatabase;
 			bool running;
 			thread DATABASE_HANDLER_THREAD;
+
+			QueryGenerator* queryGenerator;
 			// needed for connecting and executing querys;
 			unique_ptr<MySQL_Driver> driver;
 			unique_ptr<Connection> sqlConnection;
 			unique_ptr<PreparedStatement> SqlPreparedStatement;
 	
-			static QueryQueue* queryQueue;
+			//static QueryQueue* queryQueue;
 			//Server* server;
-
+			
 		void connectDatabase();
 		bool disconnectDatabase();
 	public:
@@ -58,6 +60,6 @@ class QueryQueue;
 		void addEntity();
 		void removeEntity();
 		void getMaterial();
-		static void setQueryQueuePointer(QueryQueue* pointer);
+		//static void setQueryQueuePointer(QueryQueue* pointer);
 	};
 

@@ -3,8 +3,8 @@
 
 
 RequestHandler::RequestHandler()
-	:	
-		translator(new RequestTranslatorXML())
+	:	translator(new RequestTranslatorXML()),
+		databaseHandler(unique_ptr<DatabaseHandler>(new DatabaseHandler()))
 {	
 	REQUEST_HANDLER_THREAD = thread(&RequestHandler::start, this);
 }
