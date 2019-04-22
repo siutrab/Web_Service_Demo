@@ -15,7 +15,7 @@
 
 		if (packet >> request->content)
 			request->correct = true;
-
+		std::cout << request->content << std::endl;
 		return request;
 	}
 

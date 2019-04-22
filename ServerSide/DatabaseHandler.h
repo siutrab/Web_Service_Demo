@@ -57,8 +57,8 @@ class QueryGenerator;
 		bool executeQuery(SQLString& query);
 	
 		bool connectionIsValid();
-		void addEntity();
-		void removeEntity();
+		void addMaterial();
+		
 		void getMaterial();
 		//static void setQueryQueuePointer(QueryQueue* pointer);
 	};
