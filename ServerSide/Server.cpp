@@ -4,7 +4,7 @@
 
 	Server::Server(const unsigned int port)
 		:	port(port),
-			requestsQueue(new RequestsQueueXml()),
+			requestsQueue(new RequestsQueue()),
 			queryQueue(new NonResultQueryQueue())
 	{
 	// WARNING!!! don't move these parts to initialization list. 

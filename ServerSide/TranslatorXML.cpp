@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "TranslatorXML.h"
 
-RequestsQueueXml* TranslatorXML::requestsQueue;
-void TranslatorXML::setRequestQueuePointer(RequestsQueueXml* pointer)
+RequestsQueue* TranslatorXML::requestsQueue;
+void TranslatorXML::setRequestQueuePointer(RequestsQueue* pointer)
 {
 	requestsQueue = pointer;
-	const_cast<RequestsQueueXml* const>(requestsQueue);
+	const_cast<RequestsQueue* const>(requestsQueue);
 }
 
 TranslatorXML::TranslatorXML()
@@ -20,13 +20,18 @@ TranslatorXML::~TranslatorXML()
 
 void TranslatorXML::translateRequest()
 {
-	LoadedDocument* document= loadDocument();
+	LoadedDocument* document = loadDocument();
 	if (document->loadedSuccesfully)
 	{
-	/*	pugi::xml_node blahNode = document->document.document_element();
+		pugi::xml_node tableNode = document->document.document_element();
 		pugi::xml_attribute attribute;
-		attribute = blahNode.first_attribute();
-		std::cout << "name: " << blahNode.name() << std::endl << "value: "<< blahNode.first_child().child_value() << std::endl;*/
+
+		attribute = tableNode.first_attribute();
+		if (attribute.value() == "materials")
+		{
+
+		}
+		std::cout << "\nname: " << blahNode.name() << std::endl << "value: "<< blahNode.first_child().child_value() << std::endl;
 	}
 	else delete document;
 }

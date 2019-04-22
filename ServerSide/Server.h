@@ -3,14 +3,14 @@
 #include "RequestHandler.h"
 #include "ResponseHandler.h"
 #include "Client.h"
-#include "RequestsQueueXML.h"
+#include "RequestsQueue.h"
 #include "NonResultQueryQueue.h"
 #include "DatabaseHandler.h"
 
 class DatabaseHandler;
 class RequestHandler;
 class ResponseHandler;
-class RequestsQueueXml;
+class RequestsQueue;
 class NonResultQueryQueue;
 class Router;
 class Client;
@@ -28,7 +28,7 @@ class Client;
 			ResponseHandler* responseHandler;	// Handles the responses, database querys etc.
 
 		// Queues
-			RequestsQueueXml* requestsQueue;
+			RequestsQueue* requestsQueue;
 			NonResultQueryQueue* queryQueue;
 
 	public:
@@ -36,6 +36,6 @@ class Client;
 		~Server();
 		void start();	// main loop!!!
 		void stop();
-		RequestsQueueXml* getRequestsQueuePtr() const;
+		RequestsQueue* getRequestsQueuePtr() const;
 		
 	};

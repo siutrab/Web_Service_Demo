@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "RequestsQueueXML.h"
+#include "RequestsQueue.h"
 
-RequestsQueueXml::RequestsQueueXml()
+RequestsQueue::RequestsQueue()
 
 {
 	Client::setRequestQueuePtr(this);

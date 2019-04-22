@@ -1,16 +1,17 @@
 #pragma once
 #include "pugixml.hpp"
 #include "Request.h"
-#include "RequestsQueueXML.h"
+#include "RequestsQueue.h"
 #include <string.h>
 #include "DatabaseHandler.h"
+#include "MaterialEntity.h"
 
 using std::string;
 using pugi::xml_document;
 
 
 class DatabaseHandler;
-class RequestsQueueXml;
+class RequestsQueue;
 
 	struct LoadedDocument
 	{
@@ -18,9 +19,10 @@ class RequestsQueueXml;
 		xml_document document;
 	};
 
+
 	class TranslatorXML
 	{
-			static RequestsQueueXml* requestsQueue;
+			static RequestsQueue* requestsQueue;
 			LoadedDocument* loadDocument();
 			
 	public:
@@ -28,6 +30,6 @@ class RequestsQueueXml;
 		~TranslatorXML();
 		void translateRequest();
 		void translateResponse();
-		static void setRequestQueuePointer(RequestsQueueXml* pointer);
+		static void setRequestQueuePointer(RequestsQueue* pointer);
 	};
 

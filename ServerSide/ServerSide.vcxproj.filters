@@ -28,15 +28,6 @@
     <Filter Include="Server resources\Database Handler">
       <UniqueIdentifier>{e888dd19-4dd3-455a-886a-8083ccf33c6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server resources\Database Handler\Database Tables">
-      <UniqueIdentifier>{8fd25911-8349-481b-91d4-71f955827bb5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Server resources\Database Handler\Database Tables\Entities">
-      <UniqueIdentifier>{15ed491e-55fc-4735-9fd5-96d1b310b645}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Server resources\Queues resources\RequestQueueXML">
-      <UniqueIdentifier>{4618bf85-ea42-46e3-b692-20fa94970c72}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Server resources\Queues resources\QueryQueue">
       <UniqueIdentifier>{a26a069b-1ec0-4b2a-9aae-87ab9f68b560}</UniqueIdentifier>
     </Filter>
@@ -45,6 +36,18 @@
     </Filter>
     <Filter Include="Server resources\Queues resources\QueryQueue\NonResultQueryQueue">
       <UniqueIdentifier>{6471a598-2c4d-4de9-8478-93647251fa0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Queues resources\RequestQueue">
+      <UniqueIdentifier>{4618bf85-ea42-46e3-b692-20fa94970c72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Database Handler\Database">
+      <UniqueIdentifier>{28b795ef-0098-41b6-a2aa-86b1a6d67b98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Database Handler\Database\Database Tables">
+      <UniqueIdentifier>{8fd25911-8349-481b-91d4-71f955827bb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Database Handler\Database\Database Tables\Entities">
+      <UniqueIdentifier>{15ed491e-55fc-4735-9fd5-96d1b310b645}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -82,10 +85,10 @@
       <Filter>Server resources</Filter>
     </ClInclude>
     <ClInclude Include="MaterialEntity.h">
-      <Filter>Server resources\Database Handler\Database Tables\Entities</Filter>
+      <Filter>Server resources\Database Handler\Database\Database Tables\Entities</Filter>
     </ClInclude>
     <ClInclude Include="MappingInterface.h">
-      <Filter>Server resources\Database Handler\Database Tables</Filter>
+      <Filter>Server resources\Database Handler\Database\Database Tables</Filter>
     </ClInclude>
     <ClInclude Include="DatabaseHandler.h">
       <Filter>Server resources\Database Handler</Filter>
@@ -94,13 +97,10 @@
       <Filter>Server resources\Database Handler</Filter>
     </ClInclude>
     <ClInclude Include="Request.h">
-      <Filter>Server resources\Queues resources\RequestQueueXML</Filter>
+      <Filter>Server resources\Queues resources\RequestQueue</Filter>
     </ClInclude>
     <ClInclude Include="QueueTemplate.h">
       <Filter>Server resources\Queues resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RequestsQueueXML.h">
-      <Filter>Server resources\Queues resources\RequestQueueXML</Filter>
     </ClInclude>
     <ClInclude Include="NonResultQuery.h">
       <Filter>Server resources\Queues resources\QueryQueue\NonResultQueryQueue</Filter>
@@ -116,6 +116,15 @@
     </ClInclude>
     <ClInclude Include="TranslatorXML.h">
       <Filter>Server resources\Request Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestsQueue.h">
+      <Filter>Server resources\Queues resources\RequestQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBase.h">
+      <Filter>Server resources\Database Handler\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="TableInterface.h">
+      <Filter>Server resources\Database Handler\Database\Database Tables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +159,7 @@
       <Filter>Server resources</Filter>
     </ClCompile>
     <ClCompile Include="MaterialEntity.cpp">
-      <Filter>Server resources\Database Handler\Database Tables\Entities</Filter>
+      <Filter>Server resources\Database Handler\Database\Database Tables\Entities</Filter>
     </ClCompile>
     <ClCompile Include="DatabaseHandler.cpp">
       <Filter>Server resources\Database Handler</Filter>
@@ -159,10 +168,7 @@
       <Filter>Server resources\Database Handler</Filter>
     </ClCompile>
     <ClCompile Include="Request.cpp">
-      <Filter>Server resources\Queues resources\RequestQueueXML</Filter>
-    </ClCompile>
-    <ClCompile Include="RequestsQueueXML.cpp">
-      <Filter>Server resources\Queues resources\RequestQueueXML</Filter>
+      <Filter>Server resources\Queues resources\RequestQueue</Filter>
     </ClCompile>
     <ClCompile Include="NonResultQuery.cpp">
       <Filter>Server resources\Queues resources\QueryQueue\NonResultQueryQueue</Filter>
@@ -178,6 +184,15 @@
     </ClCompile>
     <ClCompile Include="TranslatorXML.cpp">
       <Filter>Server resources\Request Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestsQueue.cpp">
+      <Filter>Server resources\Queues resources\RequestQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBase.cpp">
+      <Filter>Server resources\Database Handler\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="TableInterface.cpp">
+      <Filter>Server resources\Database Handler\Database\Database Tables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

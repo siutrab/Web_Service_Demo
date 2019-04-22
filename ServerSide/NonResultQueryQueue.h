@@ -11,10 +11,9 @@ using sql::SQLString;
 using std::unique_ptr;
 
 class Request;
-class ResultQuery;
 
 class NonResultQueryQueue
-	: public Queue<ResultQuery>
+	: public Queue<NonResultQuery>
 {
 public:
 	NonResultQueryQueue();

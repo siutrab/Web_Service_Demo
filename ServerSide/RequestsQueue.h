@@ -12,12 +12,12 @@ class Client;
 class Request;
 
 
-	class RequestsQueueXml
+	class RequestsQueue
 		: public Queue<Request>
 	{
 	public:
-		RequestsQueueXml();
+		RequestsQueue();
 
-		~RequestsQueueXml();
+		~RequestsQueue();
 
 	};

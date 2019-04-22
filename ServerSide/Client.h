@@ -1,20 +1,20 @@
 #pragma once
 #include "SFML/Network.hpp"
 #include "Request.h"
-#include "RequestsQueueXML.h"
+#include "RequestsQueue.h"
 
 using sf::TcpSocket;
 using sf::Packet;
 
 class Request;
 class Response;
-class RequestsQueueXml;
+class RequestsQueue;
 
 	class Client
 	{
 			const unsigned int index;
 			TcpSocket socket;
-			static RequestsQueueXml* requestQueuePtr;
+			static RequestsQueue* requestQueuePtr;
 
 		// Methods
 		void sendResponse();		/// CHANGE ME!!!
@@ -25,6 +25,6 @@ class RequestsQueueXml;
 		// Getters
 		TcpSocket* getSocket();
 		unsigned int getIndex() const;
-		static void setRequestQueuePtr(RequestsQueueXml* const pointer);
+		static void setRequestQueuePtr(RequestsQueue* const pointer);
 	};
 

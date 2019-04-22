@@ -30,5 +30,30 @@ int main()
 	//thread1.join();
 	//thread2.join();
 	//thread3.join();
-	send("<?xml version=\"1.0\" encoding=\"UTF - 8\"?><note><blah> oiafoesg </blah></note>");
+	send(
+		"<?xml version=\"1.0\"?>											\
+																			\
+		<soap:Envelope														\
+		xmlns : soap = \"http://www.w3.org/2003/05/soap-envelope/\"			\
+		soap : encodingStyle = \"http://www.w3.org/2003/05/soap-encoding\">	\
+			<soap:Body>														\
+				<table = \"materials\">										\
+					<addMaterial>											\
+						<name> FRONTROCK </name>							\
+						<lambda> 0.034 </lambda>							\
+						<widths number = \"5\">								\
+							<width> 8 </width>								\
+							<width> 10 </width>								\
+							<width> 12 </width>								\
+							<width> 14 </width>								\
+							<width> 16 </width>								\
+						</widths>											\
+						<price> 0.034 </price>								\
+						<type> wool </type>									\
+						<producer> ROCKWOOL </producer>						\
+						<link> www.rockwool.pl </link>						\
+					</addMaterial>											\
+				</materials>												\
+			</soap:Body>													\
+		< / soap:Envelope>");
 }
