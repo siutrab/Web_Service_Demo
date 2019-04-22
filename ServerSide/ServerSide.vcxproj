@@ -171,20 +171,22 @@
     <ClInclude Include="DatabaseHandler.h" />
     <ClInclude Include="ExceptionsSystem.h" />
     <ClInclude Include="MaterialEntity.h" />
-    <ClInclude Include="Query.h" />
+    <ClInclude Include="NonResultQuery.h" />
+    <ClInclude Include="ResultQuery.h" />
     <ClInclude Include="QueryGenerator.h" />
-    <ClInclude Include="QueryQueue.h" />
+    <ClInclude Include="NonResultQueryQueue.h" />
     <ClInclude Include="QueueTemplate.h" />
-    <ClInclude Include="RequestsQueue.h" />
+    <ClInclude Include="RequestsQueueXML.h" />
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Request.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RequestHandler.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResponseHandler.h" />
+    <ClInclude Include="ResultQueryQueue.h" />
     <ClInclude Include="Router.h" />
     <ClInclude Include="Server.h" />
-    <ClInclude Include="RequestTranslatorXML.h" />
+    <ClInclude Include="TranslatorXML.h" />
     <ClInclude Include="MappingInterface.h" />
   </ItemGroup>
   <ItemGroup>
@@ -193,10 +195,11 @@
     <ClCompile Include="DatabaseHandler.cpp" />
     <ClCompile Include="ExceptionsSystem.cpp" />
     <ClCompile Include="MaterialEntity.cpp" />
-    <ClCompile Include="Query.cpp" />
+    <ClCompile Include="NonResultQuery.cpp" />
+    <ClCompile Include="ResultQuery.cpp" />
     <ClCompile Include="QueryGenerator.cpp" />
-    <ClCompile Include="QueryQueue.cpp" />
-    <ClCompile Include="RequestsQueue.cpp" />
+    <ClCompile Include="NonResultQueryQueue.cpp" />
+    <ClCompile Include="RequestsQueueXML.cpp" />
     <ClCompile Include="Listener.cpp" />
     <ClCompile Include="Request.cpp" />
     <ClCompile Include="pch.cpp">
@@ -207,10 +210,11 @@
     </ClCompile>
     <ClCompile Include="RequestHandler.cpp" />
     <ClCompile Include="ResponseHandler.cpp" />
+    <ClCompile Include="ResultQueryQueue.cpp" />
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerSide.cpp" />
-    <ClCompile Include="RequestTranslatorXML.cpp" />
+    <ClCompile Include="TranslatorXML.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ServerSide.rc" />

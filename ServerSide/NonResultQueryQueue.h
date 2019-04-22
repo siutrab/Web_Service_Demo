@@ -2,7 +2,7 @@
 #include <queue>
 #include "jdbc/cppconn/sqlstring.h"
 #include "QueueTemplate.h"
-#include "Query.h"
+#include "NonResultQuery.h"
 #include <memory>
 #include "DatabaseHandler.h"
 
@@ -11,13 +11,13 @@ using sql::SQLString;
 using std::unique_ptr;
 
 class Request;
-class Query;
+class ResultQuery;
 
-class QueryQueue
-	: public Queue<Query>
+class NonResultQueryQueue
+	: public Queue<ResultQuery>
 {
 public:
-	QueryQueue();
-	~QueryQueue();
+	NonResultQueryQueue();
+	~NonResultQueryQueue();
 };
 

@@ -25,12 +25,6 @@
     <Filter Include="Server resources\Request Handler">
       <UniqueIdentifier>{d135a1a9-857d-4735-8f07-ea34b90a33e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server resources\Queues resources\RequestQueue">
-      <UniqueIdentifier>{4618bf85-ea42-46e3-b692-20fa94970c72}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Server resources\Queues resources\QueryQueue">
-      <UniqueIdentifier>{6471a598-2c4d-4de9-8478-93647251fa0f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Server resources\Database Handler">
       <UniqueIdentifier>{e888dd19-4dd3-455a-886a-8083ccf33c6d}</UniqueIdentifier>
     </Filter>
@@ -39,6 +33,18 @@
     </Filter>
     <Filter Include="Server resources\Database Handler\Database Tables\Entities">
       <UniqueIdentifier>{15ed491e-55fc-4735-9fd5-96d1b310b645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Queues resources\RequestQueueXML">
+      <UniqueIdentifier>{4618bf85-ea42-46e3-b692-20fa94970c72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Queues resources\QueryQueue">
+      <UniqueIdentifier>{a26a069b-1ec0-4b2a-9aae-87ab9f68b560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Queues resources\QueryQueue\ResultQueryQueue">
+      <UniqueIdentifier>{43c6461e-7c31-44fe-be9b-9ce8093e4716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Queues resources\QueryQueue\NonResultQueryQueue">
+      <UniqueIdentifier>{6471a598-2c4d-4de9-8478-93647251fa0f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -69,9 +75,6 @@
     <ClInclude Include="..\..\..\..\..\..\CPP Libraries\Boost\boost_1_70_0\boost\smart_ptr\scoped_ptr.hpp">
       <Filter>Pliki źródłowe</Filter>
     </ClInclude>
-    <ClInclude Include="RequestTranslatorXML.h">
-      <Filter>Server resources\Request Handler</Filter>
-    </ClInclude>
     <ClInclude Include="Server.h">
       <Filter>Server resources</Filter>
     </ClInclude>
@@ -90,20 +93,29 @@
     <ClInclude Include="QueryGenerator.h">
       <Filter>Server resources\Database Handler</Filter>
     </ClInclude>
-    <ClInclude Include="RequestsQueue.h">
-      <Filter>Server resources\Queues resources\RequestQueue</Filter>
-    </ClInclude>
     <ClInclude Include="Request.h">
-      <Filter>Server resources\Queues resources\RequestQueue</Filter>
-    </ClInclude>
-    <ClInclude Include="QueryQueue.h">
-      <Filter>Server resources\Queues resources\QueryQueue</Filter>
+      <Filter>Server resources\Queues resources\RequestQueueXML</Filter>
     </ClInclude>
     <ClInclude Include="QueueTemplate.h">
       <Filter>Server resources\Queues resources</Filter>
     </ClInclude>
-    <ClInclude Include="Query.h">
-      <Filter>Server resources\Queues resources\QueryQueue</Filter>
+    <ClInclude Include="RequestsQueueXML.h">
+      <Filter>Server resources\Queues resources\RequestQueueXML</Filter>
+    </ClInclude>
+    <ClInclude Include="NonResultQuery.h">
+      <Filter>Server resources\Queues resources\QueryQueue\NonResultQueryQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="NonResultQueryQueue.h">
+      <Filter>Server resources\Queues resources\QueryQueue\NonResultQueryQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultQuery.h">
+      <Filter>Server resources\Queues resources\QueryQueue\ResultQueryQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultQueryQueue.h">
+      <Filter>Server resources\Queues resources\QueryQueue\ResultQueryQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="TranslatorXML.h">
+      <Filter>Server resources\Request Handler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,9 +143,6 @@
     <ClCompile Include="ResponseHandler.cpp">
       <Filter>Server resources\Request Handler</Filter>
     </ClCompile>
-    <ClCompile Include="RequestTranslatorXML.cpp">
-      <Filter>Server resources\Request Handler</Filter>
-    </ClCompile>
     <ClCompile Include="Server.cpp">
       <Filter>Server resources</Filter>
     </ClCompile>
@@ -149,17 +158,26 @@
     <ClCompile Include="QueryGenerator.cpp">
       <Filter>Server resources\Database Handler</Filter>
     </ClCompile>
-    <ClCompile Include="RequestsQueue.cpp">
-      <Filter>Server resources\Queues resources\RequestQueue</Filter>
-    </ClCompile>
     <ClCompile Include="Request.cpp">
-      <Filter>Server resources\Queues resources\RequestQueue</Filter>
+      <Filter>Server resources\Queues resources\RequestQueueXML</Filter>
     </ClCompile>
-    <ClCompile Include="QueryQueue.cpp">
-      <Filter>Server resources\Queues resources\QueryQueue</Filter>
+    <ClCompile Include="RequestsQueueXML.cpp">
+      <Filter>Server resources\Queues resources\RequestQueueXML</Filter>
     </ClCompile>
-    <ClCompile Include="Query.cpp">
-      <Filter>Server resources\Queues resources\QueryQueue</Filter>
+    <ClCompile Include="NonResultQuery.cpp">
+      <Filter>Server resources\Queues resources\QueryQueue\NonResultQueryQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="NonResultQueryQueue.cpp">
+      <Filter>Server resources\Queues resources\QueryQueue\NonResultQueryQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultQuery.cpp">
+      <Filter>Server resources\Queues resources\QueryQueue\ResultQueryQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultQueryQueue.cpp">
+      <Filter>Server resources\Queues resources\QueryQueue\ResultQueryQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="TranslatorXML.cpp">
+      <Filter>Server resources\Request Handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

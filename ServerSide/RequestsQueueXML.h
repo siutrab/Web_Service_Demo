@@ -1,8 +1,7 @@
 #pragma once
 #include "Client.h"
-#include"RequestTranslatorXML.h"
+#include"TranslatorXML.h"
 #include "QueueTemplate.h"
-#include <queue>
 #include "Request.h"
 #include "memory"
 
@@ -13,12 +12,12 @@ class Client;
 class Request;
 
 
-	class RequestsQueue
+	class RequestsQueueXml
 		: public Queue<Request>
 	{
 	public:
-		RequestsQueue();
+		RequestsQueueXml();
 
-		~RequestsQueue();
+		~RequestsQueueXml();
 
 	};

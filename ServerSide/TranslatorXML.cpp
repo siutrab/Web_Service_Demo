@@ -1,24 +1,24 @@
 #include "pch.h"
-#include "RequestTranslatorXML.h"
+#include "TranslatorXML.h"
 
-RequestsQueue* RequestTranslatorXML::requestsQueue;
-void RequestTranslatorXML::setRequestQueuePointer(RequestsQueue* pointer)
+RequestsQueueXml* TranslatorXML::requestsQueue;
+void TranslatorXML::setRequestQueuePointer(RequestsQueueXml* pointer)
 {
 	requestsQueue = pointer;
-	const_cast<RequestsQueue* const>(requestsQueue);
+	const_cast<RequestsQueueXml* const>(requestsQueue);
 }
 
-RequestTranslatorXML::RequestTranslatorXML()
+TranslatorXML::TranslatorXML()
 
 {
 }
 
 
-RequestTranslatorXML::~RequestTranslatorXML()
+TranslatorXML::~TranslatorXML()
 {
 }
 
-void RequestTranslatorXML::translateRequest()
+void TranslatorXML::translateRequest()
 {
 	LoadedDocument* document= loadDocument();
 	if (document->loadedSuccesfully)
@@ -30,14 +30,14 @@ void RequestTranslatorXML::translateRequest()
 	}
 	else delete document;
 }
-void RequestTranslatorXML::translateResponse()
+void TranslatorXML::translateResponse()
 {
 
 }
 
 
 //	I REALLY NEED REFACTOR!!!!
-LoadedDocument* RequestTranslatorXML::loadDocument()
+LoadedDocument* TranslatorXML::loadDocument()
 {
 
 	LoadedDocument* loadedDocument = new LoadedDocument();

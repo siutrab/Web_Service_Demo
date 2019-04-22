@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Client.h"
 
- RequestsQueue* Client::requestQueuePtr;
+ RequestsQueueXml* Client::requestQueuePtr;
 
 	Client::Client(unsigned int index)
 		:	socket(),
@@ -35,8 +35,8 @@
 	TcpSocket* Client::getSocket() { return &socket; }
 	unsigned int Client::getIndex() const { return index; }
 
-	void Client::setRequestQueuePtr(RequestsQueue* pointer) 
+	void Client::setRequestQueuePtr(RequestsQueueXml* pointer) 
 	{ 
 		Client::requestQueuePtr = pointer; // Settet in RequestsQueue object
-		const_cast<const RequestsQueue*>(Client::requestQueuePtr);
+		const_cast<const RequestsQueueXml*>(Client::requestQueuePtr);
 	}

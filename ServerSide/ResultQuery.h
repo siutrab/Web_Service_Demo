@@ -3,13 +3,12 @@
 #include "jdbc/cppconn/sqlstring.h"
 class Client;
 
-class Query
+class ResultQuery
 {
 	unsigned int id;
 	Client* client;
 	sql::SQLString* queryString;
 public:
-	Query();
-	~Query();
+	ResultQuery();
+	~ResultQuery();
 };
-
