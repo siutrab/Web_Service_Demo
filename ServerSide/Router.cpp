@@ -7,18 +7,21 @@ Router::Router(unsigned int port)
 		listener(new Listener(*this)),
 		clientsList(new ConnectedClientsList(*this))
 {
-		ROUTER_THREAD = thread(&Router::start, this);
+
+}
+
+void Router::start()
+{
+	ROUTER_THREAD = thread(&Router::run, this);
 }
 
 Router::~Router()
 {
 	stop();
 
-	delete clientsList;
-	delete listener;
 }
 
-void Router::start() 
+void Router::run() 
 {
 	running = true; 
 	while (running)
@@ -39,4 +42,4 @@ void Router::stop()
 
 unsigned int Router::getPort() { return port; }
 SocketSelector* Router::getSelector() { return &selector; }
-ConnectedClientsList* Router::getClientsList() { return clientsList; }
+ConnectedClientsList* Router::getClientsList() { return &*clientsList; }

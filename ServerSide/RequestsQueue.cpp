@@ -7,3 +7,6 @@ RequestsQueue::RequestsQueue()
 	Client::setRequestQueuePtr(this);
 	RequestHandler::setRequestQueuePointer(this);
 }
+
+RequestsQueue::~RequestsQueue()
+{}

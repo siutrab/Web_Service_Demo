@@ -8,7 +8,7 @@
 
 #include "MaterialEntity.h"
 #include "QueryGenerator.h"
-//#include "Server.h"
+
 #include <thread>
 
 using std::string;
@@ -20,9 +20,12 @@ using sql::SQLException;
 using std::unique_ptr;
 using::std::thread;
 
+
 class MaterialEntity;
 class Server;
 class QueryGenerator;
+
+
 
 	class DatabaseHandler
 	{
@@ -40,6 +43,7 @@ class QueryGenerator;
 			thread DATABASE_HANDLER_THREAD;
 
 			QueryGenerator* queryGenerator;
+
 			// needed for connecting and executing querys;
 			unique_ptr<MySQL_Driver> driver;
 			unique_ptr<Connection> sqlConnection;
@@ -48,18 +52,18 @@ class QueryGenerator;
 			//static QueryQueue* queryQueue;
 			//Server* server;
 			
+		void run();		// main loop
 		void connectDatabase();
 		bool disconnectDatabase();
 	public:
 		DatabaseHandler();
 		~DatabaseHandler();
-		void start();		// main loop
+		void start();
+		void stop();
 		bool executeQuery(SQLString& query);
 	
 		bool connectionIsValid();
-		void addMaterial();
 		
-		void getMaterial();
 		//static void setQueryQueuePointer(QueryQueue* pointer);
 	};
 

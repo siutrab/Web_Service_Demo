@@ -11,10 +11,9 @@ void RequestHandler::setRequestQueuePointer(RequestsQueue* pointer)
 
 RequestHandler::RequestHandler()
 	:	dataBaseMap(new DataBaseMap()),
-		//document(new DocumentXml()),
 		running(false)
 {	
-	REQUEST_HANDLER_THREAD = thread(&RequestHandler::start, this);
+
 }
 
 
@@ -62,6 +61,11 @@ void RequestHandler::translateResponse()
 
 void RequestHandler::start()
 {
+	REQUEST_HANDLER_THREAD = thread(&RequestHandler::run, this);
+}
+
+void RequestHandler::run()
+{
 	running = true;
 	while (running)
 	{
@@ -72,6 +76,7 @@ void RequestHandler::start()
 void RequestHandler::stop()
 {
 	running = false;
+	//std::thread::join();
 }
 
 //	I REALLY NEED REFACTOR!!!!

@@ -5,7 +5,7 @@
 #include <thread>
 
 
-class ConnectedClientsList;
+//class ConnectedClientsList;
 class Listener;
 class Server;
 
@@ -21,8 +21,9 @@ using std::thread;
 			const unsigned int port;
 			SocketSelector selector;
 
-			ConnectedClientsList* const clientsList;	// owner
-			Listener* const listener;					// owner
+			unique_ptr<ConnectedClientsList> clientsList;	// owner
+			unique_ptr<Listener> const listener;					// owner
+		void run();
 	public:
 		Router(const unsigned int port);
 		~Router();

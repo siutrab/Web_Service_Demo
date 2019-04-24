@@ -1,22 +1,36 @@
 #include "pch.h"
 #include "DatabaseHandler.h"
 
+////////
+bool DatabaseHandler::disconnectDatabase() { return false; }
+
+
+//////
+
 
 DatabaseHandler::DatabaseHandler()
 	:	connectedToDatabase(false),
 		running(false),
 		queryGenerator(new QueryGenerator(this))
 {	
-	DATABASE_HANDLER_THREAD = thread(&DatabaseHandler::start, this);
 
+}
+
+void DatabaseHandler::start()
+{
+	DATABASE_HANDLER_THREAD = thread(&DatabaseHandler::run, this);
+}
+void DatabaseHandler::stop()
+{
+	running = false;
+	DATABASE_HANDLER_THREAD.join();
 }
 
 DatabaseHandler::~DatabaseHandler()
 {	}
 
-void DatabaseHandler::start()
+void DatabaseHandler::run()
 {
-	
 	running = true;
 	while (running)
 	{

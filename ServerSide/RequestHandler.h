@@ -34,6 +34,8 @@ class DocumentXml;
 			
 			unique_ptr<DataBaseMap> dataBaseMap;	// Owner
 			DocumentXml* document;
+
+		void run();
 	public:
 		RequestHandler();
 		~RequestHandler();

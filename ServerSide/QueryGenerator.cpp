@@ -1,6 +1,11 @@
 #include "QueryGenerator.h"
 
 
+// !!! TO DO !!!
+unique_ptr<SQLString> QueryGenerator::selectByIndex(EntityInterface &entity, unsigned int index) { return unique_ptr<SQLString>(new SQLString()); }
+unique_ptr<SQLString> QueryGenerator::selectAll(EntityInterface &entity){ return unique_ptr<SQLString>(new SQLString()); }
+unique_ptr<SQLString> QueryGenerator::selectOrderBy(EntityInterface &entity, unsigned short columnIndex){ return unique_ptr<SQLString>(new SQLString()); }
+
 
 QueryGenerator::QueryGenerator(DatabaseHandler* pointer)
 	:	databaseHandler(pointer)
