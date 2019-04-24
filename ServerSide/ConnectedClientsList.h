@@ -3,7 +3,6 @@
 #include <map>
 #include "Client.h"
 #include "Router.h"
-#include "RequestsQueue.h"
 
 using std::map;
 using sf::SocketSelector;

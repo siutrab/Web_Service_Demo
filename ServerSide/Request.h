@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Network.hpp"
 #include "Client.h"
+#include <iostream>
 
 using std::string;
 using sf::Packet;

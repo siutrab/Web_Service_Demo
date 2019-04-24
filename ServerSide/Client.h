@@ -1,7 +1,7 @@
 #pragma once
 #include "SFML/Network.hpp"
-#include "Request.h"
 #include "RequestsQueue.h"
+#include "Request.h"
 
 using sf::TcpSocket;
 using sf::Packet;

@@ -1,11 +1,12 @@
 #include "pch.h"
 #include "Router.h"
 
+
 Router::Router(unsigned int port)
 	:	port(port),
 		selector(),
-		listener(new Listener(*this)),
-		clientsList(new ConnectedClientsList(*this))
+		listener(*this),
+		clientsList(*this)
 {
 
 }
@@ -29,8 +30,8 @@ void Router::run()
 		// Selector waits for data at any socket
 		if (selector.wait())
 		{
-			this->listener->listen();
-			clientsList->listen();
+			this->listener.listen();
+			clientsList.listen();
 		}
 	}
 }
@@ -42,4 +43,4 @@ void Router::stop()
 
 unsigned int Router::getPort() { return port; }
 SocketSelector* Router::getSelector() { return &selector; }
-ConnectedClientsList* Router::getClientsList() { return &*clientsList; }
+ConnectedClientsList* Router::getClientsList() { return &clientsList; }

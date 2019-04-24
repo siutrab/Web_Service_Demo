@@ -1,14 +1,8 @@
 #pragma once
-#include "SFML/Network.hpp"
 #include "ConnectedClientsList.h"
 #include "Listener.h"
+#include "SFML/Network.hpp"
 #include <thread>
-
-
-//class ConnectedClientsList;
-class Listener;
-class Server;
-
 
 using sf::SocketSelector;
 using std::unique_ptr;
@@ -21,8 +15,8 @@ using std::thread;
 			const unsigned int port;
 			SocketSelector selector;
 
-			unique_ptr<ConnectedClientsList> clientsList;	// owner
-			unique_ptr<Listener> const listener;					// owner
+			ConnectedClientsList clientsList;	// owner
+			Listener listener;					// owner
 		void run();
 	public:
 		Router(const unsigned int port);

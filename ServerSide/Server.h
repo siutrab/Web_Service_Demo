@@ -1,19 +1,15 @@
 #pragma once
-#include "Router.h"
 #include "RequestHandler.h"
 #include "ResponseHandler.h"
-#include "Client.h"
 #include "RequestsQueue.h"
 #include "NonResultQueryQueue.h"
 #include "DatabaseHandler.h"
+#include "Router.h"
 
 
 class RequestsQueue;
 class NonResultQueryQueue;
 
-using ::Router;
-using ::RequestsQueue;
-using ::NonResultQuery;
 
 
 	class Server
