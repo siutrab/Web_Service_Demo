@@ -22,14 +22,14 @@ public:
 		else return false;
 	}
 
-	void addItem(T* item)
+	void addItem(T& item)
 	{
-		itemQueue.push(item);
+		itemQueue.push(&item);
 	}
 
-	T* getItem() 
+	T& getItem() 
 	{
-		T* item = itemQueue.front();
+		T& item = itemQueue.front();
 		itemQueue.pop();
 		return item;
 	}

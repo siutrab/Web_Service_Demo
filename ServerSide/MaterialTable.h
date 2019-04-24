@@ -1,112 +1,23 @@
 #pragma once
 #include <vector>
-#include "boost/any.hpp"
-#include "EntityAbstract.h"
+#include "MaterialEntity.h"
+//#include "TableInterface.h"
+#include "TableInterface.h"
 
-	class IdColumn
-		: public ColumnAbstract
-	{
-		unsigned int value;
-	public:
-		virtual std::string getValueAsString() override;
-		std::string getName() override;
-		unsigned int getValue();
-		void setValue(void*) override;
-	};
+using std::unique_ptr;
+using std::string;
+using std::pair;
 
-	class NameColumn
-		: public ColumnAbstract
-	{
-		std::string value;
-	public:
-		virtual std::string getValueAsString() override;
-		std::string getName() override;
-		std::string getValue();
-		void setValue(void*) override;
-	};
-
-	class LambdaColumn
-		: public ColumnAbstract
-	{
-		float value;
-	public:
-		virtual std::string getValueAsString() override;
-		std::string getName() override;
-		float getValue();
-		void setValue(void*) override;
-	};
-
-	class PriceColumn
-		: public ColumnAbstract
-	{
-		float value;
-	public:
-		virtual std::string getValueAsString() override;
-		std::string getName() override;
-		float getValue();
-		void setValue(void*) override;
-	};
-
-	class TypeOfMaterialColumn
-		: public ColumnAbstract
-	{
-		std::string value;
-	public:
-		virtual std::string getValueAsString();
-		std::string getName();
-		std::string getValue();
-		void setValue(void*) override;
-	};
-
-	class PriceToLambdaColumn
-		: public ColumnAbstract
-	{
-		float value;
-	public:
-		virtual std::string getValueAsString() override;
-		std::string getName() override;
-		float getValue();
-		void setValue(void*) override;
-	};
-
-	class ProducerColumn
-		: public ColumnAbstract
-	{
-		std::string value;
-	public:
-		virtual std::string getValueAsString() override;
-		std::string getName() override;
-		std::string getValue();
-		void setValue(void*) override;
-	};
-
-	class LinkColumn
-		: public ColumnAbstract
-	{
-		std::string value;
-	public:
-		virtual std::string getValueAsString() override;
-		std::string getName() override;
-		std::string getValue();
-		void setValue(void*) override;
-	};
-	
+class TableInterface;
 
 class MaterialTable
+	:	public TableInterface
 {
-protected:
-		IdColumn idColumn;
-		NameColumn nameColumn;
-		LambdaColumn lambdaColumn;
-		PriceColumn priceColumn;
-		TypeOfMaterialColumn typeColumn;
-		PriceToLambdaColumn priceLambdaColumn;
-		ProducerColumn producerColumn;
-		LinkColumn linkColumn;
+	//typedef vector <pair<unique_ptr<string>, unique_ptr<string>>> valueVector;
 
-	std::vector<ColumnAbstract*> Fields;
 public:
-	std::vector<ColumnAbstract*>* getFields();
+	//static unique_ptr<MaterialEntity> createEntity(valueVector &initialValues);
+	static bool isNonResultMethod(string& methodName);
 	MaterialTable();
 	~MaterialTable();
 };

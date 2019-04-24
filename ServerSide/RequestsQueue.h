@@ -1,6 +1,6 @@
 #pragma once
 #include "Client.h"
-#include"TranslatorXML.h"
+#include "RequestHandler.h"
 #include "QueueTemplate.h"
 #include "Request.h"
 #include "memory"

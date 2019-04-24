@@ -12,17 +12,17 @@ class RequestHandler;
 class ResponseHandler;
 class RequestsQueue;
 class NonResultQueryQueue;
-class Router;
+//class Router;
 class Client;
 
 
+using ::Router;
 
 	class Server
 	{
 			const unsigned int port;
-
 			// Each of the below classes runs on separated thread
-			Router* router;						// Receives and sednds prepared data from users
+			Router router;						// Receives and sednds prepared data from users
 			RequestHandler* requestHandler;		// Handles users requests, encryption etc.
 			DatabaseHandler* databaseHandler;	// Connection to database
 			ResponseHandler* responseHandler;	// Handles the responses, database querys etc.

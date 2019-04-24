@@ -25,7 +25,7 @@
 			Request* request = Request::unpackPacket(packet, *this);
 			
 			if (request->isCorrect())
-				Client::requestQueuePtr->addItem(request);
+				Client::requestQueuePtr->addItem(*request);
 
 			else delete request;
 		}

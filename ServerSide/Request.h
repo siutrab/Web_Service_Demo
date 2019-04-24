@@ -18,5 +18,5 @@ public:
 	~Request();
 	bool isCorrect();
 	static Request* unpackPacket(Packet& packet, Client& client);
-	string* getRequest();
+	string& getContent();
 };

@@ -20,4 +20,4 @@
 	}
 
 	bool Request::isCorrect() { return correct; }
-	string* Request::getRequest() { return &content; }
+	string& Request::getContent() { return content; }

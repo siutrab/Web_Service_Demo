@@ -168,9 +168,10 @@
     <ClInclude Include="..\..\..\..\..\..\CPP Libraries\Boost\boost_1_70_0\boost\smart_ptr\scoped_ptr.hpp" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="ConnectedClientsList.h" />
-    <ClInclude Include="DataBase.h" />
+    <ClInclude Include="DataBaseMap.h" />
     <ClInclude Include="DatabaseHandler.h" />
-    <ClInclude Include="TableInterface.h" />
+    <ClInclude Include="DocumentXml.h" />
+    <ClInclude Include="MaterialTable.h" />
     <ClInclude Include="ExceptionsSystem.h" />
     <ClInclude Include="MaterialEntity.h" />
     <ClInclude Include="NonResultQuery.h" />
@@ -182,22 +183,23 @@
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Request.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="RequestHandler.h" />
+    <ClInclude Include="RequestHandler2.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResponseHandler.h" />
     <ClInclude Include="ResultQueryQueue.h" />
     <ClInclude Include="Router.h" />
     <ClInclude Include="Server.h" />
-    <ClInclude Include="TranslatorXML.h" />
+    <ClInclude Include="TableInterface.h" />
+    <ClInclude Include="RequestHandler.h" />
     <ClInclude Include="MappingInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ConnectedClientsList.cpp" />
-    <ClCompile Include="DataBase.cpp" />
+    <ClCompile Include="DataBaseMap.cpp" />
     <ClCompile Include="DatabaseHandler.cpp" />
-    <ClCompile Include="TableInterface.cpp" />
-    <ClCompile Include="ExceptionsSystem.cpp" />
+    <ClCompile Include="DocumentXml.cpp" />
+    <ClCompile Include="MaterialTable.cpp" />
     <ClCompile Include="MaterialEntity.cpp" />
     <ClCompile Include="NonResultQuery.cpp" />
     <ClCompile Include="ResultQuery.cpp" />
@@ -212,13 +214,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="RequestHandler.cpp" />
+    <ClCompile Include="RequestHandler2.cpp" />
     <ClCompile Include="ResponseHandler.cpp" />
     <ClCompile Include="ResultQueryQueue.cpp" />
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerSide.cpp" />
-    <ClCompile Include="TranslatorXML.cpp" />
+    <ClCompile Include="RequestHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ServerSide.rc" />

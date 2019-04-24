@@ -37,7 +37,7 @@ int main()
 		xmlns : soap = \"http://www.w3.org/2003/05/soap-envelope/\"			\
 		soap : encodingStyle = \"http://www.w3.org/2003/05/soap-encoding\">	\
 			<soap:Body>														\
-				<table = \"materials\">										\
+				<table name = \"materials\">								\
 					<addMaterial>											\
 						<name> FRONTROCK </name>							\
 						<lambda> 0.034 </lambda>							\

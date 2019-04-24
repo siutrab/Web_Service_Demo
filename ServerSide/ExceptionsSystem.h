@@ -1,8 +1,31 @@
 #pragma once
-class ExceptionsSystem
+#include <string>
+
+using std::string;
+
+class ExceptionInterface
 {
+protected:
+	string value;
 public:
-	ExceptionsSystem();
-	~ExceptionsSystem();
+	string& getValue()
+	{
+		return value;
+	}
 };
 
+struct DatabaseExceptions
+{
+
+	struct QueryException
+	{
+		struct WrongTableName
+			: public ExceptionInterface
+		{
+			WrongTableName()
+			{
+				value = "Wrong table name";
+			}
+		};
+	};
+};

@@ -1,8 +1,14 @@
 #pragma once
+//#include "EntityAbstract.h"
+
+using std::unique_ptr;
+
 class TableInterface
 {
+
 public:
-	TableInterface();
-	~TableInterface();
+	//TableInterface();
+	//virtual ~TableInterface() = 0;
+	
 };
 
