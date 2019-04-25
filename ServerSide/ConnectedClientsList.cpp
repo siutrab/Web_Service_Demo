@@ -1,8 +1,8 @@
 #include "pch.h"
+#include "Router.h"
 #include "ConnectedClientsList.h"
-
-	ConnectedClientsList::ConnectedClientsList(Router& router)
-		:	selector(router.getSelector())
+	ConnectedClientsList::ConnectedClientsList(Router* router)
+		:	selector(router->getSelector())
 	{	}
 
 	ConnectedClientsList::~ConnectedClientsList()

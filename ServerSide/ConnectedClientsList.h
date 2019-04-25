@@ -1,13 +1,18 @@
+#ifndef CONNECTED_CLIENTS_H
+#define CONNECTED_CLIENTS_H
+
 #pragma once
-#include "SFML/Network.hpp"
-#include <map>
 #include "Client.h"
 #include "Router.h"
+#include "SFML/Network.hpp"
+#include <map>
+
+
 
 using std::map;
 using sf::SocketSelector;
 
-class Client;
+
 class Router;
 
 	class ConnectedClientsList
@@ -19,7 +24,7 @@ class Router;
 			map <unsigned int, Client*> clientsMap;	// owner
 			SocketSelector* const selector;
 	public:
-		ConnectedClientsList(Router& router);
+		ConnectedClientsList(Router* router);
 		~ConnectedClientsList();
 
 		Client* addClient();	// Creates a client and returns reference to it 
@@ -27,3 +32,4 @@ class Router;
 		void listen();
 	};
 
+#endif // !CONNECTED_CLIENTS_H

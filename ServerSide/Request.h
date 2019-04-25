@@ -1,3 +1,7 @@
+#ifndef REQUEST_H
+#define REQUEST_H
+
+
 #pragma once
 #include "SFML/Network.hpp"
 #include "Client.h"
@@ -21,3 +25,6 @@ public:
 	static Request* unpackPacket(Packet& packet, Client& client);
 	string& getContent();
 };
+
+
+#endif // !REQUEST_H

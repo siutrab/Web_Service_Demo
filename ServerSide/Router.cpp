@@ -1,12 +1,11 @@
 #include "pch.h"
-#include "Router.h"
-
+#include "Router.h"	
 
 Router::Router(unsigned int port)
 	:	port(port),
 		selector(),
-		listener(*this),
-		clientsList(*this)
+		listener(this),
+		clientsList(this)
 {
 
 }

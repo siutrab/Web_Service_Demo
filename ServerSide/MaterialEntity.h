@@ -1,3 +1,7 @@
+#ifndef MATERIAL_ENTITY_H
+#define MATERIAL_ENTITY_H
+
+
 #pragma once
 #include <vector>
 #include <memory>
@@ -98,3 +102,6 @@ private:
 	// End of WARNING
 
 };
+
+
+#endif // !MATERIAL_ENTITY_H

@@ -1,7 +1,10 @@
+#ifndef MATERIAL_TABLE_H
+#define MATERIAL_TABLE_H
+
+
 #pragma once
 #include <vector>
 #include "MaterialEntity.h"
-//#include "TableInterface.h"
 #include "TableInterface.h"
 
 using std::unique_ptr;
@@ -22,3 +25,4 @@ public:
 	~MaterialTable();
 };
 
+#endif // !MATERIAL_TABLE_H

@@ -1,3 +1,7 @@
+#ifndef DATABASE_MAP_H
+#define DATABASE_MAP_H
+
+
 #pragma once
 #include <list>
 #include "DocumentXml.h"
@@ -35,3 +39,6 @@ public:
 	DataBaseMap();
 	~DataBaseMap();
 };
+
+
+#endif // !DATABASE_MAP_H

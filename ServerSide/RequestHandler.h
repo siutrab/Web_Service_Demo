@@ -1,3 +1,6 @@
+#ifndef REQUEST_HANDLER_H
+#define REQUEST_HANDLER_H
+
 #pragma once
 #include <string.h>
 #include <thread>
@@ -50,3 +53,4 @@ class DocumentXml;
 		
 	};
 
+#endif // !REQUEST_HANDLER_H

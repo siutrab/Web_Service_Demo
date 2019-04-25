@@ -1,3 +1,7 @@
+#ifndef NON_RESULT_QUERY_QUEUE_H
+#define NON_RESULT_QUERY_QUEUE_H
+
+
 #pragma once
 #include <queue>
 #include "jdbc/cppconn/sqlstring.h"
@@ -20,3 +24,4 @@ public:
 	~NonResultQueryQueue();
 };
 
+#endif // !NON_RESULT_QUERY_QUEUE_H

@@ -1,3 +1,5 @@
+#ifndef SERVER_H
+#define SERVER_H
 #pragma once
 #include "RequestHandler.h"
 #include "ResponseHandler.h"
@@ -5,11 +7,6 @@
 #include "NonResultQueryQueue.h"
 #include "DatabaseHandler.h"
 #include "Router.h"
-
-
-class RequestsQueue;
-class NonResultQueryQueue;
-
 
 
 	class Server
@@ -33,3 +30,5 @@ class NonResultQueryQueue;
 		RequestsQueue* getRequestsQueuePtr();
 		
 	};
+
+#endif // !SERVER_H

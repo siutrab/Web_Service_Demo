@@ -183,7 +183,6 @@
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Request.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="RequestHandler2.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResponseHandler.h" />
     <ClInclude Include="ResultQueryQueue.h" />
@@ -214,7 +213,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="RequestHandler2.cpp" />
     <ClCompile Include="ResponseHandler.cpp" />
     <ClCompile Include="ResultQueryQueue.cpp" />
     <ClCompile Include="Router.cpp" />

@@ -1,3 +1,7 @@
+#ifndef REQUEST_QUEUE_H
+#define REQUEST_QUEUE_H
+
+
 #pragma once
 #include "Client.h"
 #include "RequestHandler.h"
@@ -21,3 +25,5 @@ class Request;
 		~RequestsQueue();
 
 	};
+
+#endif // !REQUEST_QUEUE_H

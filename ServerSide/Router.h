@@ -1,8 +1,11 @@
+#ifndef ROUTER_H
+#define ROUTER_H
 #pragma once
 #include "ConnectedClientsList.h"
 #include "Listener.h"
 #include "SFML/Network.hpp"
 #include <thread>
+
 
 using sf::SocketSelector;
 using std::unique_ptr;
@@ -13,10 +16,11 @@ using std::thread;
 			thread ROUTER_THREAD;
 			bool running = false;
 			const unsigned int port;
-			SocketSelector selector;
 
-			ConnectedClientsList clientsList;	// owner
-			Listener listener;					// owner
+			SocketSelector selector;
+			ConnectedClientsList clientsList;
+			Listener listener;
+
 		void run();
 	public:
 		Router(const unsigned int port);
@@ -27,3 +31,6 @@ using std::thread;
 		SocketSelector* getSelector();
 		ConnectedClientsList* getClientsList();
 	};
+
+
+#endif // !ROUTER_H

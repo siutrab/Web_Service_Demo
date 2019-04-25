@@ -129,9 +129,6 @@
     <ClInclude Include="DocumentXml.h">
       <Filter>Server resources\Request Handler\Translator XML</Filter>
     </ClInclude>
-    <ClInclude Include="RequestHandler2.h">
-      <Filter>Server resources\Request Handler</Filter>
-    </ClInclude>
     <ClInclude Include="RequestHandler.h">
       <Filter>Server resources\Request Handler\Translator XML</Filter>
     </ClInclude>
@@ -196,9 +193,6 @@
     </ClCompile>
     <ClCompile Include="DocumentXml.cpp">
       <Filter>Server resources\Request Handler\Translator XML</Filter>
-    </ClCompile>
-    <ClCompile Include="RequestHandler2.cpp">
-      <Filter>Server resources\Request Handler</Filter>
     </ClCompile>
     <ClCompile Include="RequestHandler.cpp">
       <Filter>Server resources\Request Handler\Translator XML</Filter>

@@ -1,3 +1,6 @@
+#ifndef MAPPING_INTERFACE
+#define MAPPING_INTERFACE
+
 #pragma once
 #include "pch.h"
 #include <string>
@@ -82,3 +85,6 @@ class EntityInterface
 		
 		virtual string getTableName() = 0;
 	};
+
+
+#endif // !MAPPING_INTERFACE

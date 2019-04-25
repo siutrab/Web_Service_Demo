@@ -1,3 +1,8 @@
+#ifndef RESULT_QUERY_H
+#define RESULT_QUERY_H
+
+
+
 #pragma once
 #include "Client.h"
 #include "jdbc/cppconn/sqlstring.h"
@@ -12,3 +17,6 @@ public:
 	ResultQuery();
 	~ResultQuery();
 };
+
+
+#endif // !RESULT_QUERY_H

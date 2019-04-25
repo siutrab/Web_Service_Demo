@@ -1,6 +1,10 @@
 #pragma once
 #include <string>
 #include "Request.h"
+#ifndef DOCUMENT_XML_H
+#define DOCUMENT_XML_H
+
+
 #include "pugixml.hpp"
 #include "TableInterface.h"
 
@@ -27,5 +31,7 @@ public:
 	shared_ptr<TableInterface> getTableMap();
 	void setTableMap(TableInterface& table);
 
-
 };
+
+
+#endif // !DOCUMENT_XML_H
