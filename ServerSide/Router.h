@@ -1,5 +1,3 @@
-#ifndef ROUTER_H
-#define ROUTER_H
 #pragma once
 #include "ConnectedClientsList.h"
 #include "Listener.h"
@@ -31,6 +29,3 @@ using std::thread;
 		SocketSelector* getSelector();
 		ConnectedClientsList* getClientsList();
 	};
-
-
-#endif // !ROUTER_H

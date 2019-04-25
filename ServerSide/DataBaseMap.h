@@ -1,15 +1,8 @@
-#ifndef DATABASE_MAP_H
-#define DATABASE_MAP_H
-
-
 #pragma once
 #include <list>
 #include "DocumentXml.h"
 #include "TableInterface.h"
-//#include "MaterialTable.h"
 #include "MaterialTable.h"
-
-//#include "ExceptionsSystem.h"
 
 using std::list;
 using std::pair;
@@ -18,7 +11,6 @@ using std::shared_ptr;
 
 class DocumentXml;
 class TableInterface;
-//class MaterialTable;
 class MaterialTable;
 
 class DataBaseMap
@@ -39,6 +31,3 @@ public:
 	DataBaseMap();
 	~DataBaseMap();
 };
-
-
-#endif // !DATABASE_MAP_H

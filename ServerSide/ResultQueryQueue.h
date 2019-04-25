@@ -1,20 +1,13 @@
-#ifndef RESULT_QUERY_QUEUE_H
-#define RESULT_QUERY_QUEUE_H
-
-
 #pragma once
 #include "QueueTemplate.h"
-#include "ResultQuery.h"
+#include "Query.h"
 
-
-class ResultQuery;
+class Query;
 
 class ResultQueryQueue
-	: public Queue<ResultQuery>
+	: public Queue<Query>
 {
 public:
 	ResultQueryQueue();
 	~ResultQueryQueue();
 };
-
-#endif // !RESULT_QUERY_QUEUE_H

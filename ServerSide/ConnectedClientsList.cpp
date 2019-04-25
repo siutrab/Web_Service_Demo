@@ -7,13 +7,13 @@
 
 	ConnectedClientsList::~ConnectedClientsList()
 	{
-		for (auto i = clientsMap.begin(); i != clientsMap.end(); ++i)
-		{
-			mapPair pair = *i;
-			Client* client = pair.second;
-			delete client;
-			client = nullptr;
-		}
+		//for (auto i = clientsMap.begin(); i != clientsMap.end(); ++i)
+		//{
+		//	mapPair pair = *i;
+		//	Client* client = pair.second;
+		//	delete client;
+		//	client = nullptr;
+		//}
 	}
 
 // methods
@@ -28,9 +28,6 @@
 
 	void ConnectedClientsList::deleteClient(const unsigned int index)
 	{
-		Client* client = clientsMap[index];
-		delete client;
-		client = nullptr;
 		clientsMap.erase(index);
 	}
 
@@ -39,7 +36,7 @@
 		for (auto i = clientsMap.begin(); i != clientsMap.end(); ++i)
 		{
 			mapPair pair = *i;
-			Client* client = pair.second;
+			shared_ptr<Client> client = pair.second;
 			TcpSocket* socket = client->getSocket();
 
 			if (selector->isReady(*socket))

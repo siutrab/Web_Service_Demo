@@ -166,6 +166,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\CPP Libraries\Boost\boost_1_70_0\boost\smart_ptr\scoped_ptr.hpp" />
+    <ClInclude Include="AddMaterialsMethod.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="ConnectedClientsList.h" />
     <ClInclude Include="DataBaseMap.h" />
@@ -174,8 +175,8 @@
     <ClInclude Include="MaterialTable.h" />
     <ClInclude Include="ExceptionsSystem.h" />
     <ClInclude Include="MaterialEntity.h" />
-    <ClInclude Include="NonResultQuery.h" />
-    <ClInclude Include="ResultQuery.h" />
+    <ClInclude Include="MethodInterface.h" />
+    <ClInclude Include="Query.h" />
     <ClInclude Include="QueryGenerator.h" />
     <ClInclude Include="NonResultQueryQueue.h" />
     <ClInclude Include="QueueTemplate.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="MappingInterface.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddMaterialsMethod.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ConnectedClientsList.cpp" />
     <ClCompile Include="DataBaseMap.cpp" />
@@ -200,8 +202,7 @@
     <ClCompile Include="DocumentXml.cpp" />
     <ClCompile Include="MaterialTable.cpp" />
     <ClCompile Include="MaterialEntity.cpp" />
-    <ClCompile Include="NonResultQuery.cpp" />
-    <ClCompile Include="ResultQuery.cpp" />
+    <ClCompile Include="Query.cpp" />
     <ClCompile Include="QueryGenerator.cpp" />
     <ClCompile Include="NonResultQueryQueue.cpp" />
     <ClCompile Include="RequestsQueue.cpp" />

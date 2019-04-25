@@ -6,9 +6,7 @@ Router::Router(unsigned int port)
 		selector(),
 		listener(this),
 		clientsList(this)
-{
-
-}
+{	}
 
 void Router::start()
 {
@@ -18,7 +16,6 @@ void Router::start()
 Router::~Router()
 {
 	stop();
-
 }
 
 void Router::run() 
@@ -29,7 +26,7 @@ void Router::run()
 		// Selector waits for data at any socket
 		if (selector.wait())
 		{
-			this->listener.listen();
+			listener.listen();
 			clientsList.listen();
 		}
 	}

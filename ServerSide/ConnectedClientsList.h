@@ -1,6 +1,3 @@
-#ifndef CONNECTED_CLIENTS_H
-#define CONNECTED_CLIENTS_H
-
 #pragma once
 #include "Client.h"
 #include "Router.h"
@@ -17,11 +14,11 @@ class Router;
 
 	class ConnectedClientsList
 	{
-		typedef std::pair<unsigned int, Client*> mapPair;
+		typedef std::pair<unsigned int, shared_ptr<Client>> mapPair;
 
 			unsigned int numberOfClients;
 			unsigned int clientUniqueNumber = 0;
-			map <unsigned int, Client*> clientsMap;	// owner
+			map <const unsigned int, shared_ptr<Client>> clientsMap;	// owner
 			SocketSelector* const selector;
 	public:
 		ConnectedClientsList(Router* router);
@@ -32,4 +29,3 @@ class Router;
 		void listen();
 	};
 
-#endif // !CONNECTED_CLIENTS_H

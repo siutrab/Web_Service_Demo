@@ -1,6 +1,3 @@
-#ifndef LISTENER_H
-#define LISTENER_H
-
 #pragma once
 #include "SFML/Network.hpp"
 
@@ -24,5 +21,3 @@ class ConnectedClientsList;
 		void listen();
 	};
 
-
-#endif // !LISTENER_H
