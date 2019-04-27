@@ -17,6 +17,7 @@ public:
 		float			lambda,
 		float			price,
 		float			priceLambda,
+		unsigned short	width,
 		string&			name,
 		string&			link,
 		string&			materialType,
@@ -63,6 +64,15 @@ private:
 			PriceToLambdaColumn(float value) : FieldTemplate(value) {}
 			unique_ptr<string> getColumnName() override { return (unique_ptr<string>(new string("price_to_lambda"))); }
 		};
+
+	class WidthColumn
+		: public FieldTemplate<unsigned short>
+	{
+	public:
+
+		WidthColumn(unsigned short value) : FieldTemplate(value) {}
+		unique_ptr<string> getColumnName() override { return (unique_ptr<string>(new string("width"))); }
+	};
 
 	class NameColumn
 		: public FieldTemplate<string>

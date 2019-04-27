@@ -13,7 +13,7 @@ class ParameterInterface
 {
 public:
 	virtual void* getValue() = 0;
-	virtual string& getName() = 0;
+	virtual string& getXmlName() = 0;
 	virtual bool setValue(string& valueString) = 0;
 };
 
@@ -23,11 +23,11 @@ class Parameter
 	: public ParameterInterface
 {
 	T value;
-	string name;
+	string nameXml;
 public:
-	Parameter(string& name)
-		:	value(value),
-			name(name)
+	Parameter(string& nameXml)
+		:	nameXml(nameXml)
+
 	{	}
 
 	bool setValue(string& valueString) override
@@ -44,7 +44,7 @@ public:
 	}
 
 	void* getValue() override { return &value; }
-	string& getXmlName() override { return name; }
+	string& getXmlName() override { return nameXml; }
 };
 
 
@@ -58,7 +58,8 @@ protected:
 public:
 	virtual ~MethodInterface() {}
 	virtual void mapArguments(DocumentXml& document) = 0;
-	virtual std::vector<argument>* getArguments() = 0;
+	virtual shared_ptr<Query> generateQuery() = 0;
+	//virtual std::vector<argument>* getArguments() = 0;
 	virtual unique_ptr<string> getMethodName() = 0;
 
 };
