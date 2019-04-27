@@ -7,6 +7,7 @@ class TableInterface
 {
 
 public:
+	virtual string getTableName() = 0;
 	//TableInterface();
 	//virtual ~TableInterface() = 0;
 	

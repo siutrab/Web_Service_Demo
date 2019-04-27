@@ -135,11 +135,17 @@
     <ClInclude Include="MethodInterface.h">
       <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper</Filter>
     </ClInclude>
-    <ClInclude Include="AddMaterialsMethod.h">
-      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper\All methods</Filter>
-    </ClInclude>
     <ClInclude Include="Query.h">
       <Filter>Server resources\Queues resources\QueryQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="TranslatorXml.h">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateMethod.h">
+      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper\All methods</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodsMapper.h">
+      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -200,11 +206,17 @@
     <ClCompile Include="RequestHandler.cpp">
       <Filter>Server resources\Request Handler\Translator XML</Filter>
     </ClCompile>
-    <ClCompile Include="AddMaterialsMethod.cpp">
-      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper\All methods</Filter>
-    </ClCompile>
     <ClCompile Include="Query.cpp">
       <Filter>Server resources\Queues resources\QueryQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="TranslatorXml.cpp">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateMethod.cpp">
+      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper\All methods</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodsMapper.cpp">
+      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

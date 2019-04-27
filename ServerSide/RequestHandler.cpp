@@ -23,33 +23,7 @@ RequestHandler::~RequestHandler()
 
 void RequestHandler::translateRequest()
 {
-	//unique_ptr<LoadedXmlDocument> document = loadXmlDocument();		// << --- loadXmlDocument method needs REFACTOR!!!
-	if (document->isLoadedSuccesfully())
-	{
-		//pugi::xml_node tableNode = document->document.document_element();
-		//pugi::xml_attribute attribute;
-		//attribute = tableNode.first_attribute();
-
-		dataBaseMap->assignTableMap(*document);
-		if (document->tableIsAssigned())
-		{
-
-		}
-		//try
-		//{
-		//	pugi::xml_node tableNode = document->document.child("table");
-		//	string tableName = tableNode.attribute("name").value();
-
-		//	TableInterface* tableMap = dataBaseMap->findTable(tableName);	// WARNING!!! throws exception
-		//}
-		//catch(ExceptionInterface)
-		//{
-
-		//}
-
-		
-		//std::cout << "\nname: " << blahNode.name() << std::endl << "value: "<< blahNode.first_child().child_value() << std::endl;
-	}
+	
 }
 
 
@@ -78,21 +52,3 @@ void RequestHandler::stop()
 	running = false;
 	//std::thread::join();
 }
-
-//	I REALLY NEED REFACTOR!!!!
-//unique_ptr<LoadedXmlDocument> RequestHandler::loadXmlDocument()
-//{
-//	unique_ptr<LoadedXmlDocument> loadedDocument(new LoadedXmlDocument());
-//	
-//	if (requestsQueue->isEmpty())
-//		loadedDocument->loadedSuccesfully = false;
-//	else 
-//	{
-//		Request& request = requestsQueue->getItem();
-//		string* requestString = request->getContent();
-//		const char* charString = requestString->c_str();
-//		loadedDocument->document.load_string(charString);
-//		loadedDocument->loadedSuccesfully = true;
-//	}
-//	return loadedDocument;	
-//}

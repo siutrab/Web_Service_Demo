@@ -7,6 +7,7 @@ class ExceptionInterface
 {
 protected:
 	string value;
+	unsigned int id;
 public:
 	string& getValue()
 	{
@@ -14,18 +15,33 @@ public:
 	}
 };
 
-struct DatabaseExceptions
+struct ServerExceptions
 {
 
-	struct QueryException
+	struct QueryMappingExceptions
 	{
 		struct WrongTableName
 			: public ExceptionInterface
 		{
-			WrongTableName()
-			{
-				value = "Wrong table name";
-			}
+			WrongTableName() { value = "Wrong table name."; }
+		};
+
+		struct WrongArgument
+			: public ExceptionInterface
+		{
+			WrongArgument() { value = "Can't call function. Wrong arguments have been given."; }
+		};
+
+		struct WrongMethodName
+			: public ExceptionInterface
+		{
+			WrongMethodName() { value = "Wrong method name."; }
+		};
+
+		struct NodeNotFound
+			: public ExceptionInterface
+		{
+			NodeNotFound() { value = "Node was not found."; }
 		};
 	};
 };

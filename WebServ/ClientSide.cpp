@@ -38,7 +38,7 @@ int main()
 		soap : encodingStyle = \"http://www.w3.org/2003/05/soap-encoding\">	\
 			<soap:Body>														\
 				<table name = \"materials\">								\
-					<addMaterial>											\
+					<method name = \"create\">								\
 						<name> FRONTROCK </name>							\
 						<lambda> 0.034 </lambda>							\
 						<widths number = \"5\">								\
@@ -52,8 +52,8 @@ int main()
 						<type> wool </type>									\
 						<producer> ROCKWOOL </producer>						\
 						<link> www.rockwool.pl </link>						\
-					</addMaterial>											\
-				</materials>												\
+					</method>												\
+				</table>													\
 			</soap:Body>													\
 		< / soap:Envelope>");
 }

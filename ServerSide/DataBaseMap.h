@@ -3,6 +3,7 @@
 #include "DocumentXml.h"
 #include "TableInterface.h"
 #include "MaterialTable.h"
+#include "ExceptionsSystem.h"
 
 using std::list;
 using std::pair;
@@ -15,17 +16,11 @@ class MaterialTable;
 
 class DataBaseMap
 {
-	typedef pair<string, shared_ptr<TableInterface>> TablePair;
-	typedef vector<TablePair> TableList;
-	
-	unique_ptr<TableList> tableList;
-
-	shared_ptr<TableInterface> foundTable;
+	vector<shared_ptr<TableInterface>> tableList;
 
 
-	bool thereIsTable(string& tableName);
 public:
-	// TableInterface* findTable(string &tableName);
+	shared_ptr<TableInterface> findTable(string &tableName);
 
 	void assignTableMap(DocumentXml& document);
 	DataBaseMap();

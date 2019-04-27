@@ -1,7 +1,3 @@
-#ifndef QUERY_GENERATOR_H
-#define QUERY_GENERATOR_H
-
-
 #pragma once
 #include"jdbc/cppconn/sqlstring.h"
 #include "MappingInterface.h"
@@ -30,6 +26,3 @@ class DatabaseHandler;
 		unique_ptr<SQLString> selectAll(EntityInterface &entity);
 		unique_ptr<SQLString> selectOrderBy(EntityInterface &entity, unsigned short columnIndex);
 	};
-
-
-#endif // !QUERY_GENERATOR_H

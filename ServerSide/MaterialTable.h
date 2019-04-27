@@ -1,7 +1,3 @@
-#ifndef MATERIAL_TABLE_H
-#define MATERIAL_TABLE_H
-
-
 #pragma once
 #include <vector>
 #include "MaterialEntity.h"
@@ -16,13 +12,13 @@ class TableInterface;
 class MaterialTable
 	:	public TableInterface
 {
-	//typedef vector <pair<unique_ptr<string>, unique_ptr<string>>> valueVector;
 
 public:
+
 	//static unique_ptr<MaterialEntity> createEntity(valueVector &initialValues);
-	static bool isNonResultMethod(string& methodName);
+	//static bool isNonResultMethod(string& methodName);
 	MaterialTable();
 	~MaterialTable();
+	string getTableName() override;
 };
 
-#endif // !MATERIAL_TABLE_H

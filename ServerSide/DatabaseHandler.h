@@ -1,7 +1,3 @@
-#ifndef DATABASE_HANDLER_H
-#define DATABASE_HANDLER_H
-
-
 #pragma once
 #include "jdbc/mysql_connection.h"
 #include "jdbc/mysql_driver.h"
@@ -71,4 +67,3 @@ class QueryGenerator;
 		//static void setQueryQueuePointer(QueryQueue* pointer);
 	};
 
-#endif // !DATABASE_HANDLER_H

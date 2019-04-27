@@ -16,13 +16,15 @@ MaterialTable::MaterialTable()
 }
 
 MaterialTable::~MaterialTable()
-{}
+{	}
 
-bool MaterialTable::isNonResultMethod(string& methodName)
-{
-	if (methodName == "addMaterial") return true;
-	else return false;
-}
+string MaterialTable::getTableName() { return "materials"; }
+
+//bool MaterialTable::isNonResultMethod(string& methodName)
+//{
+//	if (methodName == "addMaterial") return true;
+//	else return false;
+//}
 //
 //string a = "			<name> FRONTROCK < / name>							\
 //						<lambda> 0.034 < / lambda>							\

@@ -1,6 +1,3 @@
-#ifndef MAPPING_INTERFACE
-#define MAPPING_INTERFACE
-
 #pragma once
 #include "pch.h"
 #include <string>
@@ -10,7 +7,6 @@
 
 using std::vector;
 using std::string;
-using std::stringstream;
 using std::unique_ptr;
 
 class FieldInterface
@@ -53,7 +49,7 @@ template <typename T>
 		unique_ptr<string> getValueAsString() override
 		{
 			unique_ptr<string> str(new string());
-			stringstream StringStream;
+			std::stringstream StringStream;
 
 			StringStream << std::fixed << storedValue;
 
@@ -85,6 +81,3 @@ class EntityInterface
 		
 		virtual string getTableName() = 0;
 	};
-
-
-#endif // !MAPPING_INTERFACE

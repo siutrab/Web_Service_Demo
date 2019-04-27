@@ -1,12 +1,12 @@
-#include "ResultQuery.h"
+#include "Query.h"
 
 
 
-ResultQuery::ResultQuery()
+Query::Query()
 {
 }
 
 
-ResultQuery::~ResultQuery()
+Query::~Query()
 {
 }
