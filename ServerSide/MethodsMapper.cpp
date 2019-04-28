@@ -1,5 +1,5 @@
-#include "MethodsMapper.h"
-
+//#include "MethodsMapper.h"
+#include "TranslatorXml.h"
 
 
 MethodsMapper::MethodsMapper()

@@ -1,17 +1,25 @@
 #include "CreateMethod.h"
 
+string CreateMethod::ParametersCollection::lambda = "lambda";
+string CreateMethod::ParametersCollection::price = "price";
+string CreateMethod::ParametersCollection::name = "name";
+string CreateMethod::ParametersCollection::link = "link";
+string CreateMethod::ParametersCollection::materialType = "type";
+string CreateMethod::ParametersCollection::producer = "producer";
+
+
 typedef shared_ptr<ParameterInterface> parameter;
 
-CreateMethod::ParametersCollection CreateMethod::parametersCollection;
+//CreateMethod::ParametersCollection CreateMethod::parametersCollection;
 
 std::vector<parameter> CreateMethod::parametersList
 {
-	parameter(new Parameter<float>(parametersCollection.lambda)),
-	parameter(new Parameter<float>(parametersCollection.price)),
-	parameter(new Parameter<string>(parametersCollection.name)),
-	parameter(new Parameter<string>(parametersCollection.link)),
-	parameter(new Parameter<string>(parametersCollection.materialType)),
-	parameter(new Parameter<string>(parametersCollection.producer))
+	parameter(new Parameter<float>(ParametersCollection::lambda)),
+	parameter(new Parameter<float>(ParametersCollection::price)),
+	parameter(new Parameter<string>(ParametersCollection::name)),
+	parameter(new Parameter<string>(ParametersCollection::link)),
+	parameter(new Parameter<string>(ParametersCollection::materialType)),
+	parameter(new Parameter<string>(ParametersCollection::producer))
 };
 
 vector<unique_ptr<MaterialEntity>> CreateMethod::generateEntities()

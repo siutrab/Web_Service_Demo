@@ -1,7 +1,5 @@
 #pragma once
-#include <memory>
 
-using std::shared_ptr;
 class Client;
 
 template<typename T>
@@ -19,8 +17,6 @@ public:
 	~Content(){}
 	bool isValid() { return valid; }
 	bool recognizeInvalid() { valid = false; }
-	//T* getContent() { return contentValue; }
-	//void setContent(T& content) {contentValue = content; }
 };
 
 template<typename T>
@@ -30,7 +26,6 @@ protected:
 		unsigned int id;
 		Client* client;
 		Content<T> content;
-
 
 public:
 	QueueItem(Client* client, T& content)
@@ -42,10 +37,7 @@ public:
 
 	unsigned int getId() const { return id; }
 	Client* getClient() { return client; }
-	T* getContent() 
-	{
-		return &content.contentValue;
-	}
+	T* getContent() { return &content.contentValue;	}
 	
 	template<typename T>
 	bool changeContent(T* newContent)

@@ -1,8 +1,19 @@
+#include "MethodsMapper.h"
 #include "TranslatorXml.h"
 
+	RequestQueue* TranslatorXml::requestQueuePtr;
+
+	void TranslatorXml::setRequestQueuePtr(RequestQueue* pointer)
+	{
+		TranslatorXml::requestQueuePtr = pointer; // Settet in RequestsQueue object
+		const_cast<const RequestQueue*>(TranslatorXml::requestQueuePtr);
+	}
 
 
 TranslatorXml::TranslatorXml()
+	: running(false),
+	methodsMapper(),
+	dataBaseMap()
 {
 }
 
@@ -11,10 +22,31 @@ TranslatorXml::~TranslatorXml()
 {
 }
 
+void TranslatorXml::start()
+{
+	TRANSLATOR_XML_THREAD = std::thread(&TranslatorXml::run, this);
+}
+
+void TranslatorXml::stop()
+{
+	TRANSLATOR_XML_THREAD.join();
+	running = false;
+}
+
+void TranslatorXml::run()
+{
+	running = true;
+	while (running)
+	{
+		loadDocument();
+		translateDocument();
+	}
+}
+
 bool TranslatorXml::translateDocument()
 {
 
-	loadDocument();
+	
 	findTable();
 	findMethod();
 	return false;

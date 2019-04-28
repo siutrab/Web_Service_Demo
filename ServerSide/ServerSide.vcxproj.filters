@@ -111,9 +111,6 @@
     <ClInclude Include="ResultQueryQueue.h">
       <Filter>Server resources\Queues resources\QueryQueue\ResultQueryQueue</Filter>
     </ClInclude>
-    <ClInclude Include="RequestsQueue.h">
-      <Filter>Server resources\Queues resources\RequestQueue</Filter>
-    </ClInclude>
     <ClInclude Include="MaterialTable.h">
       <Filter>Server resources\Request Handler\Translator XML\Database Mapper\Database Tables</Filter>
     </ClInclude>
@@ -149,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="QueueItem.h">
       <Filter>Server resources\Queues resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestQueue.h">
+      <Filter>Server resources\Queues resources\RequestQueue</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -191,9 +191,6 @@
     <ClCompile Include="ResultQueryQueue.cpp">
       <Filter>Server resources\Queues resources\QueryQueue\ResultQueryQueue</Filter>
     </ClCompile>
-    <ClCompile Include="RequestsQueue.cpp">
-      <Filter>Server resources\Queues resources\RequestQueue</Filter>
-    </ClCompile>
     <ClCompile Include="MaterialTable.cpp">
       <Filter>Server resources\Request Handler\Translator XML\Database Mapper\Database Tables</Filter>
     </ClCompile>
@@ -220,6 +217,9 @@
     </ClCompile>
     <ClCompile Include="QueryGenerator.cpp">
       <Filter>Server resources\Request Handler\Translator XML</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestQueue.cpp">
+      <Filter>Server resources\Queues resources\RequestQueue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

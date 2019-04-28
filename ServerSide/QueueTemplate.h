@@ -5,8 +5,8 @@
 #include "QueueItem.h"
 
 using std::queue;
-
-template<typename> class QueueItem;
+using std::shared_ptr;
+//template<typename> class QueueItem;
 
 template<typename T>
 class Queue
@@ -22,14 +22,14 @@ public:
 		else return false;
 	}
 
-	void addItem(shared_ptr<T> item)
+	void addItem(shared_ptr<T>& item)
 	{
 		itemQueue.push(item);
 	}
 
-	shared_ptr<T> getItem() 
+	shared_ptr<T>& getItem()
 	{
-		shared_ptr<T> item = itemQueue.front();
+		shared_ptr<T>& item = itemQueue.front();
 		itemQueue.pop();
 		return item;
 	}

@@ -5,16 +5,16 @@
 	Server::Server(const unsigned int port)
 		:	port(port),
 			requestsQueue(),
-			nonResultQuery(),
+			//nonResultQuery(),
 			router(port),
-			requestHandler(),
+			//requestHandler(),
 			databaseHandler()
 	{
 	// WARNING!!! don't move these parts to initialization list. 
-	//	Request queues have to be initialized first
+	// Request queue have to be initialized first
 	// because they initialize static members of classes under this comments
 	// WARNING!!! each of below runs on different threads
-		requestHandler.start();
+		//requestHandler.start();
 		databaseHandler.start();
 		router.start();
 	}
@@ -29,4 +29,4 @@
 	void Server::stop()
 	{	}
 
-	RequestQueue* Server::getRequestsQueuePtr() { return &requestsQueue; }
+	//RequestQueue* Server::getRequestsQueuePtr() { return &requestsQueue; }

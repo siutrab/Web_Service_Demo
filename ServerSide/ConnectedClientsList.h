@@ -1,9 +1,8 @@
 #pragma once
+//#include "Router.h"
 #include "Client.h"
-#include "Router.h"
 #include "SFML/Network.hpp"
 #include <map>
-
 
 
 using std::map;

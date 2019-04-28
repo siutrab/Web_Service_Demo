@@ -1,9 +1,10 @@
 #pragma once
-#include "pch.h"
+//#include "pch.h"
 #include <string>
 #include <vector>
 #include <sstream>
 #include <iostream>
+#include <memory>
 
 using std::vector;
 using std::string;
@@ -60,24 +61,24 @@ template <typename T>
 
 
 class EntityInterface
-	{
-	protected:
-		vector<unique_ptr<FieldInterface>> fieldsVector;
-	public:
-		vector<unique_ptr<FieldInterface>>* getFieldsVector() { return &fieldsVector; }
+{
+protected:
+	vector<unique_ptr<FieldInterface>> fieldsVector;
+public:
+	vector<unique_ptr<FieldInterface>>* getFieldsVector() { return &fieldsVector; }
 
-		template<typename T>
-		T* getValue(unsigned short index)	
-		{ 
-			if (index < fieldsVector.size())
-			{
-				return static_cast<T*>(fieldsVector[index]->getValue());
-			}
-			else
-			{
-				return nullptr;
-			}
+	template<typename T>
+	T* getValue(unsigned short index)	
+	{ 
+		if (index < fieldsVector.size())
+		{
+			return static_cast<T*>(fieldsVector[index]->getValue());
 		}
+		else
+		{
+			return nullptr;
+		}
+	}
 		
-		virtual string getTableName() = 0;
-	};
+	virtual string getTableName() = 0;
+};

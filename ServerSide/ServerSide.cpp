@@ -1,8 +1,8 @@
 ﻿#include "pch.h"
 #include "Server.h"
-#include "DatabaseHandler.h"
+//#include "DatabaseHandler.h"
 #include <iostream>
-#include "QueryGenerator.h"
+//#include "QueryGenerator.h"
 
 using std::unique_ptr;
 

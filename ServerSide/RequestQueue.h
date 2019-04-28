@@ -1,15 +1,14 @@
 #pragma once
-#include "Client.h"
-#include "RequestHandler.h"
-#include "Request.h"
-#include <memory>
+#include "TranslatorXml.h"
 #include "QueueTemplate.h"
+#include <memory>
 
 using std::queue;
 using std::unique_ptr;
 
 class Client;
 class Request;
+class TranslatorXml;
 
 	class RequestQueue
 		: public Queue<Request>

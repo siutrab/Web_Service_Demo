@@ -1,7 +1,5 @@
 #pragma once
 #include <list>
-#include "DocumentXml.h"
-#include "TableInterface.h"
 #include "MaterialTable.h"
 #include "ExceptionsSystem.h"
 
@@ -22,7 +20,7 @@ class DataBaseMap
 public:
 	shared_ptr<TableInterface> findTable(string &tableName);
 
-	void assignTableMap(DocumentXml& document);
+	//void assignTableMap(DocumentXml& document);
 	DataBaseMap();
 	~DataBaseMap();
 };

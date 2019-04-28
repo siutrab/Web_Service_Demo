@@ -1,5 +1,4 @@
 #pragma once
-#include "Client.h"
 #include "jdbc/cppconn/sqlstring.h"
 class Client;
 

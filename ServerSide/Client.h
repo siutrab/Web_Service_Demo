@@ -1,15 +1,12 @@
-#ifndef CLIENT_H
-#define CLIENT_H
 #pragma once
 #include "SFML/Network.hpp"
-#include "RequestsQueue.h"
+#include "RequestQueue.h"
+#include <memory>
 
-
-
+using std::unique_ptr;
 using sf::TcpSocket;
 using sf::Packet;
 
-//class Response;
 class RequestQueue;
 
 	class Client
@@ -30,4 +27,3 @@ class RequestQueue;
 		static void setRequestQueuePtr(RequestQueue* const pointer);
 	};
 
-#endif // !CLIENT_H

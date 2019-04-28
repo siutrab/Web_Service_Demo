@@ -1,16 +1,19 @@
 #pragma once
 #include <string>
 #include "pugixml.hpp"
+#include <memory>
 
 #include "Request.h"
 #include "TableInterface.h"
-#include "ExceptionsSystem.h"
+
 #include "boost/lexical_cast.hpp"
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
 
 using std::string;
 using std::shared_ptr;
+using std::unique_ptr;
 using pugi::xml_document;
+using std::vector;
 
 class Request;
 

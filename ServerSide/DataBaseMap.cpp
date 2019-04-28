@@ -1,5 +1,6 @@
 #include "DataBaseMap.h"
-#include "ExceptionsSystem.h"
+#include "TranslatorXml.h"
+
 
 typedef pair<string, TableInterface*> TablePair;
 typedef vector<TablePair> TableList;

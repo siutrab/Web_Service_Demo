@@ -1,10 +1,15 @@
 #pragma once
-#include "MethodInterface.h"
-#include "MaterialEntity.h"
+#include "DocumentXml.h"
 #include "boost/lexical_cast.hpp"
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
+#include <memory>
+#include <string>
 
+using std::shared_ptr;
 using std::string;
+
+class DocumentXml;
+class Query;
 
 class CreateMethod
 	: public MethodInterface
@@ -12,15 +17,14 @@ class CreateMethod
 private:
 	struct ParametersCollection
 	{	
-		string lambda = "lambda";
-		string price = "price";
-		string name = "name";
-		string link = "link";
-		string materialType = "type";
-		string producer = "producer";
+		static string lambda;// = "lambda";
+		static string price;// = "price";
+		static string name;// = "name";
+		static string link;// = "link";
+		static string materialType;// = "type";
+		static string producer;// = "producer";
 	};
 
-		static ParametersCollection parametersCollection;
 
 		typedef shared_ptr<ParameterInterface> parameter;
 		static std::vector<parameter> parametersList;

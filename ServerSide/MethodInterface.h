@@ -1,13 +1,18 @@
 #pragma once
 #include <string>
+#include <memory>
 #include <utility>
 #include <vector>
-#include "MappingInterface.h"
 #include "Query.h"
 #include "boost/lexical_cast.hpp"
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
 
 using std::string;
+using std::shared_ptr;
+using std::unique_ptr;
+
+class DocumentXml;
+class Query;
 
 class ParameterInterface
 {

@@ -1,7 +1,6 @@
 #include "DocumentXml.h"
 
 
-
 DocumentXml::DocumentXml(Request& request)
 	:	valid(false)
 {

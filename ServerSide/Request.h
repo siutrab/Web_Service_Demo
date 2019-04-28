@@ -15,14 +15,8 @@ class Client;
 class Request
 	: public QueueItem<string>
 {
-		//string content;
-		//Client* const clientPointer;
-		bool correct = false;
-	
 	Request(Client* client, string& content);
 public:
 	~Request();
-	bool isCorrect();
 	static shared_ptr<Request> unpackPacket(Packet& packet, Client* client);
-	//string& getContent();
 };

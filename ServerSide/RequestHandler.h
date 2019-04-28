@@ -1,13 +1,10 @@
-#ifndef REQUEST_HANDLER_H
-#define REQUEST_HANDLER_H
-
 #pragma once
 #include <string.h>
 #include <thread>
 #include "pugixml.hpp"
 
 #include "Request.h"
-#include "RequestsQueue.h"
+#include "RequestQueue.h"
 #include "MaterialEntity.h"
 #include "DataBaseMap.h"
 #include "DocumentXml.h"
@@ -21,11 +18,7 @@ using pugi::xml_document;
 class RequestQueue;
 class DataBaseMap;
 class DocumentXml;
-	//struct LoadedXmlDocument
-	//{
-	//	bool loadedSuccesfully;
-	//	xml_document document;
-	//};
+
 
 
 	class RequestHandler
@@ -33,7 +26,7 @@ class DocumentXml;
 		thread REQUEST_HANDLER_THREAD;
 		bool running;
 			static RequestQueue* requestsQueue;
-			//unique_ptr<LoadedXmlDocument> loadXmlDocument();
+			
 			
 			unique_ptr<DataBaseMap> dataBaseMap;	// Owner
 			DocumentXml* document;
@@ -52,5 +45,3 @@ class DocumentXml;
 
 		
 	};
-
-#endif // !REQUEST_HANDLER_H

@@ -1,12 +1,23 @@
 #pragma once
-#include "DocumentXml.h"
-#include "TableInterface.h"
+
 #include "MethodInterface.h"
+#include "DataBaseMap.h"
 #include "MethodsMapper.h"
-#include "RequestsQueue.h"
+#include <thread>
+
+class RequestQueue;
+class DataBaseMap;
+class MethodInterface;
+class TableInterface;
+class MethodsMapper;
 
 class TranslatorXml
 {
+	std::thread TRANSLATOR_XML_THREAD;
+	bool running;
+
+	static RequestQueue* requestQueuePtr;
+
 	DataBaseMap dataBaseMap;
 	MethodsMapper methodsMapper;
 		DocumentXml* document;
@@ -29,6 +40,7 @@ public:
 	void start();
 	void stop();
 
+	static void setRequestQueuePtr(RequestQueue* const pointer);
 
 };
 
