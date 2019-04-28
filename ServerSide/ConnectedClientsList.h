@@ -1,6 +1,7 @@
 #pragma once
 //#include "Router.h"
-#include "Client.h"
+//#include "Client.h"
+#include "RequestQueue.h"
 #include "SFML/Network.hpp"
 #include <map>
 

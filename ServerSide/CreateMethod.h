@@ -8,8 +8,11 @@
 using std::shared_ptr;
 using std::string;
 
-class DocumentXml;
-class Query;
+//class DocumentXml;
+//class Query;
+//class MaterialEntity;
+//class ParameterInterface;
+//class MethodInterface;
 
 class CreateMethod
 	: public MethodInterface

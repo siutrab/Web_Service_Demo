@@ -10,7 +10,7 @@
 #include "QueryGenerator.h"
 
 #include <thread>
-
+#include <memory>
 using std::string;
 using sql::SQLString;
 using sql::mysql::MySQL_Driver;
@@ -21,7 +21,8 @@ using std::unique_ptr;
 using::std::thread;
 
 
-class MaterialEntity;
+//class EntityInterface;
+//class MaterialEntity;
 class Server;
 class QueryGenerator;
 

@@ -1,4 +1,4 @@
-#include "MethodsMapper.h"
+//#include "MethodsMapper.h"
 #include "TranslatorXml.h"
 
 	RequestQueue* TranslatorXml::requestQueuePtr;
