@@ -1,11 +1,7 @@
 #pragma once
-//#include "RequestHandler.h"
-//#include "ResponseHandler.h"
 
 #include "Router.h"
 
-//#include "RequestQueue.h"
-//#include "NonResultQueryQueue.h"
 #include "DatabaseHandler.h"
 
 
@@ -14,6 +10,7 @@
 			const unsigned int port;
 			// Each of the below classes runs on separated thread
 			Router router;						// Receives and sednds prepared data from users
+			TranslatorXml translatorXml;
 			//RequestHandler requestHandler;		// Handles users requests, encryption etc.
 			DatabaseHandler databaseHandler;	// Connection to database
 			//ResponseHandler responseHandler;	// Handles the responses, database querys etc.

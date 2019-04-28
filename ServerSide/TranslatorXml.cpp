@@ -44,9 +44,7 @@ void TranslatorXml::run()
 }
 
 bool TranslatorXml::translateDocument()
-{
-
-	
+{	
 	findTable();
 	findMethod();
 	return false;
@@ -54,7 +52,7 @@ bool TranslatorXml::translateDocument()
 
 void TranslatorXml::loadDocument()
 {
-
+	shared_ptr<Request> request = requestQueuePtr->getItem();
 }
 
 void TranslatorXml::findTable()

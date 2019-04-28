@@ -20,16 +20,16 @@ class CreateMethod
 private:
 	struct ParametersCollection
 	{	
-		static string lambda;// = "lambda";
-		static string price;// = "price";
-		static string name;// = "name";
-		static string link;// = "link";
-		static string materialType;// = "type";
-		static string producer;// = "producer";
+		static string lambda;
+		static string price;
+		static string name;
+		static string link;
+		static string materialType;
+		static string producer;
 	};
 
 
-		typedef shared_ptr<ParameterInterface> parameter;
+	typedef shared_ptr<ParameterInterface> parameter;
 		static std::vector<parameter> parametersList;
 		shared_ptr<vector<unsigned short>> widthsList;
 

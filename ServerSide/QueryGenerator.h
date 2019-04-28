@@ -8,6 +8,7 @@ using sql::SQLString;
 using std::vector;
 using std::string;
 using std::unique_ptr;
+using std::shared_ptr;
 
 class DatabaseHandler;
 

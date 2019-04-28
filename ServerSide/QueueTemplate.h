@@ -2,11 +2,11 @@
 #include <iostream>
 #include <queue>
 #include <iterator>
-//#include "QueueItem.h"
+#include "QueueItem.h"
 
 using std::queue;
 using std::shared_ptr;
-//template<typename> class QueueItem;
+
 
 template<typename T>
 class Queue
@@ -27,9 +27,9 @@ public:
 		itemQueue.push(item);
 	}
 
-	shared_ptr<T>& getItem()
+	shared_ptr<T> getItem()
 	{
-		shared_ptr<T>& item = itemQueue.front();
+		shared_ptr<T> item = itemQueue.front();
 		itemQueue.pop();
 		return item;
 	}

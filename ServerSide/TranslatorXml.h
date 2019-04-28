@@ -16,11 +16,12 @@ class TranslatorXml
 	std::thread TRANSLATOR_XML_THREAD;
 	bool running;
 
+
 	static RequestQueue* requestQueuePtr;
 
 	DataBaseMap dataBaseMap;
 	MethodsMapper methodsMapper;
-		DocumentXml* document;
+		shared_ptr<DocumentXml> document;
 		shared_ptr<TableInterface> tablePointer;
 		shared_ptr<MethodInterface> methodPointer;
 

@@ -5,6 +5,7 @@
 //#include "QueryGenerator.h"
 
 using std::unique_ptr;
+using std::string;
 
 int main()
 {
@@ -25,5 +26,6 @@ int main()
 	unique_ptr<SQLString> query = generator.insert(vectofMaterials);
 	dbHandler.executeQuery(*query);
 
+	std::cin.get();
 	std::cin.get();
 }
