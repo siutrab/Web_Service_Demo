@@ -5,9 +5,9 @@
 DocumentXml::DocumentXml(Request& request)
 	:	valid(false)
 {
-	string& requestContent = request.getContent();
+	string* requestContent = request.getContent();
 
-	if (document.load_string(requestContent.c_str()))
+	if (document.load_string(requestContent->c_str()))
 		valid = true;
 }
 

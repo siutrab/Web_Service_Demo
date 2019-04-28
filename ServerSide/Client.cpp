@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Client.h"
 
- RequestsQueue* Client::requestQueuePtr;
+ RequestQueue* Client::requestQueuePtr;
 
 	Client::Client(unsigned int index)
 		:	socket(),
@@ -22,12 +22,15 @@
 		Packet packet;
 		if (socket.receive(packet) == TcpSocket::Done)
 		{
-			Request* request = Request::unpackPacket(packet, *this);
-			
-			if (request->isCorrect())
-				Client::requestQueuePtr->addItem(*request);
+			try
+			{
+				shared_ptr<Request> request = Request::unpackPacket(packet, this);
+				Client::requestQueuePtr->addItem(request);
+			}
+			catch (ExceptionInterface& e)
+			{
 
-			else delete request;
+			}
 		}
 	}
 
@@ -35,8 +38,8 @@
 	TcpSocket* Client::getSocket() { return &socket; }
 	unsigned int Client::getIndex() const { return index; }
 
-	void Client::setRequestQueuePtr(RequestsQueue* pointer) 
+	void Client::setRequestQueuePtr(RequestQueue* pointer) 
 	{ 
 		Client::requestQueuePtr = pointer; // Settet in RequestsQueue object
-		const_cast<const RequestsQueue*>(Client::requestQueuePtr);
+		const_cast<const RequestQueue*>(Client::requestQueuePtr);
 	}

@@ -1,22 +1,18 @@
-#ifndef QUEUE_TEMPLATE_H
-#define QUEUE_TEMPLATE_H
-
-
-
 #pragma once
 #include <iostream>
 #include <queue>
 #include <iterator>
-
+#include "QueueItem.h"
 
 using std::queue;
 
+template<typename> class QueueItem;
 
 template<typename T>
 class Queue
 {
 protected:
-	queue<T*> itemQueue;
+	queue<shared_ptr<T>> itemQueue;
 public:
 	Queue() {}
 	~Queue() {}
@@ -26,17 +22,15 @@ public:
 		else return false;
 	}
 
-	void addItem(T& item)
+	void addItem(shared_ptr<T> item)
 	{
-		itemQueue.push(&item);
+		itemQueue.push(item);
 	}
 
-	T& getItem() 
+	shared_ptr<T> getItem() 
 	{
-		T& item = itemQueue.front();
+		shared_ptr<T> item = itemQueue.front();
 		itemQueue.pop();
 		return item;
 	}
 };
-
-#endif // !QUEUE_TEMPLATE_H

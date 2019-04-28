@@ -180,6 +180,7 @@
     <ClInclude Include="Query.h" />
     <ClInclude Include="QueryGenerator.h" />
     <ClInclude Include="NonResultQueryQueue.h" />
+    <ClInclude Include="QueueItem.h" />
     <ClInclude Include="QueueTemplate.h" />
     <ClInclude Include="RequestsQueue.h" />
     <ClInclude Include="Listener.h" />

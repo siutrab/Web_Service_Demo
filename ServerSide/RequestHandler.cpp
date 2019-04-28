@@ -2,11 +2,11 @@
 #include "ExceptionsSystem.h"
 #include "RequestHandler.h"
 
-RequestsQueue* RequestHandler::requestsQueue;
-void RequestHandler::setRequestQueuePointer(RequestsQueue* pointer)
+RequestQueue* RequestHandler::requestsQueue;
+void RequestHandler::setRequestQueuePointer(RequestQueue* pointer)
 {
 	requestsQueue = pointer;
-	const_cast<RequestsQueue* const>(requestsQueue);
+	const_cast<RequestQueue* const>(requestsQueue);
 }
 
 RequestHandler::RequestHandler()

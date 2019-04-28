@@ -44,4 +44,14 @@ struct ServerExceptions
 			NodeNotFound() { value = "Node was not found."; }
 		};
 	};
+
+	struct ReceivingPacketExceptions
+	{
+		struct CantUnpackPacket
+			: public ExceptionInterface
+		{
+			CantUnpackPacket() { value = "Server cannot unpack message."; }
+		};
+
+	};
 };

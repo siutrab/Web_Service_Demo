@@ -3,6 +3,7 @@
 #include "TableInterface.h"
 #include "MethodInterface.h"
 #include "MethodsMapper.h"
+#include "RequestsQueue.h"
 
 class TranslatorXml
 {

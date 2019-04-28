@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "RequestsQueue.h"
 
-RequestsQueue::RequestsQueue()
+RequestQueue::RequestQueue()
 
 {
 	Client::setRequestQueuePtr(this);
 	RequestHandler::setRequestQueuePointer(this);
 }
 
-RequestsQueue::~RequestsQueue()
+RequestQueue::~RequestQueue()
 {}

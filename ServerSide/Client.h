@@ -10,13 +10,13 @@ using sf::TcpSocket;
 using sf::Packet;
 
 //class Response;
-class RequestsQueue;
+class RequestQueue;
 
 	class Client
 	{
 			const unsigned int index;
 			TcpSocket socket;
-			static RequestsQueue* requestQueuePtr;
+			static RequestQueue* requestQueuePtr;
 
 		// Methods
 		void sendResponse();		/// CHANGE ME!!!
@@ -27,7 +27,7 @@ class RequestsQueue;
 		// Getters
 		TcpSocket* getSocket();
 		unsigned int getIndex() const;
-		static void setRequestQueuePtr(RequestsQueue* const pointer);
+		static void setRequestQueuePtr(RequestQueue* const pointer);
 	};
 
 #endif // !CLIENT_H

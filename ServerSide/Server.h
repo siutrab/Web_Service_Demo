@@ -19,7 +19,7 @@
 			ResponseHandler responseHandler;	// Handles the responses, database querys etc.
 
 		// Queues
-			RequestsQueue requestsQueue;
+			RequestQueue requestsQueue;
 			NonResultQueryQueue nonResultQuery;
 
 	public:
@@ -27,7 +27,7 @@
 		~Server();
 		void start();	// main loop!!!
 		void stop();
-		RequestsQueue* getRequestsQueuePtr();
+		RequestQueue* getRequestsQueuePtr();
 		
 	};
 

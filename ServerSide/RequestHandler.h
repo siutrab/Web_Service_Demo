@@ -18,7 +18,7 @@ using std::thread;
 using pugi::xml_document;
 
 
-class RequestsQueue;
+class RequestQueue;
 class DataBaseMap;
 class DocumentXml;
 	//struct LoadedXmlDocument
@@ -32,7 +32,7 @@ class DocumentXml;
 	{
 		thread REQUEST_HANDLER_THREAD;
 		bool running;
-			static RequestsQueue* requestsQueue;
+			static RequestQueue* requestsQueue;
 			//unique_ptr<LoadedXmlDocument> loadXmlDocument();
 			
 			unique_ptr<DataBaseMap> dataBaseMap;	// Owner
@@ -46,7 +46,7 @@ class DocumentXml;
 		void start();
 		void stop();
 
-		static void setRequestQueuePointer(RequestsQueue* pointer);
+		static void setRequestQueuePointer(RequestQueue* pointer);
 		void translateRequest();
 		void translateResponse();
 

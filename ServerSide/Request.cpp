@@ -2,22 +2,28 @@
 #include "Request.h"
 
 
-	Request::Request(Client& client)
-		: clientPointer(&client)
-	{	}
+	Request::Request(Client* client, string& content)
+		: QueueItem<string>(client, content)
+	{
+		
+	}
 
 	Request::~Request()
 	{	}
 
-	Request* Request::unpackPacket(Packet& packet, Client& client)
+	shared_ptr<Request> Request::unpackPacket(Packet& packet, Client* client)
 	{
-		Request* request = new Request(client);
+		
+		string contentValue;
 
-		if (packet >> request->content)
-			request->correct = true;
-		std::cout << request->content << std::endl;
-		return request;
+		if (packet >> contentValue)
+		{
+			shared_ptr<Request> request(new Request(client, contentValue));
+			std::cout << *request->getContent() << std::endl;
+			return request;
+		}
+
+		else throw ServerExceptions::ReceivingPacketExceptions::CantUnpackPacket();
+
 	}
 
-	bool Request::isCorrect() { return correct; }
-	string& Request::getContent() { return content; }

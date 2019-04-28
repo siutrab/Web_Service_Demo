@@ -99,9 +99,6 @@
     <ClInclude Include="DatabaseHandler.h">
       <Filter>Server resources\Database Handler</Filter>
     </ClInclude>
-    <ClInclude Include="QueryGenerator.h">
-      <Filter>Server resources\Database Handler</Filter>
-    </ClInclude>
     <ClInclude Include="Request.h">
       <Filter>Server resources\Queues resources\RequestQueue</Filter>
     </ClInclude>
@@ -147,6 +144,12 @@
     <ClInclude Include="MethodsMapper.h">
       <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper</Filter>
     </ClInclude>
+    <ClInclude Include="QueryGenerator.h">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueItem.h">
+      <Filter>Server resources\Queues resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -177,9 +180,6 @@
       <Filter>Server resources\Request Handler\Translator XML\Database Mapper\Database Tables\Entities</Filter>
     </ClCompile>
     <ClCompile Include="DatabaseHandler.cpp">
-      <Filter>Server resources\Database Handler</Filter>
-    </ClCompile>
-    <ClCompile Include="QueryGenerator.cpp">
       <Filter>Server resources\Database Handler</Filter>
     </ClCompile>
     <ClCompile Include="Request.cpp">
@@ -217,6 +217,9 @@
     </ClCompile>
     <ClCompile Include="MethodsMapper.cpp">
       <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryGenerator.cpp">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

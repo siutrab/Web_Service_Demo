@@ -16,6 +16,7 @@ class DatabaseHandler;
 	private:
 			DatabaseHandler* databaseHandler;
 
+
 		unique_ptr<string> entityValuesToQueryPart(EntityInterface& entity);
 		unique_ptr<string> entityFieldsToQueryPart(EntityInterface& entity);
 	public:

@@ -29,4 +29,4 @@
 	void Server::stop()
 	{	}
 
-	RequestsQueue* Server::getRequestsQueuePtr() { return &requestsQueue; }
+	RequestQueue* Server::getRequestsQueuePtr() { return &requestsQueue; }

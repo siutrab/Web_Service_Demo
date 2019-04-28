@@ -28,8 +28,7 @@ public:
 	~DocumentXml();
 	bool isValid();
 	void recognizeInvalid();
-	unique_ptr<string> getTableName();
-
+	
 	shared_ptr<TableInterface> getTableMap();
 	unique_ptr<string> getNodeValue(string& nodeName);
 	unique_ptr<string> getNodeValue(string& nodeName, string& parentNodeName);

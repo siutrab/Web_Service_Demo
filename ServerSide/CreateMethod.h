@@ -28,15 +28,14 @@ private:
 
 		DocumentXml* documentXml;
 
-		vector<unique_ptr<MaterialEntity>> generateEntities();
+	vector<unique_ptr<MaterialEntity>> generateEntities();
 	bool initializeWidthsList();
+	void mapArguments(DocumentXml& document) override;
 
 public:
 	CreateMethod();
 	~CreateMethod();
-	void mapArguments(DocumentXml& document) override;
 	shared_ptr<Query> generateQuery() override;
-	//std::vector<argument>* getArguments() override;
 	unique_ptr<string> getMethodName() override;
 
 };
