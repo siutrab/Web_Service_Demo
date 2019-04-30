@@ -1,22 +1,25 @@
 #pragma once
 #include "SFML/Network.hpp"
+#include "QueueItem.h"
 #include "Client.h"
 #include <iostream>
 #include <memory>
-#include "QueueItem.h"
+#include <string>
+
 
 using std::shared_ptr;
 using std::string;
 using sf::Packet;
 
 class Client;
+//template <typename> class Content;
 
 
 class Request
-	: public QueueItem<string>
+	: public Content<string>
 {
-	Request(Client* client, string& content);
 public:
+	Request(string& content);
 	~Request();
 	static shared_ptr<Request> unpackPacket(Packet& packet, Client* client);
 };

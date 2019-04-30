@@ -1,48 +1,63 @@
 #pragma once
+#include <memory>
+#include "Request.h"
+
+using std::shared_ptr;
 
 class Client;
+class Request;
+
+class ContentInterface
+{
+public:
+	virtual ~ContentInterface() {	}
+	virtual bool isValid() = 0;
+	virtual void recognizeInvalid() = 0;
+};
 
 template<typename T>
 class Content
+	: public ContentInterface
 {
-template <typename> friend class QueueItem;
 protected:
 		bool valid;
 		T contentValue;
 
 public:
 	Content(T& content)
-		:	contentValue(content)
-	{};
-	~Content(){}
-	bool isValid() { return valid; }
-	bool recognizeInvalid() { valid = false; }
+		:	contentValue(content),
+			valid(true)
+	{	}
+	~Content() {	}
+	bool isValid() override { return valid; }
+	void recognizeInvalid() override { valid = false; }
+	T& getContent() { return contentValue; }
 };
 
-template<typename T>
+
 class QueueItem
 {
 protected:
 		unsigned int id;
 		Client* client;
-		Content<T> content;
+		shared_ptr<ContentInterface> content;
 
 public:
-	QueueItem(Client* client, T& content)
+	QueueItem(Client* const client, ContentInterface& content)
 		:	client(client),
-			content(content)
+			content(shared_ptr<ContentInterface>(&content))
 	{	}
+
 
 	~QueueItem() {}
 
 	unsigned int getId() const { return id; }
-	Client* getClient() { return client; }
-	T* getContent() { return &content.contentValue;	}
+	Client* getClientPointer() { return client; }
+	shared_ptr<ContentInterface> getContent() { return content;	}
 	
-	template<typename T>
-	bool changeContent(T* newContent)
+	bool changeContent(shared_ptr<ContentInterface> newContent)
 	{
-		content.reset(newContent);
+		content.swap(newContent);
 	}
 };
 

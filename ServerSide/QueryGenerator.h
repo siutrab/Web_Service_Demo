@@ -1,6 +1,7 @@
 #pragma once
 #include"jdbc/cppconn/sqlstring.h"
 #include <memory>
+#include <cstring>
 #include <vector>
 #include "DatabaseHandler.h"
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <queue>
 #include "jdbc/cppconn/sqlstring.h"
-#include "QueueTemplate.h"
+#include "Queue.h"
 #include "Query.h"
 #include <memory>
 #include "DatabaseHandler.h"
@@ -13,7 +13,7 @@ using std::unique_ptr;
 class Request;
 
 class NonResultQueryQueue
-	: public Queue<Query>
+	: public Queue
 {
 public:
 	NonResultQueryQueue();

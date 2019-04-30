@@ -1,6 +1,6 @@
 #pragma once
 #include "TranslatorXml.h"
-#include "QueueTemplate.h"
+#include "Queue.h"
 #include <memory>
 
 using std::queue;
@@ -11,7 +11,7 @@ class Request;
 class TranslatorXml;
 
 	class RequestQueue
-		: public Queue<Request>
+		: public Queue
 	{
 	public:
 		RequestQueue();

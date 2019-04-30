@@ -2,8 +2,8 @@
 #include "Request.h"
 
 
-Request::Request(Client* client, string& content)
-	: QueueItem<string>(client, content)
+Request::Request(string& content)
+	: Content<string>(content)
 {
 		
 }
@@ -18,8 +18,8 @@ shared_ptr<Request> Request::unpackPacket(Packet& packet, Client* client)
 
 	if (packet >> contentValue)
 	{
-		shared_ptr<Request>request(new Request(client, contentValue));
-		std::cout << *request->getContent() << std::endl;
+		shared_ptr<Request>request(new Request(contentValue));
+		std::cout << request->getContent() << std::endl;
 		return request;
 	}
 

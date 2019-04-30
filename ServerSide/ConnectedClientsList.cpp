@@ -6,15 +6,7 @@
 	{	}
 
 	ConnectedClientsList::~ConnectedClientsList()
-	{
-		//for (auto i = clientsMap.begin(); i != clientsMap.end(); ++i)
-		//{
-		//	mapPair pair = *i;
-		//	Client* client = pair.second;
-		//	delete client;
-		//	client = nullptr;
-		//}
-	}
+	{	}
 
 // methods
 	Client* ConnectedClientsList::addClient()

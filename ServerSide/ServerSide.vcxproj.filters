@@ -102,14 +102,8 @@
     <ClInclude Include="Request.h">
       <Filter>Server resources\Queues resources\RequestQueue</Filter>
     </ClInclude>
-    <ClInclude Include="QueueTemplate.h">
-      <Filter>Server resources\Queues resources</Filter>
-    </ClInclude>
     <ClInclude Include="NonResultQueryQueue.h">
       <Filter>Server resources\Queues resources\QueryQueue\NonResultQueryQueue</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultQueryQueue.h">
-      <Filter>Server resources\Queues resources\QueryQueue\ResultQueryQueue</Filter>
     </ClInclude>
     <ClInclude Include="MaterialTable.h">
       <Filter>Server resources\Request Handler\Translator XML\Database Mapper\Database Tables</Filter>
@@ -150,6 +144,12 @@
     <ClInclude Include="RequestQueue.h">
       <Filter>Server resources\Queues resources\RequestQueue</Filter>
     </ClInclude>
+    <ClInclude Include="QueryQueue.h">
+      <Filter>Server resources\Queues resources\QueryQueue\ResultQueryQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Server resources\Queues resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -188,9 +188,6 @@
     <ClCompile Include="NonResultQueryQueue.cpp">
       <Filter>Server resources\Queues resources\QueryQueue\NonResultQueryQueue</Filter>
     </ClCompile>
-    <ClCompile Include="ResultQueryQueue.cpp">
-      <Filter>Server resources\Queues resources\QueryQueue\ResultQueryQueue</Filter>
-    </ClCompile>
     <ClCompile Include="MaterialTable.cpp">
       <Filter>Server resources\Request Handler\Translator XML\Database Mapper\Database Tables</Filter>
     </ClCompile>
@@ -220,6 +217,9 @@
     </ClCompile>
     <ClCompile Include="RequestQueue.cpp">
       <Filter>Server resources\Queues resources\RequestQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryQueue.cpp">
+      <Filter>Server resources\Queues resources\QueryQueue\ResultQueryQueue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

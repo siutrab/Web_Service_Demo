@@ -1,13 +1,18 @@
 #pragma once
 #include "SFML/Network.hpp"
 #include "RequestQueue.h"
+#include "Request.h"
+#include "QueueItem.h"
 #include <memory>
 
 using std::unique_ptr;
+using std::shared_ptr;
 using sf::TcpSocket;
 using sf::Packet;
 
 class RequestQueue;
+class Request;
+class QueueItem;
 
 	class Client
 	{
@@ -17,6 +22,8 @@ class RequestQueue;
 
 		// Methods
 		void sendResponse();		/// CHANGE ME!!!
+		Request unpackPacket(Packet& packet);
+		shared_ptr<QueueItem> createQueueItem(Request &request);
 	public:
 		Client(const unsigned int index);
 		~Client();

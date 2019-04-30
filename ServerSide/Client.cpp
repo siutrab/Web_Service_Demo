@@ -24,14 +24,38 @@
 		{
 			try
 			{
-				shared_ptr<Request> request = Request::unpackPacket(packet, this);
-				Client::requestQueuePtr->addItem(request);
+				//shared_ptr<Request> request = Request::unpackPacket(packet, this);
+				//Client::requestQueuePtr->addItem(request);
+				Request request = unpackPacket(packet);
+				auto queueItem = createQueueItem(request);
+				requestQueuePtr->addItem(queueItem);
 			}
 			catch (ExceptionInterface& e)
 			{
 
 			}
 		}
+	}
+
+	Request Client::unpackPacket(Packet& packet)
+	{
+
+		string contentValue;
+
+		if (packet >> contentValue)
+		{
+			//shared_ptr<Request>request(new Request(contentValue));
+			//std::cout << request->getContent() << std::endl;
+			return Request(contentValue);
+		}
+
+		else throw ServerExceptions::ReceivingPacketExceptions::CantUnpackPacket();
+
+	}
+
+	shared_ptr<QueueItem> Client::createQueueItem(Request &request)
+	{
+		return shared_ptr<QueueItem>(new QueueItem(this, request));
 	}
 
 // getters

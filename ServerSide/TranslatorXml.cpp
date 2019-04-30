@@ -1,4 +1,3 @@
-//#include "MethodsMapper.h"
 #include "TranslatorXml.h"
 
 	RequestQueue* TranslatorXml::requestQueuePtr;
@@ -9,11 +8,20 @@
 		const_cast<const RequestQueue*>(TranslatorXml::requestQueuePtr);
 	}
 
+	QueryQueue* TranslatorXml::queryQueuePtr;
+
+	void TranslatorXml::setQueryQueuePtr(QueryQueue* pointer)
+	{
+		TranslatorXml::queryQueuePtr = pointer; // Settet in RequestsQueue object
+		const_cast<const QueryQueue*>(TranslatorXml::queryQueuePtr);
+	}
+
 
 TranslatorXml::TranslatorXml()
-	: running(false),
-	methodsMapper(),
-	dataBaseMap()
+	:	running(false),
+		documentIsLoaded(false),
+		methodsMapper(),
+		dataBaseMap()
 {
 }
 
@@ -38,8 +46,9 @@ void TranslatorXml::run()
 	running = true;
 	while (running)
 	{
-		loadDocument();
-		translateDocument();
+		popCurrentDocument();
+		if(loadDocument())
+			translateDocument();
 	}
 }
 
@@ -50,9 +59,21 @@ bool TranslatorXml::translateDocument()
 	return false;
 }
 
-void TranslatorXml::loadDocument()
+bool TranslatorXml::loadDocument()
 {
-	shared_ptr<Request> request = requestQueuePtr->getItem();
+	if (requestQueuePtr->isEmpty())
+		return false;
+
+	request = requestQueuePtr->getItem();
+	document = shared_ptr<DocumentXml>(new DocumentXml(*request));	//!!!
+	documentIsLoaded = true;
+	return true;
+	
+}
+
+void TranslatorXml::popCurrentDocument()
+{
+
 }
 
 void TranslatorXml::findTable()

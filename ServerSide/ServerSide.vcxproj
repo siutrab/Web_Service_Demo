@@ -181,14 +181,14 @@
     <ClInclude Include="QueryGenerator.h" />
     <ClInclude Include="NonResultQueryQueue.h" />
     <ClInclude Include="QueueItem.h" />
-    <ClInclude Include="QueueTemplate.h" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="RequestQueue.h" />
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Request.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResponseHandler.h" />
-    <ClInclude Include="ResultQueryQueue.h" />
+    <ClInclude Include="QueryQueue.h" />
     <ClInclude Include="Router.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="TableInterface.h" />
@@ -219,7 +219,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ResponseHandler.cpp" />
-    <ClCompile Include="ResultQueryQueue.cpp" />
+    <ClCompile Include="QueryQueue.cpp" />
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerSide.cpp" />
