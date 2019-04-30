@@ -1,8 +1,8 @@
 #pragma once
 #include "jdbc/cppconn/sqlstring.h"
 #include "QueueItem.h"
-class Client;
 
+//class Client;
 
 class Query
 	: public Content<sql::SQLString>

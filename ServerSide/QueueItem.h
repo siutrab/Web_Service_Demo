@@ -1,6 +1,5 @@
 #pragma once
 #include <memory>
-#include "Request.h"
 
 using std::shared_ptr;
 
@@ -10,10 +9,11 @@ class Request;
 class ContentInterface
 {
 public:
-	virtual ~ContentInterface() {	}
+	virtual ~ContentInterface() = 0 {	}
 	virtual bool isValid() = 0;
 	virtual void recognizeInvalid() = 0;
 };
+
 
 template<typename T>
 class Content
@@ -28,7 +28,7 @@ public:
 		:	contentValue(content),
 			valid(true)
 	{	}
-	~Content() {	}
+	~Content() override {	}
 	bool isValid() override { return valid; }
 	void recognizeInvalid() override { valid = false; }
 	T& getContent() { return contentValue; }

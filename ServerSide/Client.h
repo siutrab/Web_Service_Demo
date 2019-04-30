@@ -13,6 +13,7 @@ using sf::Packet;
 class RequestQueue;
 class Request;
 class QueueItem;
+class ContentInterface;
 
 	class Client
 	{

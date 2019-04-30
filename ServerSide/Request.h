@@ -12,7 +12,7 @@ using std::string;
 using sf::Packet;
 
 class Client;
-//template <typename> class Content;
+
 
 
 class Request
@@ -21,5 +21,5 @@ class Request
 public:
 	Request(string& content);
 	~Request();
-	static shared_ptr<Request> unpackPacket(Packet& packet, Client* client);
+	//static shared_ptr<Request> unpackPacket(Packet& packet, Client* client);
 };

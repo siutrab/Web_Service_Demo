@@ -2,7 +2,7 @@
 
 
 Query::Query(std::string& queryString)
-	: Content(sql::SQLString(queryString.c_str()))
+	: Content<sql::SQLString>(sql::SQLString(queryString.c_str()))
 {
 
 }

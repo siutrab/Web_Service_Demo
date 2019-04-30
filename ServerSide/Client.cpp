@@ -28,7 +28,7 @@
 				//Client::requestQueuePtr->addItem(request);
 				Request request = unpackPacket(packet);
 				auto queueItem = createQueueItem(request);
-				requestQueuePtr->addItem(queueItem);
+				Client::requestQueuePtr->addItem(queueItem);
 			}
 			catch (ExceptionInterface& e)
 			{
@@ -43,11 +43,9 @@
 		string contentValue;
 
 		if (packet >> contentValue)
-		{
+			return Request(contentValue);
 			//shared_ptr<Request>request(new Request(contentValue));
 			//std::cout << request->getContent() << std::endl;
-			return Request(contentValue);
-		}
 
 		else throw ServerExceptions::ReceivingPacketExceptions::CantUnpackPacket();
 
