@@ -8,6 +8,12 @@ Request::Request(string& content)
 		
 }
 
+//Request::Request(Request& request)
+//	//: contentValue(request.getContent()),
+//{
+//	this->contentValue = request.getContent()
+//}
+
 Request::~Request()
 {	}
 

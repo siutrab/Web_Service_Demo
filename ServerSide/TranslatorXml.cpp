@@ -64,7 +64,9 @@ bool TranslatorXml::loadDocument()
 	if (requestQueuePtr->isEmpty())
 		return false;
 
-	request = requestQueuePtr->getItem();
+	queueItem = requestQueuePtr->getItem();
+	ContentInterface& contentInterface = *queueItem->getContent();
+	request = static_cast<Request*>(&contentInterface);
 	document = shared_ptr<DocumentXml>(new DocumentXml(*request));	//!!!
 	documentIsLoaded = true;
 	return true;

@@ -3,6 +3,7 @@
 #include "Router.h"
 
 #include "DatabaseHandler.h"
+#include "ErrorQueue.h"
 
 
 	class Server
@@ -17,6 +18,7 @@
 
 		// Queues
 			RequestQueue requestsQueue;
+			ErrorQueue errorQueue;
 			//NonResultQueryQueue nonResultQuery;
 
 	public:

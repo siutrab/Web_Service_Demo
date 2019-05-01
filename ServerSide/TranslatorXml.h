@@ -4,6 +4,8 @@
 #include "DataBaseMap.h"
 #include "MethodsMapper.h"
 #include "QueryQueue.h"
+#include "QueueItem.h"
+//#include "Request.h"
 #include <thread>
 
 class Request;
@@ -25,14 +27,16 @@ class TranslatorXml
 
 	DataBaseMap dataBaseMap;
 	MethodsMapper methodsMapper;
+
+
 		shared_ptr<DocumentXml> document;
 		bool documentIsLoaded;
-		shared_ptr<Request> request;
+		shared_ptr<QueueItem> queueItem;
+		Request* request;
 		shared_ptr<TableInterface> tablePointer;
 		shared_ptr<MethodInterface> methodPointer;
 
 		
-
 	void run();
 	bool loadDocument();
 	void popCurrentDocument();

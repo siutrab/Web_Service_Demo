@@ -1,8 +1,9 @@
 #pragma once
+#include "ErrorQueue.h"
 #include "SFML/Network.hpp"
 #include "RequestQueue.h"
-#include "Request.h"
 #include "QueueItem.h"
+#include "Request.h"
 #include <memory>
 
 using std::unique_ptr;
@@ -14,12 +15,14 @@ class RequestQueue;
 class Request;
 class QueueItem;
 class ContentInterface;
+class ErrorQueue;
 
 	class Client
 	{
 			const unsigned int index;
 			TcpSocket socket;
 			static RequestQueue* requestQueuePtr;
+			static ErrorQueue* errorQueuePtr;
 
 		// Methods
 		void sendResponse();		/// CHANGE ME!!!
@@ -33,5 +36,6 @@ class ContentInterface;
 		TcpSocket* getSocket();
 		unsigned int getIndex() const;
 		static void setRequestQueuePtr(RequestQueue* const pointer);
+		static void setErrorQueuePtr(ErrorQueue* const pointer);
 	};
 

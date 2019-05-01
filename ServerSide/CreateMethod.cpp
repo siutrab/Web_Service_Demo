@@ -89,9 +89,10 @@ bool CreateMethod::initializeWidthsList()
 }
 
 
-shared_ptr<Query> CreateMethod::generateQuery()
+shared_ptr<Query> CreateMethod::generateQuery()	//////// TOOOOOOOOOOOOOOOOOOOOOOOOO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 {
-	return shared_ptr<Query>(new Query());
+	sql::SQLString sqlString("sdbf");
+	return shared_ptr<Query>(new Query(sqlString));
 }
 
 

@@ -12,14 +12,14 @@ using std::string;
 using sf::Packet;
 
 class Client;
-
-
+class QueueItem;
 
 class Request
 	: public Content<string>
 {
 public:
 	Request(string& content);
+	//Request(Request& request);
 	~Request();
 	//static shared_ptr<Request> unpackPacket(Packet& packet, Client* client);
 };

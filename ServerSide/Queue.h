@@ -9,7 +9,7 @@ using std::shared_ptr;
 
 class QueueItem;
 
-//template<typename T>
+
 class Queue
 {
 protected:

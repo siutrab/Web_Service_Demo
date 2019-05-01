@@ -5,6 +5,7 @@
 	Server::Server(const unsigned int port)
 		:	port(port),
 			requestsQueue(),
+			errorQueue(),
 			translatorXml(),
 			//nonResultQuery(),
 			router(port),
