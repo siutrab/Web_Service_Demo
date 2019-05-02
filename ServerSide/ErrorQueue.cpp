@@ -20,6 +20,6 @@ void ErrorQueue::addItem(QueueItem& item, ExceptionInterface& exception)
 	item.changeContent(contentInterface);
 
 	auto itemPointer = unique_ptr<QueueItem>(&item);
-	itemQueue.push(itemPointer);
+	itemQueue.push(std::move(itemPointer));
 }
 

@@ -3,6 +3,9 @@
 #include "QueueItem.h"
 #include "Queue.h"
 #include "Client.h"
+#include <memory>
+
+using std::auto_ptr;
 
 class Client;
 class Request;
