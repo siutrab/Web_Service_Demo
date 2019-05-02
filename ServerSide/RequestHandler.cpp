@@ -50,5 +50,5 @@ void RequestHandler::run()
 void RequestHandler::stop()
 {
 	running = false;
-	//std::thread::join();
+	REQUEST_HANDLER_THREAD.join();
 }

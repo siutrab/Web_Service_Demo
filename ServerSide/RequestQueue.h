@@ -15,8 +15,6 @@ class TranslatorXml;
 	{
 	public:
 		RequestQueue();
-
 		~RequestQueue();
-
 	};
 

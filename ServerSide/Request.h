@@ -21,5 +21,5 @@ public:
 	Request(string& content);
 	//Request(Request& request);
 	~Request();
-	//static shared_ptr<Request> unpackPacket(Packet& packet, Client* client);
+	/*static shared_ptr<Request> unpackPacket(Packet& packet, Client* client);*/
 };

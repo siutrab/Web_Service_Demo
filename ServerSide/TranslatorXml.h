@@ -5,6 +5,7 @@
 #include "MethodsMapper.h"
 #include "QueryQueue.h"
 #include "QueueItem.h"
+#include "ErrorQueue.h"
 //#include "Request.h"
 #include <thread>
 
@@ -15,6 +16,7 @@ class MethodInterface;
 class TableInterface;
 class MethodsMapper;
 class QueryQueue;
+class ErrorQueue;
 
 class TranslatorXml
 {
@@ -24,28 +26,34 @@ class TranslatorXml
 
 	static RequestQueue* requestQueuePtr;
 	static QueryQueue* queryQueuePtr;
+	static ErrorQueue* errorQueuePtr;
 
 	DataBaseMap dataBaseMap;
 	MethodsMapper methodsMapper;
 
-
-		shared_ptr<DocumentXml> document;
-		bool documentIsLoaded;
-		shared_ptr<QueueItem> queueItem;
+		unique_ptr<QueueItem> queueItem;
 		Request* request;
+
+		unique_ptr<DocumentXml> document;
+		bool documentIsLoaded;
+
+		unique_ptr<Query> query;
+
 		shared_ptr<TableInterface> tablePointer;
 		shared_ptr<MethodInterface> methodPointer;
 
 		
 	void run();
+	void releaseFields();
 	bool loadDocument();
-	void popCurrentDocument();
+	void initializeFields();
 	bool translateDocument();
 
 	void findTable();
 	void findMethod();
 	bool findParameters();
 
+	void pushOnErrorQueue(ExceptionInterface& exception);
 public:
 	TranslatorXml();
 	~TranslatorXml();
@@ -54,6 +62,7 @@ public:
 
 	static void setRequestQueuePtr(RequestQueue* const pointer);
 	static void setQueryQueuePtr(QueryQueue* const pointer);
+	static void setErrorQueuePtr(ErrorQueue* const pointer);
 
 };
 

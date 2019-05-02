@@ -6,16 +6,18 @@
 
 using std::queue;
 using std::shared_ptr;
+using std::unique_ptr;
 
 class QueueItem;
-
 
 class Queue
 {
 protected:
-	queue<shared_ptr<QueueItem>> itemQueue;
+	queue<unique_ptr<QueueItem>> itemQueue;
 public:
-	Queue() {}
+	Queue()
+		: itemQueue()
+	{}
 	~Queue() {}
 	bool isEmpty() 
 	{
@@ -23,15 +25,27 @@ public:
 		else return false;
 	}
 
-	void addItem(shared_ptr<QueueItem> item)
+	void addItem(QueueItem& item)
 	{
-		itemQueue.push(item);
+		//itemQueue.push(unique_ptr<QueueItem>(&item));
+		unique_ptr<QueueItem>itemMove(&item);
+		//itemMove = std::move(itemQueue.back());
+		itemQueue.push(std::move(itemMove));
 	}
 
-	shared_ptr<QueueItem> getItem()
+	QueueItem* getItem()
 	{
-		shared_ptr<QueueItem> item = itemQueue.front();
+		QueueItem* item = itemQueue.front().release();
 		itemQueue.pop();
 		return item;
+
+		//unique_ptr<QueueItem> itemMove = std::move(itemQueue.front());
+		//itemQueue.pop();
+		//return itemMove.release();
+
+		unique_ptr<QueueItem>itemPtr();
+		 itemQueue.pop( std::move(itemPtr));
+
+		
 	}
 };

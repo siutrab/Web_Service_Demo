@@ -50,6 +50,14 @@ public:
 			content(&content)
 	{	}
 
+	//QueueItem(QueueItem& queueItem)
+	//	: id(queueItem.id),
+	//	client(queueItem.client)
+	//{
+	//	ContentInterface* contentPtr = queueItem.content.release();
+	//	content = unique_ptr<ContentInterface>(contentPtr);
+	//}
+
 	~QueueItem() {}
 	
 	void changeContent(ContentInterface& newContent)

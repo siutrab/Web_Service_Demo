@@ -38,46 +38,47 @@
 		{
 			try
 			{
-				//shared_ptr<Request> request = Request::unpackPacket(packet, this);
-				//Client::requestQueuePtr->addItem(request);
 				Request request = unpackPacket(packet);
 				///
-					std::cout << request.getContent() << std::endl;
+					std::cout << request.getContent() << std::endl;	//////////////////////// COUT
 				///
-				auto queueItem = createQueueItem(request);
-				Client::requestQueuePtr->addItem(queueItem);
+				unique_ptr<QueueItem> queueItem = createQueueItem(request);
+				Client::requestQueuePtr->addItem(*queueItem);
 			}
 			catch (ExceptionInterface& exception)
 			{
-				//ErrorResponse errorResponse(exception.getValue());
-				//auto queueItem = createQueueItem(errorResponse);
-				//vector<ExceptionInterface> exceptionVevtor;
-				//errorQueuePtr->addItem(exception.getValue());
+				unique_ptr<QueueItem> queueItem = createQueueItem(exception);
+				errorQueuePtr->addItem(*queueItem, exception);
 			}
 		}
 	}
 
 	Request Client::unpackPacket(Packet& packet)
 	{
-
 		string contentValue;
 
 		if (packet >> contentValue)
 			return Request(contentValue);
-			//shared_ptr<Request>request(new Request(contentValue));
-			//std::cout << request->getContent() << std::endl;
-
+			
 		else throw ServerExceptions::ReceivingPacketExceptions::CantUnpackPacket();
 
 	}
 
-	shared_ptr<QueueItem> Client::createQueueItem(Request &request)
+	unique_ptr<QueueItem> Client::createQueueItem(Request &request)
 	{
-		ContentInterface& content = static_cast<ContentInterface&>(request);	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//shared_ptr<QueueItem> queueItem = std::static_pointer_cast<
-		return shared_ptr<QueueItem>(new QueueItem(this, content));
+		//ContentInterface& content = dynamic_cast<ContentInterface&>(request);
+		
+		return std::make_unique<QueueItem>(this, request);
 	}
 
-// getters
+	unique_ptr<QueueItem> Client::createQueueItem(ExceptionInterface& exception)
+	{
+		ErrorResponse errorResponse(exception.getValue());
+		
+
+		return std::make_unique<QueueItem>(this, errorResponse);
+	}
+
 	TcpSocket* Client::getSocket() { return &socket; }
+
 	unsigned int Client::getIndex() const { return index; }

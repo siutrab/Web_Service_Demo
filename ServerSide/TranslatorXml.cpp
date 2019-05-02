@@ -1,6 +1,9 @@
 #include "TranslatorXml.h"
 
+
 	RequestQueue* TranslatorXml::requestQueuePtr;
+	QueryQueue* TranslatorXml::queryQueuePtr;
+	ErrorQueue* TranslatorXml::errorQueuePtr;
 
 	void TranslatorXml::setRequestQueuePtr(RequestQueue* pointer)
 	{
@@ -8,12 +11,16 @@
 		const_cast<const RequestQueue*>(TranslatorXml::requestQueuePtr);
 	}
 
-	QueryQueue* TranslatorXml::queryQueuePtr;
-
 	void TranslatorXml::setQueryQueuePtr(QueryQueue* pointer)
 	{
-		TranslatorXml::queryQueuePtr = pointer; // Settet in RequestsQueue object
+		TranslatorXml::queryQueuePtr = pointer; // Settet in QueryQueue object
 		const_cast<const QueryQueue*>(TranslatorXml::queryQueuePtr);
+	}
+
+	void TranslatorXml::setErrorQueuePtr(ErrorQueue* const pointer)
+	{
+		TranslatorXml::errorQueuePtr = pointer; // Settet in ErrorQueue object
+		const_cast<const ErrorQueue*>(TranslatorXml::errorQueuePtr);
 	}
 
 
@@ -22,13 +29,11 @@ TranslatorXml::TranslatorXml()
 		documentIsLoaded(false),
 		methodsMapper(),
 		dataBaseMap()
-{
-}
+{	}
 
 
 TranslatorXml::~TranslatorXml()
-{
-}
+{	}
 
 void TranslatorXml::start()
 {
@@ -46,7 +51,7 @@ void TranslatorXml::run()
 	running = true;
 	while (running)
 	{
-		popCurrentDocument();
+		releaseFields();
 		if(loadDocument())
 			translateDocument();
 	}
@@ -64,18 +69,26 @@ bool TranslatorXml::loadDocument()
 	if (requestQueuePtr->isEmpty())
 		return false;
 
-	queueItem = requestQueuePtr->getItem();
-	ContentInterface& contentInterface = *queueItem->getContent();
-	request = static_cast<Request*>(&contentInterface);
-	document = shared_ptr<DocumentXml>(new DocumentXml(*request));	//!!!
-	documentIsLoaded = true;
+	queueItem = unique_ptr<QueueItem>(requestQueuePtr->getItem());
+
+	initializeFields();
 	return true;
-	
 }
 
-void TranslatorXml::popCurrentDocument()
+void TranslatorXml::initializeFields()
 {
+	ContentInterface& contentInterface = *queueItem->getContent();
+	request = static_cast<Request*>(&contentInterface);
 
+	document.reset(new DocumentXml(*request));
+	documentIsLoaded = true;
+}
+
+void TranslatorXml::releaseFields()
+{
+	queueItem->changeContent(*query);
+	QueueItem* queueItemObject = queueItem.release();
+	queryQueuePtr->addItem(*queueItem);
 }
 
 void TranslatorXml::findTable()
@@ -83,34 +96,35 @@ void TranslatorXml::findTable()
 	// Example
 	// <table name = "materials">	... node "table", attribute "name", attribute.value "materials"
 	
-	string nodeName = "table";
-	string attribute = "name";
+	string nodeName("table");
+	string attribute("name");
 	
 	try
 	{
 		unique_ptr<string> tableName = document->getNodeAttriute(nodeName, attribute);	// WARNING!!! throws exception	
 		tablePointer = dataBaseMap.findTable(*tableName);								// WARNING!!! throws exception
 	}
-	catch(ExceptionInterface& exceptionReference)
+	catch(ExceptionInterface& exception)
 	{
-		document->addException(exceptionReference);
-		document->recognizeInvalid();
+		auto queueItemPtr = queueItem.release();
+		errorQueuePtr->addItem(*queueItemPtr, exception);
 	}
 }
 
 void TranslatorXml::findMethod()
 {
-	string nodeName = "method";
-	string attribute = "name";
+	string nodeName("method");
+	string attribute("name");
 
 	try
 	{
 		unique_ptr<string> methodName = document->getNodeAttriute(nodeName, attribute);	// WARNING!!! throws exception
 		methodPointer = methodsMapper.findMethod(*methodName);							// WARNING!!! throws exception
 	}
-	catch (ExceptionInterface& exceptionReference)
+	catch (ExceptionInterface& exception)
 	{
-		document->addException(exceptionReference);
 		document->recognizeInvalid();
+		auto queueItemPtr = queueItem.release();
+		errorQueuePtr->addItem(*queueItemPtr, exception);
 	}
 }
