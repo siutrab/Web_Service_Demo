@@ -23,8 +23,8 @@ int main()
 	vectofMaterials.push_back(&material2);
 	
 	QueryGenerator generator(nullptr);
-	unique_ptr<SQLString> query = generator.insert(vectofMaterials);
-	dbHandler.executeQuery(*query);
+//	unique_ptr<SQLString> query = generator.insert(vectofMaterials);
+//	dbHandler.executeQuery(*query);
 
 	std::cin.get();
 	std::cin.get();

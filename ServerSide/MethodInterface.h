@@ -60,10 +60,10 @@ protected:
 
 	std::vector<argument> parametersArray;
 
-	virtual void mapArguments(DocumentXml& document) = 0;
+	//virtual void mapArguments(DocumentXml& document) = 0;
 public:
 	virtual ~MethodInterface() {}
-	virtual shared_ptr<Query> generateQuery() = 0;
+	virtual unique_ptr<Query> generateQuery(DocumentXml& document) = 0;
 	virtual unique_ptr<string> getMethodName() = 0;
 
 };

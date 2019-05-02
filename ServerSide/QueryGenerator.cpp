@@ -18,10 +18,10 @@ QueryGenerator::~QueryGenerator()
 }
 
 
-unique_ptr<SQLString> QueryGenerator::insert(vector<EntityInterface*> &entityCollection)
+SQLString& QueryGenerator::insert(vector<unique_ptr<EntityInterface>>& entityCollection)
 {
-	EntityInterface* firstEntity = entityCollection[0];
-	unique_ptr<string>queryFirstPart = entityFieldsToQueryPart(*firstEntity);
+	EntityInterface& firstEntity = *entityCollection[0];
+	unique_ptr<string>queryFirstPart = entityFieldsToQueryPart(firstEntity);
 	
 	string querySecondPart;
 
@@ -34,10 +34,11 @@ unique_ptr<SQLString> QueryGenerator::insert(vector<EntityInterface*> &entityCol
 	querySecondPart += *(entityValuesToQueryPart(*(entityCollection)[entityCollectionLastIndex]));
 
 
-	string Query = "INSERT INTO `" + firstEntity->getTableName() + "`" + *queryFirstPart + "VALUES" + querySecondPart;
+	string Query = "INSERT INTO `" + firstEntity.getTableName() + "`" + *queryFirstPart + "VALUES" + querySecondPart;
 	std::cout << Query;
 	
-	return unique_ptr<SQLString>(new SQLString(Query.c_str()));		// ZERUJE TEGO STRINGA!!!!!!!!!
+	SQLString querySql(Query.c_str());
+	return querySql;
 
 }
 

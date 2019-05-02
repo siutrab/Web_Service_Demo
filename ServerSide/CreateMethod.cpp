@@ -10,7 +10,6 @@ string CreateMethod::ParametersCollection::producer = "producer";
 
 typedef shared_ptr<ParameterInterface> parameter;
 
-//CreateMethod::ParametersCollection CreateMethod::parametersCollection;
 
 std::vector<parameter> CreateMethod::parametersList
 {
@@ -22,9 +21,11 @@ std::vector<parameter> CreateMethod::parametersList
 	parameter(new Parameter<string>(ParametersCollection::producer))
 };
 
-vector<unique_ptr<MaterialEntity>> CreateMethod::generateEntities()
+
+vector<unique_ptr<EntityInterface>> CreateMethod::generateEntities()
 {
-	vector<unique_ptr<MaterialEntity>> materialsVactor;
+	size_t entitiesNumber = widthsList->size();
+	vector<unique_ptr<EntityInterface>> materialsVactor(entitiesNumber);
 
 	float lambda = *static_cast<float*>(parametersList[0]->getValue());
 	float price = *static_cast<float*>(parametersList[1]->getValue());
@@ -38,7 +39,8 @@ vector<unique_ptr<MaterialEntity>> CreateMethod::generateEntities()
 	for (size_t i = 0; i < widthsList->size(); i++)
 	{
 		unsigned short width = (*widthsList)[i];
-		materialsVactor.push_back(unique_ptr<MaterialEntity>(new MaterialEntity(NULL, lambda, price, priceToLambda, width, *name, *link, *materialType, *producer)));
+		materialsVactor[i] = unique_ptr<EntityInterface>(
+			new MaterialEntity(NULL, lambda, price, priceToLambda, width, *name, *link, *materialType, *producer));
 	}
 	return materialsVactor;
 }
@@ -53,22 +55,22 @@ CreateMethod::~CreateMethod()
 {
 }
 
-void CreateMethod::mapArguments(DocumentXml& document)
+void CreateMethod::mapArguments()
 {
 	string parentNodeName = "method";
-	documentXml = &document;
+	
 	
 	for (size_t i = 0; i < parametersList.size(); i++)
 	{
 		try
 		{
-			unique_ptr<string> parameterValue = document.getNodeValue(parametersList[i]->getXmlName(), parentNodeName);
+			unique_ptr<string> parameterValue = documentXml->getNodeValue(parametersList[i]->getXmlName(), parentNodeName);
 			parametersList[i]->setValue(*parameterValue);
 		}
 		catch (ExceptionInterface& e)
 		{
-			document.recognizeInvalid();
-			document.addException(e);
+			documentXml->recognizeInvalid();
+			documentXml->addException(e);
 		}
 	}
 }
@@ -89,10 +91,15 @@ bool CreateMethod::initializeWidthsList()
 }
 
 
-shared_ptr<Query> CreateMethod::generateQuery()	//////// TOOOOOOOOOOOOOOOOOOOOOOOOO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)	//////// TOOOOOOOOOOOOOOOOOOOOOOOOO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 {
-	sql::SQLString sqlString("sdbf");
-	return shared_ptr<Query>(new Query(sqlString));
+	documentXml = &document;
+	initializeWidthsList();
+	mapArguments();
+	vector<unique_ptr<EntityInterface>> entitiesVector = generateEntities();
+	sql::SQLString& query = queryGenerator->insert(entitiesVector);
+
+	return unique_ptr<Query>(new Query(query));
 }
 
 

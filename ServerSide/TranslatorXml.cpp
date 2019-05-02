@@ -51,17 +51,33 @@ void TranslatorXml::run()
 	running = true;
 	while (running)
 	{
-		releaseFields();
-		if(loadDocument())
+		//releaseFields();
+		if (loadDocument())
 			translateDocument();
 	}
 }
 
-bool TranslatorXml::translateDocument()
+void TranslatorXml::translateDocument()
 {	
-	findTable();
-	findMethod();
-	return false;
+	try
+	{
+		findTable();
+		findMethod();
+		pushQueryOnQueue();
+	}
+	catch (ExceptionInterface& exception)
+	{
+		document->recognizeInvalid();
+		QueueItem* queueItemPtr = queueItem.release();
+		errorQueuePtr->addItem(*queueItemPtr, exception);
+	}
+}
+
+void TranslatorXml::pushQueryOnQueue()
+{
+	unique_ptr<Query> queryPtr = methodPointer->generateQuery(*document);
+	queueItem->changeContent(*queryPtr);
+	queryQueuePtr->addItem(*queueItem);
 }
 
 bool TranslatorXml::loadDocument()
@@ -78,18 +94,18 @@ bool TranslatorXml::loadDocument()
 void TranslatorXml::initializeFields()
 {
 	ContentInterface& contentInterface = *queueItem->getContent();
-	request = static_cast<Request*>(&contentInterface);
+	request = unique_ptr<Request>(static_cast<Request*>(&contentInterface));
 
 	document.reset(new DocumentXml(*request));
 	documentIsLoaded = true;
 }
 
-void TranslatorXml::releaseFields()
-{
-	queueItem->changeContent(*query);
-	QueueItem* queueItemObject = queueItem.release();
-	queryQueuePtr->addItem(*queueItem);
-}
+//void TranslatorXml::releaseFields()
+//{
+//	queueItem->changeContent(*query);
+//	QueueItem* queueItemObject = queueItem.release();
+//	queryQueuePtr->addItem(*queueItem);
+//}
 
 void TranslatorXml::findTable()
 {
@@ -106,8 +122,7 @@ void TranslatorXml::findTable()
 	}
 	catch(ExceptionInterface& exception)
 	{
-		auto queueItemPtr = queueItem.release();
-		errorQueuePtr->addItem(*queueItemPtr, exception);
+		throw exception;
 	}
 }
 
@@ -123,8 +138,6 @@ void TranslatorXml::findMethod()
 	}
 	catch (ExceptionInterface& exception)
 	{
-		document->recognizeInvalid();
-		auto queueItemPtr = queueItem.release();
-		errorQueuePtr->addItem(*queueItemPtr, exception);
+		throw exception;
 	}
 }

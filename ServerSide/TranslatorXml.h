@@ -6,7 +6,6 @@
 #include "QueryQueue.h"
 #include "QueueItem.h"
 #include "ErrorQueue.h"
-//#include "Request.h"
 #include <thread>
 
 class Request;
@@ -32,12 +31,12 @@ class TranslatorXml
 	MethodsMapper methodsMapper;
 
 		unique_ptr<QueueItem> queueItem;
-		Request* request;
+		unique_ptr<Request> request;
+		//unique_ptr<Query> query;
 
 		unique_ptr<DocumentXml> document;
 		bool documentIsLoaded;
 
-		unique_ptr<Query> query;
 
 		shared_ptr<TableInterface> tablePointer;
 		shared_ptr<MethodInterface> methodPointer;
@@ -47,7 +46,8 @@ class TranslatorXml
 	void releaseFields();
 	bool loadDocument();
 	void initializeFields();
-	bool translateDocument();
+	void translateDocument();
+	void pushQueryOnQueue();
 
 	void findTable();
 	void findMethod();

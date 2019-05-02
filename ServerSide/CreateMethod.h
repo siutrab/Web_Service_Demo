@@ -1,5 +1,6 @@
 #pragma once
 #include "DocumentXml.h"
+#include "QueryGenerator.h"
 #include "boost/lexical_cast.hpp"
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
 #include <memory>
@@ -8,11 +9,8 @@
 using std::shared_ptr;
 using std::string;
 
-//class DocumentXml;
-//class Query;
-//class MaterialEntity;
-//class ParameterInterface;
-//class MethodInterface;
+class QueryGenerator;
+
 
 class CreateMethod
 	: public MethodInterface
@@ -28,21 +26,22 @@ private:
 		static string producer;
 	};
 
+	QueryGenerator* queryGenerator;
 
 	typedef shared_ptr<ParameterInterface> parameter;
-		static std::vector<parameter> parametersList;
+		static vector<parameter> parametersList;
 		shared_ptr<vector<unsigned short>> widthsList;
 
 		DocumentXml* documentXml;
 
-	vector<unique_ptr<MaterialEntity>> generateEntities();
+	vector<unique_ptr<EntityInterface>> generateEntities();
 	bool initializeWidthsList();
-	void mapArguments(DocumentXml& document) override;
+	void mapArguments();
 
 public:
 	CreateMethod();
 	~CreateMethod();
-	shared_ptr<Query> generateQuery() override;
+	unique_ptr<Query> generateQuery(DocumentXml& document) override;
 	unique_ptr<string> getMethodName() override;
 
 };
