@@ -1,12 +1,12 @@
 #pragma once
 #include <list>
+#include <memory>
+#include <vector>
 #include "MaterialTable.h"
 #include "ExceptionsSystem.h"
 
-using std::list;
-using std::pair;
 using std::unique_ptr;
-using std::shared_ptr;
+using std::vector;
 
 class DocumentXml;
 class TableInterface;
@@ -14,13 +14,12 @@ class MaterialTable;
 
 class DataBaseMap
 {
-	vector<shared_ptr<TableInterface>> tableList;
+	vector<unique_ptr<TableInterface>> tableList;
 
 
 public:
-	shared_ptr<TableInterface> findTable(string &tableName);
+	TableInterface& findTable(string &tableName);
 
-	//void assignTableMap(DocumentXml& document);
 	DataBaseMap();
 	~DataBaseMap();
 };

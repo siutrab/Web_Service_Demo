@@ -3,23 +3,26 @@
 
 
 MethodsMapper::MethodsMapper()
-	: MethodList(
-		{
-			shared_ptr<MethodInterface>(new CreateMethod())
-		})
-{	}
+	//: MethodList(
+	//	{
+	//		std::make_unique<MethodInterface>(static_cast<MethodInterface*>(new CreateMethod()))
+	//	})
+{
+	std::unique_ptr<MethodInterface> createMethodPtr(new CreateMethod);
+	MethodList.push_back(std::move(createMethodPtr));
+}
 
 
 MethodsMapper::~MethodsMapper()
 {
 }
 
-shared_ptr<MethodInterface> MethodsMapper::findMethod(string& name)
+MethodInterface& MethodsMapper::findMethod(string& name)
 {
 	for (size_t i = 0; i < MethodList.size(); i++)
 	{
 		if (*MethodList[i]->getMethodName() == name)
-			return MethodList[i];
+			return *MethodList[i];
 	}
 	throw ServerExceptions::QueryMappingExceptions::WrongMethodName();
 }

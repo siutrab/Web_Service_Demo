@@ -13,6 +13,7 @@ public:
 	virtual ~ContentInterface() = 0 {}
 	virtual bool isValid() = 0;
 	virtual void recognizeInvalid() = 0;
+	virtual void* getContent() = 0;
 };
 
 
@@ -33,7 +34,7 @@ public:
 	~Content() override {	}
 	bool isValid() override { return valid; }
 	void recognizeInvalid() override { valid = false; }
-	T getContent() { return contentValue; }
+	void* getContent() override { return &contentValue; }
 };
 
 
@@ -45,9 +46,9 @@ protected:
 		unique_ptr<ContentInterface> content;
 
 public:
-	QueueItem(Client* const client, ContentInterface& content)
+	QueueItem(Client* const client, unique_ptr<ContentInterface> content)
 		:	client(client),
-			content(&content)
+			content(std::move(content))
 	{	}
 	//QueueItem() {}
 	//QueueItem(QueueItem&& queueItem)
@@ -68,6 +69,7 @@ public:
 
 	unsigned int getId() const { return id; }
 	Client* getClientPointer() { return client; }
-	unique_ptr<ContentInterface>& getContent() { return content; }
+	unique_ptr<ContentInterface>& getContentObject() { return content; }
+	void* getContent() { return content->getContent(); }
 };
 

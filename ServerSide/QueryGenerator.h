@@ -24,7 +24,7 @@ class DatabaseHandler;
 	public:
 		QueryGenerator(DatabaseHandler* pointer);
 		~QueryGenerator();
-		SQLString& insert(vector<unique_ptr<EntityInterface>> &entityCollection);
+		unique_ptr<SQLString> insert(vector<unique_ptr<EntityInterface>> &entityCollection);
 		unique_ptr<SQLString> selectByIndex(EntityInterface &entity, unsigned int index);
 		unique_ptr<SQLString> selectAll(EntityInterface &entity);
 		unique_ptr<SQLString> selectOrderBy(EntityInterface &entity, unsigned short columnIndex);

@@ -38,45 +38,50 @@
 		{
 			try
 			{
-				Request request = unpackPacket(packet);
+				//Request request = createRequest(packet);
+				unique_ptr<QueueItem> request = createRequest(packet);
 				///
-					std::cout << request.getContent() << std::endl;	//////////////////////// COUT
+					std::cout << *(static_cast<string*>(request->getContent())) << std::endl;	//////////////////////// COUT
 				///
-				unique_ptr<QueueItem> queueItem = createQueueItem(request);
-				Client::requestQueuePtr->addItem(*queueItem);
+				Client::requestQueuePtr->addItem(std::move(request));
 			}
 			catch (ExceptionInterface& exception)
 			{
 				unique_ptr<QueueItem> queueItem = createQueueItem(exception);
 				errorQueuePtr->addItem(*queueItem, exception);
 			}
+			
 		}
 	}
 
-	Request Client::unpackPacket(Packet& packet)
+	unique_ptr<QueueItem> Client::createRequest(Packet& packet)
 	{
 		string contentValue;
 
 		if (packet >> contentValue)
-			return Request(contentValue);
+		{
+			unique_ptr<Request> request = std::make_unique<Request>(contentValue);
+			unique_ptr<QueueItem> queueItem = std::make_unique<QueueItem>(this, std::move(request));
+			return queueItem;
+		}
 			
 		else throw ServerExceptions::ReceivingPacketExceptions::CantUnpackPacket();
 
 	}
 
-	unique_ptr<QueueItem> Client::createQueueItem(Request &request)
-	{
-		//ContentInterface& content = dynamic_cast<ContentInterface&>(request);
-		
-		return std::make_unique<QueueItem>(this, request);
-	}
+	//unique_ptr<QueueItem> Client::createQueueItem(Request &request)
+	//{
+	//	//ContentInterface& content = dynamic_cast<ContentInterface&>(request);
+	//	
+	//	return std::make_unique<QueueItem>(this, request);
+	//}
 
 	unique_ptr<QueueItem> Client::createQueueItem(ExceptionInterface& exception)
 	{
-		ErrorResponse errorResponse(exception.getValue());
+		unique_ptr<ErrorResponse> errorResponse(new ErrorResponse(exception.getValue()));
 		
 
-		return std::make_unique<QueueItem>(this, errorResponse);
+		return std::make_unique<QueueItem>(this, std::move(errorResponse));
 	}
 
 	TcpSocket* Client::getSocket() { return &socket; }

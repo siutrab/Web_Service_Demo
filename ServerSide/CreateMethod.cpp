@@ -97,7 +97,7 @@ unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)	//////// TO
 	initializeWidthsList();
 	mapArguments();
 	vector<unique_ptr<EntityInterface>> entitiesVector = generateEntities();
-	sql::SQLString& query = queryGenerator->insert(entitiesVector);
+	sql::SQLString& query = *queryGenerator->insert(entitiesVector);
 
 	return unique_ptr<Query>(new Query(query));
 }

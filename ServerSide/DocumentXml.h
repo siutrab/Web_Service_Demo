@@ -22,10 +22,12 @@ class DocumentXml
 private:
 		bool valid;
 		xml_document document;
+		string textContent;
 		shared_ptr<TableInterface> tableMap;
 		vector<ExceptionInterface> ExceptionsList;
 
 	void setTableMap(TableInterface& table);
+	void eraseWhiteSigns(string& str);
 public:
 	DocumentXml(Request& request);
 	~DocumentXml();
@@ -35,7 +37,7 @@ public:
 	shared_ptr<TableInterface> getTableMap();
 	unique_ptr<string> getNodeValue(string& nodeName);
 	unique_ptr<string> getNodeValue(string& nodeName, string& parentNodeName);
-	unique_ptr<string> getNodeAttriute(string& nodeName, string& attribute);
+	unique_ptr<string> getNodeAttriute(vector<string>& nodeHierarchyVector, string& attribute);
 
 	template<typename T>
 	shared_ptr<vector<T>> getChildrenNodesValues(string& nodeName)		// WARNING!!! throws exception of type: boost::bad_lexical_cast

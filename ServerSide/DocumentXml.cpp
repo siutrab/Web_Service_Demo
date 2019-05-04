@@ -4,15 +4,28 @@
 DocumentXml::DocumentXml(Request& request)
 	:	valid(false)
 {
-	string requestContent = request.getContent();
-
-	if (document.load_string(requestContent.c_str()))
+	string* requestContent = static_cast<string*>(request.getContent());
+	eraseWhiteSigns(*requestContent);
+	//const char* charPtr = textContent.c_str();
+	pugi::xml_parse_result result = document.load_string(textContent.c_str());
+	if (result)
 		valid = true;
+	std::cout << result.description() << std::endl;
 }
 
 
 DocumentXml::~DocumentXml()
 {	}
+
+void DocumentXml::eraseWhiteSigns(string& str)
+{
+	for (size_t i = 0; i < str.size(); ++i)
+	{
+		//const char* charPtr = const_cast<const char*>(&str[i]);
+		if (str[i] != '\t' && str[i] != '\n')
+			textContent += str[i];
+	}
+}
 
 
 unique_ptr<string> DocumentXml::getNodeValue(string& nodeName)
@@ -46,11 +59,17 @@ unique_ptr<string> DocumentXml::getNodeValue(string& nodeName, string& parentNod
 }
 
 
-unique_ptr<string> DocumentXml::getNodeAttriute(string& nodeName, string& attribute)
+unique_ptr<string> DocumentXml::getNodeAttriute(vector<string>& nodeHierarchyVector, string& attribute)
 {
-	pugi::xml_node node = document.child(nodeName.c_str());
+	size_t nodesNumber = nodeHierarchyVector.size();
+	pugi::xml_node node = document;
+
+	for (size_t i = 0; i < nodesNumber; i++)
+		node = node.child(nodeHierarchyVector[i].c_str());
+	
+	//pugi::xml_node node = document.child("soap:Envelope").child("soap:Body").child(nodeName.c_str());
 	pugi::xml_attribute nodeAttribute = node.attribute(attribute.c_str());
-	const pugi::char_t* value = node.value();
+	const pugi::char_t* value = nodeAttribute.value();
 
 	return unique_ptr<string>(new string(value));
 }

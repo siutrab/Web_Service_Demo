@@ -6,6 +6,7 @@
 		:	port(port),
 			requestsQueue(),
 			errorQueue(),
+			queryQueue(),
 			translatorXml(),
 			//nonResultQuery(),
 			router(port),

@@ -2,6 +2,7 @@
 #include "Queue.h"
 #include "Query.h"
 #include "TranslatorXml.h"
+#include "DatabaseHandler.h"
 
 class Query;
 

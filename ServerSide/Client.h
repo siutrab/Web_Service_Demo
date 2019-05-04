@@ -26,8 +26,8 @@ class ErrorQueue;
 
 		// Methods
 		void sendResponse();		/// CHANGE ME!!!
-		Request unpackPacket(Packet& packet);
-		unique_ptr<QueueItem> createQueueItem(Request &request);
+		unique_ptr<QueueItem> createRequest(Packet& packet);
+		//unique_ptr<QueueItem> createQueueItem(Request &request);
 		unique_ptr<QueueItem> createQueueItem(ExceptionInterface& exception);
 	public:
 		Client(const unsigned int index);

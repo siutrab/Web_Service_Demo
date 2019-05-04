@@ -28,7 +28,8 @@ TranslatorXml::TranslatorXml()
 	:	running(false),
 		documentIsLoaded(false),
 		methodsMapper(),
-		dataBaseMap()
+		dataBaseMap(),
+		queueItem()
 {	}
 
 
@@ -77,7 +78,7 @@ void TranslatorXml::pushQueryOnQueue()
 {
 	unique_ptr<Query> queryPtr = methodPointer->generateQuery(*document);
 	queueItem->changeContent(*queryPtr);
-	queryQueuePtr->addItem(*queueItem);
+	queryQueuePtr->addItem(std::move(queueItem));
 }
 
 bool TranslatorXml::loadDocument()
@@ -85,7 +86,7 @@ bool TranslatorXml::loadDocument()
 	if (requestQueuePtr->isEmpty())
 		return false;
 
-	queueItem = unique_ptr<QueueItem>(requestQueuePtr->getItem());
+	queueItem.reset(requestQueuePtr->getItem().release());
 
 	initializeFields();
 	return true;
@@ -93,24 +94,22 @@ bool TranslatorXml::loadDocument()
 
 void TranslatorXml::initializeFields()
 {
-	ContentInterface& contentInterface = *queueItem->getContent();
-	request = unique_ptr<Request>(static_cast<Request*>(&contentInterface));
+	unique_ptr<ContentInterface> contentInterface(std::move(queueItem->getContentObject()));
+	//request = unique_ptr<Request>(static_cast<Request*>(&contentInterface));
+	
+	request = unique_ptr<Request>(static_cast<Request*>(contentInterface.release()));
+
 
 	document.reset(new DocumentXml(*request));
 	documentIsLoaded = true;
 }
 
-//void TranslatorXml::releaseFields()
-//{
-//	queueItem->changeContent(*query);
-//	QueueItem* queueItemObject = queueItem.release();
-//	queryQueuePtr->addItem(*queueItem);
-//}
 
 void TranslatorXml::findTable()
 {
 	// Example
 	// <table name = "materials">	... node "table", attribute "name", attribute.value "materials"
+	
 	
 	string nodeName("table");
 	string attribute("name");
@@ -118,7 +117,7 @@ void TranslatorXml::findTable()
 	try
 	{
 		unique_ptr<string> tableName = document->getNodeAttriute(nodeName, attribute);	// WARNING!!! throws exception	
-		tablePointer = dataBaseMap.findTable(*tableName);								// WARNING!!! throws exception
+		tablePointer = &dataBaseMap.findTable(*tableName);								// WARNING!!! throws exception
 	}
 	catch(ExceptionInterface& exception)
 	{
@@ -134,7 +133,7 @@ void TranslatorXml::findMethod()
 	try
 	{
 		unique_ptr<string> methodName = document->getNodeAttriute(nodeName, attribute);	// WARNING!!! throws exception
-		methodPointer = methodsMapper.findMethod(*methodName);							// WARNING!!! throws exception
+		methodPointer = &methodsMapper.findMethod(*methodName);							// WARNING!!! throws exception
 	}
 	catch (ExceptionInterface& exception)
 	{

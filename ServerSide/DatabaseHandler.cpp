@@ -6,12 +6,20 @@ bool DatabaseHandler::disconnectDatabase() { return false; }
 
 
 //////
+QueryQueue* DatabaseHandler::queryQueuePtr;
+
+void DatabaseHandler::setQueryQueuePtr(QueryQueue* pointer)
+{
+	DatabaseHandler::queryQueuePtr = pointer; // Settet in QueryQueue object
+	const_cast<const QueryQueue*>(DatabaseHandler::queryQueuePtr);
+}
 
 
 DatabaseHandler::DatabaseHandler()
 	:	connectedToDatabase(false),
 		running(false),
-		queryGenerator(new QueryGenerator(this))
+		queryGenerator(new QueryGenerator(this)),
+		queueItem()
 {	
 
 }
@@ -34,6 +42,18 @@ void DatabaseHandler::run()
 	running = true;
 	while (running)
 	{
+		if(queryQueuePtr->isEmpty())
+		{
+
+		}
+		else
+		{
+			queueItem.reset(queryQueuePtr->getItem().release());
+			ContentInterface* content = queueItem->getContentObject().release();
+			//Query* query = static_cast<Query*>(content);
+			//sql::SQLString sqlString = query->getContent();
+			//executeQuery(sqlString);
+		}
 		/*unique_ptr<SQLString> query = queryGenerator->insert();
 		executeQuery(*query);*/
 	}

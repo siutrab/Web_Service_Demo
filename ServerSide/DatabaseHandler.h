@@ -8,6 +8,7 @@
 
 #include "MaterialEntity.h"
 #include "QueryGenerator.h"
+#include "QueryQueue.h"
 
 #include <thread>
 #include <memory>
@@ -25,6 +26,7 @@ using::std::thread;
 //class MaterialEntity;
 class Server;
 class QueryGenerator;
+class QueryQueue;
 
 
 
@@ -43,6 +45,8 @@ class QueryGenerator;
 			bool running;
 			thread DATABASE_HANDLER_THREAD;
 
+			unique_ptr<QueueItem> queueItem;
+
 			QueryGenerator* queryGenerator;
 
 			// needed for connecting and executing querys;
@@ -50,9 +54,10 @@ class QueryGenerator;
 			unique_ptr<Connection> sqlConnection;
 			unique_ptr<PreparedStatement> SqlPreparedStatement;
 	
-			//static QueryQueue* queryQueue;
 			//Server* server;
 			
+		static QueryQueue* queryQueuePtr;
+
 		void run();		// main loop
 		void connectDatabase();
 		bool disconnectDatabase();
@@ -65,6 +70,6 @@ class QueryGenerator;
 	
 		bool connectionIsValid();
 		
-		//static void setQueryQueuePointer(QueryQueue* pointer);
+		static void setQueryQueuePtr(QueryQueue* pointer);
 	};
 

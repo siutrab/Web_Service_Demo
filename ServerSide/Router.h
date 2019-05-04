@@ -11,6 +11,7 @@ using std::thread;
 
 	class Router
 	{
+		
 			thread ROUTER_THREAD;
 			bool running = false;
 			const unsigned int port;

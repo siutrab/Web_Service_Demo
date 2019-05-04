@@ -31,17 +31,15 @@ int main()
 	//thread2.join();
 	//thread3.join();
 	send(
-		"<?xml version=\"1.0\"?>											\
-																			\
-		<soap:Envelope														\
-		xmlns : soap = \"http://www.w3.org/2003/05/soap-envelope/\"			\
-		soap : encodingStyle = \"http://www.w3.org/2003/05/soap-encoding\">	\
+		"																	\
+		<?xml version=\"1.0\"?>						\
+		<soap:Envelope>														\
 			<soap:Body>														\
 				<table name = \"materials\">								\
 					<method name = \"create\">								\
 						<name> FRONTROCK </name>							\
 						<lambda> 0.034 </lambda>							\
-						<widths>								\
+						<widths>											\
 							<width> 8 </width>								\
 							<width> 10 </width>								\
 							<width> 12 </width>								\
@@ -55,5 +53,9 @@ int main()
 					</method>												\
 				</table>													\
 			</soap:Body>													\
-		< / soap:Envelope>");
+		</soap:Envelope>");
 }
+//<?xml version=\"1.0\"? encoding=\"utf-8\"?>
+//< soap:Envelope														\
+//	xmlns : soap = \"http://www.w3.org/2003/05/soap-envelope/\"			\
+//		soap : encodingStyle = \"http://www.w3.org/2003/05/soap-encoding\">	\

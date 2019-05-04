@@ -28,40 +28,25 @@ public:
 		else return false;
 	}
 
-	void addItem(QueueItem& item)
+	void addItem(unique_ptr<QueueItem> item)
 	{
-		//itemQueue.push(unique_ptr<QueueItem>(&item));
-		//itemMove = std::move(itemQueue.back());
 		
-		//auto itemMove = unique_ptr<QueueItem>(&item);
-		//unique_ptr<QueueItem> ptr;
-		//ptr.reset(&item);
-		unique_ptr<QueueItem> itemPtr(&item);
-		itemQueue.push(std::move(itemPtr));
+		// !!!THAT WORKED when item was QueueItem&
+		/*unique_ptr<QueueItem> itemPtr(&item);
+		itemQueue.push(std::move(itemPtr));*/
+		//	!!!
+		itemQueue.push(std::move(item));
+
+		//itemQueue.emplace(unique_ptr < QueueItem>(&item));
 	}
 
-	QueueItem* getItem()
+	unique_ptr<QueueItem> getItem()
 	{
-		QueueItem* itemPtr = itemQueue.front().release();
-		itemQueue.pop();
-		return itemPtr;
-
-		/*auto_ptr<QueueItem> itemAutoPtr = itemQueue.front();
-		QueueItem* itemPtr = itemAutoPtr.release();
-		itemQueue.pop();
-		return itemPtr;*/
-								
-								
-		/*QueueItem* item = itemQueue.front().release();
-		itemQueue.pop();
-		return item;*/
-
-		//unique_ptr<QueueItem> itemMove = std::move(itemQueue.front());
+		//unique_ptr<QueueItem> itemUniquePtr(std::move(itemQueue.front()));
 		//itemQueue.pop();
-		//return itemMove.release();
 
-		/*unique_ptr<QueueItem>itemPtr();
-		 itemQueue.pop( std::move(itemPtr));*/
+		//QueueItem* itemPtr = itemUniquePtr.release();	//itemQueue.front().release();
+		return unique_ptr<QueueItem>(std::move(itemQueue.front()));
 
 		
 	}

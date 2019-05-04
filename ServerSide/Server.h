@@ -19,6 +19,7 @@
 		// Queues
 			RequestQueue requestsQueue;
 			ErrorQueue errorQueue;
+			QueryQueue queryQueue;
 			//NonResultQueryQueue nonResultQuery;
 
 	public:

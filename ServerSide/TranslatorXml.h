@@ -32,18 +32,18 @@ class TranslatorXml
 
 		unique_ptr<QueueItem> queueItem;
 		unique_ptr<Request> request;
-		//unique_ptr<Query> query;
+
 
 		unique_ptr<DocumentXml> document;
 		bool documentIsLoaded;
 
 
-		shared_ptr<TableInterface> tablePointer;
-		shared_ptr<MethodInterface> methodPointer;
+		TableInterface* tablePointer;
+		MethodInterface* methodPointer;
 
 		
 	void run();
-	void releaseFields();
+	//void releaseFields();
 	bool loadDocument();
 	void initializeFields();
 	void translateDocument();
@@ -51,9 +51,9 @@ class TranslatorXml
 
 	void findTable();
 	void findMethod();
-	bool findParameters();
+	//bool findParameters();
 
-	void pushOnErrorQueue(ExceptionInterface& exception);
+	//void pushOnErrorQueue(ExceptionInterface& exception);
 public:
 	TranslatorXml();
 	~TranslatorXml();
