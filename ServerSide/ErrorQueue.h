@@ -17,7 +17,7 @@ class ErrorQueue
 public:
 	ErrorQueue();
 	~ErrorQueue();
-	void addItem(QueueItem& queueItem, ExceptionInterface& exception);
+	void addItem(unique_ptr<QueueItem> queueItem, ExceptionInterface& exception);
 	//void addItem(QueueItem& item) override;
 };
 

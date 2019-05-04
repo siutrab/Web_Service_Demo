@@ -62,9 +62,11 @@ void TranslatorXml::translateDocument()
 {	
 	try
 	{
-		findTable();
-		findMethod();
-		pushQueryOnQueue();
+		setTable();
+		setMethod();
+		prepareQuery();
+
+		queryQueuePtr->addItem(std::move(queueItem));
 	}
 	catch (ExceptionInterface& exception)
 	{
@@ -74,11 +76,44 @@ void TranslatorXml::translateDocument()
 	}
 }
 
-void TranslatorXml::pushQueryOnQueue()
+void TranslatorXml::setTable()
 {
-	unique_ptr<Query> queryPtr = methodPointer->generateQuery(*document);
-	queueItem->changeContent(*queryPtr);
-	queryQueuePtr->addItem(std::move(queueItem));
+	try
+	{
+		string tableName = document->findTableName();			// WARNING!!! throws exception	
+		tablePointer = &dataBaseMap.findTable(tableName);		// WARNING!!! throws exception
+	}
+	catch(ExceptionInterface& exception)
+	{
+		throw exception;
+	}
+}
+
+void TranslatorXml::setMethod()
+{
+	
+	try
+	{
+		string methodName = document->findMethodName();			// WARNING!!! throws exception
+		methodPointer = &methodsMapper.findMethod(methodName);	// WARNING!!! throws exception
+	}
+	catch (ExceptionInterface& exception)
+	{
+		throw exception;
+	}
+}
+
+void TranslatorXml::prepareQuery()
+{
+	try
+	{
+		unique_ptr<Query> queryPtr = methodPointer->generateQuery(*document);	// WARNING!!! throws exception
+		queueItem->changeContent(*queryPtr);
+	}
+	catch(ExceptionInterface& exception)
+	{
+		throw exception;
+	}
 }
 
 bool TranslatorXml::loadDocument()
@@ -104,39 +139,3 @@ void TranslatorXml::initializeFields()
 	documentIsLoaded = true;
 }
 
-
-void TranslatorXml::findTable()
-{
-	// Example
-	// <table name = "materials">	... node "table", attribute "name", attribute.value "materials"
-	
-	
-	string nodeName("table");
-	string attribute("name");
-	
-	try
-	{
-		unique_ptr<string> tableName = document->getNodeAttriute(nodeName, attribute);	// WARNING!!! throws exception	
-		tablePointer = &dataBaseMap.findTable(*tableName);								// WARNING!!! throws exception
-	}
-	catch(ExceptionInterface& exception)
-	{
-		throw exception;
-	}
-}
-
-void TranslatorXml::findMethod()
-{
-	string nodeName("method");
-	string attribute("name");
-
-	try
-	{
-		unique_ptr<string> methodName = document->getNodeAttriute(nodeName, attribute);	// WARNING!!! throws exception
-		methodPointer = &methodsMapper.findMethod(*methodName);							// WARNING!!! throws exception
-	}
-	catch (ExceptionInterface& exception)
-	{
-		throw exception;
-	}
-}

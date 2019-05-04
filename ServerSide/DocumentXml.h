@@ -19,14 +19,14 @@ class Request;
 
 class DocumentXml
 {
+	typedef pugi::xml_node nodeXml;
 private:
 		bool valid;
 		xml_document document;
-		string textContent;
-		shared_ptr<TableInterface> tableMap;
-		vector<ExceptionInterface> ExceptionsList;
 
-	void setTableMap(TableInterface& table);
+		nodeXml methodNode;
+		
+	
 	void eraseWhiteSigns(string& str);
 public:
 	DocumentXml(Request& request);
@@ -34,27 +34,12 @@ public:
 	bool isValid();
 	void recognizeInvalid();
 	
-	shared_ptr<TableInterface> getTableMap();
-	unique_ptr<string> getNodeValue(string& nodeName);
-	unique_ptr<string> getNodeValue(string& nodeName, string& parentNodeName);
-	unique_ptr<string> getNodeAttriute(vector<string>& nodeHierarchyVector, string& attribute);
 
-	template<typename T>
-	shared_ptr<vector<T>> getChildrenNodesValues(string& nodeName)		// WARNING!!! throws exception of type: boost::bad_lexical_cast
-	{
-		unique_ptr<vector<T>> valuesVector(new vector<T>());
-		pugi::xml_node childNode = document.first_child();
+	string findTableName();
+	string findMethodName();
 
-		for (pugi::xml_node i = childNode; i; childNode = i.next_sibling())
-		{
 
-			string stringValue(i.value());
-			T castedValue = boost::lexical_cast<T>(stringValue);
-			valuesVector->push_back(castedValue);
-		}
+	unique_ptr<string> getParameter(string& parameterName);
+	unique_ptr<vector<string>> getParametersArray(string& collectionName, string& parameterName);
 
-		return valuesVector;
-	};	
-
-	void addException(ExceptionInterface& exception);
 };

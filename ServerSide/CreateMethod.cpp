@@ -8,7 +8,7 @@ string CreateMethod::ParametersCollection::materialType = "type";
 string CreateMethod::ParametersCollection::producer = "producer";
 
 
-typedef shared_ptr<ParameterInterface> parameter;
+typedef unique_ptr<ParameterInterface> parameter;
 
 
 std::vector<parameter> CreateMethod::parametersList
@@ -55,51 +55,60 @@ CreateMethod::~CreateMethod()
 {
 }
 
-void CreateMethod::mapArguments()
+bool CreateMethod::mapArguments()
 {
-	string parentNodeName = "method";
-	
-	
 	for (size_t i = 0; i < parametersList.size(); i++)
 	{
-		try
+		string argumentName = parametersList[i]->getXmlName();
+		auto parameterString = documentXml->getParameter(argumentName);
+		bool valueSetted = parametersList[i]->setValue(*parameterString);
+		
+		if(!valueSetted)
 		{
-			unique_ptr<string> parameterValue = documentXml->getNodeValue(parametersList[i]->getXmlName(), parentNodeName);
-			parametersList[i]->setValue(*parameterValue);
-		}
-		catch (ExceptionInterface& e)
-		{
+			return false;
 			documentXml->recognizeInvalid();
-			documentXml->addException(e);
 		}
 	}
+
+	return true;
 }
 
 bool CreateMethod::initializeWidthsList()
 {
-	string parentNodeName = "widths";
+	string arrayName = "widths";
+	string parameterName = "width";
+	auto widthsString = documentXml->getParametersArray(arrayName, parameterName);	// vector of STRINGS!!!
+	size_t widthsNumber = widthsString->size();
 
+	typedef vector<unsigned short> usVector;
+	auto castedWidths = std::make_unique<usVector>(new usVector(widthsNumber));	// vector of ushort
+	// casting
 	try
 	{
-		widthsList = documentXml->getChildrenNodesValues<unsigned short>(parentNodeName);
-		return true;
+		for (size_t i = 0; i < widthsNumber; i++)
+			(*castedWidths)[i] = boost::lexical_cast<unsigned short>((*widthsString)[i]);
 	}
-	catch(boost::bad_lexical_cast e)
+	catch (boost::bad_lexical_cast)
 	{
 		return false;
 	}
+
+	widthsList = std::move(castedWidths);
+	return true;
 }
 
 
 unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)	//////// TOOOOOOOOOOOOOOOOOOOOOOOOO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 {
 	documentXml = &document;
-	initializeWidthsList();
-	mapArguments();
-	vector<unique_ptr<EntityInterface>> entitiesVector = generateEntities();
-	sql::SQLString& query = *queryGenerator->insert(entitiesVector);
-
-	return unique_ptr<Query>(new Query(query));
+	if (initializeWidthsList() && mapArguments())
+	{
+		vector<unique_ptr<EntityInterface>> entitiesVector = generateEntities();
+		sql::SQLString& query = *queryGenerator->insert(entitiesVector);
+		
+		return unique_ptr<Query>(new Query(query));
+	}
+	throw ServerExceptions::QueryMappingExceptions::CannotConvertXml();
 }
 
 

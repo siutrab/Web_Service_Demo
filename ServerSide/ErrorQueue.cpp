@@ -13,13 +13,13 @@ ErrorQueue::~ErrorQueue()
 {
 }
 
-void ErrorQueue::addItem(QueueItem& item, ExceptionInterface& exception)
+void ErrorQueue::addItem(unique_ptr<QueueItem> item, ExceptionInterface& exception)
 {
-	ErrorResponse errorResponse(exception.getValue());
-	ContentInterface& contentInterface = dynamic_cast<ContentInterface&>(errorResponse);
-	item.changeContent(contentInterface);
+	unique_ptr<ContentInterface> errorResponse = std::make_unique<ErrorResponse>(exception.getValue());
+	//ContentInterface& contentInterface = dynamic_cast<ContentInterface&>(errorResponse);
+	item->changeContent(*errorResponse);
 
-	auto itemPointer = unique_ptr<QueueItem>(&item);
-	itemQueue.push(std::move(itemPointer));
+	//unique_ptr<QueueItem> itemPointer = std::make_unique<QueueItem>(&item);
+	itemQueue.push(std::move(item));
 }
 

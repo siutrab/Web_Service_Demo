@@ -6,8 +6,8 @@ DocumentXml::DocumentXml(Request& request)
 {
 	string* requestContent = static_cast<string*>(request.getContent());
 	eraseWhiteSigns(*requestContent);
-	//const char* charPtr = textContent.c_str();
-	pugi::xml_parse_result result = document.load_string(textContent.c_str());
+
+	pugi::xml_parse_result result = document.load_string(requestContent->c_str());
 	if (result)
 		valid = true;
 	std::cout << result.description() << std::endl;
@@ -19,71 +19,70 @@ DocumentXml::~DocumentXml()
 
 void DocumentXml::eraseWhiteSigns(string& str)
 {
+	string textCopy = str;
 	for (size_t i = 0; i < str.size(); ++i)
 	{
-		//const char* charPtr = const_cast<const char*>(&str[i]);
 		if (str[i] != '\t' && str[i] != '\n')
-			textContent += str[i];
+			textCopy += str[i];
 	}
+	str = textCopy;
 }
 
-
-unique_ptr<string> DocumentXml::getNodeValue(string& nodeName)
+string DocumentXml::findTableName()
 {
-	pugi::xml_node selectedNode = document.child(nodeName.c_str());
+	nodeXml tableNode = document.child("soap:Envelope").child("soap:Body").child("table");
 
-	// node not found
-	if (!selectedNode)
+	if (!tableNode)
 	{
 		recognizeInvalid();
 		throw ServerExceptions::QueryMappingExceptions::NodeNotFound();
 	}
 
-	return unique_ptr<string>(new string(selectedNode.value()));
+	pugi::xml_attribute tableName = tableNode.attribute("name");
+	const pugi::char_t* value = tableName.value();
+
+	return string(value);
 }
 
-
-unique_ptr<string> DocumentXml::getNodeValue(string& nodeName, string& parentNodeName)
+string DocumentXml::findMethodName()
 {
-	pugi::xml_node parentNode = document.child(parentNodeName.c_str());
-	pugi::xml_node childNode = parentNode.child(nodeName.c_str());
-
-	// node not found
-	if (!childNode)
-	{
-		recognizeInvalid();
-		throw ServerExceptions::QueryMappingExceptions::NodeNotFound();
-	}
-
-	return unique_ptr<string>(new string(childNode.value()));
-}
-
-
-unique_ptr<string> DocumentXml::getNodeAttriute(vector<string>& nodeHierarchyVector, string& attribute)
-{
-	size_t nodesNumber = nodeHierarchyVector.size();
-	pugi::xml_node node = document;
-
-	for (size_t i = 0; i < nodesNumber; i++)
-		node = node.child(nodeHierarchyVector[i].c_str());
+	methodNode = document.child("soap:Envelope").child("soap:Body").child("table");
 	
-	//pugi::xml_node node = document.child("soap:Envelope").child("soap:Body").child(nodeName.c_str());
-	pugi::xml_attribute nodeAttribute = node.attribute(attribute.c_str());
-	const pugi::char_t* value = nodeAttribute.value();
-
-	return unique_ptr<string>(new string(value));
+	if (!methodNode)
+	{
+		recognizeInvalid();
+		throw ServerExceptions::QueryMappingExceptions::NodeNotFound();
+	}
+	
+	pugi::xml_attribute methodName = methodNode.attribute("name");
+	const pugi::char_t* value = methodName.value();
+	
+	return string(value);
 }
+
+unique_ptr<string> DocumentXml::getParameter(string& parameterName)
+{
+	const pugi::char_t* value = methodNode.child(parameterName.c_str()).child_value();
+	auto valueString = std::make_unique<string>(new string(value));
+	delete value;
+	return std::move(valueString);
+}
+
+unique_ptr<vector<string>> DocumentXml::getParametersArray(string& collectionName, string& parameterName)		// WARNING!!! throws exception of type: boost::bad_lexical_cast
+{
+	auto valuesVector = std::make_unique<vector<string>>(new vector<string>());
+	nodeXml collectionNode = methodNode.child(collectionName.c_str());
+	nodeXml parameterNode = collectionNode.first_child();
+
+	for (nodeXml i = parameterNode; i; parameterNode = i.next_sibling())
+	{
+		string stringValue(i.child_value());
+		valuesVector->push_back(stringValue);
+	}
+	return std::move(valuesVector);
+};
+
 
 void DocumentXml::recognizeInvalid() { valid = false; }
 
 bool DocumentXml::isValid() { return valid; }
-
-void DocumentXml::setTableMap(TableInterface& table) { *tableMap = table; }
-
-shared_ptr<TableInterface> DocumentXml::getTableMap() { return tableMap; }
-
-void DocumentXml::addException(ExceptionInterface& exception)
-{
-	recognizeInvalid();
-	ExceptionsList.push_back(exception);
-}

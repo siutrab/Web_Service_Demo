@@ -43,6 +43,12 @@ struct ServerExceptions
 		{
 			NodeNotFound() { value = "Node was not found."; }
 		};
+
+		struct CannotConvertXml
+			: public ExceptionInterface
+		{
+			CannotConvertXml() { value = "Server is unable to convert xml file."; }
+		};
 	};
 
 	struct ReceivingPacketExceptions

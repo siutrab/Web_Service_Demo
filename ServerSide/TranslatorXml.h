@@ -47,10 +47,10 @@ class TranslatorXml
 	bool loadDocument();
 	void initializeFields();
 	void translateDocument();
-	void pushQueryOnQueue();
+	void prepareQuery();
 
-	void findTable();
-	void findMethod();
+	void setTable();
+	void setMethod();
 	//bool findParameters();
 
 	//void pushOnErrorQueue(ExceptionInterface& exception);

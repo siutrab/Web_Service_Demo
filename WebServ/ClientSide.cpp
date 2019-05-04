@@ -31,31 +31,27 @@ int main()
 	//thread2.join();
 	//thread3.join();
 	send(
-		"																	\
-		<?xml version=\"1.0\"?>						\
-		<soap:Envelope>														\
-			<soap:Body>														\
-				<table name = \"materials\">								\
-					<method name = \"create\">								\
-						<name> FRONTROCK </name>							\
-						<lambda> 0.034 </lambda>							\
-						<widths>											\
-							<width> 8 </width>								\
-							<width> 10 </width>								\
-							<width> 12 </width>								\
-							<width> 14 </width>								\
-							<width> 16 </width>								\
-						</widths>											\
-						<price> 0.034 </price>								\
-						<type> wool </type>									\
-						<producer> ROCKWOOL </producer>						\
-						<link> www.rockwool.pl </link>						\
-					</method>												\
-				</table>													\
-			</soap:Body>													\
+		"																\
+		<?xml version=\"1.0\"?>											\
+		<soap:Envelope>													\
+			<soap:Body>													\
+				<table name = \"materials\"/>							\
+				<method name = \"create\">								\
+					<name> FRONTROCK </name>							\
+					<lambda> 0.034 </lambda>							\
+					<widths>											\
+						<width> 8 </width>								\
+						<width> 10 </width>								\
+						<width> 12 </width>								\
+						<width> 14 </width>								\
+						<width> 16 </width>								\
+					</widths>											\
+					<price> 0.034 </price>								\
+					<type> wool </type>									\
+					<producer> ROCKWOOL </producer>						\
+					<link> www.rockwool.pl </link>						\
+				</method>												\
+			</soap:Body>												\
 		</soap:Envelope>");
 }
-//<?xml version=\"1.0\"? encoding=\"utf-8\"?>
-//< soap:Envelope														\
-//	xmlns : soap = \"http://www.w3.org/2003/05/soap-envelope/\"			\
-//		soap : encodingStyle = \"http://www.w3.org/2003/05/soap-encoding\">	\
+

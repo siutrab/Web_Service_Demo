@@ -28,15 +28,15 @@ private:
 
 	QueryGenerator* queryGenerator;
 
-	typedef shared_ptr<ParameterInterface> parameter;
+	typedef unique_ptr<ParameterInterface> parameter;
 		static vector<parameter> parametersList;
-		shared_ptr<vector<unsigned short>> widthsList;
+		unique_ptr<vector<unsigned short>> widthsList;
 
 		DocumentXml* documentXml;
 
 	vector<unique_ptr<EntityInterface>> generateEntities();
 	bool initializeWidthsList();
-	void mapArguments();
+	bool mapArguments();
 
 public:
 	CreateMethod();
