@@ -48,7 +48,7 @@
 			catch (ExceptionInterface& exception)
 			{
 				unique_ptr<QueueItem> queueItem = createQueueItem(exception);
-				errorQueuePtr->addItem(*queueItem, exception);
+				errorQueuePtr->addItem(std::move(queueItem), exception);
 			}
 			
 		}

@@ -5,6 +5,7 @@
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
 #include <memory>
 #include <string>
+#include <algorithm>
 
 using std::shared_ptr;
 using std::string;
@@ -26,13 +27,13 @@ private:
 		static string producer;
 	};
 
-	QueryGenerator* queryGenerator;
 
 	typedef unique_ptr<ParameterInterface> parameter;
-		static vector<parameter> parametersList;
+		vector<parameter> parametersList;
 		unique_ptr<vector<unsigned short>> widthsList;
 
 		DocumentXml* documentXml;
+		QueryGenerator* queryGenerator;
 
 	vector<unique_ptr<EntityInterface>> generateEntities();
 	bool initializeWidthsList();

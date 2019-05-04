@@ -50,14 +50,7 @@ public:
 		:	client(client),
 			content(std::move(content))
 	{	}
-	//QueueItem() {}
-	//QueueItem(QueueItem&& queueItem)
-	//	:	id(queueItem.id),
-	//		client(queueItem.client)
-	//{
-	//	ContentInterface* contentPtr = queueItem.content.release();
-	//	content = unique_ptr<ContentInterface>(contentPtr);
-	//}
+	
 
 	~QueueItem() {}
 	
@@ -69,7 +62,7 @@ public:
 
 	unsigned int getId() const { return id; }
 	Client* getClientPointer() { return client; }
-	unique_ptr<ContentInterface>& getContentObject() { return content; }
+	unique_ptr<ContentInterface> getContentObject() { return std::move(content); }
 	void* getContent() { return content->getContent(); }
 };
 

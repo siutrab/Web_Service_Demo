@@ -29,7 +29,9 @@ TranslatorXml::TranslatorXml()
 		documentIsLoaded(false),
 		methodsMapper(),
 		dataBaseMap(),
-		queueItem()
+		queueItem(),
+		request(),
+		document()
 {	}
 
 
@@ -71,8 +73,8 @@ void TranslatorXml::translateDocument()
 	catch (ExceptionInterface& exception)
 	{
 		document->recognizeInvalid();
-		QueueItem* queueItemPtr = queueItem.release();
-		errorQueuePtr->addItem(*queueItemPtr, exception);
+		//QueueItem* queueItemPtr = queueItem.release();
+		errorQueuePtr->addItem(std::move(queueItem), exception);
 	}
 }
 
@@ -121,7 +123,7 @@ bool TranslatorXml::loadDocument()
 	if (requestQueuePtr->isEmpty())
 		return false;
 
-	queueItem.reset(requestQueuePtr->getItem().release());
+	queueItem = std::move(requestQueuePtr->getItem());
 
 	initializeFields();
 	return true;

@@ -10,16 +10,16 @@ string CreateMethod::ParametersCollection::producer = "producer";
 
 typedef unique_ptr<ParameterInterface> parameter;
 
-
-std::vector<parameter> CreateMethod::parametersList
-{
-	parameter(new Parameter<float>(ParametersCollection::lambda)),
-	parameter(new Parameter<float>(ParametersCollection::price)),
-	parameter(new Parameter<string>(ParametersCollection::name)),
-	parameter(new Parameter<string>(ParametersCollection::link)),
-	parameter(new Parameter<string>(ParametersCollection::materialType)),
-	parameter(new Parameter<string>(ParametersCollection::producer))
-};
+//
+//vector<unique_ptr<ParameterInterface>> CreateMethod::parametersList
+//{
+//	parameter(new Parameter<float>(ParametersCollection::lambda)),
+//	parameter(new Parameter<float>(ParametersCollection::price)),
+//	parameter(new Parameter<string>(ParametersCollection::name)),
+//	parameter(new Parameter<string>(ParametersCollection::link)),
+//	parameter(new Parameter<string>(ParametersCollection::materialType)),
+//	parameter(new Parameter<string>(ParametersCollection::producer))
+//};
 
 
 vector<unique_ptr<EntityInterface>> CreateMethod::generateEntities()
@@ -47,7 +47,14 @@ vector<unique_ptr<EntityInterface>> CreateMethod::generateEntities()
 
 
 CreateMethod::CreateMethod()
+	:	parametersList()
 {
+	parametersList.push_back(unique_ptr<ParameterInterface>(new Parameter<float>(ParametersCollection::lambda)));
+	parametersList.push_back(unique_ptr<ParameterInterface>(new Parameter<float>(ParametersCollection::price)));
+	parametersList.push_back(unique_ptr<ParameterInterface>(new Parameter<string>(ParametersCollection::name)));
+	parametersList.push_back(unique_ptr<ParameterInterface>(new Parameter<string>(ParametersCollection::link)));
+	parametersList.push_back(unique_ptr<ParameterInterface>(new Parameter<string>(ParametersCollection::materialType)));
+	parametersList.push_back(unique_ptr<ParameterInterface>(new Parameter<string>(ParametersCollection::producer)));
 }
 
 
@@ -77,19 +84,37 @@ bool CreateMethod::initializeWidthsList()
 {
 	string arrayName = "widths";
 	string parameterName = "width";
+
 	auto widthsString = documentXml->getParametersArray(arrayName, parameterName);	// vector of STRINGS!!!
 	size_t widthsNumber = widthsString->size();
 
 	typedef vector<unsigned short> usVector;
-	auto castedWidths = std::make_unique<usVector>(new usVector(widthsNumber));	// vector of ushort
+	auto castedWidths = std::make_unique<usVector>();	// vector of ushort
 	// casting
 	try
 	{
 		for (size_t i = 0; i < widthsNumber; i++)
-			(*castedWidths)[i] = boost::lexical_cast<unsigned short>((*widthsString)[i]);
+		{
+			string stringValue = (*widthsString)[i];
+			
+			// erasing whitespaces -.-
+			stringValue.erase(std::remove_if(stringValue.begin(), stringValue.end(),
+				[](char c)
+				{
+					return (c == ' '|| c == '\n' || c == '\r' || c == '\t' || c == '\v' || c == '\f');
+				}),
+				stringValue.end()
+			);
+
+			int ushortValue = boost::lexical_cast<int>(stringValue.c_str());
+
+
+			castedWidths->push_back(ushortValue);
+		}
 	}
-	catch (boost::bad_lexical_cast)
+	catch (boost::bad_lexical_cast e)
 	{
+		std::cout << e.what();
 		return false;
 	}
 
@@ -101,7 +126,7 @@ bool CreateMethod::initializeWidthsList()
 unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)	//////// TOOOOOOOOOOOOOOOOOOOOOOOOO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 {
 	documentXml = &document;
-	if (initializeWidthsList() && mapArguments())
+	if ((initializeWidthsList()) && (mapArguments()))
 	{
 		vector<unique_ptr<EntityInterface>> entitiesVector = generateEntities();
 		sql::SQLString& query = *queryGenerator->insert(entitiesVector);

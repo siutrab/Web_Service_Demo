@@ -3,10 +3,6 @@
 
 
 MethodsMapper::MethodsMapper()
-	//: MethodList(
-	//	{
-	//		std::make_unique<MethodInterface>(static_cast<MethodInterface*>(new CreateMethod()))
-	//	})
 {
 	std::unique_ptr<MethodInterface> createMethodPtr(new CreateMethod);
 	MethodList.push_back(std::move(createMethodPtr));

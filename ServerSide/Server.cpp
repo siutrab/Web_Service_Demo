@@ -8,7 +8,6 @@
 			errorQueue(),
 			queryQueue(),
 			translatorXml(),
-			//nonResultQuery(),
 			router(port),
 			databaseHandler()
 	{
@@ -30,5 +29,3 @@
 
 	void Server::stop()
 	{	}
-
-	//RequestQueue* Server::getRequestsQueuePtr() { return &requestsQueue; }
