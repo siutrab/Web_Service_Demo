@@ -17,27 +17,23 @@ using std::vector;
 
 class Request;
 
+
 class DocumentXml
 {
 	typedef pugi::xml_node nodeXml;
+	typedef pugi::xml_attribute attributeXml;
 private:
-		bool valid;
 		xml_document document;
-
 		nodeXml methodNode;
-		
-	
-	void eraseWhiteSigns(string& str);
+
+	void eraseWhitespaces(string& str);
+
 public:
 	DocumentXml(Request& request);
 	~DocumentXml();
-	bool isValid();
-	void recognizeInvalid();
-	
 
 	string findTableName();
 	string findMethodName();
-
 
 	unique_ptr<string> getParameter(string& parameterName);
 	unique_ptr<vector<string>> getParametersArray(string& collectionName, string& parameterName);

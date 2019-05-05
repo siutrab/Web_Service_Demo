@@ -37,6 +37,17 @@ void Router::stop()
 	running = false; 
 }
 
-unsigned int Router::getPort() { return port; }
-SocketSelector* Router::getSelector() { return &selector; }
-ConnectedClientsList* Router::getClientsList() { return &clientsList; }
+unsigned int Router::getPort() 
+{ 
+	return port; 
+}
+
+SocketSelector* Router::getSelector() 
+{ 
+	return &selector; 
+}
+
+ConnectedClientsMenager* Router::getClientsList()
+{ 
+	return &clientsList;
+}

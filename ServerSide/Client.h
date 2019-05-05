@@ -27,13 +27,12 @@ class ErrorQueue;
 		// Methods
 		void sendResponse();		/// CHANGE ME!!!
 		unique_ptr<QueueItem> createRequest(Packet& packet);
-		//unique_ptr<QueueItem> createQueueItem(Request &request);
 		unique_ptr<QueueItem> createQueueItem(ExceptionInterface& exception);
 	public:
 		Client(const unsigned int index);
 		~Client();
 		void receivePacket();
-		// Getters
+
 		TcpSocket* getSocket();
 		unsigned int getIndex() const;
 		static void setRequestQueuePtr(RequestQueue* const pointer);

@@ -16,7 +16,6 @@
 		const_cast<const ErrorQueue*>(Client::errorQueuePtr);
 	}
 
-
 	Client::Client(unsigned int index)
 		:	socket(),
 			index(index)
@@ -38,7 +37,6 @@
 		{
 			try
 			{
-				//Request request = createRequest(packet);
 				unique_ptr<QueueItem> request = createRequest(packet);
 				///
 					std::cout << *(static_cast<string*>(request->getContent())) << std::endl;	//////////////////////// COUT
@@ -50,7 +48,6 @@
 				unique_ptr<QueueItem> queueItem = createQueueItem(exception);
 				errorQueuePtr->addItem(std::move(queueItem), exception);
 			}
-			
 		}
 	}
 
@@ -60,30 +57,28 @@
 
 		if (packet >> contentValue)
 		{
-			unique_ptr<Request> request = std::make_unique<Request>(contentValue);
-			unique_ptr<QueueItem> queueItem = std::make_unique<QueueItem>(this, std::move(request));
+			auto request = std::make_unique<Request>(contentValue);
+			auto queueItem = std::make_unique<QueueItem>(this, std::move(request));
 			return queueItem;
 		}
 			
 		else throw ServerExceptions::ReceivingPacketExceptions::CantUnpackPacket();
-
 	}
 
-	//unique_ptr<QueueItem> Client::createQueueItem(Request &request)
-	//{
-	//	//ContentInterface& content = dynamic_cast<ContentInterface&>(request);
-	//	
-	//	return std::make_unique<QueueItem>(this, request);
-	//}
 
 	unique_ptr<QueueItem> Client::createQueueItem(ExceptionInterface& exception)
 	{
-		unique_ptr<ErrorResponse> errorResponse(new ErrorResponse(exception.getValue()));
+		auto errorResponse = std::make_unique<ErrorResponse>(exception.getValue());
 		
-
 		return std::make_unique<QueueItem>(this, std::move(errorResponse));
 	}
 
-	TcpSocket* Client::getSocket() { return &socket; }
+	TcpSocket* Client::getSocket() 
+	{ 
+		return &socket; 
+	}
 
-	unsigned int Client::getIndex() const { return index; }
+	unsigned int Client::getIndex() const 
+	{ 
+		return index; 
+	}

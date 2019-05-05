@@ -168,7 +168,7 @@
     <ClInclude Include="..\..\..\..\..\..\CPP Libraries\Boost\boost_1_70_0\boost\smart_ptr\scoped_ptr.hpp" />
     <ClInclude Include="CreateMethod.h" />
     <ClInclude Include="Client.h" />
-    <ClInclude Include="ConnectedClientsList.h" />
+    <ClInclude Include="ConnectedClientsMenager.h" />
     <ClInclude Include="DataBaseMap.h" />
     <ClInclude Include="DatabaseHandler.h" />
     <ClInclude Include="DocumentXml.h" />
@@ -200,7 +200,7 @@
   <ItemGroup>
     <ClCompile Include="CreateMethod.cpp" />
     <ClCompile Include="Client.cpp" />
-    <ClCompile Include="ConnectedClientsList.cpp" />
+    <ClCompile Include="ConnectedClientsMenager.cpp" />
     <ClCompile Include="DataBaseMap.cpp" />
     <ClCompile Include="DatabaseHandler.cpp" />
     <ClCompile Include="DocumentXml.cpp" />

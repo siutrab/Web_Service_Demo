@@ -7,11 +7,14 @@
 using std::unique_ptr;
 using std::string;
 
+void eraseWhitespaces(string& str);
+
 int main()
 {
 	Server server(54000);
-	DatabaseHandler dbHandler;
-	float a = 14, b = 142;
+	
+	//DatabaseHandler dbHandler;
+	/*float a = 14, b = 142;
 	int c = 12;
 	std::string st = "eegrh";
 	unsigned short w = 12;
@@ -20,12 +23,15 @@ int main()
 	MaterialEntity material(NULL, a, b, b, w, st, st, st, st);
 	MaterialEntity material2(c, a, a, a, w2, st, st, st, st);
 	vectofMaterials.push_back(&material);
-	vectofMaterials.push_back(&material2);
+	vectofMaterials.push_back(&material2);*/
 	
 	//QueryGenerator generator(nullptr);
 //	unique_ptr<SQLString> query = generator.insert(vectofMaterials);
 //	dbHandler.executeQuery(*query);
 
-	std::cin.get();
+//	std::cin.get();
 	std::cin.get();
 }
+
+	
+

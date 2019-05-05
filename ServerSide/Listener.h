@@ -8,13 +8,13 @@ using sf::SocketSelector;
 
 
 class Router;
-class ConnectedClientsList;
+class ConnectedClientsMenager;
 
 	class Listener
 	{
 			TcpListener tcpListener;
 			SocketSelector* const selector;
-			ConnectedClientsList* const clientsList;
+			ConnectedClientsMenager* const clientsList;
 	public:
 		Listener(Router* router);
 		~Listener();

@@ -49,6 +49,12 @@ struct ServerExceptions
 		{
 			CannotConvertXml() { value = "Server is unable to convert xml file."; }
 		};
+
+		struct InvalidDocument
+			: public ExceptionInterface
+		{
+			InvalidDocument() { value = "XML file is not valid."; }
+		};
 	};
 
 	struct ReceivingPacketExceptions

@@ -57,7 +57,7 @@ public:
 	void changeContent(unique_ptr<ContentInterface>& newContent)
 	{
 		//auto newContentPointer = unique_ptr<ContentInterface>(&newContent);
-		content.swap(newContent);
+		content.reset(newContent.release());
 	}
 
 	unsigned int getId() const { return id; }

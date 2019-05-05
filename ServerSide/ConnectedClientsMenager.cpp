@@ -1,15 +1,15 @@
 #include "pch.h"
 #include "Router.h"
-#include "ConnectedClientsList.h"
-	ConnectedClientsList::ConnectedClientsList(Router* router)
+#include "ConnectedClientsMenager.h"
+	ConnectedClientsMenager::ConnectedClientsMenager(Router* router)
 		:	selector(router->getSelector())
 	{	}
 
-	ConnectedClientsList::~ConnectedClientsList()
+	ConnectedClientsMenager::~ConnectedClientsMenager()
 	{	}
 
 // methods
-	Client* ConnectedClientsList::addClient()
+	Client* ConnectedClientsMenager::addClient()
 	{
 		Client* client = new Client(clientUniqueNumber);
 		unsigned int clientIndex = client->getIndex();
@@ -18,12 +18,12 @@
 		return client;
 	}
 
-	void ConnectedClientsList::deleteClient(const unsigned int index)
+	void ConnectedClientsMenager::deleteClient(const unsigned int index)
 	{
 		clientsMap.erase(index);
 	}
 
-	void ConnectedClientsList::listen()
+	void ConnectedClientsMenager::listen()
 	{
 		for (auto i = clientsMap.begin(); i != clientsMap.end(); ++i)
 		{

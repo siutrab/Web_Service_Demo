@@ -2,30 +2,31 @@
 
 
 DocumentXml::DocumentXml(Request& request)
-	:	valid(false)
 {
 	string* requestContent = static_cast<string*>(request.getContent());
-	eraseWhiteSigns(*requestContent);
+	eraseWhitespaces(*requestContent);
 
 	pugi::xml_parse_result result = document.load_string(requestContent->c_str());
-	if (result)
-		valid = true;
-	std::cout << result.description() << std::endl;
+	if (!result)
+		throw ServerExceptions::QueryMappingExceptions::InvalidDocument();
+	
+	std::cout << result.description() << std::endl;	/////////////////////////////////////////////////////////////////
 }
 
 
 DocumentXml::~DocumentXml()
 {	}
 
-void DocumentXml::eraseWhiteSigns(string& str)
+void DocumentXml::eraseWhitespaces(string& str)
 {
-	string translatedString;
-	for (size_t i = 0; i < str.size(); ++i)
+	string newStr;
+	for (size_t i = 0; i < str.size(); i++)
 	{
-		if (str[i] != '\t' && str[i] != '\n')
-			translatedString += str[i];
+		char c = str[i];
+		if (c != '\n' && c != '\r' && c != '\t' && c != '\v' && c != '\f')		// space ' ' cannot be deleted because tags could contain them
+			newStr += c;														// for example <tag attribute = "...">
 	}
-	str = translatedString;
+	str = newStr;
 }
 
 string DocumentXml::findTableName()
@@ -33,12 +34,9 @@ string DocumentXml::findTableName()
 	nodeXml tableNode = document.child("soap:Envelope").child("soap:Body").child("table");
 
 	if (!tableNode)
-	{
-		recognizeInvalid();
 		throw ServerExceptions::QueryMappingExceptions::NodeNotFound();
-	}
 
-	pugi::xml_attribute tableName = tableNode.attribute("name");
+	attributeXml tableName = tableNode.attribute("name");
 	const pugi::char_t* value = tableName.value();
 
 	return string(value);
@@ -49,12 +47,9 @@ string DocumentXml::findMethodName()
 	methodNode = document.child("soap:Envelope").child("soap:Body").child("method");
 	
 	if (!methodNode)
-	{
-		recognizeInvalid();
 		throw ServerExceptions::QueryMappingExceptions::NodeNotFound();
-	}
 	
-	pugi::xml_attribute methodName = methodNode.attribute("name");
+	attributeXml methodName = methodNode.attribute("name");
 	const pugi::char_t* value = methodName.value();
 	
 	return string(value);
@@ -81,8 +76,3 @@ unique_ptr<vector<string>> DocumentXml::getParametersArray(string& collectionNam
 	}
 	return std::move(valuesVector);
 };
-
-
-void DocumentXml::recognizeInvalid() { valid = false; }
-
-bool DocumentXml::isValid() { return valid; }

@@ -69,9 +69,6 @@
     <ClInclude Include="Client.h">
       <Filter>Server resources\Router resources</Filter>
     </ClInclude>
-    <ClInclude Include="ConnectedClientsList.h">
-      <Filter>Server resources\Router resources</Filter>
-    </ClInclude>
     <ClInclude Include="Listener.h">
       <Filter>Server resources\Router resources</Filter>
     </ClInclude>
@@ -150,6 +147,9 @@
     <ClInclude Include="ErrorResponse.h">
       <Filter>Server resources\Queues resources\ErrorQueue</Filter>
     </ClInclude>
+    <ClInclude Include="ConnectedClientsMenager.h">
+      <Filter>Server resources\Router resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -165,9 +165,6 @@
       <Filter>Server resources\Router resources</Filter>
     </ClCompile>
     <ClCompile Include="Router.cpp">
-      <Filter>Server resources\Router resources</Filter>
-    </ClCompile>
-    <ClCompile Include="ConnectedClientsList.cpp">
       <Filter>Server resources\Router resources</Filter>
     </ClCompile>
     <ClCompile Include="ResponseHandler.cpp">
@@ -223,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="ErrorResponse.cpp">
       <Filter>Server resources\Queues resources\ErrorQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectedClientsMenager.cpp">
+      <Filter>Server resources\Router resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -10,17 +10,6 @@ string CreateMethod::ParametersCollection::producer = "producer";
 
 typedef unique_ptr<ParameterInterface> parameter;
 
-//
-//vector<unique_ptr<ParameterInterface>> CreateMethod::parametersList
-//{
-//	parameter(new Parameter<float>(ParametersCollection::lambda)),
-//	parameter(new Parameter<float>(ParametersCollection::price)),
-//	parameter(new Parameter<string>(ParametersCollection::name)),
-//	parameter(new Parameter<string>(ParametersCollection::link)),
-//	parameter(new Parameter<string>(ParametersCollection::materialType)),
-//	parameter(new Parameter<string>(ParametersCollection::producer))
-//};
-
 
 vector<unique_ptr<EntityInterface>> CreateMethod::generateEntities()
 {
@@ -74,7 +63,6 @@ bool CreateMethod::mapArguments()
 		if(valueSetted == false)
 		{
 			return false;
-			documentXml->recognizeInvalid();
 		}
 	}
 
@@ -98,29 +86,7 @@ bool CreateMethod::initializeWidthsList()
 		{
 			string stringValue = (*widthsString)[i];
 			eraseWhitespaces(stringValue);
-			
-			// erasing whitespaces
-			/*[](string str)
-			{
-				string newStr;
-				for (size_t i = 0; i < str.size(); i++)
-				{
-					char c = str[i];
-					if (c != ' ' && c != '\n' && c != '\r'&& c != '\t' && c != '\v' && c != '\f')
-						newStr += c;
-				}
-				str = newStr;
-			};*/
-			/*stringValue.erase(std::remove_if(stringValue.begin(), stringValue.end(),
-				[](char c)
-				{
-					return (c == ' '|| c == '\n' || c == '\r' || c == '\t' || c == '\v' || c == '\f');
-				}),
-				stringValue.end()
-			);*/
-
 			int ushortValue = boost::lexical_cast<int>(stringValue.c_str());
-
 
 			castedWidths->push_back(ushortValue);
 		}
@@ -141,7 +107,7 @@ void CreateMethod::eraseWhitespaces(string& str)
 	for (size_t i = 0; i < str.size(); i++)
 	{
 		char c = str[i];
-		if (c != ' ' && c != '\n' && c != '\r' && c != '\t' && c != '\v' && c != '\f')
+		if (c != ' ')		// erasing only spaces, because the rest of white signes were removed in DocumentXml constructor
 			newStr += c;
 	}
 	str = newStr;

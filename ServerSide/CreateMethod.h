@@ -7,8 +7,10 @@
 #include <string>
 #include <algorithm>
 
+
 using std::shared_ptr;
 using std::string;
+
 
 class QueryGenerator;
 

@@ -1,6 +1,4 @@
 #pragma once
-//#include "Router.h"
-//#include "Client.h"
 #include "RequestQueue.h"
 #include "SFML/Network.hpp"
 #include <map>
@@ -12,7 +10,7 @@ using sf::SocketSelector;
 
 class Router;
 
-	class ConnectedClientsList
+	class ConnectedClientsMenager
 	{
 		typedef std::pair<unsigned int, shared_ptr<Client>> mapPair;
 
@@ -21,8 +19,8 @@ class Router;
 			map <const unsigned int, shared_ptr<Client>> clientsMap;	// owner
 			SocketSelector* const selector;
 	public:
-		ConnectedClientsList(Router* router);
-		~ConnectedClientsList();
+		ConnectedClientsMenager(Router* router);
+		~ConnectedClientsMenager();
 
 		Client* addClient();	// Creates a client and returns reference to it 
 		void deleteClient(const unsigned int index);

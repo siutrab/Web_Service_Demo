@@ -26,7 +26,6 @@
 
 TranslatorXml::TranslatorXml()
 	:	running(false),
-		documentIsLoaded(false),
 		methodsMapper(),
 		dataBaseMap(),
 		queueItem(),
@@ -66,14 +65,13 @@ void TranslatorXml::translateDocument()
 		setTable();
 		setMethod();
 		prepareQuery();
-
-		queryQueuePtr->addItem(std::move(queueItem));
 	}
 	catch (ExceptionInterface& exception)
 	{
-		document->recognizeInvalid();
 		errorQueuePtr->addItem(std::move(queueItem), exception);
 	}
+	
+	queryQueuePtr->addItem(std::move(queueItem));
 }
 
 void TranslatorXml::setTable()
@@ -102,16 +100,21 @@ bool TranslatorXml::loadDocument()
 
 	queueItem = std::move(requestQueuePtr->getItem());
 
-	initializeFields();
-	return true;
+	return initializeFields();
 }
 
-void TranslatorXml::initializeFields()
+bool TranslatorXml::initializeFields()
 {
-	unique_ptr<ContentInterface> contentInterface(std::move(queueItem->getContentObject()));
+	try
+	{
+		unique_ptr<ContentInterface> contentInterface(std::move(queueItem->getContentObject()));
 	
-	request = unique_ptr<Request>(static_cast<Request*>(contentInterface.release()));
-
-	document.reset(new DocumentXml(*request));
-	documentIsLoaded = true;
+		request = unique_ptr<Request>(static_cast<Request*>(contentInterface.release()));
+		document.reset(new DocumentXml(*request));
+		return true;
+	}
+	catch(...)
+	{
+		return false;
+	}
 }

@@ -29,14 +29,13 @@ class TranslatorXml
 
 	DataBaseMap dataBaseMap;
 	MethodsMapper methodsMapper;
-//	QueryGenerator queryGenerator;
 
 		unique_ptr<QueueItem> queueItem;
 		unique_ptr<Request> request;
 
 
 		unique_ptr<DocumentXml> document;
-		bool documentIsLoaded;
+
 
 
 		TableInterface* tablePointer;
@@ -45,7 +44,7 @@ class TranslatorXml
 		
 	void run();
 	bool loadDocument();
-	void initializeFields();
+	bool initializeFields();
 	void translateDocument();
 	void prepareQuery();
 
