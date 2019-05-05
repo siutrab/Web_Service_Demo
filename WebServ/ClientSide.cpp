@@ -46,7 +46,7 @@ int main()
 						<width> 14 </width>								\
 						<width> 16 </width>								\
 					</widths>											\
-					<price> 0.034 </price>								\
+					<price> 127 </price>								\
 					<type> wool </type>									\
 					<producer> ROCKWOOL </producer>						\
 					<link> www.rockwool.pl </link>						\

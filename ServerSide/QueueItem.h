@@ -54,10 +54,10 @@ public:
 
 	~QueueItem() {}
 	
-	void changeContent(ContentInterface& newContent)
+	void changeContent(unique_ptr<ContentInterface>& newContent)
 	{
-		auto newContentPointer = unique_ptr<ContentInterface>(&newContent);
-		content.swap(newContentPointer);
+		//auto newContentPointer = unique_ptr<ContentInterface>(&newContent);
+		content.swap(newContent);
 	}
 
 	unsigned int getId() const { return id; }

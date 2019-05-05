@@ -90,8 +90,9 @@ void TranslatorXml::setMethod()
 
 void TranslatorXml::prepareQuery()
 {
-	unique_ptr<Query> queryPtr = methodPointer->generateQuery(*document);	// WARNING!!! throws exception
-	queueItem->changeContent(*queryPtr);
+	unique_ptr<ContentInterface> queryPtr = methodPointer->generateQuery(*document);	// WARNING!!! throws exception
+
+	queueItem->changeContent(queryPtr);
 }
 
 bool TranslatorXml::loadDocument()

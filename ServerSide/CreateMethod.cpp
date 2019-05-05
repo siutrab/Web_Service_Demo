@@ -147,7 +147,7 @@ void CreateMethod::eraseWhitespaces(string& str)
 	str = newStr;
 }
 
-unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)	//////// TOOOOOOOOOOOOOOOOOOOOOOOOO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)
 {
 	documentXml = &document;
 	if ((initializeWidthsList()) && (mapArguments()))
