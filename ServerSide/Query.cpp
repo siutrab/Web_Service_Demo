@@ -1,9 +1,10 @@
 #include "Query.h"
 
 
-
-Query::Query()
+Query::Query(sql::SQLString& queryString)
+	: Content<sql::SQLString>(queryString)
 {
+
 }
 
 

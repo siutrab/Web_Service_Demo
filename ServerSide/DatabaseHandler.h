@@ -7,15 +7,28 @@
 #include "jdbc/cppconn/prepared_statement.h"
 
 #include "MaterialEntity.h"
+//#include "QueryGenerator.h"
+#include "QueryQueue.h"
 
+#include <thread>
+#include <memory>
 using std::string;
 using sql::SQLString;
 using sql::mysql::MySQL_Driver;
 using sql::Connection;
 using sql::PreparedStatement;
 using sql::SQLException;
+using std::unique_ptr;
+using::std::thread;
 
-class MaterialEntity;
+
+//class EntityInterface;
+//class MaterialEntity;
+class Server;
+//class QueryGenerator;
+class QueryQueue;
+
+
 
 	class DatabaseHandler
 	{
@@ -29,22 +42,34 @@ class MaterialEntity;
 		typedef DatabaseHandler::DatabaseInfo db;
 
 			bool connectedToDatabase;
+			bool running;
+			thread DATABASE_HANDLER_THREAD;
+
+			unique_ptr<QueueItem> queueItem;
+
+			//QueryGenerator* queryGenerator;
 
 			// needed for connecting and executing querys;
-			MySQL_Driver* driver;
-			Connection* sqlConnection;
-			PreparedStatement* SqlPreparedStatement;
+			unique_ptr<MySQL_Driver> driver;
+			unique_ptr<Connection> sqlConnection;
+			unique_ptr<PreparedStatement> SqlPreparedStatement;
 	
+			//Server* server;
+			
+		static QueryQueue* queryQueuePtr;
+
+		void run();		// main loop
 		void connectDatabase();
 		bool disconnectDatabase();
 	public:
 		DatabaseHandler();
 		~DatabaseHandler();
-		bool executeQuery(SQLString* query);
+		void start();
+		void stop();
+		bool executeQuery(SQLString& query);
 	
 		bool connectionIsValid();
-		void addEntity();
-		void removeEntity();
-		void getMaterial();
+		
+		static void setQueryQueuePtr(QueryQueue* pointer);
 	};
 

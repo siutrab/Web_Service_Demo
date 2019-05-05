@@ -1,7 +1,6 @@
 #pragma once
+//#include "Router.h"
 #include "SFML/Network.hpp"
-#include "ConnectedClientsList.h"
-#include "Router.h"
 
 using sf::TcpListener;
 using sf::TcpSocket;
@@ -17,7 +16,7 @@ class ConnectedClientsList;
 			SocketSelector* const selector;
 			ConnectedClientsList* const clientsList;
 	public:
-		Listener(Router& router);
+		Listener(Router* router);
 		~Listener();
 		void listen();
 	};

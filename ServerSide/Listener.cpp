@@ -1,13 +1,14 @@
 #include "pch.h"
-//#include "Listener.h"
+#include "Listener.h"
+
 #include "Router.h"
 
-Listener::Listener(Router& router)
-	:	selector(router.getSelector()),
-		clientsList(router.getClientsList())
+Listener::Listener(Router* router)
+	:	selector(router->getSelector()),
+		clientsList(router->getClientsList())
 {
 	tcpListener.setBlocking(false);
-	tcpListener.listen(router.getPort());
+	tcpListener.listen(router->getPort());
 	selector->add(tcpListener);
 }
 

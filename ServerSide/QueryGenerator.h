@@ -1,22 +1,32 @@
 #pragma once
 #include"jdbc/cppconn/sqlstring.h"
-#include "MaterialEntity.h"
-#include "EntityAbstract.h"
+#include <memory>
+#include <cstring>
 #include <vector>
-#include "boost/any.hpp"
+#include "MappingInterface.h"
+//#include "DatabaseHandler.h"
 
 using sql::SQLString;
 using std::vector;
 using std::string;
+using std::unique_ptr;
+using std::shared_ptr;
+
+class DatabaseHandler;
 
 	class QueryGenerator
 	{
-	public:
-		QueryGenerator();
-		~QueryGenerator();
+	private:
+			//DatabaseHandler* databaseHandler;
 
-		SQLString* insert(EntityAbstract &entity);
-		SQLString* selectByIndex(EntityAbstract &entity, unsigned int index);
-		SQLString* selectAll(EntityAbstract &entity);
-		SQLString* selectOrderBy(EntityAbstract &entity, unsigned short columnIndex);
+
+		unique_ptr<string> entityValuesToQueryPart(EntityInterface& entity);
+		unique_ptr<string> entityFieldsToQueryPart(EntityInterface& entity);
+	public:
+		QueryGenerator(/*DatabaseHandler* pointer*/);
+		~QueryGenerator();
+		unique_ptr<SQLString> insert(vector<unique_ptr<EntityInterface>> &entityCollection);
+		unique_ptr<SQLString> selectByIndex(EntityInterface &entity, unsigned int index);
+		unique_ptr<SQLString> selectAll(EntityInterface &entity);
+		unique_ptr<SQLString> selectOrderBy(EntityInterface &entity, unsigned short columnIndex);
 	};

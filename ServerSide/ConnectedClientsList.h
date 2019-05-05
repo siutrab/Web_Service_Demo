@@ -1,26 +1,27 @@
 #pragma once
+//#include "Router.h"
+//#include "Client.h"
+#include "RequestQueue.h"
 #include "SFML/Network.hpp"
 #include <map>
-#include "Client.h"
-#include "Router.h"
-#include "RequestsQueue.h"
+
 
 using std::map;
 using sf::SocketSelector;
 
-class Client;
+
 class Router;
 
 	class ConnectedClientsList
 	{
-		typedef std::pair<unsigned int, Client*> mapPair;
+		typedef std::pair<unsigned int, shared_ptr<Client>> mapPair;
 
 			unsigned int numberOfClients;
 			unsigned int clientUniqueNumber = 0;
-			map <unsigned int, Client*> clientsMap;	// owner
+			map <const unsigned int, shared_ptr<Client>> clientsMap;	// owner
 			SocketSelector* const selector;
 	public:
-		ConnectedClientsList(Router& router);
+		ConnectedClientsList(Router* router);
 		~ConnectedClientsList();
 
 		Client* addClient();	// Creates a client and returns reference to it 

@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include <iostream>
 #include "SFML/Network.hpp"
-#include <thread>
+//#include <thread>
 
 void send(std::string comunicate)
 {
@@ -30,5 +30,28 @@ int main()
 	//thread1.join();
 	//thread2.join();
 	//thread3.join();
-	send("<?xml version=\"1.0\" encoding=\"UTF - 8\"?><note><blah> oiafoesg </blah></note>");
+	send(
+		"																\
+		<?xml version=\"1.0\"?>											\
+		<soap:Envelope>													\
+			<soap:Body>													\
+				<table name = \"materials\"/>							\
+				<method name = \"create\">								\
+					<name> FRONTROCK </name>							\
+					<lambda> 0.034 </lambda>							\
+					<widths>											\
+						<width> 8 </width>								\
+						<width> 10 </width>								\
+						<width> 12 </width>								\
+						<width> 14 </width>								\
+						<width> 16 </width>								\
+					</widths>											\
+					<price> 127 </price>								\
+					<type> wool </type>									\
+					<producer> ROCKWOOL </producer>						\
+					<link> www.rockwool.pl </link>						\
+				</method>												\
+			</soap:Body>												\
+		</soap:Envelope>");
 }
+

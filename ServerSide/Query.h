@@ -1,15 +1,14 @@
 #pragma once
-#include "Client.h"
+#include "QueueItem.h"
 #include "jdbc/cppconn/sqlstring.h"
-class Client;
+
 
 class Query
+	: public Content<sql::SQLString>
 {
-	unsigned int id;
-	Client* client;
-	sql::SQLString* queryString;
+
 public:
-	Query();
+	Query(sql::SQLString& queryString);
 	~Query();
 };
 

@@ -19,20 +19,41 @@
     <Filter Include="Server resources\Router resources">
       <UniqueIdentifier>{c43647ab-5a6e-43fc-8b91-f27ca911108e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server resources\Logic Layer resources">
-      <UniqueIdentifier>{d135a1a9-857d-4735-8f07-ea34b90a33e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Server resources\Logic Layer resources\Database Handler">
-      <UniqueIdentifier>{e888dd19-4dd3-455a-886a-8083ccf33c6d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Server resources\Queues resources">
       <UniqueIdentifier>{55800cf9-3a35-4a07-88b1-85f53cee38c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables">
-      <UniqueIdentifier>{56ed1742-560a-403e-a7a3-01881623c40c}</UniqueIdentifier>
+    <Filter Include="Server resources\Request Handler">
+      <UniqueIdentifier>{d135a1a9-857d-4735-8f07-ea34b90a33e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table">
-      <UniqueIdentifier>{cbe14493-5478-4f0d-98b7-b7bb684bc964}</UniqueIdentifier>
+    <Filter Include="Server resources\Database Handler">
+      <UniqueIdentifier>{e888dd19-4dd3-455a-886a-8083ccf33c6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Queues resources\QueryQueue">
+      <UniqueIdentifier>{a26a069b-1ec0-4b2a-9aae-87ab9f68b560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Queues resources\RequestQueue">
+      <UniqueIdentifier>{4618bf85-ea42-46e3-b692-20fa94970c72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Request Handler\Translator XML">
+      <UniqueIdentifier>{77c7aae9-e318-4d15-9828-22762f79628d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Request Handler\Translator XML\Mathods Mapper">
+      <UniqueIdentifier>{b14413a4-916d-4808-af43-32f2a4d508be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Request Handler\Translator XML\Database Mapper">
+      <UniqueIdentifier>{28b795ef-0098-41b6-a2aa-86b1a6d67b98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Request Handler\Translator XML\Database Mapper\Database Tables">
+      <UniqueIdentifier>{8fd25911-8349-481b-91d4-71f955827bb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Request Handler\Translator XML\Database Mapper\Database Tables\Entities">
+      <UniqueIdentifier>{15ed491e-55fc-4735-9fd5-96d1b310b645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Request Handler\Translator XML\Mathods Mapper\All methods">
+      <UniqueIdentifier>{d0f95325-529b-4266-beff-40ab27c9ea9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Queues resources\ErrorQueue">
+      <UniqueIdentifier>{6471a598-2c4d-4de9-8478-93647251fa0f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,47 +75,80 @@
     <ClInclude Include="Listener.h">
       <Filter>Server resources\Router resources</Filter>
     </ClInclude>
-    <ClInclude Include="RequestHandler.h">
-      <Filter>Server resources\Logic Layer resources</Filter>
-    </ClInclude>
     <ClInclude Include="ResponseHandler.h">
-      <Filter>Server resources\Logic Layer resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Request.h">
-      <Filter>Server resources\Router resources</Filter>
+      <Filter>Server resources\Request Handler</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\CPP Libraries\Boost\boost_1_70_0\boost\smart_ptr\scoped_ptr.hpp">
       <Filter>Pliki źródłowe</Filter>
     </ClInclude>
-    <ClInclude Include="DatabaseHandler.h">
-      <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
-    </ClInclude>
-    <ClInclude Include="RequestTranslatorXML.h">
-      <Filter>Server resources\Logic Layer resources</Filter>
-    </ClInclude>
     <ClInclude Include="Server.h">
       <Filter>Server resources</Filter>
-    </ClInclude>
-    <ClInclude Include="RequestsQueue.h">
-      <Filter>Server resources\Queues resources</Filter>
     </ClInclude>
     <ClInclude Include="ExceptionsSystem.h">
       <Filter>Server resources</Filter>
     </ClInclude>
-    <ClInclude Include="QueryGenerator.h">
-      <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
+    <ClInclude Include="MaterialEntity.h">
+      <Filter>Server resources\Request Handler\Translator XML\Database Mapper\Database Tables\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="MappingInterface.h">
+      <Filter>Server resources\Request Handler\Translator XML\Database Mapper\Database Tables</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseHandler.h">
+      <Filter>Server resources\Database Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="Request.h">
+      <Filter>Server resources\Queues resources\RequestQueue</Filter>
     </ClInclude>
     <ClInclude Include="MaterialTable.h">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
+      <Filter>Server resources\Request Handler\Translator XML\Database Mapper\Database Tables</Filter>
     </ClInclude>
-    <ClInclude Include="MaterialEntity.h">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
+    <ClInclude Include="TableInterface.h">
+      <Filter>Server resources\Request Handler\Translator XML\Database Mapper\Database Tables</Filter>
     </ClInclude>
-    <ClInclude Include="EntityAbstract.h">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables</Filter>
+    <ClInclude Include="DataBaseMap.h">
+      <Filter>Server resources\Request Handler\Translator XML\Database Mapper</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentXml.h">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestHandler.h">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodInterface.h">
+      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper</Filter>
     </ClInclude>
     <ClInclude Include="Query.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Server resources\Queues resources\QueryQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="TranslatorXml.h">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateMethod.h">
+      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper\All methods</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodsMapper.h">
+      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryGenerator.h">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueItem.h">
+      <Filter>Server resources\Queues resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestQueue.h">
+      <Filter>Server resources\Queues resources\RequestQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Server resources\Queues resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorQueue.h">
+      <Filter>Server resources\Queues resources\ErrorQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryQueue.h">
+      <Filter>Server resources\Queues resources\QueryQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorResponse.h">
+      <Filter>Server resources\Queues resources\ErrorQueue</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,41 +170,59 @@
     <ClCompile Include="ConnectedClientsList.cpp">
       <Filter>Server resources\Router resources</Filter>
     </ClCompile>
-    <ClCompile Include="RequestHandler.cpp">
-      <Filter>Server resources\Logic Layer resources</Filter>
-    </ClCompile>
     <ClCompile Include="ResponseHandler.cpp">
-      <Filter>Server resources\Logic Layer resources</Filter>
-    </ClCompile>
-    <ClCompile Include="Request.cpp">
-      <Filter>Server resources\Router resources</Filter>
-    </ClCompile>
-    <ClCompile Include="DatabaseHandler.cpp">
-      <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
-    </ClCompile>
-    <ClCompile Include="RequestTranslatorXML.cpp">
-      <Filter>Server resources\Logic Layer resources</Filter>
+      <Filter>Server resources\Request Handler</Filter>
     </ClCompile>
     <ClCompile Include="Server.cpp">
       <Filter>Server resources</Filter>
     </ClCompile>
-    <ClCompile Include="RequestsQueue.cpp">
-      <Filter>Server resources\Queues resources</Filter>
+    <ClCompile Include="MaterialEntity.cpp">
+      <Filter>Server resources\Request Handler\Translator XML\Database Mapper\Database Tables\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="ExceptionsSystem.cpp">
-      <Filter>Server resources</Filter>
+    <ClCompile Include="DatabaseHandler.cpp">
+      <Filter>Server resources\Database Handler</Filter>
     </ClCompile>
-    <ClCompile Include="QueryGenerator.cpp">
-      <Filter>Server resources\Logic Layer resources\Database Handler</Filter>
+    <ClCompile Include="Request.cpp">
+      <Filter>Server resources\Queues resources\RequestQueue</Filter>
     </ClCompile>
     <ClCompile Include="MaterialTable.cpp">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
+      <Filter>Server resources\Request Handler\Translator XML\Database Mapper\Database Tables</Filter>
     </ClCompile>
-    <ClCompile Include="MaterialEntity.cpp">
-      <Filter>Server resources\Logic Layer resources\Database Handler\Database Tables\Material Table</Filter>
+    <ClCompile Include="DataBaseMap.cpp">
+      <Filter>Server resources\Request Handler\Translator XML\Database Mapper</Filter>
+    </ClCompile>
+    <ClCompile Include="DocumentXml.cpp">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestHandler.cpp">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
     </ClCompile>
     <ClCompile Include="Query.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Server resources\Queues resources\QueryQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="TranslatorXml.cpp">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateMethod.cpp">
+      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper\All methods</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodsMapper.cpp">
+      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryGenerator.cpp">
+      <Filter>Server resources\Request Handler\Translator XML</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestQueue.cpp">
+      <Filter>Server resources\Queues resources\RequestQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorQueue.cpp">
+      <Filter>Server resources\Queues resources\ErrorQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryQueue.cpp">
+      <Filter>Server resources\Queues resources\QueryQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorResponse.cpp">
+      <Filter>Server resources\Queues resources\ErrorQueue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

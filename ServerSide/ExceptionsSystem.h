@@ -1,8 +1,63 @@
 #pragma once
-class ExceptionsSystem
+#include <string>
+
+using std::string;
+
+class ExceptionInterface
 {
+protected:
+	string value;
+	unsigned int id;
 public:
-	ExceptionsSystem();
-	~ExceptionsSystem();
+	string& getValue()
+	{
+		return value;
+	}
 };
 
+struct ServerExceptions
+{
+
+	struct QueryMappingExceptions
+	{
+		struct WrongTableName
+			: public ExceptionInterface
+		{
+			WrongTableName() { value = "Wrong table name."; }
+		};
+
+		struct WrongArgument
+			: public ExceptionInterface
+		{
+			WrongArgument() { value = "Can't call function. Wrong arguments have been given."; }
+		};
+
+		struct WrongMethodName
+			: public ExceptionInterface
+		{
+			WrongMethodName() { value = "Wrong method name."; }
+		};
+
+		struct NodeNotFound
+			: public ExceptionInterface
+		{
+			NodeNotFound() { value = "Node was not found."; }
+		};
+
+		struct CannotConvertXml
+			: public ExceptionInterface
+		{
+			CannotConvertXml() { value = "Server is unable to convert xml file."; }
+		};
+	};
+
+	struct ReceivingPacketExceptions
+	{
+		struct CantUnpackPacket
+			: public ExceptionInterface
+		{
+			CantUnpackPacket() { value = "Server cannot unpack message."; }
+		};
+
+	};
+};

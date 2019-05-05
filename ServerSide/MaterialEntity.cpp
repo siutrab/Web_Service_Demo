@@ -1,49 +1,32 @@
-#include "pch.h"
 #include "MaterialEntity.h"
 
-MaterialEntity::MaterialEntity(unsigned int id, float lambda, float price, float priceLambda, std::string& name, std::string& link, std::string& materialType, std::string& producer)
-	:	materialTable(new MaterialTable),
-		Fields(materialTable->getFields())
-{
-	(*Fields)[0]->setValue(id);				// 0	"id"
-	(*Fields)[1]->setValue(name);				// 1	"name",
-	(*Fields)[2]->setValue(lambda);			// 2	"lambda",
-	(*Fields)[3]->setValue(price);				// 3	"price",
-	(*Fields)[4]->setValue(materialType);		// 4	"type_of_material",
-	(*Fields)[5]->setValue((priceLambda));		// 5	"price_to_lambda",
-	(*Fields)[6]->setValue(producer);			// 6	"producer",
-	(*Fields)[7]->setValue(link);				// 7	"link"
-}
-
+MaterialEntity::MaterialEntity(
+	unsigned int	id,
+	float			lambda,
+	float			price,
+	float			priceLambda,
+	unsigned short	width,
+	string&			name,
+	string&			link,
+	string&			materialType,
+	string&			producer)
+{	
+	fieldsVector.push_back(unique_ptr<FieldInterface>(new MaterialEntity::IdColumn				(id)));
+	fieldsVector.push_back(unique_ptr<FieldInterface>(new MaterialEntity::NameColumn			(name)));
+	fieldsVector.push_back(unique_ptr<FieldInterface>(new MaterialEntity::LambdaColumn			(lambda)));
+	fieldsVector.push_back(unique_ptr<FieldInterface>(new MaterialEntity::PriceColumn			(price)));	
+	fieldsVector.push_back(unique_ptr<FieldInterface>(new MaterialEntity::WidthColumn			(width)));
+	fieldsVector.push_back(unique_ptr<FieldInterface>(new MaterialEntity::MaterialColumn		(materialType)));
+	fieldsVector.push_back(unique_ptr<FieldInterface>(new MaterialEntity::PriceToLambdaColumn	(priceLambda)));
+	fieldsVector.push_back(unique_ptr<FieldInterface>(new MaterialEntity::ProducerColumn		(producer)));
+	fieldsVector.push_back(unique_ptr<FieldInterface>(new MaterialEntity::LinkColumn			(link)));
+}	
 
 MaterialEntity::~MaterialEntity()
-{	}
-
-vector<ColumnAbstract<void>*>* MaterialEntity::getVectorFields() 
-{ 
-	return Fields;
+{
+	/*for (size_t i = 0; i < fieldsVector.size(); i++)
+		delete fieldsVector[i];*/
 }
 
-unsigned short MaterialEntity::getFieldsNumber() { return (*Fields).size(); }
+string MaterialEntity::getTableName() { return "materials"; }
 
-// Getters dependent on Fields
-//unsigned int MaterialEntity::getId()			{ return boost::any_cast<unsigned int>		((*Fields)[0]->value); }
-//
-//std::string MaterialEntity::getName()			{ return boost::any_cast<std::string>		((*Fields)[1]->value); }
-//
-//float MaterialEntity::getLambda()				{ return boost::any_cast<float>				((*Fields)[2]->value); }
-//
-//float MaterialEntity::getPrice()				{ return boost::any_cast<float>				((*Fields)[3]->value); }
-//
-//std::string MaterialEntity::getMaterialType()	{ return boost::any_cast<std::string>		((*Fields)[4]->value); }
-//
-//float MaterialEntity::getPriceToLambda()		{ return boost::any_cast<float>				((*Fields)[5]->value); }
-//
-//std::string MaterialEntity::getProducer()		{ return boost::any_cast<std::string>		((*Fields)[6]->value); }
-//
-//std::string MaterialEntity::getLink()			{ return boost::any_cast<std::string>		((*Fields)[4]->value); }
-//
-//
-//float MaterialEntity::getU(unsigned char width) { return (boost::any_cast<float>((*Fields)[2]->value) / width); }
-
-std::string MaterialEntity::getTableName() { return "materials"; }
