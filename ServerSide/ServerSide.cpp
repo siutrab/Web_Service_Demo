@@ -22,7 +22,7 @@ int main()
 	vectofMaterials.push_back(&material);
 	vectofMaterials.push_back(&material2);
 	
-	QueryGenerator generator(nullptr);
+	//QueryGenerator generator(nullptr);
 //	unique_ptr<SQLString> query = generator.insert(vectofMaterials);
 //	dbHandler.executeQuery(*query);
 

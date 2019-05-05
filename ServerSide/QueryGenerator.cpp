@@ -7,8 +7,8 @@ unique_ptr<SQLString> QueryGenerator::selectAll(EntityInterface &entity){ return
 unique_ptr<SQLString> QueryGenerator::selectOrderBy(EntityInterface &entity, unsigned short columnIndex){ return unique_ptr<SQLString>(new SQLString()); }
 
 
-QueryGenerator::QueryGenerator(DatabaseHandler* pointer)
-	:	databaseHandler(pointer)
+QueryGenerator::QueryGenerator(/*DatabaseHandler* pointer*/)
+	//:	databaseHandler(pointer)
 {
 }
 
@@ -21,24 +21,25 @@ QueryGenerator::~QueryGenerator()
 unique_ptr<SQLString> QueryGenerator::insert(vector<unique_ptr<EntityInterface>>& entityCollection)
 {
 	EntityInterface& firstEntity = *entityCollection[0];
-	unique_ptr<string>queryFirstPart = entityFieldsToQueryPart(firstEntity);
+	unique_ptr<string>queryFirstPart = std::move(entityFieldsToQueryPart(firstEntity));
 	
-	string querySecondPart;
+	auto querySecondPart = std::make_unique<string>();
 
 	size_t entityCollectionLastIndex = entityCollection.size() - 1;
 
 	for (size_t i = 0; i < entityCollectionLastIndex; i++)
 	{
-		querySecondPart += *(entityValuesToQueryPart(*(entityCollection)[i])) + ",";
+		auto queuePart = std::move(entityValuesToQueryPart(*(entityCollection)[i]));
+		*querySecondPart += *queuePart + ",";
 	}
-	querySecondPart += *(entityValuesToQueryPart(*(entityCollection)[entityCollectionLastIndex]));
+	*querySecondPart += *(entityValuesToQueryPart(*(entityCollection)[entityCollectionLastIndex]));
 
 
-	string Query = "INSERT INTO `" + firstEntity.getTableName() + "`" + *queryFirstPart + "VALUES" + querySecondPart;
+	string Query = "INSERT INTO `" + firstEntity.getTableName() + "`" + *queryFirstPart + "VALUES" + *querySecondPart;
 	std::cout << Query;
 	
-	SQLString querySql(Query.c_str());
-	return unique_ptr<SQLString>(&querySql);
+	auto querySql = std::make_unique<SQLString>(Query.c_str());
+	return std::move(querySql);
 
 }
 
@@ -54,7 +55,7 @@ unique_ptr<string> QueryGenerator::entityValuesToQueryPart(EntityInterface& enti
 	}
 	*queryPart += "\"" + *((*Fields)[lastIndex]->getValueAsString()) + "\")";
 
-	return queryPart;
+	return std::move(queryPart);
 }
 
 unique_ptr<string> QueryGenerator::entityFieldsToQueryPart(EntityInterface& entity)
@@ -69,5 +70,5 @@ unique_ptr<string> QueryGenerator::entityFieldsToQueryPart(EntityInterface& enti
 	}
 	*queryPart += "`" + *((*Fields)[lastIndex]->getColumnName()) + "`)";
 
-	return queryPart;
+	return std::move(queryPart);
 }

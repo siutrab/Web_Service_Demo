@@ -39,15 +39,16 @@ vector<unique_ptr<EntityInterface>> CreateMethod::generateEntities()
 	for (size_t i = 0; i < widthsList->size(); i++)
 	{
 		unsigned short width = (*widthsList)[i];
-		materialsVactor[i] = unique_ptr<EntityInterface>(
-			new MaterialEntity(NULL, lambda, price, priceToLambda, width, *name, *link, *materialType, *producer));
+		materialsVactor[i] = std::move(unique_ptr<EntityInterface>(
+			new MaterialEntity(NULL, lambda, price, priceToLambda, width, *name, *link, *materialType, *producer)));
 	}
 	return materialsVactor;
 }
 
 
-CreateMethod::CreateMethod()
-	:	parametersList()
+CreateMethod::CreateMethod(QueryGenerator* queryGenerator)
+	:	parametersList(),
+		queryGenerator(queryGenerator)
 {
 	parametersList.push_back(unique_ptr<ParameterInterface>(new Parameter<float>(ParametersCollection::lambda)));
 	parametersList.push_back(unique_ptr<ParameterInterface>(new Parameter<float>(ParametersCollection::price)));
@@ -70,7 +71,7 @@ bool CreateMethod::mapArguments()
 		auto parameterString = documentXml->getParameter(argumentName);
 		bool valueSetted = parametersList[i]->setValue(*parameterString);
 		
-		if(!valueSetted)
+		if(valueSetted == false)
 		{
 			return false;
 			documentXml->recognizeInvalid();
@@ -96,15 +97,27 @@ bool CreateMethod::initializeWidthsList()
 		for (size_t i = 0; i < widthsNumber; i++)
 		{
 			string stringValue = (*widthsString)[i];
+			eraseWhitespaces(stringValue);
 			
-			// erasing whitespaces -.-
-			stringValue.erase(std::remove_if(stringValue.begin(), stringValue.end(),
+			// erasing whitespaces
+			/*[](string str)
+			{
+				string newStr;
+				for (size_t i = 0; i < str.size(); i++)
+				{
+					char c = str[i];
+					if (c != ' ' && c != '\n' && c != '\r'&& c != '\t' && c != '\v' && c != '\f')
+						newStr += c;
+				}
+				str = newStr;
+			};*/
+			/*stringValue.erase(std::remove_if(stringValue.begin(), stringValue.end(),
 				[](char c)
 				{
 					return (c == ' '|| c == '\n' || c == '\r' || c == '\t' || c == '\v' || c == '\f');
 				}),
 				stringValue.end()
-			);
+			);*/
 
 			int ushortValue = boost::lexical_cast<int>(stringValue.c_str());
 
@@ -122,6 +135,17 @@ bool CreateMethod::initializeWidthsList()
 	return true;
 }
 
+void CreateMethod::eraseWhitespaces(string& str)
+{
+	string newStr;
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		char c = str[i];
+		if (c != ' ' && c != '\n' && c != '\r' && c != '\t' && c != '\v' && c != '\f')
+			newStr += c;
+	}
+	str = newStr;
+}
 
 unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)	//////// TOOOOOOOOOOOOOOOOOOOOOOOOO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 {
@@ -129,9 +153,10 @@ unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)	//////// TO
 	if ((initializeWidthsList()) && (mapArguments()))
 	{
 		vector<unique_ptr<EntityInterface>> entitiesVector = generateEntities();
-		sql::SQLString& query = *queryGenerator->insert(entitiesVector);
+		sql::SQLString query = *queryGenerator->insert(entitiesVector);
 		
-		return unique_ptr<Query>(new Query(query));
+		auto queryPtr =	unique_ptr<Query>(new Query(query));
+		return std::move(queryPtr);
 	}
 	throw ServerExceptions::QueryMappingExceptions::CannotConvertXml();
 }

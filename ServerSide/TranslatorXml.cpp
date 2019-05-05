@@ -54,8 +54,7 @@ void TranslatorXml::run()
 	running = true;
 	while (running)
 	{
-		//releaseFields();
-		if (loadDocument())
+		if (loadDocument()) 
 			translateDocument();
 	}
 }
@@ -73,49 +72,26 @@ void TranslatorXml::translateDocument()
 	catch (ExceptionInterface& exception)
 	{
 		document->recognizeInvalid();
-		//QueueItem* queueItemPtr = queueItem.release();
 		errorQueuePtr->addItem(std::move(queueItem), exception);
 	}
 }
 
 void TranslatorXml::setTable()
 {
-	try
-	{
-		string tableName = document->findTableName();			// WARNING!!! throws exception	
-		tablePointer = &dataBaseMap.findTable(tableName);		// WARNING!!! throws exception
-	}
-	catch(ExceptionInterface& exception)
-	{
-		throw exception;
-	}
+	string tableName = document->findTableName();			// WARNING!!! throws exception	
+	tablePointer = &dataBaseMap.findTable(tableName);		// WARNING!!! throws exception
 }
 
 void TranslatorXml::setMethod()
-{
-	
-	try
-	{
-		string methodName = document->findMethodName();			// WARNING!!! throws exception
-		methodPointer = &methodsMapper.findMethod(methodName);	// WARNING!!! throws exception
-	}
-	catch (ExceptionInterface& exception)
-	{
-		throw exception;
-	}
+{	
+	string methodName = document->findMethodName();			// WARNING!!! throws exception
+	methodPointer = &methodsMapper.findMethod(methodName);	// WARNING!!! throws exception
 }
 
 void TranslatorXml::prepareQuery()
 {
-	try
-	{
-		unique_ptr<Query> queryPtr = methodPointer->generateQuery(*document);	// WARNING!!! throws exception
-		queueItem->changeContent(*queryPtr);
-	}
-	catch(ExceptionInterface& exception)
-	{
-		throw exception;
-	}
+	unique_ptr<Query> queryPtr = methodPointer->generateQuery(*document);	// WARNING!!! throws exception
+	queueItem->changeContent(*queryPtr);
 }
 
 bool TranslatorXml::loadDocument()
@@ -132,12 +108,9 @@ bool TranslatorXml::loadDocument()
 void TranslatorXml::initializeFields()
 {
 	unique_ptr<ContentInterface> contentInterface(std::move(queueItem->getContentObject()));
-	//request = unique_ptr<Request>(static_cast<Request*>(&contentInterface));
 	
 	request = unique_ptr<Request>(static_cast<Request*>(contentInterface.release()));
-
 
 	document.reset(new DocumentXml(*request));
 	documentIsLoaded = true;
 }
-

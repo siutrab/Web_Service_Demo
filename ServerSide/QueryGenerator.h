@@ -3,7 +3,8 @@
 #include <memory>
 #include <cstring>
 #include <vector>
-#include "DatabaseHandler.h"
+#include "MappingInterface.h"
+//#include "DatabaseHandler.h"
 
 using sql::SQLString;
 using std::vector;
@@ -16,13 +17,13 @@ class DatabaseHandler;
 	class QueryGenerator
 	{
 	private:
-			DatabaseHandler* databaseHandler;
+			//DatabaseHandler* databaseHandler;
 
 
 		unique_ptr<string> entityValuesToQueryPart(EntityInterface& entity);
 		unique_ptr<string> entityFieldsToQueryPart(EntityInterface& entity);
 	public:
-		QueryGenerator(DatabaseHandler* pointer);
+		QueryGenerator(/*DatabaseHandler* pointer*/);
 		~QueryGenerator();
 		unique_ptr<SQLString> insert(vector<unique_ptr<EntityInterface>> &entityCollection);
 		unique_ptr<SQLString> selectByIndex(EntityInterface &entity, unsigned int index);

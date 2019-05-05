@@ -7,7 +7,7 @@
 #include "jdbc/cppconn/prepared_statement.h"
 
 #include "MaterialEntity.h"
-#include "QueryGenerator.h"
+//#include "QueryGenerator.h"
 #include "QueryQueue.h"
 
 #include <thread>
@@ -25,7 +25,7 @@ using::std::thread;
 //class EntityInterface;
 //class MaterialEntity;
 class Server;
-class QueryGenerator;
+//class QueryGenerator;
 class QueryQueue;
 
 
@@ -47,7 +47,7 @@ class QueryQueue;
 
 			unique_ptr<QueueItem> queueItem;
 
-			QueryGenerator* queryGenerator;
+			//QueryGenerator* queryGenerator;
 
 			// needed for connecting and executing querys;
 			unique_ptr<MySQL_Driver> driver;

@@ -42,12 +42,16 @@ public:
 
 	unique_ptr<QueueItem> getItem()
 	{
-		//unique_ptr<QueueItem> itemUniquePtr(std::move(itemQueue.front()));
-		//itemQueue.pop();
+		/*unique_ptr<QueueItem> itemUniquePtr(std::move(itemQueue.front()));
+		itemQueue.pop();*/
+
+		unique_ptr<QueueItem>& pointerReference = itemQueue.front();
+		
+		unique_ptr<QueueItem> newReference(pointerReference.release());
+		itemQueue.pop();
 
 		//QueueItem* itemPtr = itemUniquePtr.release();	//itemQueue.front().release();
-		return unique_ptr<QueueItem>(std::move(itemQueue.front()));
-
-		
+		//return unique_ptr<QueueItem>(std::move(itemQueue.front()));
+		return std::move(newReference);
 	}
 };

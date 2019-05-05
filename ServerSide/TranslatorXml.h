@@ -29,6 +29,7 @@ class TranslatorXml
 
 	DataBaseMap dataBaseMap;
 	MethodsMapper methodsMapper;
+//	QueryGenerator queryGenerator;
 
 		unique_ptr<QueueItem> queueItem;
 		unique_ptr<Request> request;
@@ -43,7 +44,6 @@ class TranslatorXml
 
 		
 	void run();
-	//void releaseFields();
 	bool loadDocument();
 	void initializeFields();
 	void translateDocument();
@@ -51,9 +51,7 @@ class TranslatorXml
 
 	void setTable();
 	void setMethod();
-	//bool findParameters();
 
-	//void pushOnErrorQueue(ExceptionInterface& exception);
 public:
 	TranslatorXml();
 	~TranslatorXml();

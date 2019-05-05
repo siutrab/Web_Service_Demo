@@ -37,6 +37,7 @@ public:
 
 	bool setValue(string& valueString) override
 	{
+		eraseWhitespaces(valueString);
 		try
 		{
 			value = boost::lexical_cast<T>(valueString);
@@ -47,6 +48,19 @@ public:
 			return false;
 		}
 	}
+
+	void eraseWhitespaces(string& str)
+	{
+		string newStr;
+		for (size_t i = 0; i < str.size(); i++)
+		{
+			char c = str[i];
+			if (c != ' ' && c != '\n' && c != '\r' && c != '\t' && c != '\v' && c != '\f')
+				newStr += c;
+		}
+		str = newStr;
+	}
+
 
 	void* getValue() override { return &value; }
 	string& getXmlName() override { return nameXml; }

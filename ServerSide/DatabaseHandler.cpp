@@ -18,7 +18,7 @@ void DatabaseHandler::setQueryQueuePtr(QueryQueue* pointer)
 DatabaseHandler::DatabaseHandler()
 	:	connectedToDatabase(false),
 		running(false),
-		queryGenerator(new QueryGenerator(this)),
+		//queryGenerator(new QueryGenerator(this)),
 		queueItem()
 {	
 
@@ -48,8 +48,15 @@ void DatabaseHandler::run()
 		}
 		else
 		{
-			queueItem.reset(queryQueuePtr->getItem().release());
+			auto queryItem = queryQueuePtr->getItem();
+			queueItem.swap(queryItem);
+
+			SQLString sqlString = *static_cast<SQLString*>(queueItem->getContent());
+
+			executeQuery(sqlString);
+			/*queueItem.reset(queryQueuePtr->getItem().release());
 			ContentInterface* content = queueItem->getContentObject().release();
+*/
 			//Query* query = static_cast<Query*>(content);
 			//sql::SQLString sqlString = query->getContent();
 			//executeQuery(sqlString);
