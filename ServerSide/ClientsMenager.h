@@ -10,7 +10,7 @@ using sf::SocketSelector;
 
 class Router;
 
-	class ConnectedClientsMenager
+	class ClientsMenager
 	{
 		typedef std::pair<unsigned int, shared_ptr<Client>> mapPair;
 
@@ -19,11 +19,11 @@ class Router;
 			map <const unsigned int, shared_ptr<Client>> clientsMap;	// owner
 			SocketSelector* const selector;
 	public:
-		ConnectedClientsMenager(Router* router);
-		~ConnectedClientsMenager();
-
+		ClientsMenager(Router* router);
+		~ClientsMenager();
+		void removeClient();
 		Client* addClient();	// Creates a client and returns reference to it 
-		void deleteClient(const unsigned int index);
+		void removeClient(const unsigned int index);
 		void listen();
 	};
 

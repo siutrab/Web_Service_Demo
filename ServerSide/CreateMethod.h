@@ -1,6 +1,5 @@
 #pragma once
 #include "DocumentXml.h"
-//#include "QueryGenerator.h"
 #include "boost/lexical_cast.hpp"
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
 #include <memory>

@@ -5,7 +5,6 @@
 bool DatabaseHandler::disconnectDatabase() { return false; }
 
 
-//////
 QueryQueue* DatabaseHandler::queryQueuePtr;
 
 void DatabaseHandler::setQueryQueuePtr(QueryQueue* pointer)
@@ -18,7 +17,6 @@ void DatabaseHandler::setQueryQueuePtr(QueryQueue* pointer)
 DatabaseHandler::DatabaseHandler()
 	:	connectedToDatabase(false),
 		running(false),
-		//queryGenerator(new QueryGenerator(this)),
 		queueItem()
 {	
 
@@ -26,6 +24,7 @@ DatabaseHandler::DatabaseHandler()
 
 void DatabaseHandler::start()
 {
+	running = true;
 	DATABASE_HANDLER_THREAD = thread(&DatabaseHandler::run, this);
 }
 void DatabaseHandler::stop()
@@ -39,7 +38,7 @@ DatabaseHandler::~DatabaseHandler()
 
 void DatabaseHandler::run()
 {
-	running = true;
+
 	while (running)
 	{
 		if(queryQueuePtr->isEmpty())
@@ -54,15 +53,8 @@ void DatabaseHandler::run()
 			SQLString sqlString = *static_cast<SQLString*>(queueItem->getContent());
 
 			executeQuery(sqlString);
-			/*queueItem.reset(queryQueuePtr->getItem().release());
-			ContentInterface* content = queueItem->getContentObject().release();
-*/
-			//Query* query = static_cast<Query*>(content);
-			//sql::SQLString sqlString = query->getContent();
-			//executeQuery(sqlString);
 		}
-		/*unique_ptr<SQLString> query = queryGenerator->insert();
-		executeQuery(*query);*/
+
 	}
 }
 
@@ -74,8 +66,12 @@ bool DatabaseHandler::executeQuery(SQLString& query)
 		try
 		{
 			sqlConnection->setSchema(db::schema);	// setting database to connection
-			SqlPreparedStatement = unique_ptr<PreparedStatement>(sqlConnection->prepareStatement(query));
-			SqlPreparedStatement->execute();
+			SqlPreparedStatement.reset(sqlConnection->prepareStatement(query));
+			unique_ptr<sql::ResultSet> result;
+			result.reset(SqlPreparedStatement->executeQuery());
+
+			std::cout <<std::endl << "bdbrdt " << result << std::endl;
+
 			return true;
 		}
 		catch (SQLException e)

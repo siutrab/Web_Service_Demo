@@ -47,7 +47,7 @@ SocketSelector* Router::getSelector()
 	return &selector; 
 }
 
-ConnectedClientsMenager* Router::getClientsList()
+ClientsMenager* Router::getClientsList()
 { 
 	return &clientsList;
 }

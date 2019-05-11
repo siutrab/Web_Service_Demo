@@ -1,31 +1,29 @@
 #pragma once
+#include "MaterialEntity.h"
+#include "QueryQueue.h"
+
 #include "jdbc/mysql_connection.h"
+#include "jdbc/cppconn/resultset.h"
 #include "jdbc/mysql_driver.h"
 #include "jdbc/mysql_error.h"
-
 #include "jdbc/cppconn/statement.h"
 #include "jdbc/cppconn/prepared_statement.h"
 
-#include "MaterialEntity.h"
-//#include "QueryGenerator.h"
-#include "QueryQueue.h"
-
 #include <thread>
 #include <memory>
+
 using std::string;
 using sql::SQLString;
 using sql::mysql::MySQL_Driver;
 using sql::Connection;
 using sql::PreparedStatement;
+//using sql::Statement;
 using sql::SQLException;
+using sql::ResultSet;
 using std::unique_ptr;
-using::std::thread;
+using std::thread;
 
-
-//class EntityInterface;
-//class MaterialEntity;
 class Server;
-//class QueryGenerator;
 class QueryQueue;
 
 
@@ -47,12 +45,11 @@ class QueryQueue;
 
 			unique_ptr<QueueItem> queueItem;
 
-			//QueryGenerator* queryGenerator;
-
 			// needed for connecting and executing querys;
 			unique_ptr<MySQL_Driver> driver;
 			unique_ptr<Connection> sqlConnection;
 			unique_ptr<PreparedStatement> SqlPreparedStatement;
+			unique_ptr<ResultSet> resultSet;
 	
 			//Server* server;
 			

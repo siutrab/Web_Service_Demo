@@ -147,7 +147,10 @@
     <ClInclude Include="ErrorResponse.h">
       <Filter>Server resources\Queues resources\ErrorQueue</Filter>
     </ClInclude>
-    <ClInclude Include="ConnectedClientsMenager.h">
+    <ClInclude Include="Content.h">
+      <Filter>Server resources\Queues resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientsMenager.h">
       <Filter>Server resources\Router resources</Filter>
     </ClInclude>
   </ItemGroup>
@@ -221,8 +224,14 @@
     <ClCompile Include="ErrorResponse.cpp">
       <Filter>Server resources\Queues resources\ErrorQueue</Filter>
     </ClCompile>
-    <ClCompile Include="ConnectedClientsMenager.cpp">
+    <ClCompile Include="QueueItem.cpp">
+      <Filter>Server resources\Queues resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientsMenager.cpp">
       <Filter>Server resources\Router resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Queue.cpp">
+      <Filter>Server resources\Queues resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

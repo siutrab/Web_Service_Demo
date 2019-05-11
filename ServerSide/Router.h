@@ -1,5 +1,5 @@
 #pragma once
-#include "ConnectedClientsMenager.h"
+#include "ClientsMenager.h"
 #include "Listener.h"
 #include "SFML/Network.hpp"
 #include <thread>
@@ -17,7 +17,7 @@ using std::thread;
 			const unsigned int port;
 
 			SocketSelector selector;
-			ConnectedClientsMenager clientsList;
+			ClientsMenager clientsList;
 			Listener listener;
 
 		void run();
@@ -28,5 +28,5 @@ using std::thread;
 		void stop();
 		unsigned int getPort();
 		SocketSelector* getSelector();
-		ConnectedClientsMenager* getClientsList();
+		ClientsMenager* getClientsList();
 	};

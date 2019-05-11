@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "Client.h"
+#include "ClientsMenager.h"
 
  RequestQueue* Client::requestQueuePtr;
  ErrorQueue* Client::errorQueuePtr;
+ ClientsMenager* Client::clientsMenagerPtr;
 
 	void Client::setRequestQueuePtr(RequestQueue* pointer) 
 	{ 
@@ -12,13 +14,21 @@
 	
 	void Client::setErrorQueuePtr(ErrorQueue* const pointer)
 	{ 
-		Client::errorQueuePtr = pointer; // Settet in RequestsQueue object
+		Client::errorQueuePtr = pointer; // Settet in ErrorQueue object
 		const_cast<const ErrorQueue*>(Client::errorQueuePtr);
+	}
+
+	void Client::setClientsMenagerPtr(ClientsMenager* const pointer)
+	{
+		Client::clientsMenagerPtr = pointer;	// Settet in ClientsMenager object
+		const_cast<const ClientsMenager*>(Client::clientsMenagerPtr);
 	}
 
 	Client::Client(unsigned int index)
 		:	socket(),
-			index(index)
+			index(index),
+			connected(true),
+			requestCount(0)
 	{
 		socket.setBlocking(false);
 	}
@@ -76,6 +86,25 @@
 	TcpSocket* Client::getSocket() 
 	{ 
 		return &socket; 
+	}
+
+	void Client::requestAdded()
+	{
+		requestCount++;
+	}
+
+	void Client::requestRemoved()
+	{
+		requestCount--;
+		if (requestCount == 0)
+		{
+			clientsMenagerPtr->removeClient(index);
+		}
+	}
+
+	bool Client::isConnected()
+	{
+		return connected;
 	}
 
 	unsigned int Client::getIndex() const 

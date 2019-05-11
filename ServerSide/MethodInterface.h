@@ -8,7 +8,7 @@
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
 
 using std::string;
-using std::shared_ptr;
+//using std::shared_ptr;
 using std::unique_ptr;
 
 class DocumentXml;
@@ -73,8 +73,6 @@ protected:
 	typedef std::pair<string&, unique_ptr<ParameterInterface>> argument;
 
 	std::vector<argument> parametersArray;
-
-	//virtual void mapArguments(DocumentXml& document) = 0;
 public:
 	virtual ~MethodInterface() {}
 	virtual unique_ptr<Query> generateQuery(DocumentXml& document) = 0;

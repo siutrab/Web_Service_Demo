@@ -33,10 +33,7 @@ class TranslatorXml
 		unique_ptr<QueueItem> queueItem;
 		unique_ptr<Request> request;
 
-
 		unique_ptr<DocumentXml> document;
-
-
 
 		TableInterface* tablePointer;
 		MethodInterface* methodPointer;

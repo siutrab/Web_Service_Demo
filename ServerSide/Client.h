@@ -4,6 +4,7 @@
 #include "RequestQueue.h"
 #include "QueueItem.h"
 #include "Request.h"
+
 #include <memory>
 
 using std::unique_ptr;
@@ -16,13 +17,17 @@ class Request;
 class QueueItem;
 class ContentInterface;
 class ErrorQueue;
+class ClientsMenager;
 
 	class Client
 	{
+		unsigned int requestCount;
+		bool connected;
 			const unsigned int index;
 			TcpSocket socket;
 			static RequestQueue* requestQueuePtr;
 			static ErrorQueue* errorQueuePtr;
+			static ClientsMenager* clientsMenagerPtr;
 
 		// Methods
 		void sendResponse();		/// CHANGE ME!!!
@@ -33,9 +38,14 @@ class ErrorQueue;
 		~Client();
 		void receivePacket();
 
+		void requestAdded();
+		void requestRemoved();
+
 		TcpSocket* getSocket();
+		bool isConnected();
 		unsigned int getIndex() const;
 		static void setRequestQueuePtr(RequestQueue* const pointer);
 		static void setErrorQueuePtr(ErrorQueue* const pointer);
+		static void setClientsMenagerPtr(ClientsMenager* const pointer);
 	};
 
