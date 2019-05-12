@@ -3,12 +3,12 @@
 #include "jdbc/cppconn/sqlstring.h"
 
 
-class Query
+class NoResultQuery
 	: public Content<sql::SQLString>
 {
 
 public:
-	Query(sql::SQLString& queryString);
-	~Query();
+	NoResultQuery(sql::SQLString& queryString);
+	~NoResultQuery();
 };
 

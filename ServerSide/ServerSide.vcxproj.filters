@@ -28,9 +28,6 @@
     <Filter Include="Server resources\Database Handler">
       <UniqueIdentifier>{e888dd19-4dd3-455a-886a-8083ccf33c6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server resources\Queues resources\QueryQueue">
-      <UniqueIdentifier>{a26a069b-1ec0-4b2a-9aae-87ab9f68b560}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Server resources\Queues resources\RequestQueue">
       <UniqueIdentifier>{4618bf85-ea42-46e3-b692-20fa94970c72}</UniqueIdentifier>
     </Filter>
@@ -54,6 +51,12 @@
     </Filter>
     <Filter Include="Server resources\Queues resources\ErrorQueue">
       <UniqueIdentifier>{6471a598-2c4d-4de9-8478-93647251fa0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Queues resources\NoResultQueryQueue">
+      <UniqueIdentifier>{a26a069b-1ec0-4b2a-9aae-87ab9f68b560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Queues resources\ResultQuery">
+      <UniqueIdentifier>{329ff145-7607-45f2-9856-e1487c733d59}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +117,6 @@
     <ClInclude Include="MethodInterface.h">
       <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper</Filter>
     </ClInclude>
-    <ClInclude Include="Query.h">
-      <Filter>Server resources\Queues resources\QueryQueue</Filter>
-    </ClInclude>
     <ClInclude Include="TranslatorXml.h">
       <Filter>Server resources\Request Handler\Translator XML</Filter>
     </ClInclude>
@@ -141,9 +141,6 @@
     <ClInclude Include="ErrorQueue.h">
       <Filter>Server resources\Queues resources\ErrorQueue</Filter>
     </ClInclude>
-    <ClInclude Include="QueryQueue.h">
-      <Filter>Server resources\Queues resources\QueryQueue</Filter>
-    </ClInclude>
     <ClInclude Include="ErrorResponse.h">
       <Filter>Server resources\Queues resources\ErrorQueue</Filter>
     </ClInclude>
@@ -152,6 +149,15 @@
     </ClInclude>
     <ClInclude Include="ClientsMenager.h">
       <Filter>Server resources\Router resources</Filter>
+    </ClInclude>
+    <ClInclude Include="NoResultQueryQueue.h">
+      <Filter>Server resources\Queues resources\NoResultQueryQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultQueryQueue.h">
+      <Filter>Server resources\Queues resources\ResultQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="NoResultQuery.h">
+      <Filter>Server resources\Queues resources\NoResultQueryQueue</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -197,9 +203,6 @@
     <ClCompile Include="RequestHandler.cpp">
       <Filter>Server resources\Request Handler\Translator XML</Filter>
     </ClCompile>
-    <ClCompile Include="Query.cpp">
-      <Filter>Server resources\Queues resources\QueryQueue</Filter>
-    </ClCompile>
     <ClCompile Include="TranslatorXml.cpp">
       <Filter>Server resources\Request Handler\Translator XML</Filter>
     </ClCompile>
@@ -218,9 +221,6 @@
     <ClCompile Include="ErrorQueue.cpp">
       <Filter>Server resources\Queues resources\ErrorQueue</Filter>
     </ClCompile>
-    <ClCompile Include="QueryQueue.cpp">
-      <Filter>Server resources\Queues resources\QueryQueue</Filter>
-    </ClCompile>
     <ClCompile Include="ErrorResponse.cpp">
       <Filter>Server resources\Queues resources\ErrorQueue</Filter>
     </ClCompile>
@@ -232,6 +232,15 @@
     </ClCompile>
     <ClCompile Include="Queue.cpp">
       <Filter>Server resources\Queues resources</Filter>
+    </ClCompile>
+    <ClCompile Include="NoResultQueryQueue.cpp">
+      <Filter>Server resources\Queues resources\NoResultQueryQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultQueryQueue.cpp">
+      <Filter>Server resources\Queues resources\ResultQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="NoResultQuery.cpp">
+      <Filter>Server resources\Queues resources\NoResultQueryQueue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

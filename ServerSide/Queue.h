@@ -1,7 +1,6 @@
 #pragma once
 #include "Queue.h"
 #include "QueueItem.h"
-
 #include <iostream>
 #include <utility>
 #include <queue>

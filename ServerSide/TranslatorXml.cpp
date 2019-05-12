@@ -2,7 +2,8 @@
 
 
 	RequestQueue* TranslatorXml::requestQueuePtr;
-	QueryQueue* TranslatorXml::queryQueuePtr;
+	NoResultQueryQueue* TranslatorXml::noResultQueryQueuePtr;
+	ResultQueryQueue* TranslatorXml::resultQueryQueuePtr;
 	ErrorQueue* TranslatorXml::errorQueuePtr;
 
 	void TranslatorXml::setRequestQueuePtr(RequestQueue* pointer)
@@ -11,10 +12,16 @@
 		const_cast<const RequestQueue*>(TranslatorXml::requestQueuePtr);
 	}
 
-	void TranslatorXml::setQueryQueuePtr(QueryQueue* pointer)
+	void TranslatorXml::setNoResultQueryQueuePtr(NoResultQueryQueue* pointer)
 	{
-		TranslatorXml::queryQueuePtr = pointer; // Settet in QueryQueue object
-		const_cast<const QueryQueue*>(TranslatorXml::queryQueuePtr);
+		TranslatorXml::noResultQueryQueuePtr = pointer; // Settet in QueryQueue object
+		const_cast<const NoResultQueryQueue*>(TranslatorXml::noResultQueryQueuePtr);
+	}
+	
+	void TranslatorXml::setResultQueryQueuePtr(ResultQueryQueue* pointer)
+	{
+		TranslatorXml::resultQueryQueuePtr = pointer; // Settet in QueryQueue object
+		const_cast<const ResultQueryQueue*>(TranslatorXml::resultQueryQueuePtr);
 	}
 
 	void TranslatorXml::setErrorQueuePtr(ErrorQueue* const pointer)
@@ -64,6 +71,7 @@ void TranslatorXml::translateDocument()
 	{
 		setTable();
 		setMethod();
+		chooseQueryQueue();
 		prepareQuery();
 	}
 	catch (ExceptionInterface& exception)
@@ -71,7 +79,7 @@ void TranslatorXml::translateDocument()
 		errorQueuePtr->addItem(std::move(queueItem), exception);
 	}
 	
-	queryQueuePtr->addItem(std::move(queueItem));
+	queryQueuePointer->addItem(std::move(queueItem));
 }
 
 void TranslatorXml::setTable()
@@ -84,6 +92,14 @@ void TranslatorXml::setMethod()
 {	
 	string methodName = document->findMethodName();			// WARNING!!! throws exception
 	methodPointer = &methodsMapper.findMethod(methodName);	// WARNING!!! throws exception
+}
+
+void TranslatorXml::chooseQueryQueue()
+{
+	if (methodPointer->isResulting())
+		queryQueuePointer = resultQueryQueuePtr;
+	else
+		queryQueuePointer = noResultQueryQueuePtr;
 }
 
 void TranslatorXml::prepareQuery()

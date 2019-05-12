@@ -4,7 +4,7 @@
 #include <cstring>
 #include <vector>
 #include "MappingInterface.h"
-//#include "DatabaseHandler.h"
+
 
 using sql::SQLString;
 using std::vector;
@@ -17,13 +17,12 @@ class DatabaseHandler;
 	class QueryGenerator
 	{
 	private:
-			//DatabaseHandler* databaseHandler;
 
-
-		unique_ptr<string> entityValuesToQueryPart(EntityInterface& entity);
-		unique_ptr<string> entityFieldsToQueryPart(EntityInterface& entity);
+		unique_ptr<string> separateWithSymbols(vector<string>& collection, string firstSymbol, string separatingSymbol, string endingSymbol);
+		/*unique_ptr<string> entityValuesToQueryPart(EntityInterface& entity);
+		unique_ptr<string> entityFieldsToQueryPart(EntityInterface& entity);*/
 	public:
-		QueryGenerator(/*DatabaseHandler* pointer*/);
+		QueryGenerator();
 		~QueryGenerator();
 		unique_ptr<SQLString> insert(vector<unique_ptr<EntityInterface>> &entityCollection);
 		unique_ptr<SQLString> selectByIndex(EntityInterface &entity, unsigned int index);

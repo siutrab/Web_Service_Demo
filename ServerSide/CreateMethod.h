@@ -7,7 +7,7 @@
 #include <algorithm>
 
 
-using std::shared_ptr;
+using std::unique_ptr;
 using std::string;
 
 
@@ -44,7 +44,8 @@ private:
 public:
 	CreateMethod(QueryGenerator* queryGenerator);
 	~CreateMethod();
-	unique_ptr<Query> generateQuery(DocumentXml& document) override;
+	unique_ptr<NoResultQuery> generateQuery(DocumentXml& document) override;
 	unique_ptr<string> getMethodName() override;
+	bool isResulting() override;
 
 };

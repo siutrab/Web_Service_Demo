@@ -3,16 +3,15 @@
 #include <memory>
 #include <utility>
 #include <vector>
-#include "Query.h"
+#include "NoResultQuery.h"
 #include "boost/lexical_cast.hpp"
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
 
 using std::string;
-//using std::shared_ptr;
 using std::unique_ptr;
 
 class DocumentXml;
-class Query;
+class NoResultQuery;
 
 class ParameterInterface
 {
@@ -54,16 +53,22 @@ public:
 		string newStr;
 		for (size_t i = 0; i < str.size(); i++)
 		{
-			char c = str[i];
-			if (c != ' ' && c != '\n' && c != '\r' && c != '\t' && c != '\v' && c != '\f')
-				newStr += c;
+			char character = str[i];
+			if (character != ' ' && character != '\n' && character != '\r' && character != '\t' && character != '\v' && character != '\f')
+				newStr += character;
 		}
 		str = newStr;
 	}
 
+	void* getValue() override 
+	{ 
+		return &value; 
+	}
 
-	void* getValue() override { return &value; }
-	string& getXmlName() override { return nameXml; }
+	string& getXmlName() override 
+	{ 
+		return nameXml; 
+	}
 };
 
 
@@ -75,8 +80,8 @@ protected:
 	std::vector<argument> parametersArray;
 public:
 	virtual ~MethodInterface() {}
-	virtual unique_ptr<Query> generateQuery(DocumentXml& document) = 0;
+	virtual unique_ptr<NoResultQuery> generateQuery(DocumentXml& document) = 0;
 	virtual unique_ptr<string> getMethodName() = 0;
-
+	virtual bool isResulting() = 0;
 };
 

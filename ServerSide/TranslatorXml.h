@@ -3,7 +3,8 @@
 #include "MethodInterface.h"
 #include "DataBaseMap.h"
 #include "MethodsMapper.h"
-#include "QueryQueue.h"
+#include "NoResultQueryQueue.h"
+#include "ResultQueryQueue.h"
 #include "QueueItem.h"
 #include "ErrorQueue.h"
 #include <thread>
@@ -14,7 +15,7 @@ class DataBaseMap;
 class MethodInterface;
 class TableInterface;
 class MethodsMapper;
-class QueryQueue;
+class NoResultQueryQueue;
 class ErrorQueue;
 
 class TranslatorXml
@@ -24,7 +25,8 @@ class TranslatorXml
 
 
 	static RequestQueue* requestQueuePtr;
-	static QueryQueue* queryQueuePtr;
+	static NoResultQueryQueue* noResultQueryQueuePtr;
+	static ResultQueryQueue* resultQueryQueuePtr;
 	static ErrorQueue* errorQueuePtr;
 
 	DataBaseMap dataBaseMap;
@@ -37,6 +39,7 @@ class TranslatorXml
 
 		TableInterface* tablePointer;
 		MethodInterface* methodPointer;
+		Queue* queryQueuePointer;
 
 		
 	void run();
@@ -47,7 +50,7 @@ class TranslatorXml
 
 	void setTable();
 	void setMethod();
-
+	void chooseQueryQueue();
 public:
 	TranslatorXml();
 	~TranslatorXml();
@@ -55,7 +58,8 @@ public:
 	void stop();
 
 	static void setRequestQueuePtr(RequestQueue* const pointer);
-	static void setQueryQueuePtr(QueryQueue* const pointer);
+	static void setNoResultQueryQueuePtr(NoResultQueryQueue* const pointer);
+	static void setResultQueryQueuePtr(ResultQueryQueue* const pointer);
 	static void setErrorQueuePtr(ErrorQueue* const pointer);
 
 };

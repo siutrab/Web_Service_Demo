@@ -1,16 +1,20 @@
 #include "pch.h"
 #include "DatabaseHandler.h"
 
-////////
-bool DatabaseHandler::disconnectDatabase() { return false; }
 
+NoResultQueryQueue* DatabaseHandler::noResultQueryQueuePtr;
+ResultQueryQueue* DatabaseHandler::resultQueryQueuePtr;
 
-QueryQueue* DatabaseHandler::queryQueuePtr;
-
-void DatabaseHandler::setQueryQueuePtr(QueryQueue* pointer)
+void DatabaseHandler::setNoResultQueryQueuePtr(NoResultQueryQueue* pointer)
 {
-	DatabaseHandler::queryQueuePtr = pointer; // Settet in QueryQueue object
-	const_cast<const QueryQueue*>(DatabaseHandler::queryQueuePtr);
+	DatabaseHandler::noResultQueryQueuePtr = pointer; // Settet in QueryQueue object
+	const_cast<const NoResultQueryQueue*>(DatabaseHandler::noResultQueryQueuePtr);
+}
+
+void DatabaseHandler::setResultQueryQueuePtr(ResultQueryQueue* pointer)
+{
+	DatabaseHandler::resultQueryQueuePtr = pointer; // Settet in QueryQueue object
+	const_cast<const ResultQueryQueue*>(DatabaseHandler::resultQueryQueuePtr);
 }
 
 
@@ -38,27 +42,37 @@ DatabaseHandler::~DatabaseHandler()
 
 void DatabaseHandler::run()
 {
-
 	while (running)
 	{
-		if(queryQueuePtr->isEmpty())
-		{
-
-		}
-		else
-		{
-			auto queryItem = queryQueuePtr->getItem();
-			queueItem.swap(queryItem);
-
-			SQLString sqlString = *static_cast<SQLString*>(queueItem->getContent());
-
-			executeQuery(sqlString);
-		}
-
+		handleNoResultQuery();
+		handleResultQuery();
 	}
 }
 
-bool DatabaseHandler::executeQuery(SQLString& query)
+void  DatabaseHandler::handleResultQuery()
+{
+	
+}
+
+
+void  DatabaseHandler::handleNoResultQuery()
+{
+	if (noResultQueryQueuePtr->isEmpty())
+	{
+
+	}
+	else
+	{
+		auto queryItem = noResultQueryQueuePtr->getItem();
+		queueItem.swap(queryItem);
+
+		SQLString sqlString = *static_cast<SQLString*>(queueItem->getContent());
+
+		std::cout << executeNoResultQuery(sqlString);
+	}
+}
+
+bool DatabaseHandler::executeNoResultQuery(SQLString& query)
 {
 	connectDatabase();
 	if (connectionIsValid())
@@ -67,14 +81,13 @@ bool DatabaseHandler::executeQuery(SQLString& query)
 		{
 			sqlConnection->setSchema(db::schema);	// setting database to connection
 			SqlPreparedStatement.reset(sqlConnection->prepareStatement(query));
-			unique_ptr<sql::ResultSet> result;
-			result.reset(SqlPreparedStatement->executeQuery());
-
-			std::cout <<std::endl << "bdbrdt " << result << std::endl;
-
+			/*unique_ptr<sql::ResultSet> result;
+			result.reset(SqlPreparedStatement->executeQuery());*/
+			SqlPreparedStatement->execute();
+			//std::cout <<std::endl << "bdbrdt " << result << std::endl;
 			return true;
 		}
-		catch (SQLException e)
+		catch (SQLException& e)
 		{
 
 			std::cout << "error: " << e.getErrorCode();
