@@ -18,7 +18,7 @@
 		// Queues
 			RequestQueue requestsQueue;
 			ErrorQueue errorQueue;
-			NoResultQueryQueue queryQueue;
+			QueryQueue queryQueue;
 
 
 	public:

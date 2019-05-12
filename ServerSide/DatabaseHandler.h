@@ -1,7 +1,6 @@
 #pragma once
 #include "MaterialEntity.h"
-#include "NoResultQueryQueue.h"
-#include "ResultQueryQueue.h"
+#include "QueryQueue.h"
 
 #include "jdbc/mysql_connection.h"
 #include "jdbc/cppconn/resultset.h"
@@ -24,9 +23,7 @@ using std::unique_ptr;
 using std::thread;
 
 class Server;
-class NoResultQueryQueue;
-class ResultQueryQueue;
-
+class QueryQueue;
 
 
 	class DatabaseHandler
@@ -54,9 +51,8 @@ class ResultQueryQueue;
 	
 			//Server* server;
 			
-		static NoResultQueryQueue* noResultQueryQueuePtr;
-		static ResultQueryQueue* resultQueryQueuePtr;
-
+		static QueryQueue* queryQueuePtr;
+		
 		void run();		// main loop
 		void connectDatabase();
 		
@@ -72,7 +68,6 @@ class ResultQueryQueue;
 	
 		bool connectionIsValid();
 		
-		static void setNoResultQueryQueuePtr(NoResultQueryQueue* pointer);
-		static void setResultQueryQueuePtr(ResultQueryQueue* pointer);
+		static void setQueryQueuePtr(QueryQueue* pointer);
 	};
 

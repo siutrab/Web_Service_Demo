@@ -2,20 +2,16 @@
 #include "DatabaseHandler.h"
 
 
-NoResultQueryQueue* DatabaseHandler::noResultQueryQueuePtr;
-ResultQueryQueue* DatabaseHandler::resultQueryQueuePtr;
 
-void DatabaseHandler::setNoResultQueryQueuePtr(NoResultQueryQueue* pointer)
+QueryQueue* DatabaseHandler::queryQueuePtr;
+
+void DatabaseHandler::setQueryQueuePtr(QueryQueue* pointer)
 {
-	DatabaseHandler::noResultQueryQueuePtr = pointer; // Settet in QueryQueue object
-	const_cast<const NoResultQueryQueue*>(DatabaseHandler::noResultQueryQueuePtr);
+	DatabaseHandler::queryQueuePtr = pointer; // Settet in QueryQueue object
+	const_cast<const QueryQueue*>(DatabaseHandler::queryQueuePtr);
 }
 
-void DatabaseHandler::setResultQueryQueuePtr(ResultQueryQueue* pointer)
-{
-	DatabaseHandler::resultQueryQueuePtr = pointer; // Settet in QueryQueue object
-	const_cast<const ResultQueryQueue*>(DatabaseHandler::resultQueryQueuePtr);
-}
+
 
 
 DatabaseHandler::DatabaseHandler()
@@ -57,13 +53,13 @@ void  DatabaseHandler::handleResultQuery()
 
 void  DatabaseHandler::handleNoResultQuery()
 {
-	if (noResultQueryQueuePtr->isEmpty())
+	if (queryQueuePtr->isEmpty())
 	{
 
 	}
 	else
 	{
-		auto queryItem = noResultQueryQueuePtr->getItem();
+		auto queryItem = queryQueuePtr->getItem();
 		queueItem.swap(queryItem);
 
 		SQLString sqlString = *static_cast<SQLString*>(queueItem->getContent());

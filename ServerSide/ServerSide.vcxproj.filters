@@ -52,11 +52,11 @@
     <Filter Include="Server resources\Queues resources\ErrorQueue">
       <UniqueIdentifier>{6471a598-2c4d-4de9-8478-93647251fa0f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server resources\Queues resources\NoResultQueryQueue">
+    <Filter Include="Server resources\Queues resources\QueryQueue">
       <UniqueIdentifier>{a26a069b-1ec0-4b2a-9aae-87ab9f68b560}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server resources\Queues resources\ResultQuery">
-      <UniqueIdentifier>{329ff145-7607-45f2-9856-e1487c733d59}</UniqueIdentifier>
+    <Filter Include="Server resources\Queues resources\ResponseQueue">
+      <UniqueIdentifier>{62c2e529-5fda-4cd3-b098-a24a6717a810}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -150,14 +150,17 @@
     <ClInclude Include="ClientsMenager.h">
       <Filter>Server resources\Router resources</Filter>
     </ClInclude>
-    <ClInclude Include="NoResultQueryQueue.h">
-      <Filter>Server resources\Queues resources\NoResultQueryQueue</Filter>
+    <ClInclude Include="Query.h">
+      <Filter>Server resources\Queues resources\QueryQueue</Filter>
     </ClInclude>
-    <ClInclude Include="ResultQueryQueue.h">
-      <Filter>Server resources\Queues resources\ResultQuery</Filter>
+    <ClInclude Include="QueryQueue.h">
+      <Filter>Server resources\Queues resources\QueryQueue</Filter>
     </ClInclude>
-    <ClInclude Include="NoResultQuery.h">
-      <Filter>Server resources\Queues resources\NoResultQueryQueue</Filter>
+    <ClInclude Include="ResponseQueue.h">
+      <Filter>Server resources\Queues resources\ResponseQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="Response.h">
+      <Filter>Server resources\Queues resources\ResponseQueue</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -233,14 +236,17 @@
     <ClCompile Include="Queue.cpp">
       <Filter>Server resources\Queues resources</Filter>
     </ClCompile>
-    <ClCompile Include="NoResultQueryQueue.cpp">
-      <Filter>Server resources\Queues resources\NoResultQueryQueue</Filter>
+    <ClCompile Include="Query.cpp">
+      <Filter>Server resources\Queues resources\QueryQueue</Filter>
     </ClCompile>
-    <ClCompile Include="ResultQueryQueue.cpp">
-      <Filter>Server resources\Queues resources\ResultQuery</Filter>
+    <ClCompile Include="QueryQueue.cpp">
+      <Filter>Server resources\Queues resources\QueryQueue</Filter>
     </ClCompile>
-    <ClCompile Include="NoResultQuery.cpp">
-      <Filter>Server resources\Queues resources\NoResultQueryQueue</Filter>
+    <ClCompile Include="ResponseQueue.cpp">
+      <Filter>Server resources\Queues resources\ResponseQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="Response.cpp">
+      <Filter>Server resources\Queues resources\ResponseQueue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

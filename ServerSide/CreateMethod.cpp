@@ -113,7 +113,7 @@ void CreateMethod::eraseWhitespaces(string& str)
 	str = newStr;
 }
 
-unique_ptr<NoResultQuery> CreateMethod::generateQuery(DocumentXml& document)
+unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)
 {
 	documentXml = &document;
 	if ((initializeWidthsList()) && (mapArguments()))
@@ -121,7 +121,7 @@ unique_ptr<NoResultQuery> CreateMethod::generateQuery(DocumentXml& document)
 		vector<unique_ptr<EntityInterface>> entitiesVector = generateEntities();
 		sql::SQLString query = *queryGenerator->insert(entitiesVector);
 		
-		auto queryPtr =	unique_ptr<NoResultQuery>(new NoResultQuery(query));
+		auto queryPtr =	unique_ptr<Query>(new Query(query, false));
 		return std::move(queryPtr);
 	}
 	throw ServerExceptions::QueryMappingExceptions::CannotConvertXml();

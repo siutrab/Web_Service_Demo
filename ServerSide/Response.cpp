@@ -2,7 +2,8 @@
 #include "Response.h"
 
 
-Response::Response()
+Response::Response(string& content)
+	: Content<string>(content)
 {
 }
 

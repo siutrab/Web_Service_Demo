@@ -3,7 +3,7 @@
 #include <memory>
 #include <utility>
 #include <vector>
-#include "NoResultQuery.h"
+#include "Query.h"
 #include "boost/lexical_cast.hpp"
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
 
@@ -11,7 +11,7 @@ using std::string;
 using std::unique_ptr;
 
 class DocumentXml;
-class NoResultQuery;
+class Query;
 
 class ParameterInterface
 {
@@ -80,7 +80,7 @@ protected:
 	std::vector<argument> parametersArray;
 public:
 	virtual ~MethodInterface() {}
-	virtual unique_ptr<NoResultQuery> generateQuery(DocumentXml& document) = 0;
+	virtual unique_ptr<Query> generateQuery(DocumentXml& document) = 0;
 	virtual unique_ptr<string> getMethodName() = 0;
 	virtual bool isResulting() = 0;
 };

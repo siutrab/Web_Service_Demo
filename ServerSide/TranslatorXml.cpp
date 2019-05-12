@@ -2,8 +2,7 @@
 
 
 	RequestQueue* TranslatorXml::requestQueuePtr;
-	NoResultQueryQueue* TranslatorXml::noResultQueryQueuePtr;
-	ResultQueryQueue* TranslatorXml::resultQueryQueuePtr;
+	QueryQueue* TranslatorXml::queryQueuePtr;
 	ErrorQueue* TranslatorXml::errorQueuePtr;
 
 	void TranslatorXml::setRequestQueuePtr(RequestQueue* pointer)
@@ -12,18 +11,13 @@
 		const_cast<const RequestQueue*>(TranslatorXml::requestQueuePtr);
 	}
 
-	void TranslatorXml::setNoResultQueryQueuePtr(NoResultQueryQueue* pointer)
+	void TranslatorXml::setQueryQueuePtr(QueryQueue* pointer)
 	{
-		TranslatorXml::noResultQueryQueuePtr = pointer; // Settet in QueryQueue object
-		const_cast<const NoResultQueryQueue*>(TranslatorXml::noResultQueryQueuePtr);
+		TranslatorXml::queryQueuePtr = pointer; // Settet in QueryQueue object
+		const_cast<const QueryQueue*>(TranslatorXml::queryQueuePtr);
 	}
 	
-	void TranslatorXml::setResultQueryQueuePtr(ResultQueryQueue* pointer)
-	{
-		TranslatorXml::resultQueryQueuePtr = pointer; // Settet in QueryQueue object
-		const_cast<const ResultQueryQueue*>(TranslatorXml::resultQueryQueuePtr);
-	}
-
+	
 	void TranslatorXml::setErrorQueuePtr(ErrorQueue* const pointer)
 	{
 		TranslatorXml::errorQueuePtr = pointer; // Settet in ErrorQueue object
@@ -71,7 +65,6 @@ void TranslatorXml::translateDocument()
 	{
 		setTable();
 		setMethod();
-		chooseQueryQueue();
 		prepareQuery();
 	}
 	catch (ExceptionInterface& exception)
@@ -79,7 +72,7 @@ void TranslatorXml::translateDocument()
 		errorQueuePtr->addItem(std::move(queueItem), exception);
 	}
 	
-	queryQueuePointer->addItem(std::move(queueItem));
+	queryQueuePtr->addItem(std::move(queueItem));
 }
 
 void TranslatorXml::setTable()
@@ -94,13 +87,6 @@ void TranslatorXml::setMethod()
 	methodPointer = &methodsMapper.findMethod(methodName);	// WARNING!!! throws exception
 }
 
-void TranslatorXml::chooseQueryQueue()
-{
-	if (methodPointer->isResulting())
-		queryQueuePointer = resultQueryQueuePtr;
-	else
-		queryQueuePointer = noResultQueryQueuePtr;
-}
 
 void TranslatorXml::prepareQuery()
 {

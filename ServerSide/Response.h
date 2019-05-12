@@ -1,13 +1,16 @@
 #pragma once
-#include "RequestResponseObject.h"
+#include "Content.h"
+#include <string>
 
-class RequestResponseObject;
+using std::string;
+
 class Response
+	:	public Content<string>
 {
-	RequestResponseObject* request;
 	
 public:
-	Response();
+	Response(string& content);
 	~Response();
 };
+
 

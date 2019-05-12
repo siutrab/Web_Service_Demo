@@ -1,16 +1,15 @@
 #pragma once
-#include"jdbc/cppconn/sqlstring.h"
+#include "MappingInterface.h"
+#include "jdbc/cppconn/sqlstring.h"
 #include <memory>
 #include <cstring>
 #include <vector>
-#include "MappingInterface.h"
 
 
 using sql::SQLString;
 using std::vector;
 using std::string;
 using std::unique_ptr;
-using std::shared_ptr;
 
 class DatabaseHandler;
 
@@ -19,8 +18,6 @@ class DatabaseHandler;
 	private:
 
 		unique_ptr<string> separateWithSymbols(vector<string>& collection, string firstSymbol, string separatingSymbol, string endingSymbol);
-		/*unique_ptr<string> entityValuesToQueryPart(EntityInterface& entity);
-		unique_ptr<string> entityFieldsToQueryPart(EntityInterface& entity);*/
 	public:
 		QueryGenerator();
 		~QueryGenerator();
