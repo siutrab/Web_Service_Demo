@@ -121,7 +121,7 @@ unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)
 		vector<unique_ptr<EntityInterface>> entitiesVector = generateEntities();
 		sql::SQLString query = *queryGenerator->insert(entitiesVector);
 		
-		auto queryPtr =	unique_ptr<Query>(new Query(query, false));
+		auto queryPtr =	std::make_unique<Query>(query, false);
 		return std::move(queryPtr);
 	}
 	throw ServerExceptions::QueryMappingExceptions::CannotConvertXml();

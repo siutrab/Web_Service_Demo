@@ -1,6 +1,11 @@
 #pragma once
 #include "MaterialEntity.h"
-#include "QueryQueue.h"
+#include "Queue.h"
+#include "Query.h"
+#include "QueueItem.h"
+#include "Content.h"
+#include "ErrorQueue.h"
+#include "ResponseTranslator.h"
 
 #include "jdbc/mysql_connection.h"
 #include "jdbc/cppconn/resultset.h"
@@ -23,7 +28,10 @@ using std::unique_ptr;
 using std::thread;
 
 class Server;
-class QueryQueue;
+class Query;
+class QueueItem;
+class ErrorQueue;
+class Queue;
 
 
 	class DatabaseHandler
@@ -35,13 +43,17 @@ class QueryQueue;
 			static const SQLString password;
 			static const SQLString schema;		// name of database
 		};
+		
 		typedef DatabaseHandler::DatabaseInfo db;
+
+		ResponseTranslator responseTranslator;
 
 			bool connectedToDatabase;
 			bool running;
 			thread DATABASE_HANDLER_THREAD;
 
 			unique_ptr<QueueItem> queueItem;
+			unique_ptr<Query> contentQuery;
 
 			// needed for connecting and executing querys;
 			unique_ptr<MySQL_Driver> driver;
@@ -51,23 +63,21 @@ class QueryQueue;
 	
 			//Server* server;
 			
-		static QueryQueue* queryQueuePtr;
-		
+		Queue* queryQueuePtr;
+		Queue* responseQueuePtr;
+		ErrorQueue* errorQueuePtr;
 		void run();		// main loop
-		void connectDatabase();
+		bool connectDatabase();
 		
 		void handleResultQuery();
 		void handleNoResultQuery();
 
 	public:
-		DatabaseHandler();
+		DatabaseHandler(Queue* queryQueue, Queue* responseQueue, ErrorQueue* errorQueue); 
 		~DatabaseHandler();
 		void start();
 		void stop();
 		bool executeNoResultQuery(SQLString& query);
-	
-		bool connectionIsValid();
-		
-		static void setQueryQueuePtr(QueryQueue* pointer);
+
 	};
 

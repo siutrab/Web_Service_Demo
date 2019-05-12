@@ -1,5 +1,4 @@
 #pragma once
-
 #include "MethodInterface.h"
 #include "DataBaseMap.h"
 #include "MethodsMapper.h"
@@ -9,12 +8,10 @@
 #include <thread>
 
 class Request;
-class RequestQueue;
 class DataBaseMap;
 class MethodInterface;
 class TableInterface;
 class MethodsMapper;
-class QueryQueue;
 class ErrorQueue;
 
 class TranslatorXml
@@ -23,9 +20,9 @@ class TranslatorXml
 	bool running;
 
 
-	static RequestQueue* requestQueuePtr;
-	static QueryQueue* queryQueuePtr;
-	static ErrorQueue* errorQueuePtr;
+	Queue* requestQueuePtr;
+	Queue* queryQueuePtr;
+	ErrorQueue* errorQueuePtr;
 
 	DataBaseMap dataBaseMap;
 	MethodsMapper methodsMapper;
@@ -45,18 +42,15 @@ class TranslatorXml
 	void translateDocument();
 	void prepareQuery();
 
+	void setRequestId();
 	void setTable();
 	void setMethod();
 	
 public:
-	TranslatorXml();
+	TranslatorXml(Queue* queryQueue, Queue* requestQueue, ErrorQueue* errorQueue);
 	~TranslatorXml();
 	void start();
 	void stop();
-
-	static void setRequestQueuePtr(RequestQueue* const pointer);
-	static void setQueryQueuePtr(QueryQueue* const pointer);
-	static void setErrorQueuePtr(ErrorQueue* const pointer);
 
 };
 

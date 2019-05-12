@@ -58,6 +58,12 @@
     <Filter Include="Server resources\Queues resources\ResponseQueue">
       <UniqueIdentifier>{62c2e529-5fda-4cd3-b098-a24a6717a810}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Server resources\Database Handler\Response Translator">
+      <UniqueIdentifier>{2150851b-19c5-408a-978a-95ad8a31b4de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Response Handler">
+      <UniqueIdentifier>{b7f3cc23-ad0b-4bb9-9cc1-f3a6e99006ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -74,9 +80,6 @@
     </ClInclude>
     <ClInclude Include="Listener.h">
       <Filter>Server resources\Router resources</Filter>
-    </ClInclude>
-    <ClInclude Include="ResponseHandler.h">
-      <Filter>Server resources\Request Handler</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\CPP Libraries\Boost\boost_1_70_0\boost\smart_ptr\scoped_ptr.hpp">
       <Filter>Pliki źródłowe</Filter>
@@ -132,9 +135,6 @@
     <ClInclude Include="QueueItem.h">
       <Filter>Server resources\Queues resources</Filter>
     </ClInclude>
-    <ClInclude Include="RequestQueue.h">
-      <Filter>Server resources\Queues resources\RequestQueue</Filter>
-    </ClInclude>
     <ClInclude Include="Queue.h">
       <Filter>Server resources\Queues resources</Filter>
     </ClInclude>
@@ -153,14 +153,14 @@
     <ClInclude Include="Query.h">
       <Filter>Server resources\Queues resources\QueryQueue</Filter>
     </ClInclude>
-    <ClInclude Include="QueryQueue.h">
-      <Filter>Server resources\Queues resources\QueryQueue</Filter>
-    </ClInclude>
-    <ClInclude Include="ResponseQueue.h">
-      <Filter>Server resources\Queues resources\ResponseQueue</Filter>
-    </ClInclude>
     <ClInclude Include="Response.h">
       <Filter>Server resources\Queues resources\ResponseQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponseTranslator.h">
+      <Filter>Server resources\Database Handler\Response Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponseHandler.h">
+      <Filter>Server resources\Response Handler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -178,9 +178,6 @@
     </ClCompile>
     <ClCompile Include="Router.cpp">
       <Filter>Server resources\Router resources</Filter>
-    </ClCompile>
-    <ClCompile Include="ResponseHandler.cpp">
-      <Filter>Server resources\Request Handler</Filter>
     </ClCompile>
     <ClCompile Include="Server.cpp">
       <Filter>Server resources</Filter>
@@ -218,9 +215,6 @@
     <ClCompile Include="QueryGenerator.cpp">
       <Filter>Server resources\Request Handler\Translator XML</Filter>
     </ClCompile>
-    <ClCompile Include="RequestQueue.cpp">
-      <Filter>Server resources\Queues resources\RequestQueue</Filter>
-    </ClCompile>
     <ClCompile Include="ErrorQueue.cpp">
       <Filter>Server resources\Queues resources\ErrorQueue</Filter>
     </ClCompile>
@@ -239,14 +233,14 @@
     <ClCompile Include="Query.cpp">
       <Filter>Server resources\Queues resources\QueryQueue</Filter>
     </ClCompile>
-    <ClCompile Include="QueryQueue.cpp">
-      <Filter>Server resources\Queues resources\QueryQueue</Filter>
-    </ClCompile>
-    <ClCompile Include="ResponseQueue.cpp">
-      <Filter>Server resources\Queues resources\ResponseQueue</Filter>
-    </ClCompile>
     <ClCompile Include="Response.cpp">
       <Filter>Server resources\Queues resources\ResponseQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="ResponseTranslator.cpp">
+      <Filter>Server resources\Database Handler\Response Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="ResponseHandler.cpp">
+      <Filter>Server resources\Response Handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

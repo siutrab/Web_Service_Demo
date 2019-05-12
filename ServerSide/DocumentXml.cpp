@@ -4,29 +4,53 @@
 DocumentXml::DocumentXml(Request& request)
 {
 	string* requestContent = static_cast<string*>(request.getContent());
-	eraseWhitespaces(*requestContent);
+	eraseWhitespacesExceptSpace(*requestContent);
 
 	pugi::xml_parse_result result = document.load_string(requestContent->c_str());
 	if (!result)
 		throw ServerExceptions::QueryMappingExceptions::InvalidDocument();
-	
-	std::cout << result.description() << std::endl;	/////////////////////////////////////////////////////////////////
 }
 
 
 DocumentXml::~DocumentXml()
 {	}
+//
+//void DocumentXml::eraseWhitespaces(string& str)
+//{
+//	string newStr;
+//	for (size_t i = 0; i < str.size(); i++)
+//	{
+//		char c = str[i];
+//		if (c != '\n' && c != '\r' && c != '\t' && c != '\v' && c != '\f')		// space ' ' cannot be deleted because tags could contain them
+//			newStr += c;														// for example <tag attribute = "...">
+//	}
+//	str = newStr;
+//}
 
-void DocumentXml::eraseWhitespaces(string& str)
+int DocumentXml::getRequestID()
 {
-	string newStr;
-	for (size_t i = 0; i < str.size(); i++)
+	nodeXml requestNode = document.child("soap:Envelope").child("soap:Body").child("request");
+	if (requestNode)
 	{
-		char c = str[i];
-		if (c != '\n' && c != '\r' && c != '\t' && c != '\v' && c != '\f')		// space ' ' cannot be deleted because tags could contain them
-			newStr += c;														// for example <tag attribute = "...">
+		attributeXml id = requestNode.attribute("id");
+		const pugi::char_t* value = id.value();
+		string idString(value);
+
+		eraseSpaces(idString);
+
+		try
+		{
+			int uIntID = boost::lexical_cast<int>(idString.c_str());
+			return uIntID;
+		}
+		catch (boost::bad_lexical_cast&)
+		{
+			throw ServerExceptions::QueryMappingExceptions::IDundefined();
+		}
+
+		
 	}
-	str = newStr;
+	throw ServerExceptions::QueryMappingExceptions::IDundefined();
 }
 
 string DocumentXml::findTableName()
@@ -59,7 +83,7 @@ unique_ptr<string> DocumentXml::getParameter(string& parameterName)
 {
 	const pugi::char_t* value = methodNode.child(parameterName.c_str()).child_value();
 	auto valueString = std::make_unique<string>(value);
-	//delete value;
+
 	return std::move(valueString);
 }
 

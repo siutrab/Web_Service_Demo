@@ -1,9 +1,11 @@
 #pragma once
 #include "Response.h"
-#include "Queue.h"
+#include "Content.h"
+
+
 
 class ResponseQueue
-	: 
+
 {
 public:
 	ResponseQueue();

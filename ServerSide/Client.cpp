@@ -2,14 +2,14 @@
 #include "Client.h"
 #include "ClientsMenager.h"
 
- RequestQueue* Client::requestQueuePtr;
+ Queue* Client::requestQueuePtr;
  ErrorQueue* Client::errorQueuePtr;
  ClientsMenager* Client::clientsMenagerPtr;
 
-	void Client::setRequestQueuePtr(RequestQueue* pointer) 
+	void Client::setRequestQueuePtr(Queue* pointer) 
 	{ 
 		Client::requestQueuePtr = pointer; // Settet in RequestsQueue object
-		const_cast<const RequestQueue*>(Client::requestQueuePtr);
+		const_cast<const Queue*>(Client::requestQueuePtr);
 	}	
 	
 	void Client::setErrorQueuePtr(ErrorQueue* const pointer)
@@ -37,8 +37,15 @@
 	{	}
 
 // methods
-	void Client::sendResponse()
-	{	}
+	void Client::sendResponse(string* response)
+	{
+		sf::Packet packet;
+		if (packet << *response)
+		{
+			socket.send(packet);
+			std::cout << *response;
+		}
+	}
 
 	void Client::receivePacket()
 	{

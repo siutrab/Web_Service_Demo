@@ -13,7 +13,7 @@ using std::thread;
 	{
 		
 			thread ROUTER_THREAD;
-			bool running = false;
+			bool running;
 			const unsigned int port;
 
 			SocketSelector selector;

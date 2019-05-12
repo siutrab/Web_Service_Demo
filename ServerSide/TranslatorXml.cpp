@@ -1,37 +1,16 @@
 #include "TranslatorXml.h"
 
 
-	RequestQueue* TranslatorXml::requestQueuePtr;
-	QueryQueue* TranslatorXml::queryQueuePtr;
-	ErrorQueue* TranslatorXml::errorQueuePtr;
-
-	void TranslatorXml::setRequestQueuePtr(RequestQueue* pointer)
-	{
-		TranslatorXml::requestQueuePtr = pointer; // Settet in RequestsQueue object
-		const_cast<const RequestQueue*>(TranslatorXml::requestQueuePtr);
-	}
-
-	void TranslatorXml::setQueryQueuePtr(QueryQueue* pointer)
-	{
-		TranslatorXml::queryQueuePtr = pointer; // Settet in QueryQueue object
-		const_cast<const QueryQueue*>(TranslatorXml::queryQueuePtr);
-	}
-	
-	
-	void TranslatorXml::setErrorQueuePtr(ErrorQueue* const pointer)
-	{
-		TranslatorXml::errorQueuePtr = pointer; // Settet in ErrorQueue object
-		const_cast<const ErrorQueue*>(TranslatorXml::errorQueuePtr);
-	}
-
-
-TranslatorXml::TranslatorXml()
+TranslatorXml::TranslatorXml(Queue* queryQueue, Queue* requestQueue, ErrorQueue* errorQueue)
 	:	running(false),
 		methodsMapper(),
 		dataBaseMap(),
 		queueItem(),
 		request(),
-		document()
+		document(),
+		queryQueuePtr(queryQueue),
+		requestQueuePtr(requestQueue),
+		errorQueuePtr(errorQueue)
 {	}
 
 
@@ -40,6 +19,7 @@ TranslatorXml::~TranslatorXml()
 
 void TranslatorXml::start()
 {
+	running = true;
 	TRANSLATOR_XML_THREAD = std::thread(&TranslatorXml::run, this);
 }
 
@@ -51,7 +31,6 @@ void TranslatorXml::stop()
 
 void TranslatorXml::run()
 {
-	running = true;
 	while (running)
 	{
 		if (loadDocument()) 
@@ -63,16 +42,24 @@ void TranslatorXml::translateDocument()
 {	
 	try
 	{
+		setRequestId();
 		setTable();
 		setMethod();
 		prepareQuery();
+		
+		queryQueuePtr->addItem(std::move(queueItem));
 	}
 	catch (ExceptionInterface& exception)
 	{
 		errorQueuePtr->addItem(std::move(queueItem), exception);
 	}
 	
-	queryQueuePtr->addItem(std::move(queueItem));
+}
+
+void TranslatorXml::setRequestId()
+{
+	int id = document->getRequestID();
+	queueItem->setId(id);
 }
 
 void TranslatorXml::setTable()

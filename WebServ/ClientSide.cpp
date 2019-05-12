@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include <iostream>
 #include "SFML/Network.hpp"
-//#include <thread>
+#include <thread>
 
 void send(std::string comunicate)
 {
@@ -10,15 +10,11 @@ void send(std::string comunicate)
 	unsigned int port = 54000;
 	sf::Packet packet;
 
-	/*for (int i = 0; i < 30; i++)
-	{
-*/
 	if (packet << comunicate)
 	{
 		if (socket.connect(ip, port) == sf::Socket::Done)
 			socket.send(packet);
 	}
-	//}
 }
 
 int main()
@@ -35,6 +31,7 @@ int main()
 		<?xml version=\"1.0\"?>											\
 		<soap:Envelope>													\
 			<soap:Body>													\
+				<request id = \"123456\" />								\
 				<table name = \"materials\"/>							\
 				<method name = \"create\">								\
 					<name> FRONTROCK </name>							\

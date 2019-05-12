@@ -1,47 +1,61 @@
 #include "pch.h"
 #include "DatabaseHandler.h"
 
+// static members
+const SQLString DatabaseHandler::DatabaseInfo::hostName = "localhost";
+const SQLString DatabaseHandler::DatabaseInfo::userName = "user_for_materials";
+const SQLString DatabaseHandler::DatabaseInfo::password = "haslo";
+const SQLString DatabaseHandler::DatabaseInfo::schema = "building_materials";
 
 
-QueryQueue* DatabaseHandler::queryQueuePtr;
-
-void DatabaseHandler::setQueryQueuePtr(QueryQueue* pointer)
-{
-	DatabaseHandler::queryQueuePtr = pointer; // Settet in QueryQueue object
-	const_cast<const QueryQueue*>(DatabaseHandler::queryQueuePtr);
-}
-
-
-
-
-DatabaseHandler::DatabaseHandler()
+DatabaseHandler::DatabaseHandler(Queue* queryQueue, Queue* responseQueue, ErrorQueue* errorQueue)
 	:	connectedToDatabase(false),
 		running(false),
-		queueItem()
-{	
+		queueItem(),
+		queryQueuePtr(queryQueue),
+		responseQueuePtr(responseQueue),
+		errorQueuePtr(errorQueue)
+{	}
 
-}
+DatabaseHandler::~DatabaseHandler()
+{	}
 
 void DatabaseHandler::start()
 {
 	running = true;
 	DATABASE_HANDLER_THREAD = thread(&DatabaseHandler::run, this);
 }
+
 void DatabaseHandler::stop()
 {
 	running = false;
 	DATABASE_HANDLER_THREAD.join();
 }
 
-DatabaseHandler::~DatabaseHandler()
-{	}
-
 void DatabaseHandler::run()
 {
 	while (running)
 	{
-		handleNoResultQuery();
-		handleResultQuery();
+		if (queryQueuePtr->isEmpty())
+		{
+
+		}
+		else
+		{
+			queueItem.reset(queryQueuePtr->getItem().release());
+			unique_ptr<ContentInterface> content(queueItem->getContentObject());
+			contentQuery.reset(static_cast<Query*>(content.get()));
+			
+
+			if (contentQuery->isResulting())
+			{
+				handleResultQuery();
+			}
+			else
+			{
+				handleNoResultQuery();
+			}
+		}
 	}
 }
 
@@ -53,64 +67,51 @@ void  DatabaseHandler::handleResultQuery()
 
 void  DatabaseHandler::handleNoResultQuery()
 {
-	if (queryQueuePtr->isEmpty())
-	{
+	SQLString sqlString = *static_cast<SQLString*>(contentQuery->getContent());
 
+	if (executeNoResultQuery(sqlString))
+	{
+		unique_ptr<ContentInterface> response = responseTranslator.generateSuccessMessage(*queueItem);
+		queueItem->changeContent(response);
+		responseQueuePtr->addItem(std::move(queueItem));
 	}
 	else
 	{
-		auto queryItem = queryQueuePtr->getItem();
-		queueItem.swap(queryItem);
-
-		SQLString sqlString = *static_cast<SQLString*>(queueItem->getContent());
-
-		std::cout << executeNoResultQuery(sqlString);
+		// to do throw exception
 	}
 }
 
 bool DatabaseHandler::executeNoResultQuery(SQLString& query)
 {
-	connectDatabase();
-	if (connectionIsValid())
+	if (connectDatabase())
 	{
 		try
 		{
 			sqlConnection->setSchema(db::schema);	// setting database to connection
 			SqlPreparedStatement.reset(sqlConnection->prepareStatement(query));
-			/*unique_ptr<sql::ResultSet> result;
-			result.reset(SqlPreparedStatement->executeQuery());*/
-			SqlPreparedStatement->execute();
-			//std::cout <<std::endl << "bdbrdt " << result << std::endl;
-			return true;
-		}
-		catch (SQLException& e)
-		{
 
-			std::cout << "error: " << e.getErrorCode();
+			return !SqlPreparedStatement->execute();	// this strange function returns false when succeed
+			
+		}
+		catch (SQLException&)
+		{
 			return false;
 		}
 	}
 	else return false;
 }
 
-void DatabaseHandler::connectDatabase()
+bool DatabaseHandler::connectDatabase()
 {
 	try
 	{
 		driver = unique_ptr<MySQL_Driver>(sql::mysql::get_mysql_driver_instance());
 		sqlConnection = unique_ptr<Connection>( driver->connect(db::hostName, db::userName, db::password));
-		connectedToDatabase = true;
+		return true;
 	}
-	catch (SQLException e)
+	catch (SQLException&)
 	{
-		connectedToDatabase = false;
+		return false;
 	}
 }
 
-bool DatabaseHandler::connectionIsValid() { return connectedToDatabase; }
-
-// static members
-const SQLString DatabaseHandler::DatabaseInfo::hostName = "localhost";
-const SQLString DatabaseHandler::DatabaseInfo::userName = "user_for_materials";
-const SQLString DatabaseHandler::DatabaseInfo::password = "haslo";
-const SQLString DatabaseHandler::DatabaseInfo::schema = "building_materials";

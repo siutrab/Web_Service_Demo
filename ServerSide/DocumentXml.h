@@ -10,13 +10,13 @@
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
 
 using std::string;
-using std::shared_ptr;
 using std::unique_ptr;
 using pugi::xml_document;
 using std::vector;
 
 class Request;
-
+extern void eraseSpaces(string& str);
+extern void eraseWhitespacesExceptSpace(string& str);
 
 class DocumentXml
 {
@@ -26,12 +26,13 @@ private:
 		xml_document document;
 		nodeXml methodNode;
 
-	void eraseWhitespaces(string& str);
+	//void eraseWhitespaces(string& str);
 
 public:
 	DocumentXml(Request& request);
 	~DocumentXml();
 
+	int getRequestID();
 	string findTableName();
 	string findMethodName();
 

@@ -1,5 +1,8 @@
 #pragma once
 #include "DocumentXml.h"
+#include "MethodInterface.h"
+#include "MappingInterface.h"
+#include "QueryGenerator.h"
 #include "boost/lexical_cast.hpp"
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
 #include <memory>
@@ -10,9 +13,8 @@
 using std::unique_ptr;
 using std::string;
 
-
 class QueryGenerator;
-
+class MaterialEntity;
 
 class CreateMethod
 	: public MethodInterface

@@ -4,7 +4,7 @@
 RequestQueue::RequestQueue()
 
 {
-	Client::setRequestQueuePtr(this);
+	//Client::setRequestQueuePtr(this);
 	TranslatorXml::setRequestQueuePtr(this);
 }
 

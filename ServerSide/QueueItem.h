@@ -9,7 +9,7 @@ class Client;
 class QueueItem
 {
 protected:
-		unsigned int id;
+		int id;
 		Client* client;
 		unique_ptr<ContentInterface> content;
 
@@ -21,6 +21,8 @@ public:
 	void changeContent(unique_ptr<ContentInterface>& newContent);
 
 	unsigned int getId() const;
+	void setId(int id);
+	bool idIsKnown();
 	Client* getClientPointer();
 	unique_ptr<ContentInterface> getContentObject();
 	void* getContent();

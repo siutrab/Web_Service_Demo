@@ -32,6 +32,12 @@ struct ServerExceptions
 			WrongArgument() { value = "Can't call function. Wrong arguments have been given."; }
 		};
 
+		struct IDundefined
+			: public ExceptionInterface
+		{
+			IDundefined() { value = "Server cannot read a request ID number."; }
+		};
+
 		struct WrongMethodName
 			: public ExceptionInterface
 		{

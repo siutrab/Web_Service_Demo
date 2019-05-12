@@ -4,7 +4,8 @@
 
 QueueItem::QueueItem(Client* const client, unique_ptr<ContentInterface> content)
 	:	client(client),
-		content(std::move(content))
+		content(std::move(content)),
+		id(-1)
 {
 	client->requestAdded();
 }
@@ -22,6 +23,16 @@ void QueueItem::changeContent(unique_ptr<ContentInterface>& newContent)
 unsigned int QueueItem::getId() const 
 { 
 	return id;
+}
+
+void QueueItem::setId(int id)
+{
+	this->id = id;
+}
+
+bool QueueItem::idIsKnown()
+{
+	return (id >= 0);
 }
 
 Client* QueueItem::getClientPointer() 

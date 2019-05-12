@@ -1,7 +1,7 @@
 #pragma once
 #include "ErrorQueue.h"
 #include "SFML/Network.hpp"
-#include "RequestQueue.h"
+#include "Queue.h"
 #include "QueueItem.h"
 #include "Request.h"
 
@@ -12,7 +12,7 @@ using std::shared_ptr;
 using sf::TcpSocket;
 using sf::Packet;
 
-class RequestQueue;
+class Queue;
 class Request;
 class QueueItem;
 class ContentInterface;
@@ -25,18 +25,18 @@ class ClientsMenager;
 		bool connected;
 			const unsigned int index;
 			TcpSocket socket;
-			static RequestQueue* requestQueuePtr;
+			static Queue* requestQueuePtr;
 			static ErrorQueue* errorQueuePtr;
 			static ClientsMenager* clientsMenagerPtr;
 
 		// Methods
-		void sendResponse();		/// CHANGE ME!!!
 		unique_ptr<QueueItem> createRequest(Packet& packet);
 		unique_ptr<QueueItem> createQueueItem(ExceptionInterface& exception);
 	public:
 		Client(const unsigned int index);
 		~Client();
 		void receivePacket();
+		void sendResponse(string* response);		/// CHANGE ME!!!
 
 		void requestAdded();
 		void requestRemoved();
@@ -44,7 +44,7 @@ class ClientsMenager;
 		TcpSocket* getSocket();
 		bool isConnected();
 		unsigned int getIndex() const;
-		static void setRequestQueuePtr(RequestQueue* const pointer);
+		static void setRequestQueuePtr(Queue* const pointer);
 		static void setErrorQueuePtr(ErrorQueue* const pointer);
 		static void setClientsMenagerPtr(ClientsMenager* const pointer);
 	};

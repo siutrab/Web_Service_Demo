@@ -5,11 +5,13 @@ Router::Router(unsigned int port)
 	:	port(port),
 		selector(),
 		listener(this),
-		clientsList(this)
+		clientsList(this),
+		running(false)
 {	}
 
 void Router::start()
 {
+	running = true; 
 	ROUTER_THREAD = thread(&Router::run, this);
 }
 
@@ -20,7 +22,7 @@ Router::~Router()
 
 void Router::run() 
 {
-	running = true; 
+	
 	while (running)
 	{
 		// Selector waits for data at any socket

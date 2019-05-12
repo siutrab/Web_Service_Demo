@@ -7,14 +7,17 @@
 			requestsQueue(),
 			errorQueue(),
 			queryQueue(),
-			translatorXml(),
-			router(port),
-			databaseHandler()
+			responseQueue(),
+			translatorXml(&queryQueue, &requestsQueue, &errorQueue),
+			databaseHandler(&queryQueue, &responseQueue, &errorQueue),
+			responseHandler(&responseQueue),
+			router(port)
 	{
-	// WARNING!!! don't move these parts to initialization list. 
-	// Request queue have to be initialized first
-	// because they initialize static members of classes under this comments
-	// WARNING!!! each of below runs on different threads
+
+		Client::setRequestQueuePtr(&requestsQueue);
+		Client::setErrorQueuePtr(&errorQueue);
+	
+		responseHandler.start();
 		translatorXml.start();
 		databaseHandler.start();
 		router.start();
