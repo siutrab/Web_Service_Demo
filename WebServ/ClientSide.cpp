@@ -1,31 +1,40 @@
 ﻿#include "pch.h"
-#include <iostream>
+#include "ConnectionHandler.h"
 #include "SFML/Network.hpp"
+#include <iostream>
 #include <thread>
 
-void send(std::string comunicate)
-{
-	sf::TcpSocket socket;
-	sf::IpAddress ip = sf::IpAddress::getLocalAddress();
-	unsigned int port = 54000;
-	sf::Packet packet;
+//void send(std::string comunicate)
+//{
+//	sf::TcpSocket socket;
+//	sf::IpAddress ip = sf::IpAddress::getLocalAddress();
+//	unsigned int port = 54000;
+//	sf::Packet packet;
+//
+//	if (packet << comunicate)
+//	{
+//		if (socket.connect(ip, port) == sf::Socket::Done)
+//			socket.send(packet);
+//	}
+//}
 
-	if (packet << comunicate)
-	{
-		if (socket.connect(ip, port) == sf::Socket::Done)
-			socket.send(packet);
-	}
-}
+
 
 int main()
 {
-	/*std::thread thread1(send,"thread1");
-	std::thread thread2(send, "THREAD2");
-	std::thread thread3(send, "th3");*/
+	bool running = true;
+	ConnectionHandler connectionHandler(54000);
+	
+	if (connectionHandler.start())
+	{
+		while (running)
+		{
 
-	//thread1.join();
-	//thread2.join();
-	//thread3.join();
+		}
+	}
+
+
+
 	send(
 		"																\
 		<?xml version=\"1.0\"?>											\

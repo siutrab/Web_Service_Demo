@@ -82,7 +82,6 @@
 		else throw ServerExceptions::ReceivingPacketExceptions::CantUnpackPacket();
 	}
 
-
 	unique_ptr<QueueItem> Client::createQueueItem(ExceptionInterface& exception)
 	{
 		auto errorResponse = std::make_unique<ErrorResponse>(exception.getValue());
@@ -103,7 +102,7 @@
 	void Client::requestRemoved()
 	{
 		requestCount--;
-		if (requestCount == 0)
+		if(requestCount == 0 && connected == false)
 		{
 			clientsMenagerPtr->removeClient(index);
 		}
