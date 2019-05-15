@@ -35,7 +35,11 @@ void Router::run()
 }
 void Router::stop() 
 {
+	if (ROUTER_THREAD.joinable())
+	{
 	ROUTER_THREAD.join();
+	}
+
 	running = false; 
 }
 

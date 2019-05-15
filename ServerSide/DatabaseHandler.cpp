@@ -18,7 +18,9 @@ DatabaseHandler::DatabaseHandler(Queue* queryQueue, Queue* responseQueue, ErrorQ
 {	}
 
 DatabaseHandler::~DatabaseHandler()
-{	}
+{
+	stop();
+}
 
 void DatabaseHandler::start()
 {
@@ -28,8 +30,11 @@ void DatabaseHandler::start()
 
 void DatabaseHandler::stop()
 {
-	running = false;
-	DATABASE_HANDLER_THREAD.join();
+	if (DATABASE_HANDLER_THREAD.joinable())
+	{
+		running = false;
+		DATABASE_HANDLER_THREAD.join();
+	}
 }
 
 void DatabaseHandler::run()

@@ -15,7 +15,9 @@ TranslatorXml::TranslatorXml(Queue* queryQueue, Queue* requestQueue, ErrorQueue*
 
 
 TranslatorXml::~TranslatorXml()
-{	}
+{	
+	stop();
+}
 
 void TranslatorXml::start()
 {
@@ -25,8 +27,11 @@ void TranslatorXml::start()
 
 void TranslatorXml::stop()
 {
-	TRANSLATOR_XML_THREAD.join();
-	running = false;
+	if (TRANSLATOR_XML_THREAD.joinable())
+	{
+		TRANSLATOR_XML_THREAD.join();
+		running = false;
+	}
 }
 
 void TranslatorXml::run()
