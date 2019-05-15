@@ -2,11 +2,12 @@
 #include "ConnectionHandler.h"
 
 
-ConnectionHandler::ConnectionHandler(unsigned int port, sf::IpAddress ip = sf::IpAddress::getLocalAddress())
+ConnectionHandler::ConnectionHandler(unsigned int port, sf::IpAddress ip)
 	:	socket(),
-		running(false)
+		running(false),
+		ipAddress()
 {
-	socket.setBlocking(false);
+	//socket.setBlocking(false);
 	this->port = port;
 	ipAddress = ip;	
 }
@@ -14,7 +15,8 @@ ConnectionHandler::ConnectionHandler(unsigned int port, sf::IpAddress ip = sf::I
 
 ConnectionHandler::~ConnectionHandler()
 {
-	CONNECTION_HANDLER_THREAD.join();
+	if(CONNECTION_HANDLER_THREAD.joinable())
+		CONNECTION_HANDLER_THREAD.join();
 }
 
 bool ConnectionHandler::start()
@@ -44,7 +46,7 @@ void ConnectionHandler::handleReceivedData(sf::Packet& packet)
 {
 	string message;
 	if (packet >> message)
-		std::cout << "Receieved data: \n" << message;
+		std::cout << std::endl << std::endl << "Receieved data: \n" << message;
 }
 
 bool ConnectionHandler::sendData(string& message)

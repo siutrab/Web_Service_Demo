@@ -1,5 +1,6 @@
 #pragma once
 #include "XmlTag.h"
+#include "../ServerSide/pugixml.hpp"
 #include <iostream>
 #include <vector>
 
