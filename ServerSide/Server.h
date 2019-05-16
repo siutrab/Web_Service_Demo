@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Router.h"
 #include "ResponseHandler.h"
 #include "DatabaseHandler.h"

@@ -7,7 +7,6 @@ ConnectionHandler::ConnectionHandler(unsigned int port, sf::IpAddress ip)
 		running(false),
 		ipAddress()
 {
-	//socket.setBlocking(false);
 	this->port = port;
 	ipAddress = ip;	
 }
@@ -45,8 +44,8 @@ void ConnectionHandler::run()
 void ConnectionHandler::handleReceivedData(sf::Packet& packet)
 {
 	string message;
-	if (packet >> message)
-		std::cout << std::endl << std::endl << "Receieved data: \n" << message;
+	if (packet >> message);
+		//std::cout << std::endl << std::endl << "Receieved data: \n" << message;
 }
 
 bool ConnectionHandler::sendData(string& message)

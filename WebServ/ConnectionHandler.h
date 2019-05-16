@@ -18,7 +18,7 @@ class ConnectionHandler
 		sf::IpAddress ipAddress;
 		sf::TcpSocket socket;
 	
-	void listen();
+	//void listen();
 	void run();
 	void handleReceivedData(sf::Packet& packet);
 public:

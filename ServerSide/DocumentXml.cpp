@@ -14,18 +14,6 @@ DocumentXml::DocumentXml(Request& request)
 
 DocumentXml::~DocumentXml()
 {	}
-//
-//void DocumentXml::eraseWhitespaces(string& str)
-//{
-//	string newStr;
-//	for (size_t i = 0; i < str.size(); i++)
-//	{
-//		char c = str[i];
-//		if (c != '\n' && c != '\r' && c != '\t' && c != '\v' && c != '\f')		// space ' ' cannot be deleted because tags could contain them
-//			newStr += c;														// for example <tag attribute = "...">
-//	}
-//	str = newStr;
-//}
 
 int DocumentXml::getRequestID()
 {

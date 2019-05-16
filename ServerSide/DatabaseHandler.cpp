@@ -15,7 +15,9 @@ DatabaseHandler::DatabaseHandler(Queue* queryQueue, Queue* responseQueue, ErrorQ
 		queryQueuePtr(queryQueue),
 		responseQueuePtr(responseQueue),
 		errorQueuePtr(errorQueue)
-{	}
+{
+	driver.reset(sql::mysql::get_mysql_driver_instance());
+}
 
 DatabaseHandler::~DatabaseHandler()
 {
@@ -49,17 +51,12 @@ void DatabaseHandler::run()
 		{
 			queueItem.reset(queryQueuePtr->getItem().release());
 			unique_ptr<ContentInterface> content(queueItem->getContentObject());
-			contentQuery.reset(static_cast<Query*>(content.get()));
+			contentQuery.reset(static_cast<Query*>(content.release()));
 			
-
 			if (contentQuery->isResulting())
-			{
 				handleResultQuery();
-			}
 			else
-			{
 				handleNoResultQuery();
-			}
 		}
 	}
 }
@@ -79,6 +76,7 @@ void  DatabaseHandler::handleNoResultQuery()
 		unique_ptr<ContentInterface> response = responseTranslator.generateSuccessMessage(*queueItem);
 		queueItem->changeContent(response);
 		responseQueuePtr->addItem(std::move(queueItem));
+
 	}
 	else
 	{
@@ -110,8 +108,7 @@ bool DatabaseHandler::connectDatabase()
 {
 	try
 	{
-		driver = unique_ptr<MySQL_Driver>(sql::mysql::get_mysql_driver_instance());
-		sqlConnection = unique_ptr<Connection>( driver->connect(db::hostName, db::userName, db::password));
+		sqlConnection.reset( driver->connect(db::hostName, db::userName, db::password));
 		return true;
 	}
 	catch (SQLException&)

@@ -66,64 +66,9 @@ unique_ptr<SQLString> QueryGenerator::insert(vector<unique_ptr<EntityInterface>>
 	auto querySecondPart = separateWithSymbols(querySecondPartVector, "", ",", "");
 
 	string Query = "INSERT INTO `" + firstEntity.getTableName() + "`" + *queryFirstPart + "VALUES" + *querySecondPart;
-	std::cout << Query;
+	std::cout << Query << std::endl << std::endl;
 	
 	auto querySql = std::make_unique<SQLString>(Query.c_str());
 	return std::move(querySql);
 
 }
-
-//unique_ptr<SQLString> QueryGenerator::insert(vector<unique_ptr<EntityInterface>>& entityCollection)
-//{
-//	EntityInterface& firstEntity = *entityCollection[0];
-//	unique_ptr<string>queryFirstPart = std::move(entityFieldsToQueryPart(firstEntity));
-//	
-//	auto querySecondPart = std::make_unique<string>();
-//
-//	size_t entityCollectionLastIndex = entityCollection.size() - 1;
-//
-//	for (size_t i = 0; i < entityCollectionLastIndex; i++)
-//	{
-//		auto queuePart = std::move(entityValuesToQueryPart(*(entityCollection)[i]));
-//		*querySecondPart += *queuePart + ",";
-//	}
-//	*querySecondPart += *(entityValuesToQueryPart(*(entityCollection)[entityCollectionLastIndex]));
-//
-//
-//	string Query = "INSERT INTO `" + firstEntity.getTableName() + "`" + *queryFirstPart + "VALUES" + *querySecondPart;
-//	std::cout << Query;
-//	
-//	auto querySql = std::make_unique<SQLString>(Query.c_str());
-//	return std::move(querySql);
-//
-//}
-//
-//unique_ptr<string> QueryGenerator::entityValuesToQueryPart(EntityInterface& entity)
-//{
-//	vector<unique_ptr<FieldInterface>>* Fields = entity.getFieldsVector();
-//	size_t lastIndex = Fields->size() - 1;
-//	unique_ptr<string>queryPart(new string("("));
-//
-//	for (size_t i = 1; i < lastIndex; i++)		// starts from index 1 because index 0 ("id") is autoincremented primary key in db
-//	{
-//		*queryPart += "\"" + *((*Fields)[i]->getValueAsString()) + "\",";
-//	}
-//	*queryPart += "\"" + *((*Fields)[lastIndex]->getValueAsString()) + "\")";
-//
-//	return std::move(queryPart);
-//}
-//
-//unique_ptr<string> QueryGenerator::entityFieldsToQueryPart(EntityInterface& entity)
-//{
-//	vector<unique_ptr<FieldInterface>>* Fields = entity.getFieldsVector();
-//	size_t lastIndex = Fields->size() - 1;
-//	unique_ptr<string>queryPart(new string("("));
-//
-//	for (size_t i = 1; i < lastIndex; i++)		// starts from index 1 because index 0 ("id") is autoincremented primary key in db
-//	{
-//		*queryPart += "`" + *((*Fields)[i]->getColumnName()) + "`,";
-//	}
-//	*queryPart += "`" + *((*Fields)[lastIndex]->getColumnName()) + "`)";
-//
-//	return std::move(queryPart);
-//}
