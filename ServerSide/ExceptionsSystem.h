@@ -72,4 +72,13 @@ struct ServerExceptions
 		};
 
 	};
+
+	struct DatabaseExceptions
+	{
+		struct CannotExecuteQuery
+			: public ExceptionInterface
+		{
+			CannotExecuteQuery() { value = "Server cannot execute query."; }
+		};
+	};
 };

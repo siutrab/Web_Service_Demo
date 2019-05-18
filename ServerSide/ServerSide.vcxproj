@@ -185,12 +185,15 @@
     <ClInclude Include="QueueItem.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Listener.h" />
+    <ClInclude Include="ReadMethod.h" />
+    <ClInclude Include="RegularQueryHandler.h" />
     <ClInclude Include="Request.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Response.h" />
     <ClInclude Include="ResponseHandler.h" />
     <ClInclude Include="ResponseTranslator.h" />
+    <ClInclude Include="ResultingQueryHandler.h" />
     <ClInclude Include="Router.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="TableInterface.h" />
@@ -215,6 +218,8 @@
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="QueueItem.cpp" />
     <ClCompile Include="Listener.cpp" />
+    <ClCompile Include="ReadMethod.cpp" />
+    <ClCompile Include="RegularQueryHandler.cpp" />
     <ClCompile Include="Request.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -225,6 +230,7 @@
     <ClCompile Include="Response.cpp" />
     <ClCompile Include="ResponseHandler.cpp" />
     <ClCompile Include="ResponseTranslator.cpp" />
+    <ClCompile Include="ResultingQueryHandler.cpp" />
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerSide.cpp" />

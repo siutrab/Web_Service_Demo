@@ -8,9 +8,12 @@
 
 	class Server
 	{
-		// Queues
+
+
+			// Queues
 			Queue requestsQueue;
 			Queue queryQueue;
+			Queue resultingQueryQueue;
 			Queue responseQueue;
 			ErrorQueue errorQueue;
 
@@ -29,5 +32,4 @@
 		~Server();
 		void start();	// main loop!!!
 		void stop();
-		
 	};

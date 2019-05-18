@@ -4,15 +4,15 @@
 #include "QueryGenerator.h"
 #include "MethodInterface.h"
 #include "CreateMethod.h"
+#include "ReadMethod.h"
 
 
 using std::vector;
-//using std::shared_ptr;
 using std::unique_ptr;
 
 class MethodInterface;
 class CreateMethod;
-//class QueryGenerator;
+
 
 class MethodsMapper
 {

@@ -1,7 +1,7 @@
 #include "TranslatorXml.h"
 
 
-TranslatorXml::TranslatorXml(Queue* queryQueue, Queue* requestQueue, ErrorQueue* errorQueue)
+TranslatorXml::TranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorQueue* errorQueue)
 	:	running(false),
 		methodsMapper(),
 		dataBaseMap(),
@@ -9,6 +9,7 @@ TranslatorXml::TranslatorXml(Queue* queryQueue, Queue* requestQueue, ErrorQueue*
 		request(),
 		document(),
 		queryQueuePtr(queryQueue),
+		resultingQueryQueuePtr(resultingQueryQueue),
 		requestQueuePtr(requestQueue),
 		errorQueuePtr(errorQueue)
 {	}
@@ -51,8 +52,15 @@ void TranslatorXml::translateDocument()
 		setTable();
 		setMethod();
 		prepareQuery();
-		
-		queryQueuePtr->addItem(std::move(queueItem));
+
+		if (methodPointer->isResulting())
+		{
+			resultingQueryQueuePtr->addItem(std::move(queueItem));
+		}
+		else
+		{
+			queryQueuePtr->addItem(std::move(queueItem));
+		}
 	}
 	catch (ExceptionInterface& exception)
 	{

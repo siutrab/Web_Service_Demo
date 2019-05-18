@@ -13,7 +13,7 @@ void eraseWhitespacesExceptSpace(string& str);
 int main()
 {
 	Server server(54000);
-	
+	server.start();
 	
 	std::cin.get();
 }

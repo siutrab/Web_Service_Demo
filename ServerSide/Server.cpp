@@ -7,20 +7,17 @@
 			requestsQueue(),
 			errorQueue(),
 			queryQueue(),
+			resultingQueryQueue(),
 			responseQueue(),
-			translatorXml(&queryQueue, &requestsQueue, &errorQueue),
+			translatorXml(&queryQueue, &resultingQueryQueue, &requestsQueue, &errorQueue),
 			databaseHandler(&queryQueue, &responseQueue, &errorQueue),
 			responseHandler(&responseQueue),
 			router(port)
 	{
-
 		Client::setRequestQueuePtr(&requestsQueue);
 		Client::setErrorQueuePtr(&errorQueue);
 	
-		responseHandler.start();
-		translatorXml.start();
-		databaseHandler.start();
-		router.start();
+		
 	}
 
 
@@ -28,7 +25,28 @@
 	{	}
 
 	void Server::start()
-	{	}
+	{
+		bool connectedToDatabase = false;
+		do
+		{
+			connectedToDatabase = databaseHandler.connectDatabase();
+			if (connectedToDatabase)
+			{
+				responseHandler.start();
+				translatorXml.start();
+				databaseHandler.start();
+				router.start();
+			}	
+		} while (connectedToDatabase == false);
+
+	}
 
 	void Server::stop()
-	{	}
+	{
+		responseHandler.stop();
+		translatorXml.stop();
+		databaseHandler.stop();
+		router.stop();
+
+		databaseHandler.stop();		// Has to be called because database connection has to be closed
+	}

@@ -22,6 +22,8 @@ class TranslatorXml
 
 	Queue* requestQueuePtr;
 	Queue* queryQueuePtr;
+	Queue* resultingQueryQueuePtr;
+
 	ErrorQueue* errorQueuePtr;
 
 	DataBaseMap dataBaseMap;
@@ -47,7 +49,7 @@ class TranslatorXml
 	void setMethod();
 	
 public:
-	TranslatorXml(Queue* queryQueue, Queue* requestQueue, ErrorQueue* errorQueue);
+	TranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorQueue* errorQueue);
 	~TranslatorXml();
 	void start();
 	void stop();

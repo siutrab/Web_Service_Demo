@@ -6,10 +6,8 @@
 class Query
 	: public Content<sql::SQLString>
 {
-	bool resulting;
 public:
-	Query(sql::SQLString& queryString, bool resulting);
+	Query(sql::SQLString& queryString);
 	~Query();
-	bool isResulting();
 };
 

@@ -1,4 +1,3 @@
-//#include "QueryGenerator.h"
 #include "TranslatorXml.h"
 #include "MethodsMapper.h"
 
@@ -6,8 +5,11 @@
 MethodsMapper::MethodsMapper()
 	:	queryGenerator()
 {
-	std::unique_ptr<MethodInterface> createMethodPtr(new CreateMethod(&queryGenerator));
+	unique_ptr<MethodInterface> createMethodPtr(new CreateMethod(&queryGenerator));
 	MethodList.push_back(std::move(createMethodPtr));
+
+	unique_ptr<MethodInterface> readMethodPtr(new ReadMethod(&queryGenerator));
+	MethodList.push_back(std::move(readMethodPtr));
 }
 
 

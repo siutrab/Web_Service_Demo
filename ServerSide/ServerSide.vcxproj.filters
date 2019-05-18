@@ -58,11 +58,17 @@
     <Filter Include="Server resources\Queues resources\ResponseQueue">
       <UniqueIdentifier>{62c2e529-5fda-4cd3-b098-a24a6717a810}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server resources\Database Handler\Response Translator">
-      <UniqueIdentifier>{2150851b-19c5-408a-978a-95ad8a31b4de}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Server resources\Response Handler">
       <UniqueIdentifier>{b7f3cc23-ad0b-4bb9-9cc1-f3a6e99006ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Queues resources\ResultingQuery">
+      <UniqueIdentifier>{3420697f-4d9e-4448-9bd9-7ce9b3c0174a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Database Handler\Resulting Query Handler">
+      <UniqueIdentifier>{b81c9326-3eb7-474a-83ca-452778ac3833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server resources\Database Handler\Regular Qurey Handler">
+      <UniqueIdentifier>{70416cdd-1a8c-4653-b6a5-249f6f83cb7e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -156,11 +162,20 @@
     <ClInclude Include="Response.h">
       <Filter>Server resources\Queues resources\ResponseQueue</Filter>
     </ClInclude>
-    <ClInclude Include="ResponseTranslator.h">
-      <Filter>Server resources\Database Handler\Response Translator</Filter>
-    </ClInclude>
     <ClInclude Include="ResponseHandler.h">
       <Filter>Server resources\Response Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadMethod.h">
+      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper\All methods</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultingQueryHandler.h">
+      <Filter>Server resources\Database Handler\Resulting Query Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="RegularQueryHandler.h">
+      <Filter>Server resources\Database Handler\Regular Qurey Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponseTranslator.h">
+      <Filter>Server resources\Database Handler\Regular Qurey Handler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -236,11 +251,20 @@
     <ClCompile Include="Response.cpp">
       <Filter>Server resources\Queues resources\ResponseQueue</Filter>
     </ClCompile>
-    <ClCompile Include="ResponseTranslator.cpp">
-      <Filter>Server resources\Database Handler\Response Translator</Filter>
-    </ClCompile>
     <ClCompile Include="ResponseHandler.cpp">
       <Filter>Server resources\Response Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadMethod.cpp">
+      <Filter>Server resources\Request Handler\Translator XML\Mathods Mapper\All methods</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultingQueryHandler.cpp">
+      <Filter>Server resources\Database Handler\Resulting Query Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="RegularQueryHandler.cpp">
+      <Filter>Server resources\Database Handler\Regular Qurey Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="ResponseTranslator.cpp">
+      <Filter>Server resources\Database Handler\Regular Qurey Handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

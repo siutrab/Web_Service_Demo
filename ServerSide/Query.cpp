@@ -1,9 +1,9 @@
 #include "Query.h"
 
 
-Query::Query(sql::SQLString& queryString, bool resulting)
-	:	Content<sql::SQLString>(queryString),
-		resulting(resulting)
+Query::Query(sql::SQLString& queryString)
+	:	Content<sql::SQLString>(queryString)
+
 {
 
 }
@@ -11,9 +11,4 @@ Query::Query(sql::SQLString& queryString, bool resulting)
 
 Query::~Query()
 {
-}
-
-bool Query::isResulting()
-{
-	return resulting;
 }
