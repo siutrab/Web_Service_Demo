@@ -5,20 +5,27 @@
 #include <thread>
 #include <exception>
 #include <iostream>
+#include <vector>
 
+using std::vector;
 using std::thread;
 using std::string;
+using std::cout;
+using std::endl;
 
 class ConnectionHandler
 {
 		thread CONNECTION_HANDLER_THREAD;
 		bool running;
 
+		vector<string> responeBuffer;
+
+		static unsigned int requestNumber;
 		unsigned int port;
 		sf::IpAddress ipAddress;
 		sf::TcpSocket socket;
-	
-	//void listen();
+
+
 	void run();
 	void handleReceivedData(sf::Packet& packet);
 public:
@@ -26,5 +33,8 @@ public:
 	~ConnectionHandler();
 	bool start();
 	bool sendData(string& message);
+	static unsigned int getRequestNumber();
+	bool stop();
+	bool printResponseMessages();
 };
 

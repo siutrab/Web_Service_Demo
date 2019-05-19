@@ -1,4 +1,5 @@
 #pragma once
+#include "ConnectionHandler.h"
 #include "pugixml.hpp"
 #include <iostream>
 #include <vector>
@@ -10,16 +11,21 @@ using std::cin;
 using std::cout;
 using std::endl;
 using pugi::xml_node;
+using pugi::xml_document;
+
+class ConnectionHandler;
 
 class CreateMethodDocument
 {
-		static unsigned int requestNumber;
+	ConnectionHandler* connectionHandler;
 
-		pugi::xml_document document;
+		//static unsigned int requestNumber;
+
+		xml_document document;
 		xml_node method;
 		string documentXml = "<?xml version=\"1.0\"?>\n";
 	
-template<typename T>
+	template<typename T>
 	void addNode(string name, string message, xml_node& node)
 	{
 		T value;
@@ -42,12 +48,14 @@ template<typename T>
 		node.append_child(name.c_str()).text().set(stringValue.c_str());
 	}
 
+	void collectData();		// gets data from user and initializes the xml tree structure that could be then turned to xml document
+	string* generateXml();	// returns pointer to generted xml;
 	void initializeWidths();	
 public:
 	CreateMethodDocument();
 	~CreateMethodDocument();
 	
-	void collectData();		// gets data from user and initializes the xml tree structure that could be then turned to xml document
-	string* generateXml();	// returns pointer to generted xml;
+	
+	bool createDatabaseRecord(ConnectionHandler& connectionHandler);
 };
 

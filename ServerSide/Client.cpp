@@ -8,13 +8,13 @@
 
 	void Client::setRequestQueuePtr(Queue* pointer) 
 	{ 
-		Client::requestQueuePtr = pointer; // Settet in RequestsQueue object
+		Client::requestQueuePtr = pointer;		// Settet in RequestsQueue object
 		const_cast<const Queue*>(Client::requestQueuePtr);
 	}	
 	
 	void Client::setErrorQueuePtr(ErrorQueue* const pointer)
 	{ 
-		Client::errorQueuePtr = pointer; // Settet in ErrorQueue object
+		Client::errorQueuePtr = pointer;		// Settet in ErrorQueue object
 		const_cast<const ErrorQueue*>(Client::errorQueuePtr);
 	}
 

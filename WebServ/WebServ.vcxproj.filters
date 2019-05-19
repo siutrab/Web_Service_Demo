@@ -30,6 +30,9 @@
     <ClInclude Include="CreateMethodDocument.h">
       <Filter>Query Mapper</Filter>
     </ClInclude>
+    <ClInclude Include="ReadMethodDocument.h">
+      <Filter>Query Mapper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -42,6 +45,9 @@
       <Filter>Connection Handler</Filter>
     </ClCompile>
     <ClCompile Include="CreateMethodDocument.cpp">
+      <Filter>Query Mapper</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadMethodDocument.cpp">
       <Filter>Query Mapper</Filter>
     </ClCompile>
   </ItemGroup>

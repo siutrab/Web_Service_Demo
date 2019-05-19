@@ -14,8 +14,11 @@ class ResponseHandler
 	bool running;
 
 		Queue* responseQueuePtr;
+		ErrorQueue* errorQueuePtr;
 
 	void run();
+	void sendResponse();
+	void sendErrorMessage();
 public:
 	ResponseHandler(Queue* responseQueue, ErrorQueue* errorQueue);
 	~ResponseHandler();

@@ -169,6 +169,7 @@
     <ClInclude Include="ConnectionHandler.h" />
     <ClInclude Include="CreateMethodDocument.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ReadMethodDocument.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConnectionHandler.cpp" />
@@ -180,6 +181,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ClientSide.cpp" />
+    <ClCompile Include="ReadMethodDocument.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

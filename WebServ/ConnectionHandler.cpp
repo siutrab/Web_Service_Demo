@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "ConnectionHandler.h"
 
+unsigned int ConnectionHandler::requestNumber = 0;
 
 ConnectionHandler::ConnectionHandler(unsigned int port, sf::IpAddress ip)
 	:	socket(),
@@ -41,11 +42,24 @@ void ConnectionHandler::run()
 	}
 }
 
+bool ConnectionHandler::stop()
+{
+	running = false;
+	if (CONNECTION_HANDLER_THREAD.joinable())
+		CONNECTION_HANDLER_THREAD.join();
+	socket.disconnect();
+
+	return true;
+}
+
 void ConnectionHandler::handleReceivedData(sf::Packet& packet)
 {
 	string message;
-	if (packet >> message);
-		std::cout << std::endl << std::endl << "Receieved data: \n" << message;
+	if (packet >> message)
+	{
+		responeBuffer.push_back(message);
+		printResponseMessages();
+	}
 }
 
 bool ConnectionHandler::sendData(string& message)
@@ -56,5 +70,28 @@ bool ConnectionHandler::sendData(string& message)
 		if(socket.send(packet) == sf::TcpSocket::Done)
 			return true;
 	}
+	return false;
+}
+
+unsigned int ConnectionHandler::getRequestNumber()
+{
+	requestNumber++;
+	return requestNumber;
+}
+
+bool ConnectionHandler::printResponseMessages()
+{
+	size_t responseCount = responeBuffer.size();
+	if (responseCount > 0)
+	{
+		for (size_t i = 0; i < responseCount; i++)
+		{
+			cout << responeBuffer[i] << endl << endl;
+			
+		}
+		responeBuffer.resize(0);
+		return true;
+	}
+
 	return false;
 }

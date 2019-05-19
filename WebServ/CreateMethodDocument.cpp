@@ -1,21 +1,27 @@
 #include "pch.h"
 #include "CreateMethodDocument.h"
 
-unsigned int CreateMethodDocument::requestNumber = 0;
 
+bool CreateMethodDocument::createDatabaseRecord(ConnectionHandler& connectionHandler)
+{
+	CreateMethodDocument createDocument;
+	createDocument.collectData();
+	string* xmlFile = createDocument.generateXml();
+	connectionHandler.sendData(*xmlFile);
+
+	return true;
+}
 
 CreateMethodDocument::CreateMethodDocument()
 	:	document()
 {
-	requestNumber++;
-
 	xml_node soapEnvelope = document.append_child("soap:Envelope");
 	
 	xml_node soapBody = soapEnvelope.append_child("soap:Body");
 	
 	xml_node request = soapBody.append_child("request");
 	request.append_attribute("id");
-	request.first_attribute().set_value(requestNumber);
+	request.first_attribute().set_value(ConnectionHandler::getRequestNumber());
 
 	xml_node table = soapBody.append_child("table");
 	table.append_attribute("name");
@@ -29,8 +35,8 @@ CreateMethodDocument::CreateMethodDocument()
 
 
 CreateMethodDocument::~CreateMethodDocument()
-{
-}
+{	}
+
 
 void CreateMethodDocument::collectData()
 {
@@ -98,7 +104,6 @@ string* CreateMethodDocument::generateXml()
 
 	document.print(ss);
 	documentXml += ss.str();
-	cout << documentXml;
 
 	return &documentXml;
 }
