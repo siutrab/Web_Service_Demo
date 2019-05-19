@@ -10,6 +10,7 @@
 
 using std::string;
 using std::unique_ptr;
+using std::shared_ptr;
 using std::vector;
 using sql::ResultSet;
 
@@ -103,5 +104,5 @@ class ReadMethodInterface
 	: public MethodInterface
 {
 public:
-	virtual vector<unique_ptr<EntityInterface>> generateEntities(ResultSet& resultSet) = 0;
+	virtual vector<unique_ptr<EntityInterface>> generateEntities(shared_ptr<ResultSet> resultSet) = 0;
 };

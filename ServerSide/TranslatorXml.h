@@ -7,8 +7,9 @@
 class TranslatorXml
 {
 	TranslatorFromXml translatorFromXml;
+	TranslatorToXml translatorToXml;
 public:
-	TranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorQueue* errorQueue);
+	TranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, Queue* responseQueue, Queue* entityQueue, ErrorQueue* errorQueue);
 	~TranslatorXml();
 	void start();
 	void stop();

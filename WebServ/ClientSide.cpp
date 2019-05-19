@@ -16,24 +16,24 @@ int main()
 	if (connectionHandler.start())
 	{
 		string msg(
-	"<?xml version=\"1.0\"?>\
-				<soap:Envelope>\
-					<soap:Body>\
-						<request id=\"123456\"/>\
-						<table name=\"materials\"/>\
-						<method name=\"read\"/>\
-					</soap:Body>\
-				</soap:Envelope>");
+		"<?xml version=\"1.0\"?>\
+					<soap:Envelope>\
+						<soap:Body>\
+							<request id=\"123456\"/>\
+							<table name=\"materials\"/>\
+							<method name=\"read\"/>\
+						</soap:Body>\
+					</soap:Envelope>");
 
 	
 		
 			connectionHandler.sendData(msg);
 		while (run)
 		{
-			//CreateMethodDocument createDocument;
-			//createDocument.collectData();
-			//string* xmlFile = createDocument.generateXml();
-			//connectionHandler.sendData(*xmlFile);
+			CreateMethodDocument createDocument;
+			createDocument.collectData();
+			string* xmlFile = createDocument.generateXml();
+			connectionHandler.sendData(*xmlFile);
 			
 		}
 	}

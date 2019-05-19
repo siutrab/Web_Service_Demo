@@ -1,7 +1,8 @@
 #pragma once
-#include <thread>
 #include "Queue.h"
+#include "ErrorQueue.h"
 #include "Client.h"
+#include <thread>
 
 using std::unique_ptr;
 using std::thread;
@@ -16,7 +17,7 @@ class ResponseHandler
 
 	void run();
 public:
-	ResponseHandler(Queue* responseQueue);
+	ResponseHandler(Queue* responseQueue, ErrorQueue* errorQueue);
 	~ResponseHandler();
 	void start();
 	void stop();

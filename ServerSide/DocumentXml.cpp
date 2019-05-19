@@ -14,9 +14,53 @@ DocumentXml::DocumentXml(Request& request)
 	}
 }
 
+DocumentXml::DocumentXml(vector<unique_ptr<EntityInterface>>& entitiesCollection)
+{
+	xml_node soapEnvelope = document.append_child("soap:Envelope");
+
+	xml_node soapBody = soapEnvelope.append_child("soap:Body");
+
+
+	size_t entitiesCount = entitiesCollection.size();
+
+	for (size_t i = 0; i < entitiesCount; i++)
+	{
+		pugi::xml_node entityNode = soapBody.append_child("entity");
+
+		EntityInterface* entity = entitiesCollection[i].get();
+		vector<unique_ptr<FieldInterface>>* fieldsCollection = entity->getFieldsVector();
+
+		size_t fieldsCount = fieldsCollection->size();
+		for (size_t j = 0; j < fieldsCount; j++)
+		{
+			FieldInterface* field = (*fieldsCollection)[j].get();
+
+			xml_node fieldNode = entityNode.append_child(field->getColumnName()->c_str());
+			string value = *field->getValueAsString();
+			fieldNode.text().set(value.c_str());
+
+		}
+	}
+}
+
 
 DocumentXml::~DocumentXml()
 {	}
+
+
+unique_ptr<string> DocumentXml::generateXml()
+{
+	std::stringstream stringStream;
+	auto resultString = std::make_unique<string>("<?xml version=\"1.0\"?>\n");
+
+	document.print(stringStream);
+	*resultString += stringStream.str();
+
+	std::cout << *resultString;
+
+	return std::move(resultString);
+}
+
 
 int DocumentXml::getRequestID()
 {

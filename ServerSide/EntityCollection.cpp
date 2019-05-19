@@ -2,8 +2,9 @@
 
 
 
-EntityCollection::EntityCollection(vector<unique_ptr<EntityInterface>>& entityVector)
-	: Content<vector<unique_ptr<EntityInterface>>>(entityVector)
+EntityCollection::EntityCollection(shared_ptr<ResultSet>& entityVector, ReadMethodInterface* methodPtr)
+	:	Content<shared_ptr<ResultSet>>(entityVector),
+		method(methodPtr)
 {
 }
 
@@ -11,3 +12,9 @@ EntityCollection::EntityCollection(vector<unique_ptr<EntityInterface>>& entityVe
 EntityCollection::~EntityCollection()
 {
 }
+
+ReadMethodInterface* EntityCollection::getMethod()
+{
+	return method;
+}
+

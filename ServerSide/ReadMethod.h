@@ -9,10 +9,13 @@
 #include "jdbc/mysql_error.h"
 
 #include <vector>
+#include <memory>
 
 using std::vector;
+using std::unique_ptr;
 using std::string;
 using sql::SQLString;
+using sql::ResultSet;
 
 
 class Query;
@@ -27,7 +30,7 @@ public:
 	ReadMethodMaterials(QueryGenerator* queryGenerator);
 	~ReadMethodMaterials();
 
-	vector<unique_ptr<EntityInterface>> generateEntities(ResultSet& resultSet) override;
+	vector<unique_ptr<EntityInterface>> generateEntities(shared_ptr<ResultSet> resultSet) override;
 	unique_ptr<Query> generateQuery(DocumentXml& document) override;
 	unique_ptr<string> getMethodName() override;
 	bool isResulting() override;

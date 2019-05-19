@@ -45,7 +45,7 @@ void ConnectionHandler::handleReceivedData(sf::Packet& packet)
 {
 	string message;
 	if (packet >> message);
-		//std::cout << std::endl << std::endl << "Receieved data: \n" << message;
+		std::cout << std::endl << std::endl << "Receieved data: \n" << message;
 }
 
 bool ConnectionHandler::sendData(string& message)

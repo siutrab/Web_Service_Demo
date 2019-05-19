@@ -10,9 +10,9 @@
 			resultingQueryQueue(),
 			responseQueue(),
 			entityQueue(),
-			translatorXml(&queryQueue, &resultingQueryQueue, &requestsQueue, &errorQueue),
-			databaseHandler(&queryQueue, &resultingQueryQueue, &responseQueue, &errorQueue),
-			responseHandler(&responseQueue),
+			translatorXml(&queryQueue, &resultingQueryQueue, &requestsQueue, &responseQueue, &entityQueue, &errorQueue),
+			databaseHandler(&queryQueue, &resultingQueryQueue, &responseQueue, &entityQueue, &errorQueue),
+			responseHandler(&responseQueue, &errorQueue),
 			router(port)
 	{
 		Client::setRequestQueuePtr(&requestsQueue);

@@ -2,7 +2,7 @@
 
 
 
-ResponseHandler::ResponseHandler(Queue* responseQueue)
+ResponseHandler::ResponseHandler(Queue* responseQueue, ErrorQueue* errorQueue)
 	:	responseQueuePtr(responseQueue),
 		running(false)
 {

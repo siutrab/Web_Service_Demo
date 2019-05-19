@@ -5,6 +5,7 @@
 #include "MethodInterface.h"
 #include "EntityInterface.h"
 #include "EntityCollection.h"
+#include "Content.h"
 
 #include "jdbc/cppconn/sqlstring.h"
 #include "jdbc/mysql_error.h"
@@ -23,6 +24,7 @@ class ResultingQueryHandler
 {
 		unique_ptr<QueueItem> queueItem;
 		unique_ptr<ContentInterface> queryContent;
+		//unique_ptr<EntityCollection> newContent;
 		ReadMethodInterface* method;
 
 		Queue* resultingQueryQueuePtr;
@@ -33,11 +35,11 @@ class ResultingQueryHandler
 		DatabaseHandler* databaseHandlerPtr;
 		Connection* sqlConnection;
 		unique_ptr<Statement> sqlStatement;
-		unique_ptr<ResultSet> sqlResultSet;
+		shared_ptr<ResultSet> sqlResultSet;
 
 	bool takeQueueItem();
 	void executeQuery(SQLString& query);
-	void generateEntities();
+	//void generateEntities();
 public:
 	ResultingQueryHandler(Queue* resultingQueryQueue, Queue* entityQueue, ErrorQueue* errorQueue, DatabaseHandler* databaseHandler);
 	~ResultingQueryHandler();

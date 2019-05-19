@@ -31,7 +31,10 @@ void  ResultingQueryHandler::handleQuery()
 			unique_ptr<ContentInterface> content = std::make_unique<EntityCollection>(entityVector);
 			queueItem->changeContent(content);*/
 
-			generateEntities();
+
+			//generateEntities();
+			unique_ptr<ContentInterface> newContent = std::make_unique<EntityCollection>(sqlResultSet, method);
+			queueItem->changeContent(newContent);
 			entityQueuePtr->addItem(std::move(queueItem));
 		}
 		catch (ExceptionInterface& e)
@@ -52,19 +55,21 @@ bool ResultingQueryHandler::takeQueueItem()
 	{
 		queueItem.reset(resultingQueryQueuePtr->getItem().release());
 		queryContent.reset(queueItem->getContentObject().release());
+		
 
 		auto resultingQuery = dynamic_cast<ResultingQuery*>(queryContent.get());
+
 		method = resultingQuery->getMethodPointer();
 		return true;
 	}
 }
-
-void ResultingQueryHandler::generateEntities()
-{
-	auto entityVector = method->generateEntities(*sqlResultSet);
-	unique_ptr<ContentInterface> content = std::make_unique<EntityCollection>(entityVector);
-	queueItem->changeContent(content);
-}
+//
+//void ResultingQueryHandler::generateEntities()
+//{
+//	auto entityVector = method->generateEntities(*sqlResultSet);
+//	unique_ptr<ContentInterface> content = std::make_unique<EntityCollection>(entityVector);
+//	queueItem->changeContent(content);
+//}
 
 void ResultingQueryHandler::executeQuery(SQLString& query)
 {
@@ -72,6 +77,8 @@ void ResultingQueryHandler::executeQuery(SQLString& query)
 	{
 		sqlStatement.reset(sqlConnection->createStatement());
 		sqlResultSet.reset(sqlStatement->executeQuery(query));
+
+		//newContent.reset(new EntityCollection(sqlResultSet));
 	}
 	catch(SQLException&)
 	{

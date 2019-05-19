@@ -1,18 +1,21 @@
 #pragma once
-#include <string>
-#include "pugixml.hpp"
-#include <memory>
-
 #include "Request.h"
 #include "TableInterface.h"
+#include "EntityInterface.h"
+
+#include <string>
+#include <sstream>
+#include "pugixml.hpp"
+#include <memory>
 
 #include "boost/lexical_cast.hpp"
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
 
 using std::string;
-using std::unique_ptr;
-using pugi::xml_document;
 using std::vector;
+using std::unique_ptr;
+using pugi::xml_node;
+using pugi::xml_document;
 
 class Request;
 extern void eraseSpaces(string& str);
@@ -26,11 +29,14 @@ private:
 		xml_document document;
 		nodeXml methodNode;
 
-	//void eraseWhitespaces(string& str);
+
 
 public:
 	DocumentXml(Request& request);
+	DocumentXml(vector<unique_ptr<EntityInterface>>& entitiesCollection);
 	~DocumentXml();
+
+	unique_ptr<string> generateXml();
 
 	int getRequestID();
 	string findTableName();
