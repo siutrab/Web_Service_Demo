@@ -91,13 +91,14 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\CPP Libraries\Boost\boost_1_70_0;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\include;C:\CPP Libraries\ SFML 32b\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.16-win32\include;C:\CPP Libraries\Boost\boost_1_70_0;C:\CPP Libraries\ SFML 32b\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>vs14/mysqlcppconn.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\lib;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\lib;C:\CPP Libraries\ SFML 32b\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mysqlcppconn.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.16-win32\lib\vs14;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\lib;C:\CPP Libraries\ SFML 32b\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -109,14 +110,15 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\CPP Libraries\Boost\boost_1_70_0;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\include;C:\CPP Libraries\ SFML 32b\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.16-win32\include;C:\CPP Libraries\Boost\boost_1_70_0;C:\CPP Libraries\ SFML 32b\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)</ObjectFileName>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>vs14/mysqlcppconn.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\lib;C:\CPP Libraries\ SFML 32b\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mysqlcppconn.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.16-win32\lib\vs14;C:\CPP Libraries\ SFML 32b\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -127,18 +129,19 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>CPPCONN_PUBLIC_FUNC=;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\CPP Libraries\Boost\boost_1_70_0;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\include;C:\CPP Libraries\Boost\boost_1_70_0\boost;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\include;C:\CPP Libraries\ SFML 32b\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.16-win32\include;C:\CPP Libraries\Boost\boost_1_70_0;C:\CPP Libraries\Boost\boost_1_70_0\boost;C:\CPP Libraries\ SFML 32b\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\lib;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\lib;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\lib;C:\CPP Libraries\ SFML 32b\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vs14//mysqlcppconn.lib;sfml-audio.lib;sfml-graphics.lib;sfml-main.lib;sfml-network.lib;sfml-system.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.16-win32\lib\vs14;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\lib;C:\CPP Libraries\ SFML 32b\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mysqlcppconn.lib;sfml-audio.lib;sfml-graphics.lib;sfml-main.lib;sfml-network.lib;sfml-system.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,19 +152,20 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>CPPCONN_PUBLIC_FUNC=;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\CPP Libraries\Boost\boost_1_70_0;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\include;C:\CPP Libraries\Boost\boost_1_70_0\boost;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\include;C:\CPP Libraries\ SFML 32b\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.16-win32\include;C:\CPP Libraries\Boost\boost_1_70_0;C:\CPP Libraries\Boost\boost_1_70_0\boost;C:\CPP Libraries\ SFML 32b\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)</ObjectFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\lib;C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.15-win32\lib;C:\CPP Libraries\ SFML 32b\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vs14//mysqlcppconn.lib;sfml-audio.lib;sfml-graphics.lib;sfml-main.lib;sfml-network.lib;sfml-system.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\CPP Libraries\MySqlConnector\mysql-connector-c++-8.0.16-win32\lib\vs14;C:\CPP Libraries\ SFML 32b\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mysqlcppconn.lib;sfml-audio.lib;sfml-graphics.lib;sfml-main.lib;sfml-network.lib;sfml-system.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -173,6 +177,7 @@
     <ClInclude Include="DataBaseMap.h" />
     <ClInclude Include="DatabaseHandler.h" />
     <ClInclude Include="DocumentXml.h" />
+    <ClInclude Include="EntityCollection.h" />
     <ClInclude Include="ErrorResponse.h" />
     <ClInclude Include="MaterialTable.h" />
     <ClInclude Include="ExceptionsSystem.h" />
@@ -197,8 +202,9 @@
     <ClInclude Include="Router.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="TableInterface.h" />
-    <ClInclude Include="RequestHandler.h" />
-    <ClInclude Include="MappingInterface.h" />
+    <ClInclude Include="EntityInterface.h" />
+    <ClInclude Include="TranslatorToXml.h" />
+    <ClInclude Include="TranslatorFromXml.h" />
     <ClInclude Include="TranslatorXml.h" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +214,7 @@
     <ClCompile Include="DataBaseMap.cpp" />
     <ClCompile Include="DatabaseHandler.cpp" />
     <ClCompile Include="DocumentXml.cpp" />
+    <ClCompile Include="EntityCollection.cpp" />
     <ClCompile Include="ErrorResponse.cpp" />
     <ClCompile Include="MaterialTable.cpp" />
     <ClCompile Include="MaterialEntity.cpp" />
@@ -234,7 +241,8 @@
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerSide.cpp" />
-    <ClCompile Include="RequestHandler.cpp" />
+    <ClCompile Include="TranslatorToXml.cpp" />
+    <ClCompile Include="TranslatorFromXml.cpp" />
     <ClCompile Include="TranslatorXml.cpp" />
   </ItemGroup>
   <ItemGroup>

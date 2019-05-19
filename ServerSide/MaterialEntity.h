@@ -1,14 +1,12 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "MappingInterface.h"
+#include "EntityInterface.h"
 
-//class EntityInterface;
 
 using std::string;
 using std::vector;
 using std::unique_ptr;
-
 
 
 class MaterialEntity

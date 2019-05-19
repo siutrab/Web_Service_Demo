@@ -1,5 +1,5 @@
 #pragma once
-#include "MappingInterface.h"
+#include "EntityInterface.h"
 #include "jdbc/cppconn/sqlstring.h"
 #include <memory>
 #include <cstring>
@@ -22,7 +22,7 @@ class DatabaseHandler;
 		QueryGenerator();
 		~QueryGenerator();
 		unique_ptr<SQLString> insert(vector<unique_ptr<EntityInterface>> &entityCollection);
+		unique_ptr<SQLString> selectAll();
 		unique_ptr<SQLString> selectByIndex(EntityInterface &entity, unsigned int index);
-		unique_ptr<SQLString> selectAll(EntityInterface &entity);
 		unique_ptr<SQLString> selectOrderBy(EntityInterface &entity, unsigned short columnIndex);
 	};

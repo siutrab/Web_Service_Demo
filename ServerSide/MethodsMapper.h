@@ -11,7 +11,7 @@ using std::vector;
 using std::unique_ptr;
 
 class MethodInterface;
-class CreateMethod;
+class CreateMethodMaterials;
 
 
 class MethodsMapper

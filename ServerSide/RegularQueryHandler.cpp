@@ -15,22 +15,6 @@ RegularQueryHandler::~RegularQueryHandler()
 {
 }
 
-bool RegularQueryHandler::takeQueueItem()
-{
-	if (queryQueuePtr->isEmpty())
-	{
-		return false;
-	}
-	else
-	{
-		queueItem.reset(queryQueuePtr->getItem().release());
-		unique_ptr<ContentInterface> content(queueItem->getContentObject());
-		queryContent.reset(static_cast<Query*>(content.release()));
-		return true;
-	}
-}
-
-
 void  RegularQueryHandler::handleQuery()
 {
 	if (takeQueueItem())
@@ -48,30 +32,40 @@ void  RegularQueryHandler::handleQuery()
 		{
 			ServerExceptions::DatabaseExceptions::CannotExecuteQuery exception;
 			errorQueuePtr->addItem(std::move(queueItem), exception);
-			// to do throw exception
 		}
 	}
 	
 }
 
 
+bool RegularQueryHandler::takeQueueItem()
+{
+	if (queryQueuePtr->isEmpty())
+	{
+		return false;
+	}
+	else
+	{
+		queueItem.reset(queryQueuePtr->getItem().release());
+		unique_ptr<ContentInterface> content(queueItem->getContentObject());
+		queryContent.reset(static_cast<Query*>(content.release()));
+		return true;
+	}
+}
+
+
 bool RegularQueryHandler::executeQuery(SQLString& query)	
 {
-	/*if (databaseHandlerPtr->connectDatabase())
-	{*/
-		//sqlConnection = databaseHandlerPtr->getConnection();
-		try
-		{
-			SqlPreparedStatement.reset(sqlConnection->prepareStatement(query));
+	try
+	{
+		SqlPreparedStatement.reset(sqlConnection->prepareStatement(query));
 
-			return !SqlPreparedStatement->execute();	// this strange function returns false when succeed
-		}
-		catch (SQLException&)
-		{
-			return false;
-		}
-	//}
-	//else return false;
+		return !SqlPreparedStatement->execute();	// this strange function returns false when succeed
+	}
+	catch (SQLException&)
+	{
+		return false;
+	}
 }
 
 void RegularQueryHandler::setConnection(Connection* connection)

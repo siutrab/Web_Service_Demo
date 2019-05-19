@@ -4,6 +4,7 @@
 #include "DatabaseHandler.h"
 #include "Queue.h"
 #include "ErrorQueue.h"
+#include "TranslatorXml.h"
 
 
 	class Server
@@ -15,6 +16,7 @@
 			Queue queryQueue;
 			Queue resultingQueryQueue;
 			Queue responseQueue;
+			Queue entityQueue;
 			ErrorQueue errorQueue;
 
 			const unsigned int port;

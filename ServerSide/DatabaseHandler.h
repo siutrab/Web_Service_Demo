@@ -1,6 +1,7 @@
 #pragma once
 #include "QueueItem.h"
 #include "RegularQueryHandler.h"
+#include "ResultingQueryHandler.h"
 
 #include "jdbc/mysql_connection.h"
 #include "jdbc/mysql_driver.h"
@@ -21,6 +22,7 @@ class Server;
 class Query;
 class Queue;
 class RegularQueryHandler;
+class ResultingQueryHandler;
 
 
 	class DatabaseHandler
@@ -36,7 +38,8 @@ class RegularQueryHandler;
 		typedef DatabaseHandler::DatabaseInfo db;
 
 
-		RegularQueryHandler regularQueryHanler;
+		RegularQueryHandler regularQueryHandler;
+		ResultingQueryHandler resultingQueryHandler;
 
 			bool connectedToDatabase;
 			bool running;
@@ -48,12 +51,11 @@ class RegularQueryHandler;
 		
 		void run();		// main loop
 	public:
-		DatabaseHandler(Queue* queryQueue, Queue* responseQueue, ErrorQueue* errorQueue); 
+		DatabaseHandler(Queue* queryQueue, Queue* resultingQueryQueue, Queue* responseQueue, Queue* entityQueue, ErrorQueue* errorQueue);
 		~DatabaseHandler();
 		void start();
 		void stop();
 
 		bool connectDatabase();
-		Connection* getConnection();
 	};
 

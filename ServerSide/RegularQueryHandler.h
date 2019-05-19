@@ -26,18 +26,18 @@ class Queue;
 
 class RegularQueryHandler
 {
-	unique_ptr<QueueItem> queueItem;
-	unique_ptr<Query> queryContent;
+		unique_ptr<QueueItem> queueItem;
+		unique_ptr<Query> queryContent;
 
-	Queue* queryQueuePtr;
-	Queue* responseQueuePtr;
-	ErrorQueue* errorQueuePtr;
+		Queue* queryQueuePtr;
+		Queue* responseQueuePtr;
+		ErrorQueue* errorQueuePtr;
 
-	DatabaseHandler* databaseHandlerPtr;
-	ResponseTranslator responseTranslator;
-	Connection* sqlConnection;
+		DatabaseHandler* databaseHandlerPtr;
+		ResponseTranslator responseTranslator;
+		Connection* sqlConnection;
 
-	unique_ptr<PreparedStatement> SqlPreparedStatement;
+		unique_ptr<PreparedStatement> SqlPreparedStatement;
 
 	bool executeQuery(SQLString& query);
 	bool takeQueueItem();

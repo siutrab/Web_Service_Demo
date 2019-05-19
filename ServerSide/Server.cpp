@@ -9,8 +9,9 @@
 			queryQueue(),
 			resultingQueryQueue(),
 			responseQueue(),
+			entityQueue(),
 			translatorXml(&queryQueue, &resultingQueryQueue, &requestsQueue, &errorQueue),
-			databaseHandler(&queryQueue, &responseQueue, &errorQueue),
+			databaseHandler(&queryQueue, &resultingQueryQueue, &responseQueue, &errorQueue),
 			responseHandler(&responseQueue),
 			router(port)
 	{

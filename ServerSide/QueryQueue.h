@@ -1,7 +1,7 @@
 #pragma once
 #include "Queue.h"
 #include "Query.h"
-#include "TranslatorXml.h"
+#include "TranslatorFromXml.h"
 #include "DatabaseHandler.h"
 
 class Query;

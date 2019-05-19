@@ -1,6 +1,6 @@
 #pragma once
 #include "ErrorResponse.h"
-#include "TranslatorXml.h"
+#include "TranslatorFromXml.h"
 #include "QueueItem.h"
 #include "Queue.h"
 #include "Client.h"

@@ -1,7 +1,7 @@
 #pragma once
 #include "DocumentXml.h"
 #include "MethodInterface.h"
-#include "MappingInterface.h"
+#include "EntityInterface.h"
 #include "QueryGenerator.h"
 #include "boost/lexical_cast.hpp"
 #include "boost/lexical_cast/bad_lexical_cast.hpp"
@@ -16,8 +16,8 @@ using std::string;
 class QueryGenerator;
 class MaterialEntity;
 
-class CreateMethod
-	: public MethodInterface
+class CreateMethodMaterials
+	: public CreateMethodInterface
 {
 private:
 	struct ParametersCollection
@@ -44,8 +44,8 @@ private:
 	void eraseWhitespaces(string& str);
 
 public:
-	CreateMethod(QueryGenerator* queryGenerator);
-	~CreateMethod();
+	CreateMethodMaterials(QueryGenerator* queryGenerator);
+	~CreateMethodMaterials();
 	unique_ptr<Query> generateQuery(DocumentXml& document) override;
 	unique_ptr<string> getMethodName() override;
 	bool isResulting() override;

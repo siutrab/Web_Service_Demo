@@ -9,13 +9,15 @@ const SQLString DatabaseHandler::DatabaseInfo::password = "haslo";
 const SQLString DatabaseHandler::DatabaseInfo::schema = "building_materials";
 
 
-DatabaseHandler::DatabaseHandler(Queue* queryQueue, Queue* responseQueue, ErrorQueue* errorQueue)
+DatabaseHandler::DatabaseHandler(Queue* queryQueue, Queue* resultingQueryQueue, Queue* responseQueue, Queue* entityQueue, ErrorQueue* errorQueue)
 	:	connectedToDatabase(false),
 		running(false),
-		regularQueryHanler(queryQueue, responseQueue, errorQueue, this)
+		regularQueryHandler(queryQueue, responseQueue, errorQueue, this),
+		resultingQueryHandler(resultingQueryQueue, entityQueue, errorQueue, this)
 {
 	driver.reset(sql::mysql::get_mysql_driver_instance());
 }
+
 
 DatabaseHandler::~DatabaseHandler()
 {
@@ -29,11 +31,12 @@ void DatabaseHandler::start()
 	DATABASE_HANDLER_THREAD = thread(&DatabaseHandler::run, this);
 }
 
+
 void DatabaseHandler::stop()
 {
 	sqlConnection->close();
 
-	if (DATABASE_HANDLER_THREAD.joinable())
+	if (DATABASE_HANDLER_THREAD.joinable())		// thread has to egzist to be joined
 	{
 		running = false;
 		DATABASE_HANDLER_THREAD.join();
@@ -44,8 +47,8 @@ void DatabaseHandler::run()
 {
 	while (running)
 	{
-		regularQueryHanler.handleQuery();
-		
+		regularQueryHandler.handleQuery();
+		resultingQueryHandler.handleQuery();
 	}
 }
 
@@ -56,7 +59,8 @@ bool DatabaseHandler::connectDatabase()
 		sqlConnection.reset( driver->connect(db::hostName, db::userName, db::password));
 		sqlConnection->setSchema(db::schema);	// setting database to connection
 
-		regularQueryHanler.setConnection(sqlConnection.get());
+		regularQueryHandler.setConnection(sqlConnection.get());
+		resultingQueryHandler.setConnection(sqlConnection.get());
 		return true;
 	}
 	catch (SQLException&)
@@ -65,7 +69,3 @@ bool DatabaseHandler::connectDatabase()
 	}
 }
 
-Connection* DatabaseHandler::getConnection()
-{
-	return sqlConnection.get();
-}

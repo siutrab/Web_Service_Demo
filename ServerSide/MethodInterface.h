@@ -1,17 +1,22 @@
 #pragma once
+#include "Query.h"
+#include "jdbc/cppconn/resultset.h"
+#include "boost/lexical_cast.hpp"
+#include "boost/lexical_cast/bad_lexical_cast.hpp"
 #include <string>
 #include <memory>
 #include <utility>
 #include <vector>
-#include "Query.h"
-#include "boost/lexical_cast.hpp"
-#include "boost/lexical_cast/bad_lexical_cast.hpp"
 
 using std::string;
 using std::unique_ptr;
+using std::vector;
+using sql::ResultSet;
+
 
 class DocumentXml;
 class Query;
+
 
 class ParameterInterface
 {
@@ -85,3 +90,18 @@ public:
 	virtual bool isResulting() = 0;
 };
 
+
+class CreateMethodInterface
+	: public MethodInterface
+{
+	
+
+};
+
+
+class ReadMethodInterface
+	: public MethodInterface
+{
+public:
+	virtual vector<unique_ptr<EntityInterface>> generateEntities(ResultSet& resultSet) = 0;
+};

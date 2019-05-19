@@ -1,17 +1,17 @@
 #include "CreateMethod.h"
 
-string CreateMethod::ParametersCollection::lambda = "lambda";
-string CreateMethod::ParametersCollection::price = "price";
-string CreateMethod::ParametersCollection::name = "name";
-string CreateMethod::ParametersCollection::link = "link";
-string CreateMethod::ParametersCollection::materialType = "type";
-string CreateMethod::ParametersCollection::producer = "producer";
+string CreateMethodMaterials::ParametersCollection::lambda = "lambda";
+string CreateMethodMaterials::ParametersCollection::price = "price";
+string CreateMethodMaterials::ParametersCollection::name = "name";
+string CreateMethodMaterials::ParametersCollection::link = "link";
+string CreateMethodMaterials::ParametersCollection::materialType = "type";
+string CreateMethodMaterials::ParametersCollection::producer = "producer";
 
 
 typedef unique_ptr<ParameterInterface> parameter;
 
 
-vector<unique_ptr<EntityInterface>> CreateMethod::generateEntities()
+vector<unique_ptr<EntityInterface>> CreateMethodMaterials::generateEntities()
 {
 	size_t entitiesNumber = widthsList->size();
 	vector<unique_ptr<EntityInterface>> materialsVactor(entitiesNumber);
@@ -35,7 +35,7 @@ vector<unique_ptr<EntityInterface>> CreateMethod::generateEntities()
 }
 
 
-CreateMethod::CreateMethod(QueryGenerator* queryGenerator)
+CreateMethodMaterials::CreateMethodMaterials(QueryGenerator* queryGenerator)
 	:	parametersList(),
 		queryGenerator(queryGenerator)
 {
@@ -48,11 +48,11 @@ CreateMethod::CreateMethod(QueryGenerator* queryGenerator)
 }
 
 
-CreateMethod::~CreateMethod()
+CreateMethodMaterials::~CreateMethodMaterials()
 {
 }
 
-bool CreateMethod::mapArguments()
+bool CreateMethodMaterials::mapArguments()
 {
 	for (size_t i = 0; i < parametersList.size(); i++)
 	{
@@ -69,7 +69,7 @@ bool CreateMethod::mapArguments()
 	return true;
 }
 
-bool CreateMethod::initializeWidthsList()
+bool CreateMethodMaterials::initializeWidthsList()
 {
 	string arrayName = "widths";
 	string parameterName = "width";
@@ -101,7 +101,7 @@ bool CreateMethod::initializeWidthsList()
 	return true;
 }
 
-void CreateMethod::eraseWhitespaces(string& str)
+void CreateMethodMaterials::eraseWhitespaces(string& str)
 {
 	string newStr;
 	for (size_t i = 0; i < str.size(); i++)
@@ -113,7 +113,7 @@ void CreateMethod::eraseWhitespaces(string& str)
 	str = newStr;
 }
 
-unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)
+unique_ptr<Query> CreateMethodMaterials::generateQuery(DocumentXml& document)
 {
 	documentXml = &document;
 	if ((initializeWidthsList()) && (mapArguments()))
@@ -127,12 +127,12 @@ unique_ptr<Query> CreateMethod::generateQuery(DocumentXml& document)
 	throw ServerExceptions::QueryMappingExceptions::CannotConvertXml();
 }
 
-bool CreateMethod::isResulting()
+bool CreateMethodMaterials::isResulting()
 {
 	return false;
 }
 
-unique_ptr<string> CreateMethod::getMethodName()
+unique_ptr<string> CreateMethodMaterials::getMethodName()
 {
 	return unique_ptr<string>(new string("create"));
 }

@@ -1,7 +1,9 @@
 #pragma once
-#include <vector>
 #include "MaterialEntity.h"
 #include "TableInterface.h"
+#include "CreateMethod.h"
+#include "MethodsMapper.h"
+#include <vector>
 
 using std::unique_ptr;
 using std::string;
@@ -12,13 +14,12 @@ class TableInterface;
 class MaterialTable
 	:	public TableInterface
 {
-
+	MethodsMapper methodsMapper;
 public:
-
-	//static unique_ptr<MaterialEntity> createEntity(valueVector &initialValues);
-	//static bool isNonResultMethod(string& methodName);
+	
 	MaterialTable();
 	~MaterialTable();
 	string getTableName() override;
+	MethodsMapper* getMethodsMapper() override;
 };
 

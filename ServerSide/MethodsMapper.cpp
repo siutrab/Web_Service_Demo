@@ -1,14 +1,14 @@
-#include "TranslatorXml.h"
+#include "MaterialTable.h"
 #include "MethodsMapper.h"
 
 
 MethodsMapper::MethodsMapper()
 	:	queryGenerator()
 {
-	unique_ptr<MethodInterface> createMethodPtr(new CreateMethod(&queryGenerator));
+	unique_ptr<MethodInterface> createMethodPtr(new CreateMethodMaterials(&queryGenerator));
 	MethodList.push_back(std::move(createMethodPtr));
 
-	unique_ptr<MethodInterface> readMethodPtr(new ReadMethod(&queryGenerator));
+	unique_ptr<MethodInterface> readMethodPtr(new ReadMethodMaterials(&queryGenerator));
 	MethodList.push_back(std::move(readMethodPtr));
 }
 

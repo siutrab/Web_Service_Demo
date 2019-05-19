@@ -80,5 +80,12 @@ struct ServerExceptions
 		{
 			CannotExecuteQuery() { value = "Server cannot execute query."; }
 		};
+		struct CannotReadResult
+			: public ExceptionInterface
+		{
+			CannotReadResult() { value = "Server cannot read results from database."; }
+		};
+
+
 	};
 };

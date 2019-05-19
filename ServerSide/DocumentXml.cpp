@@ -8,7 +8,10 @@ DocumentXml::DocumentXml(Request& request)
 
 	pugi::xml_parse_result result = document.load_string(requestContent->c_str());
 	if (!result)
+	{
+		std::cout << result.description();
 		throw ServerExceptions::QueryMappingExceptions::InvalidDocument();
+	}
 }
 
 

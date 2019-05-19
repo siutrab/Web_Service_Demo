@@ -1,5 +1,5 @@
+#include "TranslatorFromXml.h"
 #include "DataBaseMap.h"
-#include "TranslatorXml.h"
 
 
 typedef pair<string, TableInterface*> TablePair;

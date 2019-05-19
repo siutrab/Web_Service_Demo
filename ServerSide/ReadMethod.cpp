@@ -2,28 +2,76 @@
 
 
 
-ReadMethod::ReadMethod(QueryGenerator* queryGenerator)
+ReadMethodMaterials::ReadMethodMaterials(QueryGenerator* queryGenerator)
 	:	queryGenerator(queryGenerator)
 {
 }
 
 
-ReadMethod::~ReadMethod()
+ReadMethodMaterials::~ReadMethodMaterials()
 {	}
 
 
-unique_ptr<Query> ReadMethod::generateQuery(DocumentXml& document)//////////////////////////////////// TOOOO DOOOOO
+vector<unique_ptr<EntityInterface>> ReadMethodMaterials::generateEntities(ResultSet& resultSet)
 {
-	SQLString s;
-	return unique_ptr<Query>(new Query(s));
+	vector<unique_ptr<EntityInterface>> entitiesVector;
+	try
+	{
+		while (resultSet.next())
+		{
+			unsigned int	id = resultSet.getUInt("id");
+			float			lambda = static_cast<float>(resultSet.getDouble("lambda"));
+			float			price = static_cast<float>(resultSet.getDouble("price"));
+			float			priceLambda = static_cast<float>(resultSet.getDouble("price_to_lambda"));
+			unsigned short	width = static_cast<unsigned short>(resultSet.getInt("width"));
+			SQLString			nameSql = resultSet.getString("name");
+			SQLString			linkSql = resultSet.getString("link");
+			SQLString			materialTypeSql = resultSet.getString("type_of_material");
+			SQLString			producerSql = resultSet.getString("producer");
+
+			string name(nameSql.c_str());
+			string link(linkSql.c_str());
+			string materialType(materialTypeSql.c_str());
+			string producer(producerSql.c_str());
+
+			auto entity = std::make_unique<MaterialEntity>(
+				id,
+				lambda,
+				price,
+				priceLambda,
+				width,
+				name,
+				link,
+				materialType,
+				producer);
+
+			entitiesVector.push_back(std::move(entity));
+		}
+	}
+	catch(...)
+	{
+		throw ServerExceptions::DatabaseExceptions::CannotReadResult();
+	}
+	return entitiesVector;
 }
 
-unique_ptr<string> ReadMethod::getMethodName()
+
+unique_ptr<Query> ReadMethodMaterials::generateQuery(DocumentXml& document)	// TOOOOOO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!!!!!
+{
+	auto queryString = queryGenerator->selectAll();/////////////////////////////////////////////////////////////////////////////////////////////
+	auto query = std::make_unique<ResultingQuery>(*queryString, this);
+	//unique_ptr<Query> query(new ResultingQuery(*queryString, this));
+	////auto castedQuery = std::make_unique<Query>(*dynamic_cast<Query*>(query.release()));
+	return std::move(query);
+}
+
+
+unique_ptr<string> ReadMethodMaterials::getMethodName()
 {
 	return std::make_unique<string>("read");
 }
 
-bool ReadMethod::isResulting()
+bool ReadMethodMaterials::isResulting()
 {
 	return true;
 }
