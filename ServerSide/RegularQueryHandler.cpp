@@ -7,13 +7,12 @@ RegularQueryHandler::RegularQueryHandler(Queue* queryQueue, Queue* responseQueue
 		responseQueuePtr(responseQueue),
 		errorQueuePtr(errorQueue),
 		databaseHandlerPtr(databaseHandler)
-{
-}
+{	}
 
 
 RegularQueryHandler::~RegularQueryHandler()
-{
-}
+{	}
+
 
 void  RegularQueryHandler::handleQuery()
 {
@@ -26,7 +25,6 @@ void  RegularQueryHandler::handleQuery()
 			unique_ptr<ContentInterface> response = responseTranslator.generateSuccessMessage(*queueItem);
 			queueItem->changeContent(response);
 			responseQueuePtr->addItem(std::move(queueItem));
-
 		}
 		else
 		{
@@ -34,7 +32,6 @@ void  RegularQueryHandler::handleQuery()
 			errorQueuePtr->addItem(std::move(queueItem), exception);
 		}
 	}
-	
 }
 
 

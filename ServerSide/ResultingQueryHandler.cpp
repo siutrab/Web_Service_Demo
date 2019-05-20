@@ -24,15 +24,6 @@ void  ResultingQueryHandler::handleQuery()
 		{
 			executeQuery(*query);
 
-			/*ResultingQuery* resultingQuery = dynamic_cast<ResultingQuery*>(queryContent.get());
-			auto method = resultingQuery->getMethodPointer();*/
-
-			/*auto entityVector = method->generateEntities(*sqlResultSet);
-			unique_ptr<ContentInterface> content = std::make_unique<EntityCollection>(entityVector);
-			queueItem->changeContent(content);*/
-
-
-			//generateEntities();
 			unique_ptr<ContentInterface> newContent = std::make_unique<EntityCollection>(sqlResultSet, method);
 			queueItem->changeContent(newContent);
 			entityQueuePtr->addItem(std::move(queueItem));

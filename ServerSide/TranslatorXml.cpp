@@ -22,5 +22,5 @@ void TranslatorXml::start()
 void TranslatorXml::stop()
 {
 	translatorFromXml.stop();
-	translatorFromXml.stop();
+	translatorToXml.stop();
 }

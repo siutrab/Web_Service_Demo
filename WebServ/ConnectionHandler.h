@@ -36,5 +36,6 @@ public:
 	static unsigned int getRequestNumber();
 	bool stop();
 	bool printResponseMessages();
+	bool responseBufferIsEmpty();
 };
 

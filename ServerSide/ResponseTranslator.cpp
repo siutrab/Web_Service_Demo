@@ -13,7 +13,6 @@ const string ResponseTranslator::successMessageSecondPart = "\">\
 </soap:Envelope>";
 
 ResponseTranslator::ResponseTranslator()
-
 {
 }
 

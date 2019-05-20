@@ -34,7 +34,9 @@ int main()
 		
 		while (run)
 		{
-			connectionHandler.printResponseMessages();
+			
+
+			//connectionHandler.printResponseMessages();
 
 			cout << "1: insert new record to database" << endl;
 			cout << "2: read records from database" << endl;
@@ -46,6 +48,8 @@ int main()
 			bool goodChoice = false;
 			do
 			{
+				
+
 				switch (choice)
 				{
 				case 1:
@@ -66,17 +70,15 @@ int main()
 					break;
 				}
 			
-				bool printed = false;
-				do
-				{
-					printed = connectionHandler.printResponseMessages();
-				} while (!printed);
 				
 
 			} while (!goodChoice);
 			
+			while (connectionHandler.responseBufferIsEmpty())
+			{
 				
-
+			}
+			connectionHandler.printResponseMessages();
 		}
 	}
 }

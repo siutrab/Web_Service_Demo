@@ -58,7 +58,6 @@ void ConnectionHandler::handleReceivedData(sf::Packet& packet)
 	if (packet >> message)
 	{
 		responeBuffer.push_back(message);
-		printResponseMessages();
 	}
 }
 
@@ -94,4 +93,9 @@ bool ConnectionHandler::printResponseMessages()
 	}
 
 	return false;
+}
+
+bool ConnectionHandler::responseBufferIsEmpty()
+{
+	return responeBuffer.empty();
 }
