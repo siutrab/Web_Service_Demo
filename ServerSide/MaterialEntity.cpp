@@ -23,10 +23,14 @@ MaterialEntity::MaterialEntity(
 }	
 
 MaterialEntity::~MaterialEntity()
-{
-	/*for (size_t i = 0; i < fieldsVector.size(); i++)
-		delete fieldsVector[i];*/
-}
+{	}
+
+//unsigned int MaterialEntity::getId()
+//{
+//	void* valuePtr = fieldsVector[0]->getValuePtr();
+//	auto value =  static_cast<unsigned int*>(valuePtr);
+//	return *value;
+//}
 
 string MaterialEntity::getTableName() { return "materials"; }
 

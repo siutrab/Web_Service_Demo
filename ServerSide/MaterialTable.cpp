@@ -14,7 +14,7 @@ string MaterialTable::getTableName()
 }
 
 
-MethodsMapper* MaterialTable::getMethodsMapper()
+MethodsCollection* MaterialTable::getMethodsMapper()
 {
 	return &methodsMapper;
 }

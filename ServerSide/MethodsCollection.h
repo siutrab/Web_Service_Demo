@@ -14,14 +14,14 @@ class MethodInterface;
 class CreateMethodMaterials;
 
 
-class MethodsMapper
+class MethodsCollection
 {
 	QueryGenerator queryGenerator;
 	vector<unique_ptr<MethodInterface>> MethodList;
 
 public:
-	MethodsMapper();
-	~MethodsMapper();
+	MethodsCollection();
+	~MethodsCollection();
 	MethodInterface& findMethod(string& name);	// WARNING!!! throws exception
 };
 

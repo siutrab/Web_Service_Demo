@@ -84,7 +84,7 @@
 
 	unique_ptr<QueueItem> Client::createQueueItem(ExceptionInterface& exception)
 	{
-		auto errorResponse = std::make_unique<ErrorResponse>(exception.getValue());
+		auto errorResponse = std::make_unique<ErrorMessage>(exception.getValue());
 		
 		return std::make_unique<QueueItem>(this, std::move(errorResponse));
 	}

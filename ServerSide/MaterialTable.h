@@ -2,7 +2,7 @@
 #include "MaterialEntity.h"
 #include "TableInterface.h"
 #include "CreateMethod.h"
-#include "MethodsMapper.h"
+#include "MethodsCollection.h"
 #include <vector>
 
 using std::unique_ptr;
@@ -14,12 +14,12 @@ class TableInterface;
 class MaterialTable
 	:	public TableInterface
 {
-	MethodsMapper methodsMapper;
+	MethodsCollection methodsMapper;
 public:
 	
 	MaterialTable();
 	~MaterialTable();
 	string getTableName() override;
-	MethodsMapper* getMethodsMapper() override;
+	MethodsCollection* getMethodsMapper() override;
 };
 

@@ -1,8 +1,8 @@
 #include "MaterialTable.h"
-#include "MethodsMapper.h"
+#include "MethodsCollection.h"
 
 
-MethodsMapper::MethodsMapper()
+MethodsCollection::MethodsCollection()
 	:	queryGenerator()
 {
 	unique_ptr<MethodInterface> createMethodPtr(new CreateMethodMaterials(&queryGenerator));
@@ -13,11 +13,11 @@ MethodsMapper::MethodsMapper()
 }
 
 
-MethodsMapper::~MethodsMapper()
+MethodsCollection::~MethodsCollection()
 {
 }
 
-MethodInterface& MethodsMapper::findMethod(string& name)
+MethodInterface& MethodsCollection::findMethod(string& name)
 {
 	for (size_t i = 0; i < MethodList.size(); i++)
 	{

@@ -1,12 +1,12 @@
 #pragma once
 #include <string>
 using std::string;
-class MethodsMapper;
+class MethodsCollection;
 
 class TableInterface
 {
 public:
 	virtual string getTableName() = 0;
-	virtual MethodsMapper* getMethodsMapper() = 0;
+	virtual MethodsCollection* getMethodsMapper() = 0;
 };
 

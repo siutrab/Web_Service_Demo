@@ -27,6 +27,7 @@ public:
 	~MaterialEntity();
 
 	string getTableName() override;
+	//unsigned int getId() override;
 
 private:
 

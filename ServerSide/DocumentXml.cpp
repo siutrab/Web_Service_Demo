@@ -14,20 +14,34 @@ DocumentXml::DocumentXml(Request& request)
 	}
 }
 
-DocumentXml::DocumentXml(vector<unique_ptr<EntityInterface>>& entitiesCollection)
+DocumentXml::DocumentXml(vector<unique_ptr<EntityInterface>>& entitiesCollection, unsigned int responseIndex)
 {
 	xml_node soapEnvelope = document.append_child("soap:Envelope");
 
 	xml_node soapBody = soapEnvelope.append_child("soap:Body");
 
+	xml_node responseNode = soapBody.append_child("response");
+	auto attributeId = responseNode.append_attribute("id");
+	attributeId.set_value(std::to_string(responseIndex).c_str());
+	
+	auto attributeResult = responseNode.append_attribute("result");
+	attributeResult.set_value("success");
 
+	addEntitiesToDocument(entitiesCollection, responseNode);
+
+
+}
+
+void DocumentXml::addEntitiesToDocument(vector<unique_ptr<EntityInterface>>& entitiesCollection, xml_node& parentNode)
+{
 	size_t entitiesCount = entitiesCollection.size();
 
 	for (size_t i = 0; i < entitiesCount; i++)
 	{
-		pugi::xml_node entityNode = soapBody.append_child("entity");
+		xml_node entityNode = parentNode.append_child("entity");
 
 		EntityInterface* entity = entitiesCollection[i].get();
+
 		vector<unique_ptr<FieldInterface>>* fieldsCollection = entity->getFieldsVector();
 
 		size_t fieldsCount = fieldsCollection->size();

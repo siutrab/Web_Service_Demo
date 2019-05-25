@@ -1,9 +1,9 @@
-#include "TranslatorFromXml.h"
+#include "RequestTranslatorXml.h"
 
 
-TranslatorFromXml::TranslatorFromXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorQueue* errorQueue)
+RequestTranslatorXml::RequestTranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorQueue* errorQueue, DataBaseMap* databaseMap)
 	:	running(false),
-		dataBaseMap(),
+		dataBaseMap(databaseMap),
 		queueItem(),
 		request(),
 		document(),
@@ -14,18 +14,18 @@ TranslatorFromXml::TranslatorFromXml(Queue* queryQueue, Queue* resultingQueryQue
 {	}
 
 
-TranslatorFromXml::~TranslatorFromXml()
+RequestTranslatorXml::~RequestTranslatorXml()
 {	
 	stop();
 }
 
-void TranslatorFromXml::start()
+void RequestTranslatorXml::start()
 {
 	running = true;
-	TRANSLATOR_XML_THREAD = std::thread(&TranslatorFromXml::run, this);
+	TRANSLATOR_XML_THREAD = std::thread(&RequestTranslatorXml::run, this);
 }
 
-void TranslatorFromXml::stop()
+void RequestTranslatorXml::stop()
 {
 	if (TRANSLATOR_XML_THREAD.joinable())
 	{
@@ -34,7 +34,7 @@ void TranslatorFromXml::stop()
 	}
 }
 
-void TranslatorFromXml::run()
+void RequestTranslatorXml::run()
 {
 	while (running)
 	{
@@ -43,7 +43,7 @@ void TranslatorFromXml::run()
 	}
 }
 
-void TranslatorFromXml::translateDocument()
+void RequestTranslatorXml::translateDocument()
 {	
 	try
 	{
@@ -68,34 +68,34 @@ void TranslatorFromXml::translateDocument()
 	
 }
 
-void TranslatorFromXml::setRequestId()
+void RequestTranslatorXml::setRequestId()
 {
 	int id = document->getRequestID();
 	queueItem->setId(id);
 }
 
-void TranslatorFromXml::setTable()
+void RequestTranslatorXml::setTable()
 {
 	string tableName = document->findTableName();			// WARNING!!! throws exception	
-	tablePointer = &dataBaseMap.findTable(tableName);		// WARNING!!! throws exception
+	tablePointer = &dataBaseMap->findTable(tableName);		// WARNING!!! throws exception
 }
 
-void TranslatorFromXml::setMethod()
+void RequestTranslatorXml::setMethod()
 {	
 	string methodName = document->findMethodName();			// WARNING!!! throws exception
-	MethodsMapper* methodsMapper = tablePointer->getMethodsMapper();
+	MethodsCollection* methodsMapper = tablePointer->getMethodsMapper();
 	methodPointer = &methodsMapper->findMethod(methodName);	// WARNING!!! throws exception
 }
 
 
-void TranslatorFromXml::prepareQuery()
+void RequestTranslatorXml::prepareQuery()
 {
 	unique_ptr<ContentInterface> queryPtr = methodPointer->generateQuery(*document);	// WARNING!!! throws exception
 
 	queueItem->changeContent(queryPtr);
 }
 
-bool TranslatorFromXml::loadDocument()
+bool RequestTranslatorXml::loadDocument()
 {
 	if (requestQueuePtr->isEmpty())
 		return false;
@@ -105,7 +105,7 @@ bool TranslatorFromXml::loadDocument()
 	return initializeFields();
 }
 
-bool TranslatorFromXml::initializeFields()
+bool RequestTranslatorXml::initializeFields()
 {
 	try
 	{

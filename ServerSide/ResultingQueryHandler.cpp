@@ -24,7 +24,7 @@ void  ResultingQueryHandler::handleQuery()
 		{
 			executeQuery(*query);
 
-			unique_ptr<ContentInterface> newContent = std::make_unique<EntityCollection>(sqlResultSet, method);
+			unique_ptr<ContentInterface> newContent = std::make_unique<ResultSetContent>(sqlResultSet, method);
 			queueItem->changeContent(newContent);
 			entityQueuePtr->addItem(std::move(queueItem));
 		}

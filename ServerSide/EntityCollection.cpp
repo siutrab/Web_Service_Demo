@@ -2,18 +2,18 @@
 
 
 
-EntityCollection::EntityCollection(shared_ptr<ResultSet>& entityVector, ReadMethodInterface* methodPtr)
+ResultSetContent::ResultSetContent(shared_ptr<ResultSet>& entityVector, ReadMethodInterface* methodPtr)
 	:	Content<shared_ptr<ResultSet>>(entityVector),
 		method(methodPtr)
 {
 }
 
 
-EntityCollection::~EntityCollection()
+ResultSetContent::~ResultSetContent()
 {
 }
 
-ReadMethodInterface* EntityCollection::getMethod()
+ReadMethodInterface* ResultSetContent::getMethod()
 {
 	return method;
 }

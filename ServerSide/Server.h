@@ -5,7 +5,7 @@
 #include "Queue.h"
 #include "ErrorQueue.h"
 #include "TranslatorXml.h"
-
+#include "ResponseTranslatorXml.h"
 
 	class Server
 	{
@@ -16,7 +16,7 @@
 			Queue queryQueue;
 			Queue resultingQueryQueue;
 			Queue responseQueue;
-			Queue entityQueue;
+			Queue sqlResultQueue;
 			ErrorQueue errorQueue;
 
 			const unsigned int port;
@@ -25,7 +25,7 @@
 			TranslatorXml translatorXml;
 			DatabaseHandler databaseHandler;	// Connection to database
 			ResponseHandler responseHandler;
-			//ResponseTranslator responseTranslator;
+			//ResponseTranslatorXml responseTranslator;
 
 
 

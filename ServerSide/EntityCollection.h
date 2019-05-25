@@ -12,13 +12,13 @@ using sql::ResultSet;
 
 class EntityInterface;
 
-class EntityCollection
+class ResultSetContent
 	:	public Content<shared_ptr<ResultSet>>
 {
 	ReadMethodInterface* method;
 public:
-	EntityCollection(shared_ptr<ResultSet>& entityVector, ReadMethodInterface* methodPtr);
-	~EntityCollection();
+	ResultSetContent(shared_ptr<ResultSet>& entityVector, ReadMethodInterface* methodPtr);
+	~ResultSetContent();
 	ReadMethodInterface* getMethod();
 	//void setMethod(ReadMethodInterface* methodPtr);
 };

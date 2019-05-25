@@ -1,5 +1,5 @@
 #pragma once
-#include "TranslatorFromXml.h"
+#include "RequestTranslatorXml.h"
 #include "Queue.h"
 #include <memory>
 
@@ -8,7 +8,7 @@ using std::unique_ptr;
 
 class Client;
 class Request;
-class TranslatorFromXml;
+class RequestTranslatorXml;
 
 	class RequestQueue
 		: public Queue

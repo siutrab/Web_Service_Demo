@@ -178,12 +178,14 @@
     <ClInclude Include="DatabaseHandler.h" />
     <ClInclude Include="DocumentXml.h" />
     <ClInclude Include="EntityCollection.h" />
-    <ClInclude Include="ErrorResponse.h" />
+    <ClInclude Include="ErrorLogger.h" />
+    <ClInclude Include="ErrorMessage.h" />
+    <ClInclude Include="ErrorTranslatorXml.h" />
     <ClInclude Include="MaterialTable.h" />
     <ClInclude Include="ExceptionsSystem.h" />
     <ClInclude Include="MaterialEntity.h" />
     <ClInclude Include="MethodInterface.h" />
-    <ClInclude Include="MethodsMapper.h" />
+    <ClInclude Include="MethodsCollection.h" />
     <ClInclude Include="Query.h" />
     <ClInclude Include="QueryGenerator.h" />
     <ClInclude Include="ErrorQueue.h" />
@@ -203,8 +205,8 @@
     <ClInclude Include="Server.h" />
     <ClInclude Include="TableInterface.h" />
     <ClInclude Include="EntityInterface.h" />
-    <ClInclude Include="TranslatorToXml.h" />
-    <ClInclude Include="TranslatorFromXml.h" />
+    <ClInclude Include="ResponseTranslatorXml.h" />
+    <ClInclude Include="RequestTranslatorXml.h" />
     <ClInclude Include="TranslatorXml.h" />
   </ItemGroup>
   <ItemGroup>
@@ -215,10 +217,12 @@
     <ClCompile Include="DatabaseHandler.cpp" />
     <ClCompile Include="DocumentXml.cpp" />
     <ClCompile Include="EntityCollection.cpp" />
-    <ClCompile Include="ErrorResponse.cpp" />
+    <ClCompile Include="ErrorLogger.cpp" />
+    <ClCompile Include="ErrorMessage.cpp" />
+    <ClCompile Include="ErrorTranslatorXml.cpp" />
     <ClCompile Include="MaterialTable.cpp" />
     <ClCompile Include="MaterialEntity.cpp" />
-    <ClCompile Include="MethodsMapper.cpp" />
+    <ClCompile Include="MethodsCollection.cpp" />
     <ClCompile Include="Query.cpp" />
     <ClCompile Include="QueryGenerator.cpp" />
     <ClCompile Include="ErrorQueue.cpp" />
@@ -241,8 +245,8 @@
     <ClCompile Include="Router.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="ServerSide.cpp" />
-    <ClCompile Include="TranslatorToXml.cpp" />
-    <ClCompile Include="TranslatorFromXml.cpp" />
+    <ClCompile Include="ResponseTranslatorXml.cpp" />
+    <ClCompile Include="RequestTranslatorXml.cpp" />
     <ClCompile Include="TranslatorXml.cpp" />
   </ItemGroup>
   <ItemGroup>

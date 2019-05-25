@@ -9,11 +9,11 @@ using std::string;
 
 class ExceptionInterface;
 
-class ErrorResponse
+class ErrorMessage
 	:	public Content<string>
 {
 public:
-	ErrorResponse(string& exception);
-	~ErrorResponse();
+	ErrorMessage(string& exception);
+	~ErrorMessage();
 };
 

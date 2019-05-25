@@ -1,7 +1,7 @@
 #pragma once
 #include "MethodInterface.h"
 #include "DataBaseMap.h"
-#include "MethodsMapper.h"
+#include "MethodsCollection.h"
 #include "QueryQueue.h"
 #include "QueueItem.h"
 #include "ErrorQueue.h"
@@ -11,10 +11,10 @@ class Request;
 class DataBaseMap;
 class MethodInterface;
 class TableInterface;
-class MethodsMapper;
+class MethodsCollection;
 class ErrorQueue;
 
-class TranslatorFromXml
+class RequestTranslatorXml
 {
 	std::thread TRANSLATOR_XML_THREAD;
 	bool running;
@@ -26,7 +26,7 @@ class TranslatorFromXml
 
 	ErrorQueue* errorQueuePtr;
 
-	DataBaseMap dataBaseMap;
+	DataBaseMap* dataBaseMap;
 
 
 		unique_ptr<QueueItem> queueItem;
@@ -49,8 +49,8 @@ class TranslatorFromXml
 	void setMethod();
 	
 public:
-	TranslatorFromXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorQueue* errorQueue);
-	~TranslatorFromXml();
+	RequestTranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorQueue* errorQueue, DataBaseMap* databaseMap);
+	~RequestTranslatorXml();
 	void start();
 	void stop();
 

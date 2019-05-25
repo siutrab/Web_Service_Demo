@@ -1,6 +1,8 @@
 #pragma once
-#include "ErrorResponse.h"
-#include "TranslatorFromXml.h"
+#include "ErrorMessage.h"
+#include "ErrorTranslatorXml.h"
+#include "ErrorLogger.h"
+#include "RequestTranslatorXml.h"
 #include "QueueItem.h"
 #include "Queue.h"
 #include "Client.h"
@@ -14,6 +16,8 @@ class Request;
 class ErrorQueue
 	: public Queue
 {
+	ErrorLogger errorLogger;
+	ErrorTranslatorXml	errorTranslator;
 public:
 	ErrorQueue();
 	~ErrorQueue();

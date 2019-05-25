@@ -1,4 +1,4 @@
-#include "TranslatorFromXml.h"
+#include "RequestTranslatorXml.h"
 #include "DataBaseMap.h"
 
 

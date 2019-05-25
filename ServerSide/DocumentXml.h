@@ -16,6 +16,7 @@ using std::vector;
 using std::unique_ptr;
 using pugi::xml_node;
 using pugi::xml_document;
+using pugi::xml_attribute;
 
 class Request;
 extern void eraseSpaces(string& str);
@@ -30,10 +31,10 @@ private:
 		nodeXml methodNode;
 
 
-
+	void addEntitiesToDocument(vector<unique_ptr<EntityInterface>>& entitiesCollection, xml_node& parentNode);
 public:
 	DocumentXml(Request& request);
-	DocumentXml(vector<unique_ptr<EntityInterface>>& entitiesCollection);
+	DocumentXml(vector<unique_ptr<EntityInterface>>& entitiesCollection, unsigned int responseIndex);
 	~DocumentXml();
 
 	unique_ptr<string> generateXml();
