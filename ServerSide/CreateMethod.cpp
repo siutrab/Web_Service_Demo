@@ -49,10 +49,10 @@ CreateMethodMaterials::CreateMethodMaterials(QueryGenerator* queryGenerator)
 
 
 CreateMethodMaterials::~CreateMethodMaterials()
-{
-}
+{	}
 
-bool CreateMethodMaterials::mapArguments()
+
+bool CreateMethodMaterials::mapParameters()
 {
 	for (size_t i = 0; i < parametersList.size(); i++)
 	{
@@ -68,6 +68,7 @@ bool CreateMethodMaterials::mapArguments()
 
 	return true;
 }
+
 
 bool CreateMethodMaterials::initializeWidthsList()
 {
@@ -85,7 +86,7 @@ bool CreateMethodMaterials::initializeWidthsList()
 		for (size_t i = 0; i < widthsNumber; i++)
 		{
 			string stringValue = (*widthsString)[i];
-			eraseWhitespaces(stringValue);
+			eraseSpaces(stringValue);
 			int ushortValue = boost::lexical_cast<int>(stringValue.c_str());
 
 			castedWidths->push_back(ushortValue);
@@ -101,22 +102,11 @@ bool CreateMethodMaterials::initializeWidthsList()
 	return true;
 }
 
-void CreateMethodMaterials::eraseWhitespaces(string& str)
-{
-	string newStr;
-	for (size_t i = 0; i < str.size(); i++)
-	{
-		char c = str[i];
-		if (c != ' ')		// erasing only spaces, because the rest of white signes were removed in DocumentXml constructor
-			newStr += c;
-	}
-	str = newStr;
-}
 
 unique_ptr<Query> CreateMethodMaterials::generateQuery(DocumentXml& document)
 {
 	documentXml = &document;
-	if ((initializeWidthsList()) && (mapArguments()))
+	if ((initializeWidthsList()) && (mapParameters()))
 	{
 		vector<unique_ptr<EntityInterface>> entitiesVector = generateEntities();
 		sql::SQLString query = *queryGenerator->insert(entitiesVector);
@@ -126,6 +116,7 @@ unique_ptr<Query> CreateMethodMaterials::generateQuery(DocumentXml& document)
 	}
 	throw ServerExceptions::QueryMappingExceptions::CannotConvertXml();
 }
+
 
 bool CreateMethodMaterials::isResulting()
 {

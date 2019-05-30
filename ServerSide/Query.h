@@ -15,7 +15,6 @@ public:
 };
 
 
-
 class ResultingQuery
 	: public Query
 {
@@ -24,5 +23,4 @@ public:
 	ResultingQuery(sql::SQLString& queryString, ReadMethodInterface*  method);
 	~ResultingQuery();
 	ReadMethodInterface* getMethodPointer();
-
 };

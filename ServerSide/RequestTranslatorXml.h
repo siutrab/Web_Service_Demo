@@ -4,7 +4,7 @@
 #include "MethodsCollection.h"
 #include "QueryQueue.h"
 #include "QueueItem.h"
-#include "ErrorQueue.h"
+#include "ErrorHandler.h"
 #include <thread>
 
 class Request;
@@ -12,7 +12,7 @@ class DataBaseMap;
 class MethodInterface;
 class TableInterface;
 class MethodsCollection;
-class ErrorQueue;
+class ErrorHandler;
 
 class RequestTranslatorXml
 {
@@ -24,7 +24,7 @@ class RequestTranslatorXml
 	Queue* queryQueuePtr;
 	Queue* resultingQueryQueuePtr;
 
-	ErrorQueue* errorQueuePtr;
+	ErrorHandler* errorHandlerPtr;
 
 	DataBaseMap* dataBaseMap;
 
@@ -38,18 +38,19 @@ class RequestTranslatorXml
 		MethodInterface* methodPointer;
 		
 		
-	void run();
+	void run();					// main loop
 	bool loadDocument();
-	bool initializeFields();
-	void translateDocument();
-	void prepareQuery();
+	bool initializeFields();	// Sets queueItem and request objects. Returns true whe uv
+	void translateDocument();	// Coordinates the translation procedure
+	void prepareQuery();		// Generte proper SQL statement
+	void disconnectClient();
 
-	void setRequestId();
-	void setTable();
-	void setMethod();
+	void setRequestId();		// Sets id to QueueUtmem fe
+	void setTable();			// Sets specific table from database
+	void setMethod();			// Sets method from table
 	
 public:
-	RequestTranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorQueue* errorQueue, DataBaseMap* databaseMap);
+	RequestTranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorHandler* errorQueue, DataBaseMap* databaseMap);
 	~RequestTranslatorXml();
 	void start();
 	void stop();

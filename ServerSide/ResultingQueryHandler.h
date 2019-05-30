@@ -1,10 +1,10 @@
 #pragma once
 #include "Query.h"
 #include "Queue.h"
-#include "ErrorQueue.h"
+#include "ErrorHandler.h"
 #include "MethodInterface.h"
 #include "EntityInterface.h"
-#include "EntityCollection.h"
+#include "ResultSetContent.h"
 #include "Content.h"
 
 #include "jdbc/cppconn/sqlstring.h"
@@ -24,12 +24,11 @@ class ResultingQueryHandler
 {
 		unique_ptr<QueueItem> queueItem;
 		unique_ptr<ContentInterface> queryContent;
-		//unique_ptr<EntityCollection> newContent;
 		ReadMethodInterface* method;
 
 		Queue* resultingQueryQueuePtr;
 		Queue* entityQueuePtr;
-		ErrorQueue* errorQueuePtr;
+		ErrorHandler* errorHandlerPtr;
 
 		ResponseTranslator responseTranslator;
 		DatabaseHandler* databaseHandlerPtr;
@@ -37,13 +36,13 @@ class ResultingQueryHandler
 		unique_ptr<Statement> sqlStatement;
 		shared_ptr<ResultSet> sqlResultSet;
 
-	bool takeQueueItem();
-	void executeQuery(SQLString& query);
-	//void generateEntities();
+	bool takeQueueItem();					// initilizing queueItem, queryContent and method
+	void executeQuery(SQLString& query);	// executes query and set sqlResultSet
+
 public:
-	ResultingQueryHandler(Queue* resultingQueryQueue, Queue* entityQueue, ErrorQueue* errorQueue, DatabaseHandler* databaseHandler);
+	ResultingQueryHandler(Queue* resultingQueryQueue, Queue* entityQueue, ErrorHandler* errorQueue, DatabaseHandler* databaseHandler);
 	~ResultingQueryHandler();
-	void  handleQuery();
-	void setConnection(Connection* connection);
+	void  handleQuery();						// Coordintes the query execution
+	void setConnection(Connection* connection);	// Sets connection to database
 };
 

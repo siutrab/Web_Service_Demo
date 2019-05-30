@@ -1,6 +1,6 @@
 #pragma once
 #include "Queue.h"
-#include "ErrorQueue.h"
+#include "ErrorHandler.h"
 #include "Client.h"
 #include <thread>
 
@@ -10,18 +10,18 @@ using std::string;
 
 class ResponseHandler
 {
-	thread REQUEST_HANDLER_THREAD;
+	thread RESPONSE_HANDLER_THREAD;
 	bool running;
 
 		Queue* responseQueuePtr;
-		ErrorQueue* errorQueuePtr;
+		ErrorHandler* errorQueuePtr;
 
-	void run();
-	void sendResponse();
-	void sendErrorMessage();
+	void run();				// main loop
+	void sendResponse();	// Sends response that is first in Queue
 public:
-	ResponseHandler(Queue* responseQueue, ErrorQueue* errorQueue);
+	ResponseHandler(Queue* responseQueue, ErrorHandler* errorQueue);
 	~ResponseHandler();
+
 	void start();
 	void stop();
 };

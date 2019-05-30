@@ -3,25 +3,22 @@
 #include "ClientsMenager.h"
 
  Queue* Client::requestQueuePtr;
- ErrorQueue* Client::errorQueuePtr;
+ ErrorHandler* Client::errorHandlerPtr;
  ClientsMenager* Client::clientsMenagerPtr;
 
 	void Client::setRequestQueuePtr(Queue* pointer) 
 	{ 
 		Client::requestQueuePtr = pointer;		// Settet in RequestsQueue object
-		const_cast<const Queue*>(Client::requestQueuePtr);
 	}	
 	
-	void Client::setErrorQueuePtr(ErrorQueue* const pointer)
+	void Client::setErrorHandlerPtr(ErrorHandler* const pointer)
 	{ 
-		Client::errorQueuePtr = pointer;		// Settet in ErrorQueue object
-		const_cast<const ErrorQueue*>(Client::errorQueuePtr);
+		Client::errorHandlerPtr = pointer;		// Settet in ErrorQueue object
 	}
 
 	void Client::setClientsMenagerPtr(ClientsMenager* const pointer)
 	{
 		Client::clientsMenagerPtr = pointer;	// Settet in ClientsMenager object
-		const_cast<const ClientsMenager*>(Client::clientsMenagerPtr);
 	}
 
 	Client::Client(unsigned int index)
@@ -33,10 +30,11 @@
 		socket.setBlocking(false);
 	}
 
+
 	Client::~Client()
 	{	}
 
-// methods
+
 	void Client::sendResponse(string* response)
 	{
 		sf::Packet packet;
@@ -47,6 +45,7 @@
 		}
 	}
 
+
 	void Client::receivePacket()
 	{
 		Packet packet;
@@ -55,18 +54,16 @@
 			try
 			{
 				unique_ptr<QueueItem> request = createRequest(packet);
-				///
-					std::cout << *(static_cast<string*>(request->getContent())) << std::endl;	//////////////////////// COUT
-				///
 				Client::requestQueuePtr->addItem(std::move(request));
 			}
 			catch (ExceptionInterface& exception)
 			{
 				unique_ptr<QueueItem> queueItem = createQueueItem(exception);
-				errorQueuePtr->addItem(std::move(queueItem), exception);
+				errorHandlerPtr->createError(std::move(queueItem), exception);
 			}
 		}
 	}
+
 
 	unique_ptr<QueueItem> Client::createRequest(Packet& packet)
 	{
@@ -82,6 +79,7 @@
 		else throw ServerExceptions::ReceivingPacketExceptions::CantUnpackPacket();
 	}
 
+
 	unique_ptr<QueueItem> Client::createQueueItem(ExceptionInterface& exception)
 	{
 		auto errorResponse = std::make_unique<ErrorMessage>(exception.getValue());
@@ -89,10 +87,12 @@
 		return std::make_unique<QueueItem>(this, std::move(errorResponse));
 	}
 
+
 	TcpSocket* Client::getSocket() 
 	{ 
 		return &socket; 
 	}
+
 
 	void Client::requestAdded()
 	{
@@ -108,10 +108,18 @@
 		}
 	}
 
+
+	void Client::setDisconnected()
+	{
+		connected = false;
+	}
+
+
 	bool Client::isConnected()
 	{
 		return connected;
 	}
+
 
 	unsigned int Client::getIndex() const 
 	{ 

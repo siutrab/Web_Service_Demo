@@ -20,6 +20,5 @@ public:
 	ResultSetContent(shared_ptr<ResultSet>& entityVector, ReadMethodInterface* methodPtr);
 	~ResultSetContent();
 	ReadMethodInterface* getMethod();
-	//void setMethod(ReadMethodInterface* methodPtr);
 };
 

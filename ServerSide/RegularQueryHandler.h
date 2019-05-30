@@ -3,7 +3,7 @@
 #include "Query.h"
 #include "DatabaseHandler.h"
 #include "ResponseTranslator.h"
-#include "ErrorQueue.h"
+#include "ErrorHandler.h"
 #include "ExceptionsSystem.h"
 
 #include "jdbc/cppconn/sqlstring.h"
@@ -21,8 +21,9 @@ using sql::Connection;
 using sql::PreparedStatement;
 using std::unique_ptr;
 
-class ErrorQueue;
+class ErrorHandler;
 class Queue;
+class DatabaseHandler;
 
 class RegularQueryHandler
 {
@@ -31,7 +32,7 @@ class RegularQueryHandler
 
 		Queue* queryQueuePtr;
 		Queue* responseQueuePtr;
-		ErrorQueue* errorQueuePtr;
+		ErrorHandler* errorQueuePtr;
 
 		DatabaseHandler* databaseHandlerPtr;
 		ResponseTranslator responseTranslator;
@@ -40,11 +41,11 @@ class RegularQueryHandler
 		unique_ptr<PreparedStatement> SqlPreparedStatement;
 
 	bool executeQuery(SQLString& query);
-	bool takeQueueItem();
+	bool takeQueueItem();	// initializes queueItem and queryContent fields
 public:
-	RegularQueryHandler(Queue* queryQueue, Queue* responseQueue, ErrorQueue* errorQueue, DatabaseHandler* databaseHandler);
+	RegularQueryHandler(Queue* queryQueue, Queue* responseQueue, ErrorHandler* errorQueue, DatabaseHandler* databaseHandler);
 	~RegularQueryHandler();
-	void setConnection(Connection* connection);
-	void handleQuery();
+	void setConnection(Connection* connection);	// sets datbse connection
+	void handleQuery();							// coordinates the query execution
 };
 

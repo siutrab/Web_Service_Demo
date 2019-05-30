@@ -1,5 +1,6 @@
 #pragma once
 #include "ConnectionHandler.h"
+#include "MethodInterface.h"
 #include "pugixml.hpp"
 #include <iostream>
 #include <vector>
@@ -16,10 +17,9 @@ using pugi::xml_document;
 class ConnectionHandler;
 
 class CreateMethodDocument
+	: public MethodInterface
 {
 	ConnectionHandler* connectionHandler;
-
-		//static unsigned int requestNumber;
 
 		xml_document document;
 		xml_node method;
@@ -50,12 +50,12 @@ class CreateMethodDocument
 
 	void collectData();		// gets data from user and initializes the xml tree structure that could be then turned to xml document
 	string* generateXml();	// returns pointer to generted xml;
-	void initializeWidths();	
+	void initializeWidths();
+	
 public:
 	CreateMethodDocument();
 	~CreateMethodDocument();
-	
-	
-	bool createDatabaseRecord(ConnectionHandler& connectionHandler);
+	void printResponse(string& response) override;	//returns true if request status is succeed
+	bool createDatabaseRecord(ConnectionHandler& connectionHandler);	// collects data and sends it to server as an XML
 };
 

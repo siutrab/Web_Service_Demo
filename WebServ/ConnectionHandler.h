@@ -1,4 +1,5 @@
 #pragma once
+#include "MethodInterface.h"
 #include "SFML/Network/TcpSocket.hpp"
 #include "SFML/Network/TcpListener.hpp"
 #include "SFML/Network/Packet.hpp"
@@ -13,29 +14,24 @@ using std::string;
 using std::cout;
 using std::endl;
 
+
 class ConnectionHandler
 {
-		thread CONNECTION_HANDLER_THREAD;
-		bool running;
-
-		vector<string> responeBuffer;
+	static string disconnectMessage;
 
 		static unsigned int requestNumber;
 		unsigned int port;
 		sf::IpAddress ipAddress;
 		sf::TcpSocket socket;
 
-
-	void run();
-	void handleReceivedData(sf::Packet& packet);
+	void connect();
+	void disconnect();
+	void handleReceivedData(sf::Packet& packet, MethodInterface* method);	// unpacks the message and calls printing method
 public:
 	ConnectionHandler(unsigned int port, sf::IpAddress ip = sf::IpAddress::getLocalAddress());
 	~ConnectionHandler();
-	bool start();
-	bool sendData(string& message);
-	static unsigned int getRequestNumber();
-	bool stop();
-	bool printResponseMessages();
-	bool responseBufferIsEmpty();
+	bool sendData(string& message);						// sends string through the web service
+	void waitForResponse(MethodInterface* method);		// Waits until response and prints it on the console screen
+	static unsigned int getRequestNumber();				// returns unique number of request for this client
 };
 

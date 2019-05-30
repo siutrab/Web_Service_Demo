@@ -1,10 +1,10 @@
 #pragma once
-#include <memory>
-#include <vector>
 #include "QueryGenerator.h"
 #include "MethodInterface.h"
 #include "CreateMethod.h"
 #include "ReadMethod.h"
+#include <memory>
+#include <vector>
 
 
 using std::vector;

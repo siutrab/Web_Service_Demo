@@ -1,7 +1,7 @@
 #include "RequestTranslatorXml.h"
 
 
-RequestTranslatorXml::RequestTranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorQueue* errorQueue, DataBaseMap* databaseMap)
+RequestTranslatorXml::RequestTranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorHandler* errorQueue, DataBaseMap* databaseMap)
 	:	running(false),
 		dataBaseMap(databaseMap),
 		queueItem(),
@@ -10,14 +10,13 @@ RequestTranslatorXml::RequestTranslatorXml(Queue* queryQueue, Queue* resultingQu
 		queryQueuePtr(queryQueue),
 		resultingQueryQueuePtr(resultingQueryQueue),
 		requestQueuePtr(requestQueue),
-		errorQueuePtr(errorQueue)
+		errorHandlerPtr(errorQueue)
 {	}
 
 
 RequestTranslatorXml::~RequestTranslatorXml()
-{	
-	stop();
-}
+{	}
+
 
 void RequestTranslatorXml::start()
 {
@@ -25,14 +24,14 @@ void RequestTranslatorXml::start()
 	TRANSLATOR_XML_THREAD = std::thread(&RequestTranslatorXml::run, this);
 }
 
+
 void RequestTranslatorXml::stop()
 {
+	running = false;
 	if (TRANSLATOR_XML_THREAD.joinable())
-	{
 		TRANSLATOR_XML_THREAD.join();
-		running = false;
-	}
 }
+
 
 void RequestTranslatorXml::run()
 {
@@ -43,29 +42,39 @@ void RequestTranslatorXml::run()
 	}
 }
 
+
 void RequestTranslatorXml::translateDocument()
 {	
 	try
 	{
-		setRequestId();
-		setTable();
-		setMethod();
-		prepareQuery();
-
-		if (methodPointer->isResulting())
-		{
-			resultingQueryQueuePtr->addItem(std::move(queueItem));
-		}
+		if (document->isDisconnectRequest())
+			disconnectClient();
 		else
 		{
-			queryQueuePtr->addItem(std::move(queueItem));
+			setRequestId();
+			setTable();
+			setMethod();
+			prepareQuery();
+
+			if (methodPointer->isResulting())
+				resultingQueryQueuePtr->addItem(std::move(queueItem));
+			else
+				queryQueuePtr->addItem(std::move(queueItem));
 		}
+		
 	}
 	catch (ExceptionInterface& exception)
 	{
-		errorQueuePtr->addItem(std::move(queueItem), exception);
+		errorHandlerPtr->createError(std::move(queueItem), exception);
 	}
 	
+}
+
+void RequestTranslatorXml::disconnectClient()
+{
+	Client* client = queueItem->getClientPointer();
+	client->setDisconnected();
+	queueItem->~QueueItem();
 }
 
 void RequestTranslatorXml::setRequestId()

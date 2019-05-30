@@ -21,7 +21,7 @@ public:
 
 	~Queue() {}
 
-	bool isEmpty();
+	bool isEmpty();	// if the element ready to take
 
 	void addItem(unique_ptr<QueueItem> item);
 

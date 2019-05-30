@@ -168,6 +168,7 @@
   <ItemGroup>
     <ClInclude Include="ConnectionHandler.h" />
     <ClInclude Include="CreateMethodDocument.h" />
+    <ClInclude Include="MethodInterface.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ReadMethodDocument.h" />
   </ItemGroup>

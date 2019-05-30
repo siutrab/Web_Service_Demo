@@ -177,7 +177,7 @@
     <ClInclude Include="DataBaseMap.h" />
     <ClInclude Include="DatabaseHandler.h" />
     <ClInclude Include="DocumentXml.h" />
-    <ClInclude Include="EntityCollection.h" />
+    <ClInclude Include="ResultSetContent.h" />
     <ClInclude Include="ErrorLogger.h" />
     <ClInclude Include="ErrorMessage.h" />
     <ClInclude Include="ErrorTranslatorXml.h" />
@@ -188,7 +188,7 @@
     <ClInclude Include="MethodsCollection.h" />
     <ClInclude Include="Query.h" />
     <ClInclude Include="QueryGenerator.h" />
-    <ClInclude Include="ErrorQueue.h" />
+    <ClInclude Include="ErrorHandler.h" />
     <ClInclude Include="QueueItem.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Listener.h" />
@@ -216,7 +216,7 @@
     <ClCompile Include="DataBaseMap.cpp" />
     <ClCompile Include="DatabaseHandler.cpp" />
     <ClCompile Include="DocumentXml.cpp" />
-    <ClCompile Include="EntityCollection.cpp" />
+    <ClCompile Include="ResultSetContent.cpp" />
     <ClCompile Include="ErrorLogger.cpp" />
     <ClCompile Include="ErrorMessage.cpp" />
     <ClCompile Include="ErrorTranslatorXml.cpp" />
@@ -225,7 +225,7 @@
     <ClCompile Include="MethodsCollection.cpp" />
     <ClCompile Include="Query.cpp" />
     <ClCompile Include="QueryGenerator.cpp" />
-    <ClCompile Include="ErrorQueue.cpp" />
+    <ClCompile Include="ErrorHandler.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="QueueItem.cpp" />
     <ClCompile Include="Listener.cpp" />

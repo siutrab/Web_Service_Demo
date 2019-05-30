@@ -5,10 +5,10 @@ const string ResponseTranslator::successMessageFirstPart =
 "<?xml version=\"1.0\"?>\
 <soap:Envelope>\
 <soap:Body>\
-<request id=\"";
+<response id=\"";
 
-const string ResponseTranslator::successMessageSecondPart = "\">\
-<result success=\"true\"/>\
+const string ResponseTranslator::successMessageSecondPart = "\" \
+result=\"success\"/>\
 </soap:Body>\
 </soap:Envelope>";
 

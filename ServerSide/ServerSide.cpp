@@ -1,10 +1,14 @@
 ﻿#include "pch.h"
 #include "Server.h"
 #include <iostream>
+#include <cstdlib>
 
 
 using std::unique_ptr;
 using std::string;
+using std::cout;
+using std::cin;
+using std::endl;
 
 void eraseWhitespaces(string& str);
 void eraseSpaces(string& str);
@@ -14,8 +18,11 @@ int main()
 {
 	Server server(54000);
 	server.start();
-	
+	cout << "Server runs. Press any key to stop." << endl;
 	std::cin.get();
+	server.stop();
+
+	std::exit(0);
 }
 
 	

@@ -15,6 +15,7 @@ DataBaseMap::DataBaseMap()
 DataBaseMap::~DataBaseMap()
 {	}
 
+
 TableInterface& DataBaseMap::findTable(string &tableName)
 {
 	for (size_t i = 0; i < tableList.size(); i++)

@@ -1,4 +1,4 @@
-#include "EntityCollection.h"
+#include "ResultSetContent.h"
 
 
 

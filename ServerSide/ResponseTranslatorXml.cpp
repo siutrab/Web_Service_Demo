@@ -2,8 +2,8 @@
 
 
 
-ResponseTranslatorXml::ResponseTranslatorXml(ErrorQueue* errorQueue, Queue* responseQueue, Queue* entityQueue)
-	:	errorQueue(errorQueue),
+ResponseTranslatorXml::ResponseTranslatorXml(ErrorHandler* errorQueue, Queue* responseQueue, Queue* entityQueue)
+	:	errorHandler(errorQueue),
 		responseQueue(responseQueue),
 		sqlResultQueue(entityQueue),
 		running(false)
@@ -44,12 +44,9 @@ void ResponseTranslatorXml::run()
 bool ResponseTranslatorXml::takeQueueItem()
 {
 	if (sqlResultQueue->isEmpty())
-	{
 		return false;
-	}
 	else
 	{
-
 		setQueueItem();
 		setContent();
 		setMethod();

@@ -1,8 +1,9 @@
 #pragma once
 #include "DocumentXml.h"
-#include "ErrorQueue.h"
+#include "ErrorHandler.h"
 #include "MethodInterface.h"
 #include "EntityInterface.h"
+#include "ResultSetContent.h"
 #include "Queue.h"
 #include "jdbc/cppconn/resultset.h"
 #include <thread>
@@ -18,7 +19,7 @@ class ResponseTranslatorXml
 	bool running;
 
 	thread TRANSLATOR_TO_XML_THREAD;
-	ErrorQueue* errorQueue;
+	ErrorHandler* errorHandler;
 	Queue* responseQueue;
 	Queue* sqlResultQueue;
 
@@ -30,15 +31,15 @@ class ResponseTranslatorXml
 		unique_ptr<DocumentXml> document;
 	
 	void run();
-	bool takeQueueItem();
-	unique_ptr<string> generateXmlDocument();
-	void pushResponseOnQueue(unique_ptr<string> xmlDocument);
-	void setQueueItem();
-	void setMethod();
-	void setContent();
-	void setResultSet();
+	bool takeQueueItem();		// takes first item from queue and initializes all fields in class (like queueItem and content etc)
+	void setQueueItem();		// initilizes queueItem field
+	void setContent();			// initializes content field
+	void setMethod();			// initializes method field
+	void setResultSet();		// initializes resultSet field
+	unique_ptr<string> generateXmlDocument();	// generates XML as string
+	void pushResponseOnQueue(unique_ptr<string> xmlDocument);	// pushes queueItem on queue that makes class ready to tke another item
 public:
-	ResponseTranslatorXml(ErrorQueue* errorQueue,	Queue* responseQueue, Queue* sqlResultQueue);
+	ResponseTranslatorXml(ErrorHandler* errorQueue,	Queue* responseQueue, Queue* sqlResultQueue);
 	~ResponseTranslatorXml();
 	void start();
 	void stop();

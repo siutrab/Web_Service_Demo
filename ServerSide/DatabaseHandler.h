@@ -50,8 +50,9 @@ class ResultingQueryHandler;
 			unique_ptr<Connection> sqlConnection;
 		
 		void run();		// main loop
+		bool disconnectDatabase();	// closes the db connection. Returns true if disconnect.
 	public:
-		DatabaseHandler(Queue* queryQueue, Queue* resultingQueryQueue, Queue* responseQueue, Queue* entityQueue, ErrorQueue* errorQueue);
+		DatabaseHandler(Queue* queryQueue, Queue* resultingQueryQueue, Queue* responseQueue, Queue* entityQueue, ErrorHandler* errorQueue);
 		~DatabaseHandler();
 		void start();
 		void stop();

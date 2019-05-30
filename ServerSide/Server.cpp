@@ -5,41 +5,40 @@
 	Server::Server(const unsigned int port)
 		:	port(port),
 			requestsQueue(),
-			errorQueue(),
 			queryQueue(),
 			resultingQueryQueue(),
 			responseQueue(),
 			sqlResultQueue(),
-			translatorXml(&queryQueue, &resultingQueryQueue, &requestsQueue, &responseQueue, &sqlResultQueue, &errorQueue),
-			//responseTranslator(&errorQueue, &responseQueue, &entityQueue),
-			databaseHandler(&queryQueue, &resultingQueryQueue, &responseQueue, &sqlResultQueue, &errorQueue),
-			responseHandler(&responseQueue, &errorQueue),
+			errorHandler(&responseQueue),
+			translatorXml(&queryQueue, &resultingQueryQueue, &requestsQueue, &responseQueue, &sqlResultQueue, &errorHandler),
+			databaseHandler(&queryQueue, &resultingQueryQueue, &responseQueue, &sqlResultQueue, &errorHandler),
+			responseHandler(&responseQueue, &errorHandler),
 			router(port)
 	{
 		Client::setRequestQueuePtr(&requestsQueue);
-		Client::setErrorQueuePtr(&errorQueue);
-	
-		
+		Client::setErrorHandlerPtr(&errorHandler);
 	}
 
 
 	Server::~Server()
 	{	}
 
+
 	void Server::start()
 	{
-		bool connectedToDatabase = false;
+		/*bool connectedToDatabase = false;
 		do
-		{
-			connectedToDatabase = databaseHandler.connectDatabase();
-			if (connectedToDatabase)
+		{*/
+			//connectedToDatabase = databaseHandler.connectDatabase();
+			//if (connectedToDatabase)
+			if(databaseHandler.connectDatabase())
 			{
 				responseHandler.start();
 				translatorXml.start();
 				databaseHandler.start();
 				router.start();
 			}	
-		} while (connectedToDatabase == false);
+		//} while (connectedToDatabase == false);
 
 	}
 
@@ -47,8 +46,7 @@
 	{
 		responseHandler.stop();
 		translatorXml.stop();
-		databaseHandler.stop();
-		router.stop();
 
-		databaseHandler.stop();		// Has to be called because database connection has to be closed
+		router.stop();
+		databaseHandler.stop();	
 	}

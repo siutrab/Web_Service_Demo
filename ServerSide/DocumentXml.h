@@ -31,19 +31,21 @@ private:
 		nodeXml methodNode;
 
 
-	void addEntitiesToDocument(vector<unique_ptr<EntityInterface>>& entitiesCollection, xml_node& parentNode);
+	void addEntitiesToDocument(vector<unique_ptr<EntityInterface>>& entitiesCollection, xml_node& parentNode);	// Appends entities to document
+																												// that can be esily renslated do XML
 public:
-	DocumentXml(Request& request);
-	DocumentXml(vector<unique_ptr<EntityInterface>>& entitiesCollection, unsigned int responseIndex);
+	DocumentXml(Request& request);	// Constructor of document from an XML file
+	DocumentXml(vector<unique_ptr<EntityInterface>>& entitiesCollection, unsigned int responseIndex);	// Constructor from set of entities
 	~DocumentXml();
 
 	unique_ptr<string> generateXml();
 
-	int getRequestID();
-	string findTableName();
-	string findMethodName();
+	bool isDisconnectRequest();			// Checks if message is request for disconnection
+	int getRequestID();					// Returns the id number of specific request. Throws exception!!!
+	string findTableName();				// Returns the database table (that contains the methods lists). Throws exception!! 
+	string findMethodName();			// Returns the method name. Throws exception!!!
 
-	unique_ptr<string> getParameter(string& parameterName);
+	unique_ptr<string> getParameter(string& parameterName);	// Returns the parameter name
 	unique_ptr<vector<string>> getParametersArray(string& collectionName, string& parameterName);
 
 };

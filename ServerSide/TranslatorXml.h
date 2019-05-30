@@ -1,6 +1,6 @@
 #pragma once
 #include "Queue.h"
-#include "ErrorQueue.h"
+#include "ErrorHandler.h"
 #include "RequestTranslatorXml.h"
 #include "ResponseTranslatorXml.h"
 #include "DataBaseMap.h"
@@ -11,7 +11,7 @@ class TranslatorXml
 	RequestTranslatorXml requestTranslator;
 	ResponseTranslatorXml responseTranslator;
 public:
-	TranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, Queue* responseQueue, Queue* entityQueue, ErrorQueue* errorQueue);
+	TranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, Queue* responseQueue, Queue* entityQueue, ErrorHandler* errorQueue);
 	~TranslatorXml();
 	void start();
 	void stop();

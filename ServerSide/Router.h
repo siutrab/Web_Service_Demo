@@ -12,15 +12,15 @@ using std::thread;
 	class Router
 	{
 		
-			thread ROUTER_THREAD;
 			bool running;
 			const unsigned int port;
+			thread ROUTER_THREAD;
 
 			SocketSelector selector;
 			ClientsMenager clientsList;
 			Listener listener;
 
-		void run();
+		void run();		// main loop
 	public:
 		Router(const unsigned int port);
 		~Router();

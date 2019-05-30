@@ -18,7 +18,7 @@ public:
 
 	~QueueItem();
 	
-	void changeContent(unique_ptr<ContentInterface>& newContent);
+	void changeContent(unique_ptr<ContentInterface>& newContent);	// replaces content objest
 
 	unsigned int getId() const;
 	void setId(int id);

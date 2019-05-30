@@ -1,0 +1,23 @@
+
+
+exception name:
+Wrong table name.
+time:
+-1:-1:1899:hour: -1:-1:-1
+
+exception name:
+Wrong table name.
+time:
+25:5:2019:hour: 18:42:57
+
+exception name:
+Wrong table name.
+time:
+25.5.2019 18:45:20Wrong table name.
+25.5.2019 18:47:53
+Wrong table name.
+25.5.2019 18:49:11
+
+Wrong table name.
+25.5.2019 18:49:17
+

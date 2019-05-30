@@ -14,8 +14,8 @@ MethodsCollection::MethodsCollection()
 
 
 MethodsCollection::~MethodsCollection()
-{
-}
+{	}
+
 
 MethodInterface& MethodsCollection::findMethod(string& name)
 {

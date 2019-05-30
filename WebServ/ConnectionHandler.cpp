@@ -3,63 +3,68 @@
 
 unsigned int ConnectionHandler::requestNumber = 0;
 
+string ConnectionHandler::disconnectMessage = "<?xml version=\"1.0\"?><soap:Envelope><soap:Body><disconnect/></soap:Body></soap:Envelope>";
+
 ConnectionHandler::ConnectionHandler(unsigned int port, sf::IpAddress ip)
 	:	socket(),
-		running(false),
 		ipAddress()
 {
 	this->port = port;
 	ipAddress = ip;	
+
+	connect();
 }
 
 
 ConnectionHandler::~ConnectionHandler()
 {
-	if(CONNECTION_HANDLER_THREAD.joinable())
-		CONNECTION_HANDLER_THREAD.join();
+	disconnect();
 }
 
-bool ConnectionHandler::start()
+
+void ConnectionHandler::connect()
 {
-	if (socket.connect(ipAddress, port) != sf::Socket::Done)
-		return false;
-	else
+	cout << "Wait for connection..." << endl;
+
+	bool connected = false;
+	do
 	{
-		running = true;
-		CONNECTION_HANDLER_THREAD = thread(&ConnectionHandler::run, this);
-		return true;
-	}
+		connected = (socket.connect(ipAddress, port) == sf::Socket::Done);
+	} while (!connected);
+
+	cout << "Connected" << endl << endl;
 }
 
-void ConnectionHandler::run()
+void ConnectionHandler::disconnect()
+{
+	sendData(disconnectMessage);
+	socket.disconnect();
+}
+
+
+void ConnectionHandler::waitForResponse(MethodInterface* method)
 {
 	sf::Packet packet;
 
-	while (running)
+	while (true)
 	{
 		if (socket.receive(packet) == sf::Socket::Done)
-			handleReceivedData(packet);
+		{
+			handleReceivedData(packet, method);
+			return;
+		}
 	}
 }
 
-bool ConnectionHandler::stop()
-{
-	running = false;
-	if (CONNECTION_HANDLER_THREAD.joinable())
-		CONNECTION_HANDLER_THREAD.join();
-	socket.disconnect();
 
-	return true;
-}
-
-void ConnectionHandler::handleReceivedData(sf::Packet& packet)
+void ConnectionHandler::handleReceivedData(sf::Packet& packet, MethodInterface* method)
 {
 	string message;
+
 	if (packet >> message)
-	{
-		responeBuffer.push_back(message);
-	}
+		method->printResponse(message);
 }
+
 
 bool ConnectionHandler::sendData(string& message)
 {
@@ -72,30 +77,9 @@ bool ConnectionHandler::sendData(string& message)
 	return false;
 }
 
+
 unsigned int ConnectionHandler::getRequestNumber()
 {
 	requestNumber++;
 	return requestNumber;
-}
-
-bool ConnectionHandler::printResponseMessages()
-{
-	size_t responseCount = responeBuffer.size();
-	if (responseCount > 0)
-	{
-		for (size_t i = 0; i < responseCount; i++)
-		{
-			cout << responeBuffer[i] << endl << endl;
-			
-		}
-		responeBuffer.resize(0);
-		return true;
-	}
-
-	return false;
-}
-
-bool ConnectionHandler::responseBufferIsEmpty()
-{
-	return responeBuffer.empty();
 }

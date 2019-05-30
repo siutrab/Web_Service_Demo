@@ -2,11 +2,6 @@
 #include "QueryGenerator.h"
 
 
-// !!! TO DO !!!
-unique_ptr<SQLString> QueryGenerator::selectByIndex(EntityInterface &entity, unsigned int index) { return unique_ptr<SQLString>(new SQLString()); }
-unique_ptr<SQLString> QueryGenerator::selectOrderBy(EntityInterface &entity, unsigned short columnIndex){ return unique_ptr<SQLString>(new SQLString()); }
-
-
 QueryGenerator::QueryGenerator()
 {
 }
@@ -20,7 +15,6 @@ QueryGenerator::~QueryGenerator()
 unique_ptr<SQLString> QueryGenerator::selectAll()
 { 
 	string query = "SELECT * FROM `materials`;";
-	//return unique_ptr<SQLString>(new SQLString(query.c_str())); 
 	return std::make_unique<SQLString>(query.c_str());
 }
 

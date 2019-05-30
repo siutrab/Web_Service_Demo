@@ -2,17 +2,15 @@
 #include "ResultingQueryHandler.h"
 
 
-ResultingQueryHandler::ResultingQueryHandler(Queue* resultingQueryQueue, Queue* responseQueue, ErrorQueue* errorQueue, DatabaseHandler* databaseHandler)
+ResultingQueryHandler::ResultingQueryHandler(Queue* resultingQueryQueue, Queue* responseQueue, ErrorHandler* errorQueue, DatabaseHandler* databaseHandler)
 	:	resultingQueryQueuePtr(resultingQueryQueue),
 		entityQueuePtr(responseQueue),
-		errorQueuePtr(errorQueue),
+		errorHandlerPtr(errorQueue),
 		databaseHandlerPtr(databaseHandler)
-{
-}
+{	}
 
 ResultingQueryHandler::~ResultingQueryHandler()
-{
-}
+{	}
 
 void  ResultingQueryHandler::handleQuery()
 {
@@ -30,7 +28,7 @@ void  ResultingQueryHandler::handleQuery()
 		}
 		catch (ExceptionInterface& e)
 		{
-			errorQueuePtr->addItem(std::move(queueItem), e);
+			errorHandlerPtr->createError(std::move(queueItem), e);
 		}
 	}
 }
@@ -54,13 +52,7 @@ bool ResultingQueryHandler::takeQueueItem()
 		return true;
 	}
 }
-//
-//void ResultingQueryHandler::generateEntities()
-//{
-//	auto entityVector = method->generateEntities(*sqlResultSet);
-//	unique_ptr<ContentInterface> content = std::make_unique<EntityCollection>(entityVector);
-//	queueItem->changeContent(content);
-//}
+
 
 void ResultingQueryHandler::executeQuery(SQLString& query)
 {
@@ -68,15 +60,13 @@ void ResultingQueryHandler::executeQuery(SQLString& query)
 	{
 		sqlStatement.reset(sqlConnection->createStatement());
 		sqlResultSet.reset(sqlStatement->executeQuery(query));
-
-		//newContent.reset(new EntityCollection(sqlResultSet));
 	}
 	catch(SQLException&)
 	{
 		throw ServerExceptions::DatabaseExceptions::CannotExecuteQuery();
 	}
-
 }
+
 
 void ResultingQueryHandler::setConnection(Connection* connection)
 {

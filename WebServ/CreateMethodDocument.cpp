@@ -4,9 +4,8 @@
 
 bool CreateMethodDocument::createDatabaseRecord(ConnectionHandler& connectionHandler)
 {
-	CreateMethodDocument createDocument;
-	createDocument.collectData();
-	string* xmlFile = createDocument.generateXml();
+	collectData();
+	string* xmlFile = generateXml();
 	connectionHandler.sendData(*xmlFile);
 
 	return true;
@@ -30,7 +29,6 @@ CreateMethodDocument::CreateMethodDocument()
 	method = soapBody.append_child("method");
 	method.append_attribute("name");
 	method.first_attribute().set_value("create");
-
 }
 
 
@@ -76,6 +74,7 @@ void CreateMethodDocument::collectData()
 	initializeWidths();
 }
 
+
 void CreateMethodDocument::initializeWidths()
 {
 	xml_node widthsNode = method.child("widths");
@@ -98,6 +97,7 @@ void CreateMethodDocument::initializeWidths()
 		addNode<int>("width", "Type width", widthsNode);
 }
 
+
 string* CreateMethodDocument::generateXml()
 {
 	std::stringstream ss;
@@ -106,4 +106,23 @@ string* CreateMethodDocument::generateXml()
 	documentXml += ss.str();
 
 	return &documentXml;
+}
+
+
+void CreateMethodDocument::printResponse(string& response)
+{
+	pugi::xml_parse_result result = document.load_string(response.c_str());
+
+	if (result)
+	{
+		xml_node responseNode = document.child("soap:Envelope").child("soap:Body").child("response");
+		string id = responseNode.attribute("id").value();
+		cout << "Request id: " << id << endl;
+
+		string resultSuccess = responseNode.attribute("result").value();
+		if (resultSuccess == "success")
+			cout << "Status: succeed" << endl << endl;
+		else
+			cout << "Status: fail" << endl << endl;
+	}
 }

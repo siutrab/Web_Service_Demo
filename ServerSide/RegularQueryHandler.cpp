@@ -2,7 +2,7 @@
 #include "RegularQueryHandler.h"
 
 
-RegularQueryHandler::RegularQueryHandler(Queue* queryQueue, Queue* responseQueue, ErrorQueue* errorQueue, DatabaseHandler* databaseHandler)
+RegularQueryHandler::RegularQueryHandler(Queue* queryQueue, Queue* responseQueue, ErrorHandler* errorQueue, DatabaseHandler* databaseHandler)
 	:	queryQueuePtr(queryQueue),
 		responseQueuePtr(responseQueue),
 		errorQueuePtr(errorQueue),
@@ -29,7 +29,7 @@ void  RegularQueryHandler::handleQuery()
 		else
 		{
 			ServerExceptions::DatabaseExceptions::CannotExecuteQuery exception;
-			errorQueuePtr->addItem(std::move(queueItem), exception);
+			errorQueuePtr->createError(std::move(queueItem), exception);
 		}
 	}
 }
@@ -64,6 +64,7 @@ bool RegularQueryHandler::executeQuery(SQLString& query)
 		return false;
 	}
 }
+
 
 void RegularQueryHandler::setConnection(Connection* connection)
 {

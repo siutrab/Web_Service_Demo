@@ -7,9 +7,9 @@ DocumentXml::DocumentXml(Request& request)
 	eraseWhitespacesExceptSpace(*requestContent);
 
 	pugi::xml_parse_result result = document.load_string(requestContent->c_str());
+	
 	if (!result)
 	{
-		std::cout << result.description();
 		throw ServerExceptions::QueryMappingExceptions::InvalidDocument();
 	}
 }
@@ -28,9 +28,8 @@ DocumentXml::DocumentXml(vector<unique_ptr<EntityInterface>>& entitiesCollection
 	attributeResult.set_value("success");
 
 	addEntitiesToDocument(entitiesCollection, responseNode);
-
-
 }
+
 
 void DocumentXml::addEntitiesToDocument(vector<unique_ptr<EntityInterface>>& entitiesCollection, xml_node& parentNode)
 {
@@ -52,7 +51,6 @@ void DocumentXml::addEntitiesToDocument(vector<unique_ptr<EntityInterface>>& ent
 			xml_node fieldNode = entityNode.append_child(field->getColumnName()->c_str());
 			string value = *field->getValueAsString();
 			fieldNode.text().set(value.c_str());
-
 		}
 	}
 }
@@ -95,12 +93,11 @@ int DocumentXml::getRequestID()
 		catch (boost::bad_lexical_cast&)
 		{
 			throw ServerExceptions::QueryMappingExceptions::IDundefined();
-		}
-
-		
+		}	
 	}
 	throw ServerExceptions::QueryMappingExceptions::IDundefined();
 }
+
 
 string DocumentXml::findTableName()
 {
@@ -115,6 +112,7 @@ string DocumentXml::findTableName()
 	return string(value);
 }
 
+
 string DocumentXml::findMethodName()
 {
 	methodNode = document.child("soap:Envelope").child("soap:Body").child("method");
@@ -128,6 +126,7 @@ string DocumentXml::findMethodName()
 	return string(value);
 }
 
+
 unique_ptr<string> DocumentXml::getParameter(string& parameterName)
 {
 	const pugi::char_t* value = methodNode.child(parameterName.c_str()).child_value();
@@ -135,6 +134,7 @@ unique_ptr<string> DocumentXml::getParameter(string& parameterName)
 
 	return std::move(valueString);
 }
+
 
 unique_ptr<vector<string>> DocumentXml::getParametersArray(string& collectionName, string& parameterName)		// WARNING!!! throws exception of type: boost::bad_lexical_cast
 {
@@ -149,3 +149,11 @@ unique_ptr<vector<string>> DocumentXml::getParametersArray(string& collectionNam
 	}
 	return std::move(valuesVector);
 };
+
+
+bool DocumentXml::isDisconnectRequest()
+{
+	nodeXml disconnectNode = document.child("soap:Envelope").child("soap:Body").child("disconnect");
+	if (!disconnectNode) return false;
+	else return true;
+}

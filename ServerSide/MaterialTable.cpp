@@ -5,8 +5,10 @@ MaterialTable::MaterialTable()
 	: methodsMapper()
 {	}
 
+
 MaterialTable::~MaterialTable()
 {	}
+
 
 string MaterialTable::getTableName() 
 { 

@@ -56,12 +56,11 @@ vector<unique_ptr<EntityInterface>> ReadMethodMaterials::generateEntities(shared
 }
 
 
-unique_ptr<Query> ReadMethodMaterials::generateQuery(DocumentXml& document)	// TOOOOOO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!!!!!
+unique_ptr<Query> ReadMethodMaterials::generateQuery(DocumentXml& document)
 {
-	auto queryString = queryGenerator->selectAll();/////////////////////////////////////////////////////////////////////////////////////////////
+	auto queryString = queryGenerator->selectAll();
 	auto query = std::make_unique<ResultingQuery>(*queryString, this);
-	//unique_ptr<Query> query(new ResultingQuery(*queryString, this));
-	////auto castedQuery = std::make_unique<Query>(*dynamic_cast<Query*>(query.release()));
+
 	return std::move(query);
 }
 
@@ -70,6 +69,7 @@ unique_ptr<string> ReadMethodMaterials::getMethodName()
 {
 	return std::make_unique<string>("read");
 }
+
 
 bool ReadMethodMaterials::isResulting()
 {
