@@ -31,8 +31,8 @@ public:
 	~ReadMethodMaterials();
 
 	vector<unique_ptr<EntityInterface>> generateEntities(shared_ptr<ResultSet> resultSet) override;	// translates sql::ResultSet to entity
-	unique_ptr<Query> generateQuery(DocumentXml& document) override;
+	unique_ptr<Query> generateQuery(DocumentXml& document) override;								
 	unique_ptr<string> getMethodName() override;
-	bool isResulting() override;
+	bool isResulting() override;																	// returns true if query is resulting
 };
 

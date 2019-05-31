@@ -16,6 +16,6 @@ class ClientsMenager;
 	public:
 		Listener(Router* router);
 		~Listener();
-		void listen();
+		void listen();			// Listen on port for new connection calls
 	};
 

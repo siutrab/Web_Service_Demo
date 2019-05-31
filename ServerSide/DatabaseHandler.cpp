@@ -67,6 +67,7 @@ bool DatabaseHandler::disconnectDatabase()
 			return false;
 		}
 	}
+	return true;
 }
 
 

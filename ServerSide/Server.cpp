@@ -26,27 +26,19 @@
 
 	void Server::start()
 	{
-		/*bool connectedToDatabase = false;
-		do
-		{*/
-			//connectedToDatabase = databaseHandler.connectDatabase();
-			//if (connectedToDatabase)
-			if(databaseHandler.connectDatabase())
-			{
-				responseHandler.start();
-				translatorXml.start();
-				databaseHandler.start();
-				router.start();
-			}	
-		//} while (connectedToDatabase == false);
-
+		if(databaseHandler.connectDatabase())
+		{
+			responseHandler.start();
+			translatorXml.start();
+			databaseHandler.start();
+			router.start();
+		}	
 	}
 
 	void Server::stop()
 	{
 		responseHandler.stop();
 		translatorXml.stop();
-
 		router.stop();
 		databaseHandler.stop();	
 	}

@@ -38,12 +38,12 @@ class RequestTranslatorXml
 		MethodInterface* methodPointer;
 		
 		
-	void run();					// main loop
+	void run();					// main loop of thread
 	bool loadDocument();
 	bool initializeFields();	// Sets queueItem and request objects. Returns true whe uv
 	void translateDocument();	// Coordinates the translation procedure
 	void prepareQuery();		// Generte proper SQL statement
-	void disconnectClient();
+	void disconnectClient();	// Sets the client disconnected and deletes request
 
 	void setRequestId();		// Sets id to QueueUtmem fe
 	void setTable();			// Sets specific table from database
@@ -52,8 +52,8 @@ class RequestTranslatorXml
 public:
 	RequestTranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, ErrorHandler* errorQueue, DataBaseMap* databaseMap);
 	~RequestTranslatorXml();
-	void start();
-	void stop();
+	void start();				// starts thread
+	void stop();				// joins thread
 
 };
 

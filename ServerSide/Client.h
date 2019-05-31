@@ -20,13 +20,15 @@ class ClientsMenager;
 
 	class Client
 	{
-		static Queue* requestQueuePtr;		
-		static ErrorHandler* errorHandlerPtr;
-		static ClientsMenager* clientsMenagerPtr;
+			static Queue* requestQueuePtr;		
+			static ErrorHandler* errorHandlerPtr;
+			static ClientsMenager* clientsMenagerPtr;
+			
 
-		unsigned int requestCount;
-		bool connected;
-			const unsigned int index;
+			unsigned int requestCount;
+			bool connected;
+			const unsigned int index;	// index in ClientsMenager, unique for every instance
+
 			TcpSocket socket;
 			
 
@@ -38,14 +40,23 @@ class ClientsMenager;
 		void receivePacket();					// Receives record form specific socket and if it's correct push it on requesttQueue;
 		void sendResponse(string* response);	// Sends response to the client
 
+		TcpSocket* getSocket();
+		unsigned int getIndex() const;
+
+		/* 
+			Below functions are part of client removeing system
+			While Client sends to server disconnection request the flag is setted, 
+			but the client istn't destroyed yet, bacause some of its requests are in system.
+			Each queue is filtering requests of disconnected clients and removes them.
+			Each remove is decrementing the counter until client has no more requests.
+			Then he calls ClientsMenager to remove him.
+		*/
+
 		void requestAdded();					// Reports that request was added to the specific client
 		void requestRemoved();					// Reports request removement. If there ewo
-
-		TcpSocket* getSocket();
 		bool isConnected();
-		void setDisconnected();
+		void setDisconnected();			
 
-		unsigned int getIndex() const;
 
 		// Below functions set static poiners
 		static void setRequestQueuePtr(Queue* const pointer);	

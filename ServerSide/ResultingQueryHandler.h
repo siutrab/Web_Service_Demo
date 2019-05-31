@@ -36,8 +36,8 @@ class ResultingQueryHandler
 		unique_ptr<Statement> sqlStatement;
 		shared_ptr<ResultSet> sqlResultSet;
 
-	bool takeQueueItem();					// initilizing queueItem, queryContent and method
-	void executeQuery(SQLString& query);	// executes query and set sqlResultSet
+	bool takeQueueItem();						// initilizing queueItem, queryContent and method
+	void executeQuery(SQLString& query);		// executes query and set sqlResultSet
 
 public:
 	ResultingQueryHandler(Queue* resultingQueryQueue, Queue* entityQueue, ErrorHandler* errorQueue, DatabaseHandler* databaseHandler);

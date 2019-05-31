@@ -1,5 +1,6 @@
 #include "MaterialEntity.h"
 
+
 MaterialEntity::MaterialEntity(
 	unsigned int	id,
 	float			lambda,
@@ -26,5 +27,8 @@ MaterialEntity::~MaterialEntity()
 {	}
 
 
-string MaterialEntity::getTableName() { return "materials"; }
+string MaterialEntity::getTableName() 
+{ 
+	return "materials"; 
+}
 

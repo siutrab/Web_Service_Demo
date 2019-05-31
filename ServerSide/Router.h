@@ -20,12 +20,12 @@ using std::thread;
 			ClientsMenager clientsList;
 			Listener listener;
 
-		void run();		// main loop
+		void run();							// thread main loop
 	public:
 		Router(const unsigned int port);
 		~Router();
-		void start();
-		void stop();
+		void start();						// begins new thread
+		void stop();						// joins thread
 		unsigned int getPort();
 		SocketSelector* getSelector();
 		ClientsMenager* getClientsList();

@@ -41,7 +41,7 @@ class RegularQueryHandler
 		unique_ptr<PreparedStatement> SqlPreparedStatement;
 
 	bool executeQuery(SQLString& query);
-	bool takeQueueItem();	// initializes queueItem and queryContent fields
+	bool takeQueueItem();						// initializes queueItem and queryContent fields
 public:
 	RegularQueryHandler(Queue* queryQueue, Queue* responseQueue, ErrorHandler* errorQueue, DatabaseHandler* databaseHandler);
 	~RegularQueryHandler();

@@ -68,8 +68,6 @@ unique_ptr<string> DocumentXml::generateXml()
 	document.print(stringStream);
 	*resultString += stringStream.str();
 
-	std::cout << *resultString;
-
 	return std::move(resultString);
 }
 

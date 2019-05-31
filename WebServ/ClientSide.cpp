@@ -5,7 +5,7 @@
 #include "SFML/Network.hpp"
 #include <cstdlib>
 #include <iostream>
-#include <thread>
+
 
 using std::string;
 
@@ -19,7 +19,7 @@ int main()
 	while (run)
 	{
 		cout << "*******************************" << endl;
-		cout << "Type one of numbers and hit ENTER." << endl;
+		cout << "Type one of below numbers and hit ENTER:" << endl << endl;
 		cout << "1: insert new record to database" << endl;
 		cout << "2: read records from database" << endl;
 		cout << "3: disconnect" << endl;

@@ -1,16 +1,13 @@
 #include "ErrorLogger.h"
-//C:\\Users\\barto\\source\\repos\\WebServ\\ServerSide\\Debug\\
 
 const string ErrorLogger::path = "errorlog.txt";
 
 ErrorLogger::ErrorLogger()
-{
-}
+{	}
 
 
 ErrorLogger::~ErrorLogger()
-{
-}
+{	}
 
 void ErrorLogger::logError(ExceptionInterface& exception)
 {

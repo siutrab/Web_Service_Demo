@@ -16,13 +16,13 @@ class ResponseHandler
 		Queue* responseQueuePtr;
 		ErrorHandler* errorQueuePtr;
 
-	void run();				// main loop
+	void run();				// main loop in thread
 	void sendResponse();	// Sends response that is first in Queue
 public:
 	ResponseHandler(Queue* responseQueue, ErrorHandler* errorQueue);
 	~ResponseHandler();
 
-	void start();
-	void stop();
+	void start();			// begins the thread
+	void stop();			// joins thread
 };
 

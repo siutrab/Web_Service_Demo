@@ -16,6 +16,6 @@ public:
 	
 	ResponseTranslator();
 	~ResponseTranslator();
-	unique_ptr<Response> generateSuccessMessage(QueueItem& queueItem);
+	unique_ptr<Response> generateSuccessMessage(QueueItem& queueItem);		// Creates message about success in executing query
 };
 

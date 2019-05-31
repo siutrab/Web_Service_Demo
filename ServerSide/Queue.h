@@ -21,9 +21,7 @@ public:
 
 	~Queue() {}
 
-	bool isEmpty();	// if the element ready to take
-
+	bool isEmpty();		// returns true if queue is empty or if the first element belongs to disconnected client
 	void addItem(unique_ptr<QueueItem> item);
-
 	unique_ptr<QueueItem> getItem();
 };

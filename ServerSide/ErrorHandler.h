@@ -22,6 +22,6 @@ class ErrorHandler
 public:
 	ErrorHandler(Queue* responseQueue);
 	~ErrorHandler();
-	void createError(unique_ptr<QueueItem> queueItem, ExceptionInterface& exception);	// push error on an responseQueue
+	void createError(unique_ptr<QueueItem> queueItem, ExceptionInterface& exception);	// push error on an responseQueue, log error
 };
 

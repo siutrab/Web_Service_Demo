@@ -13,7 +13,7 @@ class TranslatorXml
 public:
 	TranslatorXml(Queue* queryQueue, Queue* resultingQueryQueue, Queue* requestQueue, Queue* responseQueue, Queue* entityQueue, ErrorHandler* errorQueue);
 	~TranslatorXml();
-	void start();
-	void stop();
+	void start();		// Creates two threads of request and response translation
+	void stop();		// Stops threads
 };
 

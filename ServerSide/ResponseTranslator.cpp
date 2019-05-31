@@ -13,13 +13,12 @@ result=\"success\"/>\
 </soap:Envelope>";
 
 ResponseTranslator::ResponseTranslator()
-{
-}
+{	}
 
 
 ResponseTranslator::~ResponseTranslator()
-{
-}
+{	}
+
 
 unique_ptr<Response> ResponseTranslator::generateSuccessMessage(QueueItem& queueItem)
 {

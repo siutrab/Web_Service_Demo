@@ -19,9 +19,9 @@ class ErrorTranslatorXml
 	unique_ptr<xml_document> documentXml;
 	const string header = "<?xml version=\"1.0\"?>";
 
-	void resetDocument();	// Clearing the deocument
-	void generateDocument(ExceptionInterface& exception, unsigned int requestId);	// sets the documentXml object
-	unique_ptr<string> translateToXml();	// generates XML from documentXml
+	void resetDocument();																		// Clearing the deocument
+	void generateDocument(ExceptionInterface& exception, unsigned int requestId);				// sets the documentXml object
+	unique_ptr<string> translateToXml();														// generates XML from documentXml
 public:
 	ErrorTranslatorXml();
 	~ErrorTranslatorXml();

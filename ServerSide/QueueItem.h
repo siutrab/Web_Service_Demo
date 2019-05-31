@@ -22,9 +22,9 @@ public:
 
 	unsigned int getId() const;
 	void setId(int id);
-	bool idIsKnown();
+	bool idIsKnown();												// returns true if its possible to identify requests id
 	Client* getClientPointer();
-	unique_ptr<ContentInterface> getContentObject();
-	void* getContent();
+	unique_ptr<ContentInterface> getContentObject();				// returns content as an object
+	void* getContent();												// returns content as value (pointer to a value)
 };
 

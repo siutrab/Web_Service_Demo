@@ -48,14 +48,14 @@ class CreateMethodDocument
 		node.append_child(name.c_str()).text().set(stringValue.c_str());
 	}
 
-	void collectData();		// gets data from user and initializes the xml tree structure that could be then turned to xml document
-	string* generateXml();	// returns pointer to generted xml;
-	void initializeWidths();
+	void collectData();				// gets data from user and initializes the xml tree structure that could be then turned to xml document
+	string* generateXml();			// returns pointer to generted xml;
+	void initializeWidths();		// collects sizes of materials (widths) from user
 	
 public:
 	CreateMethodDocument();
 	~CreateMethodDocument();
-	void printResponse(string& response) override;	//returns true if request status is succeed
+	void printResponse(string& response) override;						//returns true if request status is succeed
 	bool createDatabaseRecord(ConnectionHandler& connectionHandler);	// collects data and sends it to server as an XML
 };
 

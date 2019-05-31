@@ -16,7 +16,6 @@
 
 	Client* ClientsMenager::addClient()
 	{
-		//Client* client = new Client(clientUniqueNumber);
 		shared_ptr<Client> client = std::make_shared<Client>(clientUniqueNumber);
 		unsigned int clientIndex = client->getIndex();
 		clientsMap.insert(mapPair (clientIndex, client));

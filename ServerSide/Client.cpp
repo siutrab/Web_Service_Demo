@@ -6,20 +6,24 @@
  ErrorHandler* Client::errorHandlerPtr;
  ClientsMenager* Client::clientsMenagerPtr;
 
+
 	void Client::setRequestQueuePtr(Queue* pointer) 
 	{ 
 		Client::requestQueuePtr = pointer;		// Settet in RequestsQueue object
 	}	
 	
+
 	void Client::setErrorHandlerPtr(ErrorHandler* const pointer)
 	{ 
 		Client::errorHandlerPtr = pointer;		// Settet in ErrorQueue object
 	}
 
+
 	void Client::setClientsMenagerPtr(ClientsMenager* const pointer)
 	{
 		Client::clientsMenagerPtr = pointer;	// Settet in ClientsMenager object
 	}
+
 
 	Client::Client(unsigned int index)
 		:	socket(),
@@ -41,7 +45,6 @@
 		if (packet << *response)
 		{
 			socket.send(packet);
-			std::cout << *response;
 		}
 	}
 
@@ -98,6 +101,7 @@
 	{
 		requestCount++;
 	}
+
 
 	void Client::requestRemoved()
 	{

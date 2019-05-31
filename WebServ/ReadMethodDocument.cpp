@@ -3,13 +3,12 @@
 
 
 ReadMethodDocument::ReadMethodDocument()
-{
-}
+{	}
 
 
 ReadMethodDocument::~ReadMethodDocument()
-{
-}
+{	}
+
 
 bool ReadMethodDocument::readDatabaseRecord(ConnectionHandler& connectionHandler)
 {

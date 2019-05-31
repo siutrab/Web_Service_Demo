@@ -18,7 +18,7 @@ class DataBaseMap
 
 
 public:
-	TableInterface& findTable(string &tableName);	// returns table if found one elsee throws an exception
+	TableInterface& findTable(string &tableName);	// returns table if found one, else throws an exception
 
 	DataBaseMap();
 	~DataBaseMap();

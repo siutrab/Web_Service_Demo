@@ -15,7 +15,7 @@ class ErrorLogger
 	std::fstream file;
 
 	bool openFile();
-	string preapareDate();
+	string preapareDate();							// crates date string
 public:
 	ErrorLogger();
 	~ErrorLogger();

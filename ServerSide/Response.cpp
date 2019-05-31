@@ -4,10 +4,8 @@
 
 Response::Response(string& content)
 	: Content<string>(content)
-{
-}
+{	}
 
 
 Response::~Response()
-{
-}
+{	}

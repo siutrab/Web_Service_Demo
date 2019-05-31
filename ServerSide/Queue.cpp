@@ -2,9 +2,11 @@
 #include "Queue.h"
 #include "Client.h"
 
+
 Queue::Queue()
 	: itemQueue()
-{}
+{	}
+
 
 bool Queue::isEmpty()
 {
@@ -23,10 +25,12 @@ bool Queue::isEmpty()
 	}
 }
 
+
 void Queue::addItem(unique_ptr<QueueItem> item)
 {
 	itemQueue.push(std::move(item));
 }
+
 
 unique_ptr<QueueItem> Queue::getItem()
 {

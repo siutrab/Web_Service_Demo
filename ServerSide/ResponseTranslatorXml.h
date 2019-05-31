@@ -30,7 +30,7 @@ class ResponseTranslatorXml
 
 		unique_ptr<DocumentXml> document;
 	
-	void run();
+	void run();					// thread main loop
 	bool takeQueueItem();		// takes first item from queue and initializes all fields in class (like queueItem and content etc)
 	void setQueueItem();		// initilizes queueItem field
 	void setContent();			// initializes content field
@@ -41,7 +41,7 @@ class ResponseTranslatorXml
 public:
 	ResponseTranslatorXml(ErrorHandler* errorQueue,	Queue* responseQueue, Queue* sqlResultQueue);
 	~ResponseTranslatorXml();
-	void start();
-	void stop();
+	void start();				// starsts the thread
+	void stop();				// joins the thread
 };
 

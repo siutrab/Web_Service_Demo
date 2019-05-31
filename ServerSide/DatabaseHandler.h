@@ -49,13 +49,13 @@ class ResultingQueryHandler;
 			unique_ptr<MySQL_Driver> driver;
 			unique_ptr<Connection> sqlConnection;
 		
-		void run();		// main loop
+		void run();					// main loop in thread
 		bool disconnectDatabase();	// closes the db connection. Returns true if disconnect.
 	public:
 		DatabaseHandler(Queue* queryQueue, Queue* resultingQueryQueue, Queue* responseQueue, Queue* entityQueue, ErrorHandler* errorQueue);
 		~DatabaseHandler();
-		void start();
-		void stop();
+		void start();				// begins thread
+		void stop();				// joins thread
 
 		bool connectDatabase();
 	};

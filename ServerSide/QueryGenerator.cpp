@@ -68,7 +68,7 @@ unique_ptr<SQLString> QueryGenerator::insert(vector<unique_ptr<EntityInterface>>
 	auto querySecondPart = separateWithSymbols(querySecondPartVector, "", ",", "");
 
 	string Query = "INSERT INTO `" + firstEntity.getTableName() + "`" + *queryFirstPart + "VALUES" + *querySecondPart;
-	std::cout << Query << std::endl << std::endl;
+	
 	
 	auto querySql = std::make_unique<SQLString>(Query.c_str());
 	return std::move(querySql);
