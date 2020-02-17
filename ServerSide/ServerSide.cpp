@@ -2,6 +2,7 @@
 #include "Server.h"
 #include <iostream>
 #include <cstdlib>
+#include <string>
 
 
 using std::unique_ptr;
